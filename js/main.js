@@ -218,8 +218,8 @@ const PAGE_URL = 'https://toastmasters-bayern.com/';
 
 function shareMessage() {
   return currentLang === 'de'
-    ? `Komm zur Division D Konferenz am 25. April 2026! Wo Geschichten sich begegnen 🎤 ${PAGE_URL}`
-    : `Join me at the Division D Conference on 25 April 2026! Where Stories Connect 🎤 ${PAGE_URL}`;
+    ? `Komm zur Division D Konferenz am 25. April 2026! Wo Geschichten sich begegnen ${PAGE_URL}`
+    : `Join me at the Division D Conference on 25 April 2026! Where Stories Connect ${PAGE_URL}`;
 }
 
 function shareSubject() {
