@@ -408,6 +408,29 @@ body.lang-de .lang-toggle__de { color: var(--yellow); }
   font-size: clamp(.875rem, 2.5vw, 1rem);
 }
 
+.hero__scroll-cue {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  animation: scrollBounce 2s ease-in-out infinite;
+  transition: color 0.2s;
+}
+.hero__scroll-cue:hover { color: var(--yellow); }
+.hero__scroll-cue svg { width: 2rem; height: 2rem; }
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0);   opacity: 0.7; }
+  50%       { transform: translateX(-50%) translateY(8px); opacity: 1;   }
+}
+
 /* ══════════════════════════════════════════════════════
    SECTIONS — shared
 ══════════════════════════════════════════════════════ */

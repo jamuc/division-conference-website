@@ -173,8 +173,11 @@ applyLang(currentLang);
 const nav = document.getElementById('nav');
 const SCROLL_THRESHOLD = 40;
 
+const scrollCue = document.querySelector('.hero__scroll-cue');
+
 function onScroll() {
   nav.classList.toggle('scrolled', window.scrollY > SCROLL_THRESHOLD);
+  if (scrollCue) scrollCue.style.opacity = window.scrollY > 80 ? '0' : '';
 }
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
