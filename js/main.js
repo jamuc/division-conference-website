@@ -64,7 +64,6 @@ const i18n = {
     'share.whatsapp':   'WhatsApp',
     'share.linkedin':   'LinkedIn',
     'share.facebook':   'Facebook',
-    'share.email':      'Email',
     'share.instagram':  'Copy Link',
 
     'footer.d95':       'District 95',
@@ -131,7 +130,6 @@ const i18n = {
     'share.whatsapp':   'WhatsApp',
     'share.linkedin':   'LinkedIn',
     'share.facebook':   'Facebook',
-    'share.email':      'E-Mail',
     'share.instagram':  'Link kopieren',
 
     'footer.d95':       'Distrikt 95',
@@ -222,22 +220,14 @@ function shareMessage() {
     : `Join me at the Division D Conference on 25 April 2026! Where Stories Connect ${PAGE_URL}`;
 }
 
-function shareSubject() {
-  return currentLang === 'de'
-    ? 'Division D Konferenz 2026 – Sichere dir deinen Platz!'
-    : 'Division D Conference 2026 — Secure your spot!';
-}
-
 function doShare(platform) {
-  const msg     = encodeURIComponent(shareMessage());
-  const url     = encodeURIComponent(PAGE_URL);
-  const subject = encodeURIComponent(shareSubject());
+  const msg = encodeURIComponent(shareMessage());
+  const url = encodeURIComponent(PAGE_URL);
 
   const urls = {
     whatsapp:  `https://wa.me/?text=${msg}`,
     linkedin:  `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
     facebook:  `https://www.facebook.com/sharer/sharer.php?u=${url}`,
-    email:     `mailto:?subject=${subject}&body=${msg}`,
     instagram: null, // clipboard only
   };
 
@@ -251,16 +241,7 @@ function doShare(platform) {
   }
 
   if (!urls[platform]) return;
-  if (platform === 'email') {
-    const a = document.createElement('a');
-    a.href = urls[platform];
-    a.style.display = 'none';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  } else {
-    window.open(urls[platform], '_blank', 'noopener,noreferrer');
-  }
+  window.open(urls[platform], '_blank', 'noopener,noreferrer');
 }
 
 /* Wire up all share buttons (desktop + mobile bar) */
@@ -268,12 +249,10 @@ const shareMap = [
   ['shareWhatsapp',    'whatsapp'],
   ['shareLinkedin',    'linkedin'],
   ['shareFacebook',    'facebook'],
-  ['shareEmail',       'email'],
   ['shareInstagram',   'instagram'],
   ['shareBarWhatsapp', 'whatsapp'],
   ['shareBarLinkedin', 'linkedin'],
   ['shareBarFacebook', 'facebook'],
-  ['shareBarEmail',    'email'],
   ['shareBarInstagram','instagram'],
 ];
 
