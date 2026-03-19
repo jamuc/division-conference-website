@@ -250,7 +250,12 @@ function doShare(platform) {
     return;
   }
 
-  if (urls[platform]) window.open(urls[platform], '_blank', 'noopener,noreferrer');
+  if (!urls[platform]) return;
+  if (platform === 'email') {
+    window.location.href = urls[platform];
+  } else {
+    window.open(urls[platform], '_blank', 'noopener,noreferrer');
+  }
 }
 
 /* Wire up all share buttons (desktop + mobile bar) */
