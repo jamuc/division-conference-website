@@ -54,9 +54,9 @@ const i18n = {
     'venue.calendar':   '+ Add to Calendar',
 
     'tickets.label':    'Secure Your Spot',
-    'tickets.title':    'Secure Your Spot',
+    'tickets.title':    'Join Us on 25 April',
     'tickets.body':     'Tickets will be available soon via Eventbrite. Stay tuned.',
-    'tickets.cta':      'Notify Me When Available',
+    'tickets.cta':      'Register',
 
     'share.label':      'Spread the Word',
     'share.title':      'Share the Event',
@@ -120,9 +120,9 @@ const i18n = {
     'venue.calendar':   '+ Zum Kalender hinzufügen',
 
     'tickets.label':    'Sichere deinen Platz',
-    'tickets.title':    'Sichere dir deinen Platz',
+    'tickets.title':    'Sei dabei am 25. April',
     'tickets.body':     'Tickets sind bald über Eventbrite erhältlich. Schau bald wieder vorbei.',
-    'tickets.cta':      'Benachrichtigt werden',
+    'tickets.cta':      'Registrieren',
 
     'share.label':      'Sag es weiter',
     'share.title':      'Veranstaltung teilen',

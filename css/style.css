@@ -437,9 +437,14 @@ body.lang-de .lang-toggle__de { color: var(--yellow); }
 .section {
   padding-block: clamp(3.5rem, 8vw, 6rem);
 }
-.section--light  { background: var(--white); }
-.section--dark   { background: var(--navy); }
-.section--maroon { background: var(--maroon); }
+.section--light   { background: var(--white); }
+.section--dark    { background: var(--navy); }
+.section--maroon  { background: var(--maroon); }
+.section--tickets {
+  background: linear-gradient(135deg, var(--maroon) 0%, var(--navy) 100%);
+  padding-block: clamp(4rem, 10vw, 8rem);
+  text-align: center;
+}
 
 /* ══════════════════════════════════════════════════════
    ABOUT
@@ -598,10 +603,31 @@ body.lang-de .lang-toggle__de { color: var(--yellow); }
 /* ══════════════════════════════════════════════════════
    TICKETS
 ══════════════════════════════════════════════════════ */
+.tickets__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+.tickets__headline {
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
 .tickets__body {
-  color: rgba(255,255,255,.85);
-  font-size: .9375rem;
-  margin-bottom: 2rem;
+  color: rgba(255,255,255,.8);
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  max-width: 36ch;
+  margin: 0;
+}
+.tickets__cta {
+  margin-top: 0.5rem;
+  font-size: 1.0625rem;
+  padding: 0.9rem 2.5rem;
 }
 
 /* ══════════════════════════════════════════════════════
