@@ -70,7 +70,7 @@ const i18n = {
     'footer.d95':       'District 95',
     'footer.ti':        'Toastmasters International',
     'footer.facebook':  'Facebook',
-    'footer.privacy':   'Privacy',
+    'footer.privacy':   'Impressum',
     'footer.copy':      '© 2026 Toastmasters District 95, Division D',
 
     'toast.copied':     'Link copied to clipboard!',
@@ -137,7 +137,7 @@ const i18n = {
     'footer.d95':       'Distrikt 95',
     'footer.ti':        'Toastmasters International',
     'footer.facebook':  'Facebook',
-    'footer.privacy':   'Datenschutz',
+    'footer.privacy':   'Impressum',
     'footer.copy':      '© 2026 Toastmasters Distrikt 95, Division D',
 
     'toast.copied':     'Link in die Zwischenablage kopiert!',
