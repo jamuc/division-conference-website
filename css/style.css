@@ -410,7 +410,7 @@ body.lang-de .lang-toggle__de { color: var(--yellow); }
 
 .hero__scroll-cue {
   position: absolute;
-  bottom: 2rem;
+  bottom: calc(64px + 1.25rem);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
