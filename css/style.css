@@ -629,6 +629,12 @@ body.lang-de .lang-toggle__de { color: var(--yellow); }
   font-size: 1.0625rem;
   padding: 0.9rem 2.5rem;
 }
+.tickets__cta:disabled,
+.tickets__cta[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
 
 /* ══════════════════════════════════════════════════════
    SHARE — desktop section
