@@ -252,7 +252,12 @@ function doShare(platform) {
 
   if (!urls[platform]) return;
   if (platform === 'email') {
-    window.location.href = urls[platform];
+    const a = document.createElement('a');
+    a.href = urls[platform];
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   } else {
     window.open(urls[platform], '_blank', 'noopener,noreferrer');
   }
