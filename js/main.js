@@ -55,8 +55,9 @@ const i18n = {
 
     'tickets.label':    'Secure Your Spot',
     'tickets.title':    'Join Us on 25 April',
-    'tickets.body':     'Tickets will be available soon via Eventbrite. Stay tuned.',
+    'tickets.body':     'Tickets will be available soon. Register on pretix.',
     'tickets.cta':      'Register',
+    'tickets.soon':     'Ticket sales opening soon — check back shortly.',
 
     'share.label':      'Spread the Word',
     'share.title':      'Share the Event',
@@ -121,8 +122,9 @@ const i18n = {
 
     'tickets.label':    'Sichere deinen Platz',
     'tickets.title':    'Sei dabei am 25. April',
-    'tickets.body':     'Tickets sind bald über Eventbrite erhältlich. Schau bald wieder vorbei.',
+    'tickets.body':     'Tickets sind bald verfügbar. Auf pretix registrieren.',
     'tickets.cta':      'Registrieren',
+    'tickets.soon':     'Ticketverkauf startet bald — schau bald wieder vorbei.',
 
     'share.label':      'Sag es weiter',
     'share.title':      'Veranstaltung teilen',

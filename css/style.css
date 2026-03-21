@@ -636,6 +636,25 @@ body.lang-de .lang-toggle__de { color: var(--yellow); }
   pointer-events: none;
 }
 
+.tickets__widget {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+/* While pretix shop is in test/private mode the widget renders nothing —
+   show the coming-soon message as fallback */
+.tickets__coming-soon {
+  margin-top: 1.5rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.95rem;
+  font-style: italic;
+}
+
+/* Hide coming-soon text once the widget has loaded content */
+pretix-widget + * + .tickets__coming-soon {
+  display: none;
+}
+
 /* ══════════════════════════════════════════════════════
    SHARE — desktop section
 ══════════════════════════════════════════════════════ */

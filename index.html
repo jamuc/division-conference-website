@@ -28,6 +28,7 @@
   <!-- Fonts: self-hosted for GDPR compliance (no Google CDN) -->
 
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://pretix.eu/division-d/conference/widget/v1.css">
 </head>
 <body>
 
@@ -154,8 +155,13 @@
     <div class="container container--narrow tickets__inner">
       <span class="section__label section__label--light" data-i18n="tickets.label">Secure Your Spot</span>
       <h2 class="tickets__headline" data-i18n="tickets.title">Secure Your Spot</h2>
-      <p class="tickets__body" data-i18n="tickets.body">Tickets will be available soon via Eventbrite. Stay tuned.</p>
-      <button class="btn btn--yellow btn--lg tickets__cta" data-i18n="tickets.cta" disabled aria-disabled="true">Register</button>
+      <div class="tickets__widget">
+        <pretix-widget event="https://pretix.eu/division-d/conference/" single-item-select="button"></pretix-widget>
+        <noscript>
+          <p class="tickets__body" data-i18n="tickets.body">Tickets will be available soon. <a href="https://pretix.eu/division-d/conference/" target="_blank" rel="noopener">Register on pretix</a></p>
+        </noscript>
+      </div>
+      <p class="tickets__coming-soon" data-i18n="tickets.soon">Ticket sales opening soon — check back shortly.</p>
     </div>
   </section>
 
@@ -279,5 +285,6 @@
   <div class="toast" id="toast" role="alert" aria-live="polite"></div>
 
   <script src="js/main.js"></script>
+  <script src="https://pretix.eu/widget/v1.en.js" async></script>
 </body>
 </html>
