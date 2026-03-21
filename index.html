@@ -28,7 +28,6 @@
   <!-- Fonts: self-hosted for GDPR compliance (no Google CDN) -->
 
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="https://pretix.eu/division-d/conference/widget/v1.css">
 </head>
 <body>
 
@@ -48,7 +47,7 @@
           <span class="lang-toggle__sep">|</span>
           <span class="lang-toggle__de">DE</span>
         </button>
-        <a href="#tickets" class="btn btn--yellow btn--sm" data-i18n="nav.cta">Register</a>
+        <button class="btn btn--yellow btn--sm" disabled aria-disabled="true" data-i18n="nav.cta">Tickets Coming Soon</button>
         <button class="nav__burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -85,7 +84,7 @@
           <span class="hero__meta-venue"> · Stadtteilkultur 2411</span>
         </a>
       </p>
-      <a href="#tickets" class="btn btn--yellow btn--lg hero__cta" data-i18n="hero.cta">Tickets Coming Soon</a>
+      <button class="btn btn--yellow btn--lg hero__cta" disabled aria-disabled="true" data-i18n="hero.cta">Tickets Coming Soon</button>
     </div>
     <a href="#about" class="hero__scroll-cue" aria-label="Scroll down">
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -156,12 +155,6 @@
     <div class="container container--narrow tickets__inner">
       <span class="section__label section__label--light" data-i18n="tickets.label">Secure Your Spot</span>
       <h2 class="tickets__headline" data-i18n="tickets.title">Secure Your Spot</h2>
-      <div class="tickets__widget">
-        <pretix-widget event="https://pretix.eu/division-d/conference/" single-item-select="button"></pretix-widget>
-        <noscript>
-          <p class="tickets__body" data-i18n="tickets.body">Tickets will be available soon. <a href="https://pretix.eu/division-d/conference/" target="_blank" rel="noopener">Register on pretix</a></p>
-        </noscript>
-      </div>
       <p class="tickets__coming-soon" data-i18n="tickets.soon">Ticket sales opening soon — check back shortly.</p>
     </div>
   </section>
@@ -288,6 +281,5 @@
   <div class="toast" id="toast" role="alert" aria-live="polite"></div>
 
   <script src="js/main.js"></script>
-  <script src="https://pretix.eu/widget/v1.en.js" async></script>
 </body>
 </html>
