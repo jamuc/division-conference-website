@@ -92,6 +92,8 @@ const i18n = {
     'pdf.date':               '25 April 2026',
     'pdf.venue':              'Stadtteilkultur 2411, Munich',
     'pdf.workshop':           'Workshop Package: Included',
+    'pdf.totalLabel':         'TOTAL DUE AT DOOR',
+    'pdf.totalNote':          'Cash payment on arrival',
     'pdf.footer':             'toastmasters-bayern.com · District 95',
     'pdf.filename':           'Division-D-Conference-2026-Ticket',
   },
@@ -180,6 +182,8 @@ const i18n = {
     'pdf.date':               '25. April 2026',
     'pdf.venue':              'Stadtteilkultur 2411, München',
     'pdf.workshop':           'Workshop-Paket: Inklusive',
+    'pdf.totalLabel':         'GESAMTBETRAG VOR ORT',
+    'pdf.totalNote':          'Barzahlung bei Ankunft',
     'pdf.footer':             'toastmasters-bayern.com · Distrikt 95',
     'pdf.filename':           'Division-D-Konferenz-2026-Ticket',
   },
@@ -545,6 +549,19 @@ function buildPDF(logoB64) {
   doc.setFontSize(8.5);
   doc.setTextColor(200, 220, 235);
   doc.text(`${t('pdf.date')}  ·  ${t('pdf.venue')}`, contentX, 84);
+
+  /* ── Total due at door ── */
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(8);
+  doc.setTextColor(242, 223, 116);
+  doc.text(t('pdf.totalLabel'), contentX, 100);
+  doc.setFontSize(18);
+  doc.setTextColor(255, 255, 255);
+  doc.text(`€${calcTotal()}`, contentX, 111);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(7.5);
+  doc.setTextColor(200, 220, 235);
+  doc.text(t('pdf.totalNote'), contentX, 118);
 
   /* ── Footer text ── */
   doc.setFont('helvetica', 'normal');
