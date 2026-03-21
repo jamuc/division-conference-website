@@ -95,6 +95,7 @@ const i18n = {
     'pdf.totalLabel':         'TOTAL DUE AT DOOR',
     'pdf.totalNote':          'Cash payment on arrival',
     'pdf.footer':             'toastmasters-bayern.com · District 95',
+    'reg.confirm.ref':        'Booking ref',
     'pdf.filename':           'Division-D-Conference-2026-Ticket',
   },
 
@@ -185,9 +186,14 @@ const i18n = {
     'pdf.totalLabel':         'GESAMTBETRAG VOR ORT',
     'pdf.totalNote':          'Barzahlung bei Ankunft',
     'pdf.footer':             'toastmasters-bayern.com · Distrikt 95',
+    'reg.confirm.ref':        'Buchungsreferenz',
     'pdf.filename':           'Division-D-Konferenz-2026-Ticket',
   },
 };
+
+/* ── Google Sheets endpoint ───────────────────────────── */
+// Replace with your deployed Apps Script Web App URL
+const APPS_SCRIPT_URL = 'PASTE_YOUR_WEB_APP_URL_HERE';
 
 /* ── i18n ─────────────────────────────────────────────── */
 let currentLang = localStorage.getItem('tm-lang') || 'en';
@@ -226,6 +232,7 @@ const state = {
   clubName:    '',
   role:        '',   // 'audience' | 'contestant' | 'timekeeper' | 'ballotcounter' | 'judge' | 'chiefjudge' | 'contestchair' | 'sargeant'
   workshop:    false,
+  ref:         '',   // booking reference, generated on confirm
 };
 
 const PRICES = { cleaning: 5, audience: 5, workshop: 5 };
@@ -235,6 +242,39 @@ function calcTotal() {
   if (state.role === 'audience') total += PRICES.audience;
   if (state.workshop) total += PRICES.workshop;
   return total;
+}
+
+function generateRef() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  return 'DD26-' + Array.from({ length: 6 }, () =>
+    chars[Math.floor(Math.random() * chars.length)]
+  ).join('');
+}
+
+async function submitToSheet() {
+  if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'PASTE_YOUR_WEB_APP_URL_HERE') return;
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode:   'no-cors',  // Apps Script doesn't send CORS headers
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        firstName: state.firstName,
+        lastName:  state.lastName,
+        email:     state.email,
+        isMember:  state.isMember,
+        club:      state.clubName,
+        role:      state.role,
+        workshop:  state.workshop,
+        total:     calcTotal(),
+        lang:      currentLang,
+        ref:       state.ref,
+      }),
+    });
+  } catch (err) {
+    // Silently fail — registration still completes for the user
+    console.warn('Sheet submission failed:', err);
+  }
 }
 
 function isAudience()    { return state.role === 'audience'; }
@@ -421,7 +461,11 @@ function populateSummary() {
 }
 
 document.getElementById('step4Back').addEventListener('click', () => goToStep(3));
-document.getElementById('step4Confirm').addEventListener('click', () => goToStep(5));
+document.getElementById('step4Confirm').addEventListener('click', async () => {
+  state.ref = generateRef();
+  await submitToSheet();
+  goToStep(5);
+});
 
 /* ── Step 5: Confirmation ────────────────────────────── */
 function populateConfirmation() {
@@ -431,6 +475,9 @@ function populateConfirmation() {
 
   const workshopRow = document.getElementById('confirmWorkshopRow');
   workshopRow.hidden = !state.workshop;
+
+  const refEl = document.getElementById('confirmRef');
+  if (refEl) refEl.textContent = state.ref;
 }
 
 document.getElementById('downloadTicket').addEventListener('click', generatePDF);
@@ -562,6 +609,12 @@ function buildPDF(logoB64) {
   doc.setFontSize(7.5);
   doc.setTextColor(200, 220, 235);
   doc.text(t('pdf.totalNote'), contentX, 118);
+
+  /* ── Booking reference ── */
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(7);
+  doc.setTextColor(169, 178, 177);   // TM gray
+  doc.text(`REF: ${state.ref}`, contentX, 127);
 
   /* ── Footer text ── */
   doc.setFont('helvetica', 'normal');

@@ -1324,6 +1324,8 @@ body { padding-bottom: 70px; }
   font-weight: 700;
 }
 .confirm__summary-row--total strong { color: var(--maroon); font-size: 1.1rem; }
+.confirm__summary-row--ref { opacity: .7; font-size: .85rem; }
+.confirm__ref { font-family: monospace; letter-spacing: .05em; }
 
 .confirm__actions {
   display: flex;
