@@ -50,6 +50,7 @@ const i18n = {
     'reg.role.chiefjudge':    'Chief Judge',
     'reg.role.contestchair':  'Contest Chair',
     'reg.role.sargeant':      'Sergeant at Arms',
+    'reg.role.contestant':    'Contestant',
     'reg.role.free':          'Included',
 
     'reg.workshop.title':     'Workshop Package',
@@ -137,6 +138,7 @@ const i18n = {
     'reg.role.chiefjudge':    'Chefrichter',
     'reg.role.contestchair':  'Wettbewerbsleiter',
     'reg.role.sargeant':      'Sergeant at Arms',
+    'reg.role.contestant':    'Teilnehmer (Wettbewerb)',
     'reg.role.free':          'Inklusive',
 
     'reg.workshop.title':     'Workshop-Paket',
@@ -218,7 +220,7 @@ const state = {
   email:       '',
   isMember:    false,
   clubName:    '',
-  role:        '',   // 'audience' | 'timekeeper' | 'ballotcounter' | 'judge' | 'chiefjudge' | 'contestchair' | 'sargeant'
+  role:        '',   // 'audience' | 'contestant' | 'timekeeper' | 'ballotcounter' | 'judge' | 'chiefjudge' | 'contestchair' | 'sargeant'
   workshop:    false,
 };
 
@@ -231,8 +233,13 @@ function calcTotal() {
   return total;
 }
 
-function isAudience() { return state.role === 'audience'; }
-function ticketRole()  { return isAudience() ? 'AUDIENCE' : 'STAFF'; }
+function isAudience()    { return state.role === 'audience'; }
+function isContestant()  { return state.role === 'contestant'; }
+function ticketRole()    {
+  if (isAudience())   return 'AUDIENCE';
+  if (isContestant()) return 'CONTESTANT';
+  return 'STAFF';
+}
 
 /* ── Step navigation ──────────────────────────────────── */
 function goToStep(n) {
