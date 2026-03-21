@@ -81,7 +81,7 @@
         <span class="hero__meta-sep">·</span>
         <span class="hero__meta-item">
           <svg class="icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2C7.24 2 5 4.24 5 7c0 4 5 11 5 11s5-7 5-11c0-2.76-2.24-5-5-5zm0 7a2 2 0 110-4 2 2 0 010 4z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span data-i18n="hero.location">Bavaria, Germany</span>
+          <span data-i18n="hero.location">Munich, Germany</span>
         </span>
       </p>
       <a href="#tickets" class="btn btn--yellow btn--lg hero__cta" data-i18n="hero.cta">Tickets Coming Soon</a>
@@ -194,19 +194,21 @@
       <span class="section__label" data-i18n="venue.label">Getting There</span>
       <h2 class="section__title" data-i18n="venue.title">Venue</h2>
       <div class="venue__card">
-        <div class="venue__map-placeholder" aria-label="Map placeholder">
-          <svg viewBox="0 0 48 48" fill="none" aria-hidden="true" class="venue__pin">
-            <path d="M24 4C16.27 4 10 10.27 10 18c0 10.5 14 26 14 26s14-15.5 14-26c0-7.73-6.27-14-14-14zm0 19a5 5 0 110-10 5 5 0 010 10z" fill="#772432" opacity=".18"/>
-            <path d="M24 6C17.37 6 12 11.37 12 18c0 9.5 12 24 12 24s12-14.5 12-24c0-6.63-5.37-12-12-12zm0 17a5 5 0 110-10 5 5 0 010 10z" stroke="#772432" stroke-width="1.5" fill="none"/>
-          </svg>
-          <p class="venue__map-text" data-i18n="venue.mapText">Map will appear once venue is confirmed</p>
-        </div>
+        <a href="https://maps.google.com/?q=Stadtteilkultur+2411,+Blodigstra%C3%9Fe+4,+80933+M%C3%BCnchen" target="_blank" rel="noopener" class="venue__map-placeholder" aria-label="Open in Google Maps">
+          <iframe
+            src="https://maps.google.com/maps?q=Blodigstra%C3%9Fe+4,+80933+M%C3%BCnchen&output=embed&z=15"
+            width="100%" height="100%" style="border:0;pointer-events:none;" loading="lazy"
+            title="Venue map" aria-hidden="true"></iframe>
+          <span class="venue__map-overlay" data-i18n="venue.mapCta">Open in Google Maps ↗</span>
+        </a>
         <div class="venue__info">
           <div class="venue__location">
             <svg class="icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2C7.24 2 5 4.24 5 7c0 4 5 11 5 11s5-7 5-11c0-2.76-2.24-5-5-5zm0 7a2 2 0 110-4 2 2 0 010 4z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span data-i18n="venue.location">Bavaria, Germany</span>
+            <span>Stadtteilkultur 2411</span>
           </div>
-          <p class="venue__tba" data-i18n="venue.tba">Exact venue to be announced. Check back soon.</p>
+          <p class="venue__address">Blodigstraße 4, 80933 München</p>
+          <p class="venue__transport" data-i18n="venue.transport">U-Bahn: Hasenbergl (U2)</p>
+          <a href="https://maps.google.com/?q=Stadtteilkultur+2411,+Blodigstra%C3%9Fe+4,+80933+M%C3%BCnchen" target="_blank" rel="noopener" class="btn btn--outline btn--sm venue__directions" data-i18n="venue.directions">Get Directions ↗</a>
           <button class="btn btn--outline btn--sm venue__cal" data-i18n="venue.calendar">+ Add to Calendar</button>
         </div>
       </div>

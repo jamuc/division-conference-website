@@ -22,7 +22,7 @@ const i18n = {
     'hero.title':       'Division D<br>Conference 2026',
     'hero.tagline':     'Where Stories Connect',
     'hero.date':        '25 April 2026',
-    'hero.location':    'Bavaria, Germany',
+    'hero.location':    'Munich, Germany',
     'hero.cta':         'Register',
 
     'about.label':      'The Event',
@@ -34,7 +34,7 @@ const i18n = {
     'facts.dateLabel':      'Date',
     'facts.dateValue':      '25 April 2026',
     'facts.locationLabel':  'Location',
-    'facts.locationValue':  'Bavaria · TBA',
+    'facts.locationValue':  'Munich · Stadtteilkultur 2411',
     'facts.districtLabel':  'District',
     'facts.districtValue':  'District 95 · Division D',
     'facts.formatLabel':    'Format',
@@ -48,9 +48,9 @@ const i18n = {
 
     'venue.label':      'Getting There',
     'venue.title':      'Venue',
-    'venue.mapText':    'Map will appear once venue is confirmed',
-    'venue.location':   'Bavaria, Germany',
-    'venue.tba':        'Exact venue to be announced. Check back soon.',
+    'venue.mapCta':     'Open in Google Maps ↗',
+    'venue.transport':  'U-Bahn: Hasenbergl (U2)',
+    'venue.directions': 'Get Directions ↗',
     'venue.calendar':   '+ Add to Calendar',
 
     'tickets.label':    'Secure Your Spot',
@@ -89,7 +89,7 @@ const i18n = {
     'hero.title':       'Division D<br>Konferenz 2026',
     'hero.tagline':     'Wo Geschichten sich begegnen',
     'hero.date':        '25. April 2026',
-    'hero.location':    'Bayern, Deutschland',
+    'hero.location':    'München, Deutschland',
     'hero.cta':         'Registrieren',
 
     'about.label':      'Die Veranstaltung',
@@ -101,7 +101,7 @@ const i18n = {
     'facts.dateLabel':      'Datum',
     'facts.dateValue':      '25. April 2026',
     'facts.locationLabel':  'Ort',
-    'facts.locationValue':  'Bayern · folgt',
+    'facts.locationValue':  'München · Stadtteilkultur 2411',
     'facts.districtLabel':  'Distrikt',
     'facts.districtValue':  'Distrikt 95 · Division D',
     'facts.formatLabel':    'Format',
@@ -115,9 +115,9 @@ const i18n = {
 
     'venue.label':      'Anreise',
     'venue.title':      'Veranstaltungsort',
-    'venue.mapText':    'Karte erscheint, sobald der Ort bestätigt ist',
-    'venue.location':   'Bayern, Deutschland',
-    'venue.tba':        'Genauer Veranstaltungsort wird noch bekannt gegeben.',
+    'venue.mapCta':     'In Google Maps öffnen ↗',
+    'venue.transport':  'U-Bahn: Hasenbergl (U2)',
+    'venue.directions': 'Route berechnen ↗',
     'venue.calendar':   '+ Zum Kalender hinzufügen',
 
     'tickets.label':    'Sichere deinen Platz',
