@@ -209,7 +209,8 @@ const i18n = {
 
 /* ── Google Sheets endpoint ───────────────────────────── */
 // Replace with your deployed Apps Script Web App URL
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxKreCl6hQoqlbO3JcsIU8kZ_8SVmQ05ha49KU_WUuheuvNQB1OaPgBjZxTESzkfcZ6aQ/exec';
+const APPS_SCRIPT_URL    = 'https://script.google.com/macros/s/AKfycbxKreCl6hQoqlbO3JcsIU8kZ_8SVmQ05ha49KU_WUuheuvNQB1oPAgBjZxTESzkfcZ6aQ/exec';
+const STRIPE_PUBLIC_KEY  = 'pk_test_51TDjKJRtImJpS3aDh6XmontWzR953d7ax0A3iG8eN4x9BkNMXxYTiYd7ZNztqYCa4Ho3TC5hZyLL8uxJ8f15nWn400AwBQQ4F3';
 
 /* ── i18n ─────────────────────────────────────────────── */
 let currentLang = localStorage.getItem('tm-lang') || 'en';
@@ -281,49 +282,31 @@ function generateRef() {
 }
 
 async function initiatePayment() {
-  if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'PASTE_YOUR_WEB_APP_URL_HERE') {
-    goToStep(5); return;
-  }
   const btn = document.getElementById('step4Confirm');
   btn.disabled = true;
   btn.textContent = t('reg.confirm.paying');
 
-  // Persist state so we can restore it after SumUp redirect
+  // Persist state so we can restore it after Stripe redirect
   sessionStorage.setItem('divD_reg', JSON.stringify({ ...state, total: calcTotal() }));
 
-  // 1. Write to sheet — no-cors, fire and forget
-  fetch(APPS_SCRIPT_URL, {
-    method:  'POST',
-    mode:    'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      bookingRef: state.ref,
-      firstName:  state.firstName,
-      lastName:   state.lastName,
-      email:      state.email,
-      member:     state.isMember,
-      club:       state.clubOther || state.clubs.join(', '),
-      roleType:   state.roleType,
-      staffRoles: state.staffRoles.join(', '),
-      workshop:   state.workshop,
-      total:      calcTotal(),
-      lang:       currentLang,
-    }),
-  }).catch(() => {});
-
-  // 2. Create SumUp checkout via GET (Apps Script supports CORS on GET)
   try {
-    const params = new URLSearchParams({
-      action:    'checkout',
-      ref:       state.ref,
-      amount:    calcTotal(),
-      name:      `${state.firstName} ${state.lastName}`,
-      email:     state.email,
-      roleType:  state.roleType,
-      staffRoles: state.staffRoles.join(','),
-      workshop:  state.workshop ? '1' : '0',
+    const res  = await fetch(APPS_SCRIPT_URL, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        bookingRef: state.ref,
+        firstName:  state.firstName,
+        lastName:   state.lastName,
+        email:      state.email,
+        member:     state.isMember,
+        club:       state.clubOther || state.clubs.join(', '),
+        roleType:   state.roleType,
+        staffRoles: state.staffRoles.join(', '),
+        workshop:   state.workshop,
+        total:      calcTotal(),
+        lang:       currentLang,
+      }),
     });
-    const res  = await fetch(`${APPS_SCRIPT_URL}?${params}`);
     const data = await res.json();
     if (data.checkoutUrl) {
       window.location.href = data.checkoutUrl;
@@ -338,21 +321,11 @@ async function initiatePayment() {
   }
 }
 
-async function verifyPayment(checkoutId) {
-  try {
-    const res  = await fetch(`${APPS_SCRIPT_URL}?action=verify&checkoutId=${checkoutId}`);
-    const data = await res.json();
-    return data.status === 'PAID';
-  } catch {
-    return false;
-  }
-}
-
-// Called on page load — restores state if returning from SumUp
+// Called on page load — restores state if returning from Stripe
 async function handlePaymentReturn() {
-  const params     = new URLSearchParams(window.location.search);
-  const checkoutId = params.get('checkout_id');
-  if (!params.get('success') || !checkoutId) return;
+  const params    = new URLSearchParams(window.location.search);
+  const sessionId = params.get('session_id');
+  if (!params.get('success') || !sessionId) return;
 
   const saved = sessionStorage.getItem('divD_reg');
   if (!saved) return;
@@ -362,13 +335,7 @@ async function handlePaymentReturn() {
 
   // Clean URL without reload
   history.replaceState({}, '', window.location.pathname);
-
-  const paid = await verifyPayment(checkoutId);
-  if (paid) {
-    goToStep(5);
-  } else {
-    showToast('Payment could not be verified. Please try again or contact us.');
-  }
+  goToStep(5);
 }
 
 function isAudience()    { return state.roleType === 'audience'; }
