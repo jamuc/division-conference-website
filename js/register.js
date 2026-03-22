@@ -350,25 +350,26 @@ async function initiatePayment() {
   }
 }
 
-// Called on page load — restores state if returning from Stripe
-async function handlePaymentReturn() {
+// Called on page load — restores state if returning from Stripe.
+// Returns true if it navigated to a step (so init skips goToStep(1)).
+function handlePaymentReturn() {
   const params = new URLSearchParams(window.location.search);
   history.replaceState({}, '', window.location.pathname); // clean URL immediately
 
   // ── Success ──────────────────────────────────────────────
   if (params.get('success') && params.get('session_id')) {
     const saved = sessionStorage.getItem('divD_reg');
-    if (!saved) return;
+    if (!saved) return false;
     Object.assign(state, JSON.parse(saved));
     sessionStorage.removeItem('divD_reg');
     goToStep(5);
-    return;
+    return true;
   }
 
   // ── Cancelled / failed ───────────────────────────────────
   if (params.get('cancelled')) {
     const saved = sessionStorage.getItem('divD_reg');
-    if (!saved) return;
+    if (!saved) return false;
     Object.assign(state, JSON.parse(saved));
     // Don't remove from sessionStorage — let them retry
     goToStep(4);
@@ -377,7 +378,10 @@ async function handlePaymentReturn() {
     const btn = document.getElementById('step4Confirm');
     btn.disabled = false;
     btn.textContent = `${t('reg.confirm')} — €${calcTotal()}`;
+    return true;
   }
+
+  return false;
 }
 
 function isAudience()    { return state.roleType === 'audience'; }
@@ -712,8 +716,7 @@ document.getElementById('step4Confirm').addEventListener('click', async () => {
   await initiatePayment();
 });
 
-// Check if returning from SumUp payment
-handlePaymentReturn();
+// handlePaymentReturn() is called during init below
 
 /* ── Step 5: Confirmation ────────────────────────────── */
 function populateConfirmation() {
@@ -883,4 +886,4 @@ window.addEventListener('scroll', () => {
 
 /* ── Init ─────────────────────────────────────────────── */
 applyLang(currentLang);
-goToStep(1);
+if (!handlePaymentReturn()) goToStep(1);
