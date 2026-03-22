@@ -443,11 +443,6 @@ function validateStep2() {
       return false;
     }
   }
-  // Volunteers must pick at least one role
-  if (state.roleType === 'volunteer' && state.staffRoles.length === 0) {
-    document.getElementById('roleErr').textContent = t('reg.err.staffRole');
-    return false;
-  }
   return true;
 }
 
@@ -610,43 +605,20 @@ document.getElementById('step1Next').addEventListener('click', () => {
 });
 
 /* ── Step 2 wiring ────────────────────────────────────── */
-const staffRolesPanel  = document.getElementById('staffRoles');
-const accessCodeField  = document.getElementById('accessCodeField');
-const accessCodeInput  = document.getElementById('accessCode');
+const accessCodeField = document.getElementById('accessCodeField');
+const accessCodeInput = document.getElementById('accessCode');
 
 document.querySelectorAll('input[name="roleType"]').forEach(radio => {
   radio.addEventListener('change', () => {
-    state.roleType  = radio.value;
+    state.roleType   = radio.value;
     state.staffRoles = [];
-    // Highlight selected type card
+    // Highlight selected card
     document.querySelectorAll('.role-type-card').forEach(c => c.classList.remove('selected'));
     radio.closest('.role-type-card').classList.add('selected');
-    // Reset volunteer checkboxes
-    document.querySelectorAll('input[name="staffRole"]').forEach(cb => {
-      cb.checked = false;
-      cb.closest('.role-card').classList.remove('selected');
-    });
     // Show access code field for gated roles
     const needsCode = (state.roleType === 'volunteer' || state.roleType === 'contestant');
     accessCodeField.hidden = !needsCode;
-    if (needsCode) {
-      accessCodeInput.value = '';
-      accessCodeInput.focus();
-    }
-    // Show volunteer role checkboxes only for volunteers
-    staffRolesPanel.hidden = (state.roleType !== 'volunteer');
-  });
-});
-
-document.querySelectorAll('input[name="staffRole"]').forEach(cb => {
-  cb.addEventListener('change', () => {
-    if (cb.checked) {
-      state.staffRoles.push(cb.value);
-      cb.closest('.role-card').classList.add('selected');
-    } else {
-      state.staffRoles = state.staffRoles.filter(r => r !== cb.value);
-      cb.closest('.role-card').classList.remove('selected');
-    }
+    if (needsCode) { accessCodeInput.value = ''; accessCodeInput.focus(); }
   });
 });
 
