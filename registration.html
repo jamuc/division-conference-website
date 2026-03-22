@@ -122,13 +122,11 @@
                 <div class="club-select__list" id="clubSelectList"></div>
               </div>
             </div>
-            <div class="club-manual" id="clubManualWrap">
-              <button type="button" class="club-manual__toggle" id="clubManualToggle" data-i18n="reg.clubNotListed">Not in the list? Enter manually</button>
-              <div class="club-manual__field" id="clubManualField" hidden>
-                <input class="form__input" type="text" id="clubOther" placeholder="Type your club name…" autocomplete="organization" />
-                <button type="button" class="btn btn--outline btn--sm club-manual__add" id="clubManualAdd" data-i18n="reg.clubAdd">+ Add</button>
-              </div>
-            </div>
+            <input class="form__input club-manual__input" type="text" id="clubOther" placeholder="Type your club name…" autocomplete="organization" hidden />
+            <label class="club-manual__checkbox">
+              <input type="checkbox" id="clubNotListed" />
+              <span data-i18n="reg.clubNotListed">My club is not in the list</span>
+            </label>
           </div>
         </div>
 

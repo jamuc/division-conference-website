@@ -42,8 +42,7 @@ const i18n = {
     'reg.clubName':           'Club(s)',
     'reg.clubPlaceholder':    'Select your club(s)…',
     'reg.clubHint':           'You can select multiple clubs if you are a member of more than one.',
-    'reg.clubNotListed':      'Not in the list? Enter manually',
-    'reg.clubAdd':            '+ Add',
+    'reg.clubNotListed':      'My club is not in the list',
 
     'reg.role.audience':      'Audience Member',
     'reg.role.audienceDesc':  'Enjoy the speeches, contests, and networking as a guest.',
@@ -142,8 +141,7 @@ const i18n = {
     'reg.clubName':           'Club(s)',
     'reg.clubPlaceholder':    'Club(s) auswählen…',
     'reg.clubHint':           'Du kannst mehrere Clubs auswählen, wenn du Mitglied in mehr als einem bist.',
-    'reg.clubNotListed':      'Nicht dabei? Manuell eingeben',
-    'reg.clubAdd':            '+ Hinzufügen',
+    'reg.clubNotListed':      'Mein Club ist nicht in der Liste',
 
     'reg.role.audience':      'Zuschauer',
     'reg.role.audienceDesc':  'Genieße die Reden, Wettbewerbe und das Networking als Gast.',
@@ -247,7 +245,8 @@ const state = {
   lastName:    '',
   email:       '',
   isMember:    false,
-  clubs:       [],   // array of selected club names (including manually entered ones)
+  clubs:       [],   // array of selected club names
+  clubOther:   '',   // free-text when manual mode is active
   roleType:    '',       // 'audience' | 'staff'
   staffRoles:  [],       // array of selected staff roles (e.g. ['contestant','timekeeper'])
   workshop:    false,
@@ -303,7 +302,7 @@ async function initiatePayment() {
       lastName:   state.lastName,
       email:      state.email,
       member:     state.isMember,
-      club:       state.clubs.join(', '),
+      club:       state.clubOther || state.clubs.join(', '),
       roleType:   state.roleType,
       staffRoles: state.staffRoles.join(', '),
       workshop:   state.workshop,
@@ -529,30 +528,28 @@ const CLUBS = [
   const placeholder = document.getElementById('clubSelectPlaceholder');
   const wrapper     = document.getElementById('clubSelect');
 
-  // Manual entry
-  const manualToggle = document.getElementById('clubManualToggle');
-  const manualField  = document.getElementById('clubManualField');
+  // Manual entry — checkbox swaps dropdown for text input
+  const notListedCb  = document.getElementById('clubNotListed');
   const manualInput  = document.getElementById('clubOther');
-  const manualAdd    = document.getElementById('clubManualAdd');
 
-  manualToggle.addEventListener('click', () => {
-    const isHidden = manualField.hidden;
-    manualField.hidden = !isHidden;
-    if (!isHidden) { manualInput.value = ''; }
-    else { manualInput.focus(); }
+  notListedCb.addEventListener('change', () => {
+    const manual = notListedCb.checked;
+    wrapper.hidden  = manual;
+    manualInput.hidden = !manual;
+    if (manual) {
+      // Clear dropdown selections when switching to manual
+      state.clubs = [];
+      renderTags();
+      closeDropdown();
+      manualInput.value = '';
+      manualInput.focus();
+    } else {
+      manualInput.value = '';
+      state.clubOther = '';
+    }
   });
 
-  function addManualClub() {
-    const val = manualInput.value.trim();
-    if (!val || state.clubs.includes(val)) return;
-    state.clubs.push(val);
-    renderTags();
-    manualInput.value = '';
-    manualField.hidden = true;
-  }
-
-  manualAdd.addEventListener('click', addManualClub);
-  manualInput.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addManualClub(); } });
+  manualInput.addEventListener('input', () => { state.clubOther = manualInput.value.trim(); });
 
   function renderList(filter = '') {
     listEl.innerHTML = '';

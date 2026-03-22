@@ -1043,33 +1043,27 @@ body { padding-bottom: 70px; }
   color: var(--text-muted);
   margin: -0.25rem 0 0.5rem;
 }
-.club-manual {
-  margin-top: 0.75rem;
-}
-.club-manual__toggle {
-  background: none;
-  border: none;
-  color: var(--navy);
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 0;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-.club-manual__toggle:hover { color: var(--maroon); }
-.club-manual__field {
+.club-manual__checkbox {
   display: flex;
+  align-items: center;
   gap: 0.5rem;
-  margin-top: 0.5rem;
-  animation: fadeIn 0.2s ease;
+  margin-top: 0.65rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
 }
-.club-manual__field .form__input {
-  flex: 1;
-}
-.club-manual__add {
-  white-space: nowrap;
+.club-manual__checkbox input[type="checkbox"] {
+  accent-color: var(--maroon);
+  width: 16px;
+  height: 16px;
   flex-shrink: 0;
+  cursor: pointer;
+}
+.club-manual__input {
+  margin-top: 0.5rem;
+  width: 100%;
+  animation: fadeIn 0.2s ease;
 }
 .club-select__dropdown {
   position: absolute;
