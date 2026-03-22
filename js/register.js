@@ -209,7 +209,7 @@ const i18n = {
 
 /* ── Google Sheets endpoint ───────────────────────────── */
 // Replace with your deployed Apps Script Web App URL
-const APPS_SCRIPT_URL    = 'https://script.google.com/macros/s/AKfycbxKreCl6hQoqlbO3JcsIU8kZ_8SVmQ05ha49KU_WUuheuvNQB1oPAgBjZxTESzkfcZ6aQ/exec';
+const APPS_SCRIPT_URL    = 'https://script.google.com/macros/s/AKfycbxKreCl6hQoqlbO3JcsIU8kZ_8SVmQ05ha49KU_WUuheuvNQB1OaPgBjZxTESzkfcZ6aQ/exec';
 const STRIPE_PUBLIC_KEY  = 'pk_test_51TDjKJRtImJpS3aDh6XmontWzR953d7ax0A3iG8eN4x9BkNMXxYTiYd7ZNztqYCa4Ho3TC5hZyLL8uxJ8f15nWn400AwBQQ4F3';
 
 /* ── i18n ─────────────────────────────────────────────── */
@@ -292,7 +292,6 @@ async function initiatePayment() {
   try {
     const res  = await fetch(APPS_SCRIPT_URL, {
       method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         bookingRef: state.ref,
         firstName:  state.firstName,
