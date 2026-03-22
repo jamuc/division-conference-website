@@ -126,71 +126,79 @@
         </div>
 
         <div class="funnel__form">
-          <!-- Audience option -->
-          <label class="role-card role-card--audience" id="roleAudienceCard">
-            <input type="radio" name="role" value="audience" id="roleAudience" />
-            <div class="role-card__inner">
-              <div class="role-card__info">
-                <span class="role-card__title" data-i18n="reg.role.audience">Audience Member</span>
-                <span class="role-card__desc" data-i18n="reg.role.audienceDesc">Enjoy the speeches, contests, and networking as a guest.</span>
-              </div>
-              <span class="role-card__price">+€5</span>
-            </div>
-          </label>
-
-          <!-- Staff roles -->
-          <div class="role-section-label" data-i18n="reg.role.staffLabel">Conference Staff — no extra cost</div>
-          <div class="role-grid">
-            <label class="role-card role-card--staff">
-              <input type="radio" name="role" value="timekeeper" id="roleTimekeeper" />
-              <div class="role-card__inner">
-                <span class="role-card__title" data-i18n="reg.role.timekeeper">Time Keeper</span>
-                <span class="role-card__price role-card__price--free" data-i18n="reg.role.free">Included</span>
+          <!-- Primary type: Audience vs Staff -->
+          <div class="role-type-row">
+            <label class="role-type-card" id="typeAudienceCard">
+              <input type="radio" name="roleType" value="audience" id="typeAudience" />
+              <div class="role-type-card__inner">
+                <div class="role-type-card__info">
+                  <span class="role-type-card__title" data-i18n="reg.role.audience">Audience Member</span>
+                  <span class="role-type-card__desc" data-i18n="reg.role.audienceDesc">Enjoy the speeches, contests, and networking as a guest.</span>
+                </div>
+                <span class="role-card__price">+€5</span>
               </div>
             </label>
-            <label class="role-card role-card--staff">
-              <input type="radio" name="role" value="ballotcounter" id="roleBallot" />
-              <div class="role-card__inner">
-                <span class="role-card__title" data-i18n="reg.role.ballot">Ballot Counter</span>
-                <span class="role-card__price role-card__price--free" data-i18n="reg.role.free">Included</span>
-              </div>
-            </label>
-            <label class="role-card role-card--staff">
-              <input type="radio" name="role" value="judge" id="roleJudge" />
-              <div class="role-card__inner">
-                <span class="role-card__title" data-i18n="reg.role.judge">Judge</span>
-                <span class="role-card__price role-card__price--free" data-i18n="reg.role.free">Included</span>
-              </div>
-            </label>
-            <label class="role-card role-card--staff">
-              <input type="radio" name="role" value="chiefjudge" id="roleChiefJudge" />
-              <div class="role-card__inner">
-                <span class="role-card__title" data-i18n="reg.role.chiefjudge">Chief Judge</span>
-                <span class="role-card__price role-card__price--free" data-i18n="reg.role.free">Included</span>
-              </div>
-            </label>
-            <label class="role-card role-card--staff">
-              <input type="radio" name="role" value="contestchair" id="roleContestChair" />
-              <div class="role-card__inner">
-                <span class="role-card__title" data-i18n="reg.role.contestchair">Contest Chair</span>
-                <span class="role-card__price role-card__price--free" data-i18n="reg.role.free">Included</span>
-              </div>
-            </label>
-            <label class="role-card role-card--staff">
-              <input type="radio" name="role" value="sargeant" id="roleSargeant" />
-              <div class="role-card__inner">
-                <span class="role-card__title" data-i18n="reg.role.sargeant">Sergeant at Arms</span>
-                <span class="role-card__price role-card__price--free" data-i18n="reg.role.free">Included</span>
-              </div>
-            </label>
-            <label class="role-card role-card--staff">
-              <input type="radio" name="role" value="contestant" id="roleContestant" />
-              <div class="role-card__inner">
-                <span class="role-card__title" data-i18n="reg.role.contestant">Contestant</span>
+            <label class="role-type-card" id="typeStaffCard">
+              <input type="radio" name="roleType" value="staff" id="typeStaff" />
+              <div class="role-type-card__inner">
+                <div class="role-type-card__info">
+                  <span class="role-type-card__title" data-i18n="reg.role.staff">Conference Staff</span>
+                  <span class="role-type-card__desc" data-i18n="reg.role.staffDesc">You have a role in running the conference.</span>
+                </div>
                 <span class="role-card__price role-card__price--free" data-i18n="reg.role.free">Included</span>
               </div>
             </label>
           </div>
+
+          <!-- Staff role checkboxes — shown only when Staff is selected -->
+          <div class="staff-roles" id="staffRoles" hidden>
+            <div class="role-section-label" data-i18n="reg.role.staffRolesLabel">Select your role(s) — you can choose more than one</div>
+            <div class="role-grid">
+              <label class="role-card role-card--staff">
+                <input type="checkbox" name="staffRole" value="contestant" id="roleContestant" />
+                <div class="role-card__inner">
+                  <span class="role-card__title" data-i18n="reg.role.contestant">Contestant</span>
+                </div>
+              </label>
+              <label class="role-card role-card--staff">
+                <input type="checkbox" name="staffRole" value="timekeeper" id="roleTimekeeper" />
+                <div class="role-card__inner">
+                  <span class="role-card__title" data-i18n="reg.role.timekeeper">Time Keeper</span>
+                </div>
+              </label>
+              <label class="role-card role-card--staff">
+                <input type="checkbox" name="staffRole" value="ballotcounter" id="roleBallot" />
+                <div class="role-card__inner">
+                  <span class="role-card__title" data-i18n="reg.role.ballot">Ballot Counter</span>
+                </div>
+              </label>
+              <label class="role-card role-card--staff">
+                <input type="checkbox" name="staffRole" value="judge" id="roleJudge" />
+                <div class="role-card__inner">
+                  <span class="role-card__title" data-i18n="reg.role.judge">Judge</span>
+                </div>
+              </label>
+              <label class="role-card role-card--staff">
+                <input type="checkbox" name="staffRole" value="chiefjudge" id="roleChiefJudge" />
+                <div class="role-card__inner">
+                  <span class="role-card__title" data-i18n="reg.role.chiefjudge">Chief Judge</span>
+                </div>
+              </label>
+              <label class="role-card role-card--staff">
+                <input type="checkbox" name="staffRole" value="contestchair" id="roleContestChair" />
+                <div class="role-card__inner">
+                  <span class="role-card__title" data-i18n="reg.role.contestchair">Contest Chair</span>
+                </div>
+              </label>
+              <label class="role-card role-card--staff">
+                <input type="checkbox" name="staffRole" value="sargeant" id="roleSargeant" />
+                <div class="role-card__inner">
+                  <span class="role-card__title" data-i18n="reg.role.sargeant">Sergeant at Arms</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
           <span class="form__error" id="roleErr" role="alert"></span>
         </div>
 

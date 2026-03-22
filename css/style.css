@@ -1049,7 +1049,61 @@ body { padding-bottom: 70px; }
   background: rgba(119,36,50,.04);
   box-shadow: 0 0 0 1px var(--maroon);
 }
-.role-card input[type="radio"] { display: none; }
+.role-card input[type="radio"],
+.role-card input[type="checkbox"] { display: none; }
+
+/* ── Primary type row (Audience vs Staff) ── */
+.role-type-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+@media (max-width: 480px) {
+  .role-type-row { grid-template-columns: 1fr; }
+}
+.role-type-card {
+  display: block;
+  border: 2px solid var(--gray);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+}
+.role-type-card:hover { border-color: var(--navy); }
+.role-type-card.selected {
+  border-color: var(--maroon);
+  background: rgba(119,36,50,.04);
+  box-shadow: 0 0 0 1px var(--maroon);
+}
+.role-type-card input[type="radio"] { display: none; }
+.role-type-card__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.role-type-card__title {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--navy);
+  display: block;
+}
+.role-type-card__desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* ── Staff checkboxes panel ── */
+.staff-roles {
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--gray-lt, #e8e8e8);
+  animation: fadeIn 0.2s ease;
+}
 .role-card__inner {
   display: flex;
   align-items: center;

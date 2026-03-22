@@ -43,7 +43,10 @@ const i18n = {
 
     'reg.role.audience':      'Audience Member',
     'reg.role.audienceDesc':  'Enjoy the speeches, contests, and networking as a guest.',
+    'reg.role.staff':         'Conference Staff',
+    'reg.role.staffDesc':     'You have a role in running the conference.',
     'reg.role.staffLabel':    'Conference Staff — no extra cost',
+    'reg.role.staffRolesLabel': 'Select your role(s) — you can choose more than one',
     'reg.role.timekeeper':    'Time Keeper',
     'reg.role.ballot':        'Ballot Counter',
     'reg.role.judge':         'Judge',
@@ -85,7 +88,8 @@ const i18n = {
     'reg.err.firstName':      'Please enter your first name.',
     'reg.err.lastName':       'Please enter your last name.',
     'reg.err.email':          'Please enter a valid email address.',
-    'reg.err.role':           'Please select a role to continue.',
+    'reg.err.role':           'Please select Audience or Staff to continue.',
+    'reg.err.staffRole':      'Please select at least one staff role.',
 
     'pdf.district':           'TOASTMASTERS DISTRICT 95 · DIVISION D',
     'pdf.conference':         'Division D Conference 2026',
@@ -135,7 +139,10 @@ const i18n = {
 
     'reg.role.audience':      'Zuschauer',
     'reg.role.audienceDesc':  'Genieße die Reden, Wettbewerbe und das Networking als Gast.',
+    'reg.role.staff':         'Konferenz-Team',
+    'reg.role.staffDesc':     'Du hast eine Rolle bei der Durchführung der Konferenz.',
     'reg.role.staffLabel':    'Konferenz-Team — kein Aufpreis',
+    'reg.role.staffRolesLabel': 'Wähle deine Rolle(n) — Mehrfachauswahl möglich',
     'reg.role.timekeeper':    'Zeitnehmer',
     'reg.role.ballot':        'Stimmenauszähler',
     'reg.role.judge':         'Richter',
@@ -177,7 +184,8 @@ const i18n = {
     'reg.err.firstName':      'Bitte gib deinen Vornamen ein.',
     'reg.err.lastName':       'Bitte gib deinen Nachnamen ein.',
     'reg.err.email':          'Bitte gib eine gültige E-Mail-Adresse ein.',
-    'reg.err.role':           'Bitte wähle eine Rolle aus.',
+    'reg.err.role':           'Bitte wähle Zuschauer oder Team aus.',
+    'reg.err.staffRole':      'Bitte wähle mindestens eine Team-Rolle aus.',
 
     'pdf.district':           'TOASTMASTERS DISTRIKT 95 · DIVISION D',
     'pdf.conference':         'Division D Konferenz 2026',
@@ -232,7 +240,8 @@ const state = {
   email:       '',
   isMember:    false,
   clubName:    '',
-  role:        '',   // 'audience' | 'contestant' | 'timekeeper' | 'ballotcounter' | 'judge' | 'chiefjudge' | 'contestchair' | 'sargeant'
+  roleType:    '',       // 'audience' | 'staff'
+  staffRoles:  [],       // array of selected staff roles (e.g. ['contestant','timekeeper'])
   workshop:    false,
   ref:         '',   // booking reference, generated on confirm
 };
@@ -241,9 +250,20 @@ const PRICES = { cleaning: 5, audience: 5, workshop: 5 };
 
 function calcTotal() {
   let total = PRICES.cleaning;
-  if (state.role === 'audience') total += PRICES.audience;
+  if (state.roleType === 'audience') total += PRICES.audience;
   if (state.workshop) total += PRICES.workshop;
   return total;
+}
+
+function roleLabel() {
+  if (state.roleType === 'audience') return t('reg.summary.roleAudience');
+  const names = state.staffRoles.map(r => t(`reg.role.${r}`));
+  return names.join(', ');
+}
+
+function roleBadgeText() {
+  if (state.roleType === 'audience') return 'AUDIENCE';
+  return state.staffRoles.map(r => t(`reg.role.${r}`).toUpperCase()).join(' · ');
 }
 
 function generateRef() {
@@ -276,7 +296,8 @@ async function initiatePayment() {
       email:      state.email,
       member:     state.isMember,
       club:       state.clubName,
-      role:       state.role,
+      roleType:   state.roleType,
+      staffRoles: state.staffRoles.join(', '),
       workshop:   state.workshop,
       total:      calcTotal(),
       lang:       currentLang,
@@ -291,7 +312,8 @@ async function initiatePayment() {
       amount:    calcTotal(),
       name:      `${state.firstName} ${state.lastName}`,
       email:     state.email,
-      role:      state.role,
+      roleType:  state.roleType,
+      staffRoles: state.staffRoles.join(','),
       workshop:  state.workshop ? '1' : '0',
     });
     const res  = await fetch(`${APPS_SCRIPT_URL}?${params}`);
@@ -342,13 +364,7 @@ async function handlePaymentReturn() {
   }
 }
 
-function isAudience()    { return state.role === 'audience'; }
-function isContestant()  { return state.role === 'contestant'; }
-function ticketRole()    {
-  if (isAudience())   return 'AUDIENCE';
-  if (isContestant()) return 'CONTESTANT';
-  return 'STAFF';
-}
+function isAudience()    { return state.roleType === 'audience'; }
 
 /* ── Step navigation ──────────────────────────────────── */
 function goToStep(n) {
@@ -425,8 +441,12 @@ function validateStep1() {
 
 function validateStep2() {
   clearErrors();
-  if (!state.role) {
+  if (!state.roleType) {
     document.getElementById('roleErr').textContent = t('reg.err.role');
+    return false;
+  }
+  if (state.roleType === 'staff' && state.staffRoles.length === 0) {
+    document.getElementById('roleErr').textContent = t('reg.err.staffRole');
     return false;
   }
   return true;
@@ -459,12 +479,34 @@ document.getElementById('step1Next').addEventListener('click', () => {
 });
 
 /* ── Step 2 wiring ────────────────────────────────────── */
-document.querySelectorAll('input[name="role"]').forEach(radio => {
+const staffRolesPanel = document.getElementById('staffRoles');
+
+document.querySelectorAll('input[name="roleType"]').forEach(radio => {
   radio.addEventListener('change', () => {
-    state.role = radio.value;
-    // Highlight selected card
-    document.querySelectorAll('.role-card').forEach(c => c.classList.remove('selected'));
-    radio.closest('.role-card').classList.add('selected');
+    state.roleType = radio.value;
+    state.staffRoles = [];
+    // Highlight selected type card
+    document.querySelectorAll('.role-type-card').forEach(c => c.classList.remove('selected'));
+    radio.closest('.role-type-card').classList.add('selected');
+    // Reset staff checkboxes and cards
+    document.querySelectorAll('input[name="staffRole"]').forEach(cb => {
+      cb.checked = false;
+      cb.closest('.role-card').classList.remove('selected');
+    });
+    // Show/hide staff role checkboxes
+    staffRolesPanel.hidden = (state.roleType !== 'staff');
+  });
+});
+
+document.querySelectorAll('input[name="staffRole"]').forEach(cb => {
+  cb.addEventListener('change', () => {
+    if (cb.checked) {
+      state.staffRoles.push(cb.value);
+      cb.closest('.role-card').classList.add('selected');
+    } else {
+      state.staffRoles = state.staffRoles.filter(r => r !== cb.value);
+      cb.closest('.role-card').classList.remove('selected');
+    }
   });
 });
 
@@ -495,15 +537,10 @@ document.getElementById('step3Back').addEventListener('click', () => goToStep(2)
 document.getElementById('step3Next').addEventListener('click', () => goToStep(4));
 
 /* ── Step 4: Summary ─────────────────────────────────── */
-function roleSummaryLabel() {
-  if (isAudience()) return t('reg.summary.roleAudience');
-  return t('reg.summary.roleStaff');
-}
-
 function populateSummary() {
   document.getElementById('summaryName').textContent  = `${state.firstName} ${state.lastName}`;
   document.getElementById('summaryEmail').textContent = state.email;
-  document.getElementById('summaryRole').textContent  = roleSummaryLabel();
+  document.getElementById('summaryRole').textContent  = roleLabel();
 
   // Role price row
   const roleLabelEl = document.getElementById('priceRoleLabel');
@@ -511,12 +548,11 @@ function populateSummary() {
   if (isAudience()) {
     roleLabelEl.textContent = t('reg.summary.roleAudience');
     roleValEl.textContent   = '€5';
-    document.getElementById('priceRoleRow').hidden = false;
   } else {
-    roleLabelEl.textContent = t('reg.summary.roleStaff');
+    roleLabelEl.textContent = state.staffRoles.map(r => t(`reg.role.${r}`)).join(', ');
     roleValEl.textContent   = '€0';
-    document.getElementById('priceRoleRow').hidden = false;
   }
+  document.getElementById('priceRoleRow').hidden = false;
 
   // Workshop row
   document.getElementById('priceWorkshopRow').hidden = !state.workshop;
