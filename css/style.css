@@ -1043,10 +1043,33 @@ body { padding-bottom: 70px; }
   color: var(--text-muted);
   margin: -0.25rem 0 0.5rem;
 }
-.club-other-input {
-  margin-top: 0.6rem;
-  width: 100%;
+.club-manual {
+  margin-top: 0.75rem;
+}
+.club-manual__toggle {
+  background: none;
+  border: none;
+  color: var(--navy);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.club-manual__toggle:hover { color: var(--maroon); }
+.club-manual__field {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
   animation: fadeIn 0.2s ease;
+}
+.club-manual__field .form__input {
+  flex: 1;
+}
+.club-manual__add {
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .club-select__dropdown {
   position: absolute;

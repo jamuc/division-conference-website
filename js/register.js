@@ -42,6 +42,8 @@ const i18n = {
     'reg.clubName':           'Club(s)',
     'reg.clubPlaceholder':    'Select your club(s)…',
     'reg.clubHint':           'You can select multiple clubs if you are a member of more than one.',
+    'reg.clubNotListed':      'Not in the list? Enter manually',
+    'reg.clubAdd':            '+ Add',
 
     'reg.role.audience':      'Audience Member',
     'reg.role.audienceDesc':  'Enjoy the speeches, contests, and networking as a guest.',
@@ -140,6 +142,8 @@ const i18n = {
     'reg.clubName':           'Club(s)',
     'reg.clubPlaceholder':    'Club(s) auswählen…',
     'reg.clubHint':           'Du kannst mehrere Clubs auswählen, wenn du Mitglied in mehr als einem bist.',
+    'reg.clubNotListed':      'Nicht dabei? Manuell eingeben',
+    'reg.clubAdd':            '+ Hinzufügen',
 
     'reg.role.audience':      'Zuschauer',
     'reg.role.audienceDesc':  'Genieße die Reden, Wettbewerbe und das Networking als Gast.',
@@ -243,8 +247,7 @@ const state = {
   lastName:    '',
   email:       '',
   isMember:    false,
-  clubs:       [],   // array of selected club names
-  clubOther:   '',   // free-text if 'Other' selected
+  clubs:       [],   // array of selected club names (including manually entered ones)
   roleType:    '',       // 'audience' | 'staff'
   staffRoles:  [],       // array of selected staff roles (e.g. ['contestant','timekeeper'])
   workshop:    false,
@@ -300,7 +303,7 @@ async function initiatePayment() {
       lastName:   state.lastName,
       email:      state.email,
       member:     state.isMember,
-      club:       state.clubs.map(c => c === 'Other' && state.clubOther ? state.clubOther : c).join(', '),
+      club:       state.clubs.join(', '),
       roleType:   state.roleType,
       staffRoles: state.staffRoles.join(', '),
       workshop:   state.workshop,
@@ -515,8 +518,6 @@ const CLUBS = [
   'Würzburg Toastmasters',
   'In Camera Online Toastmasters Club',
   'Schweinfurt Toastmasters',
-  // Other
-  'Other',
 ];
 
 (function initClubSelect() {
@@ -527,20 +528,31 @@ const CLUBS = [
   const tagsEl      = document.getElementById('clubSelectTags');
   const placeholder = document.getElementById('clubSelectPlaceholder');
   const wrapper     = document.getElementById('clubSelect');
-  const otherInput  = document.getElementById('clubOther');
 
-  function toggleOtherField() {
-    const hasOther = state.clubs.includes('Other');
-    otherInput.hidden = !hasOther;
-    if (hasOther) {
-      otherInput.focus();
-    } else {
-      otherInput.value = '';
-      state.clubOther = '';
-    }
+  // Manual entry
+  const manualToggle = document.getElementById('clubManualToggle');
+  const manualField  = document.getElementById('clubManualField');
+  const manualInput  = document.getElementById('clubOther');
+  const manualAdd    = document.getElementById('clubManualAdd');
+
+  manualToggle.addEventListener('click', () => {
+    const isHidden = manualField.hidden;
+    manualField.hidden = !isHidden;
+    if (!isHidden) { manualInput.value = ''; }
+    else { manualInput.focus(); }
+  });
+
+  function addManualClub() {
+    const val = manualInput.value.trim();
+    if (!val || state.clubs.includes(val)) return;
+    state.clubs.push(val);
+    renderTags();
+    manualInput.value = '';
+    manualField.hidden = true;
   }
 
-  otherInput.addEventListener('input', () => { state.clubOther = otherInput.value.trim(); });
+  manualAdd.addEventListener('click', addManualClub);
+  manualInput.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addManualClub(); } });
 
   function renderList(filter = '') {
     listEl.innerHTML = '';
@@ -559,7 +571,6 @@ const CLUBS = [
         }
         opt.classList.toggle('club-option--selected', e.target.checked);
         renderTags();
-        toggleOtherField();
       });
       listEl.appendChild(opt);
     });
@@ -577,7 +588,6 @@ const CLUBS = [
         state.clubs = state.clubs.filter(c => c !== club);
         renderTags();
         renderList(searchInput.value);
-        toggleOtherField();
       });
       tagsEl.appendChild(tag);
     });
