@@ -89,6 +89,7 @@ const i18n = {
     'reg.confirm.workshop':   'Workshop',
     'reg.confirm.workshopIncluded': 'Included ✓',
     'reg.confirm.due':        'Total due at door',
+    'reg.confirm.paid':       'Payment received',
     'reg.confirm.download':   '↓ Download Ticket (PDF)',
     'reg.confirm.backHome':   '← Back to main site',
 
@@ -111,6 +112,8 @@ const i18n = {
     'pdf.workshop':           'Workshop Package: Included',
     'pdf.totalLabel':         'TOTAL DUE AT DOOR',
     'pdf.totalNote':          'Cash payment on arrival',
+    'pdf.totalLabelPaid':     'PAYMENT RECEIVED',
+    'pdf.totalNotePaid':      'Paid by card via Stripe',
     'pdf.footer':             'toastmasters-bayern.com · District 95',
     'reg.confirm.ref':        'Booking ref',
     'pdf.filename':           'Division-D-Conference-2026-Ticket',
@@ -197,6 +200,7 @@ const i18n = {
     'reg.confirm.workshop':   'Workshop',
     'reg.confirm.workshopIncluded': 'Inklusive ✓',
     'reg.confirm.due':        'Gesamtbetrag (vor Ort)',
+    'reg.confirm.paid':       'Zahlung erhalten',
     'reg.confirm.download':   '↓ Ticket herunterladen (PDF)',
     'reg.confirm.backHome':   '← Zurück zur Hauptseite',
 
@@ -219,6 +223,8 @@ const i18n = {
     'pdf.workshop':           'Workshop-Paket: Inklusive',
     'pdf.totalLabel':         'GESAMTBETRAG VOR ORT',
     'pdf.totalNote':          'Barzahlung bei Ankunft',
+    'pdf.totalLabelPaid':     'ZAHLUNG ERHALTEN',
+    'pdf.totalNotePaid':      'Per Karte bezahlt (Stripe)',
     'pdf.footer':             'toastmasters-bayern.com · Distrikt 95',
     'reg.confirm.ref':        'Buchungsreferenz',
     'pdf.filename':           'Division-D-Konferenz-2026-Ticket',
@@ -272,6 +278,7 @@ const state = {
   staffRoles:  [],       // array of selected volunteer roles (e.g. ['timekeeper','judge'])
   workshop:    false,
   ref:         '',   // booking reference, generated on confirm
+  paidViaStripe: false,
 };
 
 const PRICES = { cleaning: 5, audience: 5, workshop: 5 };
@@ -362,6 +369,7 @@ function handlePaymentReturn() {
     if (!saved) return false;
     Object.assign(state, JSON.parse(saved));
     sessionStorage.removeItem('divD_reg');
+    state.paidViaStripe = true;
     goToStep(5);
     return true;
   }
@@ -723,6 +731,7 @@ function populateConfirmation() {
   document.getElementById('confirmName').textContent  = `${state.firstName} ${state.lastName}`;
   document.getElementById('confirmRole').textContent  = ticketRole();
   document.getElementById('confirmTotal').textContent = `€${calcTotal()}`;
+  document.getElementById('confirmDueLabel').textContent = t(state.paidViaStripe ? 'reg.confirm.paid' : 'reg.confirm.due');
 
   const workshopRow = document.getElementById('confirmWorkshopRow');
   workshopRow.hidden = !state.workshop;
@@ -852,14 +861,14 @@ function buildPDF(logoB64) {
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(8);
   doc.setTextColor(242, 223, 116);
-  doc.text(t('pdf.totalLabel'), contentX, 100);
+  doc.text(t(state.paidViaStripe ? 'pdf.totalLabelPaid' : 'pdf.totalLabel'), contentX, 100);
   doc.setFontSize(18);
   doc.setTextColor(255, 255, 255);
   doc.text(`€${calcTotal()}`, contentX, 111);
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(7.5);
   doc.setTextColor(200, 220, 235);
-  doc.text(t('pdf.totalNote'), contentX, 118);
+  doc.text(t(state.paidViaStripe ? 'pdf.totalNotePaid' : 'pdf.totalNote'), contentX, 118);
 
   /* ── Booking reference ── */
   doc.setFont('helvetica', 'normal');
