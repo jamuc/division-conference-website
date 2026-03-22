@@ -294,7 +294,14 @@ function roleLabel() {
 function roleBadgeText() {
   if (state.roleType === 'audience')   return 'AUDIENCE';
   if (state.roleType === 'contestant') return 'CONTESTANT';
-  return state.staffRoles.map(r => t(`reg.role.${r}`).toUpperCase()).join(' · ');
+  return 'VOLUNTEER';
+}
+
+// Human-readable role for ticket + confirmation screen
+function ticketRole() {
+  if (state.roleType === 'audience')   return t('reg.role.audience');
+  if (state.roleType === 'contestant') return t('reg.role.contestantTitle');
+  return t('reg.role.volunteer');
 }
 
 function generateRef() {
@@ -682,7 +689,7 @@ function populateSummary() {
     roleLabelEl.textContent = t('reg.summary.roleAudience');
     roleValEl.textContent   = '€5';
   } else {
-    roleLabelEl.textContent = state.staffRoles.map(r => t(`reg.role.${r}`)).join(', ');
+    roleLabelEl.textContent = ticketRole();
     roleValEl.textContent   = '€0';
   }
   document.getElementById('priceRoleRow').hidden = false;
@@ -701,7 +708,7 @@ function populateSummary() {
 
 document.getElementById('step4Back').addEventListener('click', () => goToStep(3));
 document.getElementById('step4Confirm').addEventListener('click', async () => {
-  state.ref = generateRef();
+  if (!state.ref) state.ref = generateRef(); // keep existing ref on retry
   await initiatePayment();
 });
 
