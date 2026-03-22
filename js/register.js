@@ -43,7 +43,7 @@ const i18n = {
 
     'reg.role.audience':      'Audience Member',
     'reg.role.audienceDesc':  'Enjoy the speeches, contests, and networking as a guest.',
-    'reg.role.staff':         'Conference Volunteer',
+    'reg.role.staff':         'Conference Volunteers',
     'reg.role.staffDesc':     'You have one or more roles in running the conference.',
     'reg.role.staffLabel':    'Conference Volunteers — no extra cost',
     'reg.role.staffRolesLabel': 'Select your role(s) — you can choose more than one',
@@ -139,7 +139,7 @@ const i18n = {
 
     'reg.role.audience':      'Zuschauer',
     'reg.role.audienceDesc':  'Genieße die Reden, Wettbewerbe und das Networking als Gast.',
-    'reg.role.staff':         'Konferenz-Volunteer',
+    'reg.role.staff':         'Konferenz-Volunteers',
     'reg.role.staffDesc':     'Du hast eine oder mehrere Rollen bei der Durchführung der Konferenz.',
     'reg.role.staffLabel':    'Konferenz-Volunteers — kein Aufpreis',
     'reg.role.staffRolesLabel': 'Wähle deine Rolle(n) — Mehrfachauswahl möglich',
