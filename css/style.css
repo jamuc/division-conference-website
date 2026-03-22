@@ -1177,15 +1177,24 @@ body { padding-bottom: 70px; }
 .role-card input[type="radio"],
 .role-card input[type="checkbox"] { display: none; }
 
-/* ── Primary type row (Audience vs Staff) ── */
+/* ── Primary type row (Audience / Volunteer / Contestant) ── */
 .role-type-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem;
   margin-bottom: 1.5rem;
 }
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .role-type-row { grid-template-columns: 1fr; }
+}
+
+/* ── Access code field ── */
+.access-code-field {
+  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+  background: color-mix(in srgb, var(--navy) 6%, white);
+  border: 1.5px solid color-mix(in srgb, var(--navy) 20%, transparent);
+  border-radius: var(--radius);
 }
 .role-type-card {
   display: block;

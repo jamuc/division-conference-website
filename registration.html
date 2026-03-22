@@ -11,7 +11,7 @@
   <link rel="icon" href="/images/favicon.ico" sizes="any" />
   <link rel="apple-touch-icon" href="/images/favicon.ico" />
 
-  <link rel="stylesheet" href="css/style.css?v=2" />
+  <link rel="stylesheet" href="css/style.css?v=3" />
 </head>
 <body class="lang-en">
 
@@ -144,7 +144,7 @@
         </div>
 
         <div class="funnel__form">
-          <!-- Primary type: Audience vs Staff -->
+          <!-- Primary type: Audience / Volunteer / Contestant -->
           <div class="role-type-row">
             <label class="role-type-card" id="typeAudienceCard">
               <input type="radio" name="roleType" value="audience" id="typeAudience" />
@@ -156,28 +156,40 @@
                 <span class="role-card__price">+€5</span>
               </div>
             </label>
-            <label class="role-type-card" id="typeStaffCard">
-              <input type="radio" name="roleType" value="staff" id="typeStaff" />
+            <label class="role-type-card" id="typeVolunteerCard">
+              <input type="radio" name="roleType" value="volunteer" id="typeVolunteer" />
               <div class="role-type-card__inner">
                 <div class="role-type-card__info">
-                  <span class="role-type-card__title" data-i18n="reg.role.staff">Conference Staff</span>
-                  <span class="role-type-card__desc" data-i18n="reg.role.staffDesc">You have a role in running the conference.</span>
+                  <span class="role-type-card__title" data-i18n="reg.role.volunteer">Conference Volunteer</span>
+                  <span class="role-type-card__desc" data-i18n="reg.role.volunteerDesc">You have one or more roles in running the conference.</span>
+                </div>
+                <span class="role-card__price role-card__price--free" data-i18n="reg.role.free">Included</span>
+              </div>
+            </label>
+            <label class="role-type-card" id="typeContestantCard">
+              <input type="radio" name="roleType" value="contestant" id="typeContestant" />
+              <div class="role-type-card__inner">
+                <div class="role-type-card__info">
+                  <span class="role-type-card__title" data-i18n="reg.role.contestantTitle">Contestant</span>
+                  <span class="role-type-card__desc" data-i18n="reg.role.contestantDesc">You are competing in one of the speaking contests.</span>
                 </div>
                 <span class="role-card__price role-card__price--free" data-i18n="reg.role.free">Included</span>
               </div>
             </label>
           </div>
 
-          <!-- Staff role checkboxes — shown only when Staff is selected -->
+          <!-- Access code — shown when Volunteer or Contestant is selected -->
+          <div class="access-code-field" id="accessCodeField" hidden>
+            <label class="form__label" for="accessCode" data-i18n="reg.role.enterCode">Access Code</label>
+            <input class="form__input" type="text" id="accessCode" autocomplete="off"
+                   placeholder="e.g. DIVD2026" spellcheck="false" />
+            <span class="form__hint" data-i18n="reg.role.codeHint">Contact your conference organiser if you don't have a code.</span>
+          </div>
+
+          <!-- Staff role checkboxes — shown only when Volunteer is selected -->
           <div class="staff-roles" id="staffRoles" hidden>
             <div class="role-section-label" data-i18n="reg.role.staffRolesLabel">Select your role(s) — you can choose more than one</div>
             <div class="role-grid">
-              <label class="role-card role-card--staff">
-                <input type="checkbox" name="staffRole" value="contestant" id="roleContestant" />
-                <div class="role-card__inner">
-                  <span class="role-card__title" data-i18n="reg.role.contestant">Contestant</span>
-                </div>
-              </label>
               <label class="role-card role-card--staff">
                 <input type="checkbox" name="staffRole" value="timekeeper" id="roleTimekeeper" />
                 <div class="role-card__inner">
@@ -369,6 +381,6 @@
 
   <!-- jsPDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="js/register.js?v=2"></script>
+  <script src="js/register.js?v=3"></script>
 </body>
 </html>

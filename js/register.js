@@ -44,20 +44,23 @@ const i18n = {
     'reg.clubHint':           'You can select multiple clubs if you are a member of more than one.',
     'reg.clubNotListed':      'My club is not in the list',
 
-    'reg.role.audience':      'Audience Member',
-    'reg.role.audienceDesc':  'Enjoy the speeches, contests, and networking as a guest.',
-    'reg.role.staff':         'Conference Volunteers',
-    'reg.role.staffDesc':     'You have one or more roles in running the conference.',
-    'reg.role.staffLabel':    'Conference Volunteers — no extra cost',
+    'reg.role.audience':        'Audience Member',
+    'reg.role.audienceDesc':    'Enjoy the speeches, contests, and networking as a guest.',
+    'reg.role.volunteer':       'Conference Volunteer',
+    'reg.role.volunteerDesc':   'You have one or more roles in running the conference.',
+    'reg.role.contestantTitle': 'Contestant',
+    'reg.role.contestantDesc':  'You are competing in one of the speaking contests.',
     'reg.role.staffRolesLabel': 'Select your role(s) — you can choose more than one',
-    'reg.role.timekeeper':    'Time Keeper',
-    'reg.role.ballot':        'Ballot Counter',
-    'reg.role.judge':         'Judge',
-    'reg.role.chiefjudge':    'Chief Judge',
-    'reg.role.contestchair':  'Contest Chair',
-    'reg.role.sargeant':      'Sergeant at Arms',
-    'reg.role.contestant':    'Contestant',
-    'reg.role.free':          'Included',
+    'reg.role.enterCode':       'Access Code',
+    'reg.role.codeHint':        "Contact your conference organiser if you don't have a code.",
+    'reg.role.timekeeper':      'Time Keeper',
+    'reg.role.ballot':          'Ballot Counter',
+    'reg.role.judge':           'Judge',
+    'reg.role.chiefjudge':      'Chief Judge',
+    'reg.role.contestchair':    'Contest Chair',
+    'reg.role.sargeant':        'Sergeant at Arms',
+    'reg.role.contestant':      'Contestant',
+    'reg.role.free':            'Included',
 
     'reg.workshop.title':     'Workshop Package',
     'reg.workshop.desc':      'Join an interactive workshop session to sharpen your skills and connect with fellow Toastmasters. Limited spaces available.',
@@ -67,8 +70,9 @@ const i18n = {
     'reg.summary.role':       'Role',
     'reg.summary.priceTitle': 'Price Breakdown',
     'reg.summary.cleaning':   'Cleaning fee',
-    'reg.summary.roleAudience': 'Audience',
-    'reg.summary.roleStaff':  'Staff role',
+    'reg.summary.roleAudience':   'Audience',
+    'reg.summary.roleVolunteer':  'Volunteer',
+    'reg.summary.roleContestant': 'Contestant',
     'reg.summary.workshop':   'Workshop Package',
     'reg.summary.total':      'Total',
     'reg.summary.paymentNote':'💡 You will be redirected to Stripe to pay securely by card.',
@@ -91,8 +95,9 @@ const i18n = {
     'reg.err.firstName':      'Please enter your first name.',
     'reg.err.lastName':       'Please enter your last name.',
     'reg.err.email':          'Please enter a valid email address.',
-    'reg.err.role':           'Please select Audience or Staff to continue.',
-    'reg.err.staffRole':      'Please select at least one staff role.',
+    'reg.err.role':           'Please select your role to continue.',
+    'reg.err.staffRole':      'Please select at least one volunteer role.',
+    'reg.err.code':           'Invalid access code. Please contact your conference organiser.',
 
     'pdf.district':           'TOASTMASTERS DISTRICT 95 · DIVISION D',
     'pdf.conference':         'Division D Conference 2026',
@@ -143,20 +148,23 @@ const i18n = {
     'reg.clubHint':           'Du kannst mehrere Clubs auswählen, wenn du Mitglied in mehr als einem bist.',
     'reg.clubNotListed':      'Mein Club ist nicht in der Liste',
 
-    'reg.role.audience':      'Zuschauer',
-    'reg.role.audienceDesc':  'Genieße die Reden, Wettbewerbe und das Networking als Gast.',
-    'reg.role.staff':         'Konferenz-Volunteers',
-    'reg.role.staffDesc':     'Du hast eine oder mehrere Rollen bei der Durchführung der Konferenz.',
-    'reg.role.staffLabel':    'Konferenz-Volunteers — kein Aufpreis',
+    'reg.role.audience':        'Zuschauer',
+    'reg.role.audienceDesc':    'Genieße die Reden, Wettbewerbe und das Networking als Gast.',
+    'reg.role.volunteer':       'Konferenz-Volunteer',
+    'reg.role.volunteerDesc':   'Du hast eine oder mehrere Rollen bei der Durchführung der Konferenz.',
+    'reg.role.contestantTitle': 'Teilnehmer',
+    'reg.role.contestantDesc':  'Du nimmst an einem der Redewettbewerbe teil.',
     'reg.role.staffRolesLabel': 'Wähle deine Rolle(n) — Mehrfachauswahl möglich',
-    'reg.role.timekeeper':    'Zeitnehmer',
-    'reg.role.ballot':        'Stimmenauszähler',
-    'reg.role.judge':         'Richter',
-    'reg.role.chiefjudge':    'Chefrichter',
-    'reg.role.contestchair':  'Wettbewerbsleiter',
-    'reg.role.sargeant':      'Sergeant at Arms',
-    'reg.role.contestant':    'Teilnehmer (Wettbewerb)',
-    'reg.role.free':          'Inklusive',
+    'reg.role.enterCode':       'Zugangscode',
+    'reg.role.codeHint':        'Kontaktiere den Konferenzorganisator, wenn du keinen Code hast.',
+    'reg.role.timekeeper':      'Zeitnehmer',
+    'reg.role.ballot':          'Stimmenauszähler',
+    'reg.role.judge':           'Richter',
+    'reg.role.chiefjudge':      'Chefrichter',
+    'reg.role.contestchair':    'Wettbewerbsleiter',
+    'reg.role.sargeant':        'Sergeant at Arms',
+    'reg.role.contestant':      'Teilnehmer (Wettbewerb)',
+    'reg.role.free':            'Inklusive',
 
     'reg.workshop.title':     'Workshop-Paket',
     'reg.workshop.desc':      'Nimm an einem interaktiven Workshop teil, um deine Fähigkeiten zu schärfen. Begrenzte Plätze verfügbar.',
@@ -166,8 +174,9 @@ const i18n = {
     'reg.summary.role':       'Rolle',
     'reg.summary.priceTitle': 'Preisübersicht',
     'reg.summary.cleaning':   'Reinigungsgebühr',
-    'reg.summary.roleAudience': 'Zuschauer',
-    'reg.summary.roleStaff':  'Team-Rolle',
+    'reg.summary.roleAudience':   'Zuschauer',
+    'reg.summary.roleVolunteer':  'Volunteer',
+    'reg.summary.roleContestant': 'Teilnehmer',
     'reg.summary.workshop':   'Workshop-Paket',
     'reg.summary.total':      'Gesamtbetrag',
     'reg.summary.paymentNote':'💡 Du wirst zur sicheren Kartenzahlung über Stripe weitergeleitet.',
@@ -190,8 +199,9 @@ const i18n = {
     'reg.err.firstName':      'Bitte gib deinen Vornamen ein.',
     'reg.err.lastName':       'Bitte gib deinen Nachnamen ein.',
     'reg.err.email':          'Bitte gib eine gültige E-Mail-Adresse ein.',
-    'reg.err.role':           'Bitte wähle Zuschauer oder Team aus.',
-    'reg.err.staffRole':      'Bitte wähle mindestens eine Team-Rolle aus.',
+    'reg.err.role':           'Bitte wähle deine Rolle aus.',
+    'reg.err.staffRole':      'Bitte wähle mindestens eine Volunteer-Rolle aus.',
+    'reg.err.code':           'Ungültiger Zugangscode. Bitte kontaktiere den Konferenzorganisator.',
 
     'pdf.district':           'TOASTMASTERS DISTRIKT 95 · DIVISION D',
     'pdf.conference':         'Division D Konferenz 2026',
@@ -211,6 +221,8 @@ const i18n = {
 // Replace with your deployed Apps Script Web App URL
 const APPS_SCRIPT_URL    = 'https://script.google.com/macros/s/AKfycbxKreCl6hQoqlbO3JcsIU8kZ_8SVmQ05ha49KU_WUuheuvNQB1OaPgBjZxTESzkfcZ6aQ/exec';
 const STRIPE_PUBLIC_KEY  = 'pk_test_51TDjKJRtImJpS3aDh6XmontWzR953d7ax0A3iG8eN4x9BkNMXxYTiYd7ZNztqYCa4Ho3TC5hZyLL8uxJ8f15nWn400AwBQQ4F3';
+const VOLUNTEER_CODE     = 'DIVD2026';
+const CONTESTANT_CODE    = 'SPEAK2026';
 
 /* ── i18n ─────────────────────────────────────────────── */
 let currentLang = localStorage.getItem('tm-lang') || 'en';
@@ -248,8 +260,8 @@ const state = {
   isMember:    false,
   clubs:       [],   // array of selected club names
   clubOther:   '',   // free-text when manual mode is active
-  roleType:    '',       // 'audience' | 'staff'
-  staffRoles:  [],       // array of selected staff roles (e.g. ['contestant','timekeeper'])
+  roleType:    '',       // 'audience' | 'volunteer' | 'contestant'
+  staffRoles:  [],       // array of selected volunteer roles (e.g. ['timekeeper','judge'])
   workshop:    false,
   ref:         '',   // booking reference, generated on confirm
 };
@@ -264,13 +276,16 @@ function calcTotal() {
 }
 
 function roleLabel() {
-  if (state.roleType === 'audience') return t('reg.summary.roleAudience');
+  if (state.roleType === 'audience')   return t('reg.summary.roleAudience');
+  if (state.roleType === 'contestant') return t('reg.summary.roleContestant');
+  // volunteer — list their specific roles
   const names = state.staffRoles.map(r => t(`reg.role.${r}`));
-  return names.join(', ');
+  return names.length ? names.join(', ') : t('reg.summary.roleVolunteer');
 }
 
 function roleBadgeText() {
-  if (state.roleType === 'audience') return 'AUDIENCE';
+  if (state.roleType === 'audience')   return 'AUDIENCE';
+  if (state.roleType === 'contestant') return 'CONTESTANT';
   return state.staffRoles.map(r => t(`reg.role.${r}`).toUpperCase()).join(' · ');
 }
 
@@ -418,7 +433,18 @@ function validateStep2() {
     document.getElementById('roleErr').textContent = t('reg.err.role');
     return false;
   }
-  if (state.roleType === 'staff' && state.staffRoles.length === 0) {
+  // Check access code for gated roles
+  if (state.roleType === 'volunteer' || state.roleType === 'contestant') {
+    const entered  = document.getElementById('accessCode').value.trim().toUpperCase();
+    const expected = state.roleType === 'volunteer' ? VOLUNTEER_CODE : CONTESTANT_CODE;
+    if (entered !== expected) {
+      document.getElementById('roleErr').textContent = t('reg.err.code');
+      document.getElementById('accessCode').focus();
+      return false;
+    }
+  }
+  // Volunteers must pick at least one role
+  if (state.roleType === 'volunteer' && state.staffRoles.length === 0) {
     document.getElementById('roleErr').textContent = t('reg.err.staffRole');
     return false;
   }
@@ -584,22 +610,31 @@ document.getElementById('step1Next').addEventListener('click', () => {
 });
 
 /* ── Step 2 wiring ────────────────────────────────────── */
-const staffRolesPanel = document.getElementById('staffRoles');
+const staffRolesPanel  = document.getElementById('staffRoles');
+const accessCodeField  = document.getElementById('accessCodeField');
+const accessCodeInput  = document.getElementById('accessCode');
 
 document.querySelectorAll('input[name="roleType"]').forEach(radio => {
   radio.addEventListener('change', () => {
-    state.roleType = radio.value;
+    state.roleType  = radio.value;
     state.staffRoles = [];
     // Highlight selected type card
     document.querySelectorAll('.role-type-card').forEach(c => c.classList.remove('selected'));
     radio.closest('.role-type-card').classList.add('selected');
-    // Reset staff checkboxes and cards
+    // Reset volunteer checkboxes
     document.querySelectorAll('input[name="staffRole"]').forEach(cb => {
       cb.checked = false;
       cb.closest('.role-card').classList.remove('selected');
     });
-    // Show/hide staff role checkboxes
-    staffRolesPanel.hidden = (state.roleType !== 'staff');
+    // Show access code field for gated roles
+    const needsCode = (state.roleType === 'volunteer' || state.roleType === 'contestant');
+    accessCodeField.hidden = !needsCode;
+    if (needsCode) {
+      accessCodeInput.value = '';
+      accessCodeInput.focus();
+    }
+    // Show volunteer role checkboxes only for volunteers
+    staffRolesPanel.hidden = (state.roleType !== 'volunteer');
   });
 });
 
