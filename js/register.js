@@ -195,7 +195,7 @@ const i18n = {
 
 /* ── Google Sheets endpoint ───────────────────────────── */
 // Replace with your deployed Apps Script Web App URL
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzbVb9ETduum9c-MEdnVqCSwvaJyVdZw8nKBx2pPtBPvZN2nzoPAgZIcaND8vUYc2WD/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxKreCl6hQoqlbO3JcsIU8kZ_8SVmQ05ha49KU_WUuheuvNQB1OaPgBjZxTESzkfcZ6aQ/exec';
 
 /* ── i18n ─────────────────────────────────────────────── */
 let currentLang = localStorage.getItem('tm-lang') || 'en';
