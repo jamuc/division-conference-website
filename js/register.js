@@ -92,12 +92,16 @@ const i18n = {
     'reg.confirm.download':   '↓ Download Ticket (PDF)',
     'reg.confirm.backHome':   '← Back to main site',
 
+    'reg.confirm.receiptNote':  '📧 A payment receipt has been sent to your email address.',
+
     'reg.err.firstName':      'Please enter your first name.',
     'reg.err.lastName':       'Please enter your last name.',
     'reg.err.email':          'Please enter a valid email address.',
     'reg.err.role':           'Please select your role to continue.',
     'reg.err.staffRole':      'Please select at least one volunteer role.',
     'reg.err.code':           'Invalid access code. Please contact your conference organiser.',
+    'reg.err.paymentTitle':   'Payment not completed',
+    'reg.err.paymentBody':    'Something went wrong or you cancelled. Please try again — your details are still saved.',
 
     'pdf.district':           'TOASTMASTERS DISTRICT 95 · DIVISION D',
     'pdf.conference':         'Division D Conference 2026',
@@ -196,12 +200,16 @@ const i18n = {
     'reg.confirm.download':   '↓ Ticket herunterladen (PDF)',
     'reg.confirm.backHome':   '← Zurück zur Hauptseite',
 
+    'reg.confirm.receiptNote':  '📧 Eine Zahlungsbestätigung wurde an deine E-Mail-Adresse gesendet.',
+
     'reg.err.firstName':      'Bitte gib deinen Vornamen ein.',
     'reg.err.lastName':       'Bitte gib deinen Nachnamen ein.',
     'reg.err.email':          'Bitte gib eine gültige E-Mail-Adresse ein.',
     'reg.err.role':           'Bitte wähle deine Rolle aus.',
     'reg.err.staffRole':      'Bitte wähle mindestens eine Volunteer-Rolle aus.',
     'reg.err.code':           'Ungültiger Zugangscode. Bitte kontaktiere den Konferenzorganisator.',
+    'reg.err.paymentTitle':   'Zahlung nicht abgeschlossen',
+    'reg.err.paymentBody':    'Etwas ist schiefgelaufen oder du hast abgebrochen. Bitte versuche es erneut — deine Daten sind noch gespeichert.',
 
     'pdf.district':           'TOASTMASTERS DISTRIKT 95 · DIVISION D',
     'pdf.conference':         'Division D Konferenz 2026',
@@ -337,19 +345,32 @@ async function initiatePayment() {
 
 // Called on page load — restores state if returning from Stripe
 async function handlePaymentReturn() {
-  const params    = new URLSearchParams(window.location.search);
-  const sessionId = params.get('session_id');
-  if (!params.get('success') || !sessionId) return;
+  const params = new URLSearchParams(window.location.search);
+  history.replaceState({}, '', window.location.pathname); // clean URL immediately
 
-  const saved = sessionStorage.getItem('divD_reg');
-  if (!saved) return;
+  // ── Success ──────────────────────────────────────────────
+  if (params.get('success') && params.get('session_id')) {
+    const saved = sessionStorage.getItem('divD_reg');
+    if (!saved) return;
+    Object.assign(state, JSON.parse(saved));
+    sessionStorage.removeItem('divD_reg');
+    goToStep(5);
+    return;
+  }
 
-  Object.assign(state, JSON.parse(saved));
-  sessionStorage.removeItem('divD_reg');
-
-  // Clean URL without reload
-  history.replaceState({}, '', window.location.pathname);
-  goToStep(5);
+  // ── Cancelled / failed ───────────────────────────────────
+  if (params.get('cancelled')) {
+    const saved = sessionStorage.getItem('divD_reg');
+    if (!saved) return;
+    Object.assign(state, JSON.parse(saved));
+    // Don't remove from sessionStorage — let them retry
+    goToStep(4);
+    document.getElementById('paymentErrorBanner').hidden = false;
+    // Re-enable the pay button
+    const btn = document.getElementById('step4Confirm');
+    btn.disabled = false;
+    btn.textContent = `${t('reg.confirm')} — €${calcTotal()}`;
+  }
 }
 
 function isAudience()    { return state.roleType === 'audience'; }

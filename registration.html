@@ -11,7 +11,7 @@
   <link rel="icon" href="/images/favicon.ico" sizes="any" />
   <link rel="apple-touch-icon" href="/images/favicon.ico" />
 
-  <link rel="stylesheet" href="css/style.css?v=4" />
+  <link rel="stylesheet" href="css/style.css?v=5" />
 </head>
 <body class="lang-en">
 
@@ -263,6 +263,15 @@
           </p>
         </div>
 
+        <!-- Payment cancelled / failed banner — shown on return from Stripe -->
+        <div class="payment-error-banner" id="paymentErrorBanner" hidden>
+          <span class="payment-error-banner__icon" aria-hidden="true">⚠️</span>
+          <div>
+            <strong data-i18n="reg.err.paymentTitle">Payment not completed</strong>
+            <p data-i18n="reg.err.paymentBody">Something went wrong or you cancelled. Please try again — your details are still saved.</p>
+          </div>
+        </div>
+
         <div class="funnel__actions">
           <button class="btn btn--outline btn--lg" id="step4Back" data-i18n="reg.back">← Back</button>
           <button class="btn btn--yellow btn--lg" id="step4Confirm" data-i18n="reg.confirm">Complete Registration</button>
@@ -306,6 +315,10 @@
             </div>
           </div>
 
+          <p class="confirm__receipt-note" data-i18n="reg.confirm.receiptNote">
+            📧 A payment receipt has been sent to your email address.
+          </p>
+
           <div class="confirm__actions">
             <button class="btn btn--yellow btn--lg" id="downloadTicket" data-i18n="reg.confirm.download">
               ↓ Download Ticket (PDF)
@@ -323,6 +336,6 @@
 
   <!-- jsPDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="js/register.js?v=4"></script>
+  <script src="js/register.js?v=5"></script>
 </body>
 </html>
