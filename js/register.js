@@ -64,12 +64,13 @@ const i18n = {
     'reg.summary.roleAudience': 'Audience',
     'reg.summary.roleStaff':  'Staff role',
     'reg.summary.workshop':   'Workshop Package',
-    'reg.summary.total':      'Total due at door',
-    'reg.summary.paymentNote':'💡 Payment is collected at the door on the day of the event. No online payment required.',
+    'reg.summary.total':      'Total',
+    'reg.summary.paymentNote':'💡 You will be redirected to SumUp to pay securely by card.',
+    'reg.confirm.paying':     'Redirecting to payment…',
 
     'reg.next':               'Continue →',
     'reg.back':               '← Back',
-    'reg.confirm':            'Complete Registration',
+    'reg.confirm':            'Pay with SumUp',
 
     'reg.confirm.title':      "You're Registered!",
     'reg.confirm.body':       'See you on 25 April at Stadtteilkultur 2411, Munich!',
@@ -155,12 +156,13 @@ const i18n = {
     'reg.summary.roleAudience': 'Zuschauer',
     'reg.summary.roleStaff':  'Team-Rolle',
     'reg.summary.workshop':   'Workshop-Paket',
-    'reg.summary.total':      'Gesamtbetrag (vor Ort)',
-    'reg.summary.paymentNote':'💡 Die Zahlung erfolgt am Veranstaltungstag vor Ort. Keine Online-Zahlung erforderlich.',
+    'reg.summary.total':      'Gesamtbetrag',
+    'reg.summary.paymentNote':'💡 Du wirst zur sicheren Kartenzahlung über SumUp weitergeleitet.',
+    'reg.confirm.paying':     'Weiterleitung zur Zahlung…',
 
     'reg.next':               'Weiter →',
     'reg.back':               '← Zurück',
-    'reg.confirm':            'Anmeldung abschließen',
+    'reg.confirm':            'Mit SumUp bezahlen',
 
     'reg.confirm.title':      'Du bist angemeldet!',
     'reg.confirm.body':       'Wir sehen uns am 25. April in der Stadtteilkultur 2411, München!',
@@ -251,29 +253,84 @@ function generateRef() {
   ).join('');
 }
 
-async function submitToSheet() {
-  if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'PASTE_YOUR_WEB_APP_URL_HERE') return;
+async function initiatePayment() {
+  if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'PASTE_YOUR_WEB_APP_URL_HERE') {
+    goToStep(5); return;
+  }
+  const btn = document.getElementById('step4Confirm');
+  btn.disabled = true;
+  btn.textContent = t('reg.confirm.paying');
+
+  // Persist registration state so we can restore it after SumUp redirect
+  sessionStorage.setItem('divD_reg', JSON.stringify({ ...state, total: calcTotal() }));
+
   try {
-    await fetch(APPS_SCRIPT_URL, {
-      method: 'POST',
-      mode:   'no-cors',  // Apps Script doesn't send CORS headers
+    const res  = await fetch(APPS_SCRIPT_URL, {
+      method:  'POST',
+      mode:    'cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        firstName: state.firstName,
-        lastName:  state.lastName,
-        email:     state.email,
-        isMember:  state.isMember,
-        club:      state.clubName,
-        role:      state.role,
-        workshop:  state.workshop,
-        total:     calcTotal(),
-        lang:      currentLang,
-        ref:       state.ref,
+        bookingRef: state.ref,
+        firstName:  state.firstName,
+        lastName:   state.lastName,
+        email:      state.email,
+        member:     state.isMember,
+        club:       state.clubName,
+        role:       state.role,
+        workshop:   state.workshop,
+        total:      calcTotal(),
+        lang:       currentLang,
       }),
     });
+    const data = await res.json();
+    if (data.ok && data.checkoutUrl) {
+      window.location.href = data.checkoutUrl;
+    } else {
+      throw new Error(data.error || 'No checkout URL returned');
+    }
   } catch (err) {
-    // Silently fail — registration still completes for the user
-    console.warn('Sheet submission failed:', err);
+    console.warn('Payment initiation failed:', err);
+    showToast('Could not connect to payment provider. Please try again.');
+    btn.disabled = false;
+    btn.textContent = `${t('reg.confirm')} — €${calcTotal()}`;
+  }
+}
+
+async function verifyPayment(checkoutId) {
+  try {
+    const res  = await fetch(APPS_SCRIPT_URL, {
+      method:  'POST',
+      mode:    'cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'verify', checkoutId }),
+    });
+    const data = await res.json();
+    return data.status === 'PAID';
+  } catch {
+    return false;
+  }
+}
+
+// Called on page load — restores state if returning from SumUp
+async function handlePaymentReturn() {
+  const params     = new URLSearchParams(window.location.search);
+  const checkoutId = params.get('checkout_id');
+  if (!params.get('success') || !checkoutId) return;
+
+  const saved = sessionStorage.getItem('divD_reg');
+  if (!saved) return;
+
+  Object.assign(state, JSON.parse(saved));
+  sessionStorage.removeItem('divD_reg');
+
+  // Clean URL without reload
+  history.replaceState({}, '', window.location.pathname);
+
+  const paid = await verifyPayment(checkoutId);
+  if (paid) {
+    goToStep(5);
+  } else {
+    showToast('Payment could not be verified. Please try again or contact us.');
   }
 }
 
@@ -458,14 +515,21 @@ function populateSummary() {
 
   // Total
   document.getElementById('priceTotal').textContent = `€${calcTotal()}`;
+
+  // Update confirm button to show amount
+  const btn = document.getElementById('step4Confirm');
+  btn.disabled = false;
+  btn.textContent = `${t('reg.confirm')} — €${calcTotal()}`;
 }
 
 document.getElementById('step4Back').addEventListener('click', () => goToStep(3));
 document.getElementById('step4Confirm').addEventListener('click', async () => {
   state.ref = generateRef();
-  await submitToSheet();
-  goToStep(5);
+  await initiatePayment();
 });
+
+// Check if returning from SumUp payment
+handlePaymentReturn();
 
 /* ── Step 5: Confirmation ────────────────────────────── */
 function populateConfirmation() {
