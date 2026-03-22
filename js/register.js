@@ -39,7 +39,8 @@ const i18n = {
     'reg.isMember':           'Are you a Toastmasters member?',
     'reg.yes':                'Yes',
     'reg.no':                 'No',
-    'reg.clubName':           'Club Name',
+    'reg.clubName':           'Club(s)',
+    'reg.clubPlaceholder':    'Select your club(s)…',
 
     'reg.role.audience':      'Audience Member',
     'reg.role.audienceDesc':  'Enjoy the speeches, contests, and networking as a guest.',
@@ -135,7 +136,8 @@ const i18n = {
     'reg.isMember':           'Bist du Toastmasters-Mitglied?',
     'reg.yes':                'Ja',
     'reg.no':                 'Nein',
-    'reg.clubName':           'Club-Name',
+    'reg.clubName':           'Club(s)',
+    'reg.clubPlaceholder':    'Club(s) auswählen…',
 
     'reg.role.audience':      'Zuschauer',
     'reg.role.audienceDesc':  'Genieße die Reden, Wettbewerbe und das Networking als Gast.',
@@ -239,7 +241,7 @@ const state = {
   lastName:    '',
   email:       '',
   isMember:    false,
-  clubName:    '',
+  clubs:       [],   // array of selected club names
   roleType:    '',       // 'audience' | 'staff'
   staffRoles:  [],       // array of selected staff roles (e.g. ['contestant','timekeeper'])
   workshop:    false,
@@ -295,7 +297,7 @@ async function initiatePayment() {
       lastName:   state.lastName,
       email:      state.email,
       member:     state.isMember,
-      club:       state.clubName,
+      club:       state.clubs.join(', '),
       roleType:   state.roleType,
       staffRoles: state.staffRoles.join(', '),
       workshop:   state.workshop,
@@ -459,7 +461,6 @@ const emailEl     = document.getElementById('email');
 const memberYes   = document.getElementById('memberYes');
 const memberNo    = document.getElementById('memberNo');
 const clubGroup   = document.getElementById('clubGroup');
-const clubNameEl  = document.getElementById('clubName');
 
 firstNameEl.addEventListener('input', () => { state.firstName = firstNameEl.value; });
 lastNameEl.addEventListener('input',  () => { state.lastName  = lastNameEl.value; });
@@ -472,7 +473,119 @@ emailEl.addEventListener('input',     () => { state.email     = emailEl.value; }
   });
 });
 
-clubNameEl.addEventListener('input', () => { state.clubName = clubNameEl.value; });
+/* ── Club searchable multi-select ────────────────────── */
+const CLUBS = [
+  // Munich
+  'Munich Toastmasters Club',
+  'Munich Business Speakers',
+  'Redeclub-Muenchen',
+  'M.E.A.T. Munich English Advanced Toastmasters',
+  'MuC Toastmasters',
+  'Airbus Toastmaster Ottobrunn',
+  'Münchner Brainstormers Club',
+  'Munich Prostmasters Toastmasters Club',
+  'Effective Communicators',
+  'InnSpiratoren',
+  'Toastmasters-Muenchen',
+  'Inn Valley',
+  // South / Alps
+  'Rhetorenschmiede',
+  "Speaker's Corner München Toastmasters",
+  'Les Toastmasters Francophones de Munich',
+  'Munich Media Speakers',
+  'Allianz Public Speaking Club',
+  'Toastmasters ZEISS',
+  // Danube / Augsburg
+  'Danube Sparrows',
+  'Ulmer Redespatzen',
+  'Allgäu Speakers',
+  'Toastmasters Augsburg',
+  // Nuremberg / Franconia
+  'Nuremberg Toastmasters Club',
+  'Erlangen Toastmasters',
+  'ReDensburger Toastmasters',
+  'Fraenkly Speaking Toastmasters',
+  'INgolSpeakers',
+  'Noris Toastmasters Nuremberg',
+  'Nürnberger Rhetoriker',
+  'Bamberg Toastmasters Club',
+  'Würzburg Toastmasters',
+  'In Camera Online Toastmasters Club',
+  'Schweinfurt Toastmasters',
+  // Other
+  'Other',
+];
+
+(function initClubSelect() {
+  const trigger     = document.getElementById('clubSelectTrigger');
+  const dropdown    = document.getElementById('clubSelectDropdown');
+  const searchInput = document.getElementById('clubSearch');
+  const listEl      = document.getElementById('clubSelectList');
+  const tagsEl      = document.getElementById('clubSelectTags');
+  const placeholder = document.getElementById('clubSelectPlaceholder');
+  const wrapper     = document.getElementById('clubSelect');
+
+  function renderList(filter = '') {
+    listEl.innerHTML = '';
+    const q = filter.toLowerCase();
+    CLUBS.forEach(club => {
+      if (q && !club.toLowerCase().includes(q)) return;
+      const isChecked = state.clubs.includes(club);
+      const opt = document.createElement('label');
+      opt.className = 'club-option' + (isChecked ? ' club-option--selected' : '');
+      opt.innerHTML = `<input type="checkbox" value="${club}" ${isChecked ? 'checked' : ''} /><span>${club}</span>`;
+      opt.querySelector('input').addEventListener('change', e => {
+        if (e.target.checked) {
+          state.clubs.push(club);
+        } else {
+          state.clubs = state.clubs.filter(c => c !== club);
+        }
+        opt.classList.toggle('club-option--selected', e.target.checked);
+        renderTags();
+      });
+      listEl.appendChild(opt);
+    });
+  }
+
+  function renderTags() {
+    tagsEl.innerHTML = '';
+    placeholder.style.display = state.clubs.length ? 'none' : '';
+    state.clubs.forEach(club => {
+      const tag = document.createElement('span');
+      tag.className = 'club-tag';
+      tag.innerHTML = `${club}<button type="button" aria-label="Remove ${club}">&times;</button>`;
+      tag.querySelector('button').addEventListener('click', e => {
+        e.stopPropagation();
+        state.clubs = state.clubs.filter(c => c !== club);
+        renderTags();
+        renderList(searchInput.value);
+      });
+      tagsEl.appendChild(tag);
+    });
+  }
+
+  function openDropdown() {
+    dropdown.hidden = false;
+    wrapper.setAttribute('aria-expanded', 'true');
+    searchInput.value = '';
+    renderList();
+    searchInput.focus();
+  }
+
+  function closeDropdown() {
+    dropdown.hidden = true;
+    wrapper.setAttribute('aria-expanded', 'false');
+  }
+
+  trigger.addEventListener('click', () => dropdown.hidden ? openDropdown() : closeDropdown());
+  wrapper.addEventListener('keydown', e => { if (e.key === 'Escape') closeDropdown(); });
+  searchInput.addEventListener('input', () => renderList(searchInput.value));
+  document.addEventListener('click', e => {
+    if (!wrapper.contains(e.target)) closeDropdown();
+  });
+
+  renderList();
+})();
 
 document.getElementById('step1Next').addEventListener('click', () => {
   if (validateStep1()) goToStep(2);

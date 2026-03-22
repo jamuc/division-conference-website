@@ -107,8 +107,20 @@
           </div>
 
           <div class="form__group form__group--hidden" id="clubGroup">
-            <label class="form__label" for="clubName" data-i18n="reg.clubName">Club Name</label>
-            <input class="form__input" type="text" id="clubName" name="clubName" autocomplete="organization" />
+            <label class="form__label" data-i18n="reg.clubName">Club(s)</label>
+            <div class="club-select" id="clubSelect" role="combobox" aria-expanded="false" aria-haspopup="listbox" tabindex="0">
+              <div class="club-select__trigger" id="clubSelectTrigger">
+                <span class="club-select__placeholder" id="clubSelectPlaceholder" data-i18n="reg.clubPlaceholder">Select your club(s)…</span>
+                <div class="club-select__tags" id="clubSelectTags"></div>
+                <svg class="club-select__chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="club-select__dropdown" id="clubSelectDropdown" role="listbox" aria-multiselectable="true" hidden>
+                <div class="club-select__search-wrap">
+                  <input class="club-select__search" id="clubSearch" type="text" placeholder="Search clubs…" autocomplete="off" aria-label="Search clubs" />
+                </div>
+                <div class="club-select__list" id="clubSelectList"></div>
+              </div>
+            </div>
           </div>
         </div>
 
