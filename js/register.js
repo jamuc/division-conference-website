@@ -71,12 +71,12 @@ const i18n = {
     'reg.summary.roleStaff':  'Staff role',
     'reg.summary.workshop':   'Workshop Package',
     'reg.summary.total':      'Total',
-    'reg.summary.paymentNote':'💡 You will be redirected to SumUp to pay securely by card.',
+    'reg.summary.paymentNote':'💡 You will be redirected to Stripe to pay securely by card.',
     'reg.confirm.paying':     'Redirecting to payment…',
 
     'reg.next':               'Continue →',
     'reg.back':               '← Back',
-    'reg.confirm':            'Pay with SumUp',
+    'reg.confirm':            'Pay with Stripe',
 
     'reg.confirm.title':      "You're Registered!",
     'reg.confirm.body':       'See you on 25 April at Stadtteilkultur 2411, Munich!',
@@ -170,12 +170,12 @@ const i18n = {
     'reg.summary.roleStaff':  'Team-Rolle',
     'reg.summary.workshop':   'Workshop-Paket',
     'reg.summary.total':      'Gesamtbetrag',
-    'reg.summary.paymentNote':'💡 Du wirst zur sicheren Kartenzahlung über SumUp weitergeleitet.',
+    'reg.summary.paymentNote':'💡 Du wirst zur sicheren Kartenzahlung über Stripe weitergeleitet.',
     'reg.confirm.paying':     'Weiterleitung zur Zahlung…',
 
     'reg.next':               'Weiter →',
     'reg.back':               '← Zurück',
-    'reg.confirm':            'Mit SumUp bezahlen',
+    'reg.confirm':            'Mit Stripe bezahlen',
 
     'reg.confirm.title':      'Du bist angemeldet!',
     'reg.confirm.body':       'Wir sehen uns am 25. April in der Stadtteilkultur 2411, München!',
