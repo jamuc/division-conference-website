@@ -261,29 +261,42 @@ async function initiatePayment() {
   btn.disabled = true;
   btn.textContent = t('reg.confirm.paying');
 
-  // Persist registration state so we can restore it after SumUp redirect
+  // Persist state so we can restore it after SumUp redirect
   sessionStorage.setItem('divD_reg', JSON.stringify({ ...state, total: calcTotal() }));
 
+  // 1. Write to sheet — no-cors, fire and forget
+  fetch(APPS_SCRIPT_URL, {
+    method:  'POST',
+    mode:    'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      bookingRef: state.ref,
+      firstName:  state.firstName,
+      lastName:   state.lastName,
+      email:      state.email,
+      member:     state.isMember,
+      club:       state.clubName,
+      role:       state.role,
+      workshop:   state.workshop,
+      total:      calcTotal(),
+      lang:       currentLang,
+    }),
+  }).catch(() => {});
+
+  // 2. Create SumUp checkout via GET (Apps Script supports CORS on GET)
   try {
-    const res  = await fetch(APPS_SCRIPT_URL, {
-      method:  'POST',
-      mode:    'cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        bookingRef: state.ref,
-        firstName:  state.firstName,
-        lastName:   state.lastName,
-        email:      state.email,
-        member:     state.isMember,
-        club:       state.clubName,
-        role:       state.role,
-        workshop:   state.workshop,
-        total:      calcTotal(),
-        lang:       currentLang,
-      }),
+    const params = new URLSearchParams({
+      action:    'checkout',
+      ref:       state.ref,
+      amount:    calcTotal(),
+      name:      `${state.firstName} ${state.lastName}`,
+      email:     state.email,
+      role:      state.role,
+      workshop:  state.workshop ? '1' : '0',
     });
+    const res  = await fetch(`${APPS_SCRIPT_URL}?${params}`);
     const data = await res.json();
-    if (data.ok && data.checkoutUrl) {
+    if (data.checkoutUrl) {
       window.location.href = data.checkoutUrl;
     } else {
       throw new Error(data.error || 'No checkout URL returned');
@@ -298,12 +311,7 @@ async function initiatePayment() {
 
 async function verifyPayment(checkoutId) {
   try {
-    const res  = await fetch(APPS_SCRIPT_URL, {
-      method:  'POST',
-      mode:    'cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'verify', checkoutId }),
-    });
+    const res  = await fetch(`${APPS_SCRIPT_URL}?action=verify&checkoutId=${checkoutId}`);
     const data = await res.json();
     return data.status === 'PAID';
   } catch {
