@@ -1038,6 +1038,16 @@ body { padding-bottom: 70px; }
   padding: 0;
 }
 .club-tag button:hover { color: white; }
+.form__hint {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin: -0.25rem 0 0.5rem;
+}
+.club-other-input {
+  margin-top: 0.6rem;
+  width: 100%;
+  animation: fadeIn 0.2s ease;
+}
 .club-select__dropdown {
   position: absolute;
   top: calc(100% + 4px);

@@ -41,6 +41,7 @@ const i18n = {
     'reg.no':                 'No',
     'reg.clubName':           'Club(s)',
     'reg.clubPlaceholder':    'Select your club(s)…',
+    'reg.clubHint':           'You can select multiple clubs if you are a member of more than one.',
 
     'reg.role.audience':      'Audience Member',
     'reg.role.audienceDesc':  'Enjoy the speeches, contests, and networking as a guest.',
@@ -138,6 +139,7 @@ const i18n = {
     'reg.no':                 'Nein',
     'reg.clubName':           'Club(s)',
     'reg.clubPlaceholder':    'Club(s) auswählen…',
+    'reg.clubHint':           'Du kannst mehrere Clubs auswählen, wenn du Mitglied in mehr als einem bist.',
 
     'reg.role.audience':      'Zuschauer',
     'reg.role.audienceDesc':  'Genieße die Reden, Wettbewerbe und das Networking als Gast.',
@@ -242,6 +244,7 @@ const state = {
   email:       '',
   isMember:    false,
   clubs:       [],   // array of selected club names
+  clubOther:   '',   // free-text if 'Other' selected
   roleType:    '',       // 'audience' | 'staff'
   staffRoles:  [],       // array of selected staff roles (e.g. ['contestant','timekeeper'])
   workshop:    false,
@@ -297,7 +300,7 @@ async function initiatePayment() {
       lastName:   state.lastName,
       email:      state.email,
       member:     state.isMember,
-      club:       state.clubs.join(', '),
+      club:       state.clubs.map(c => c === 'Other' && state.clubOther ? state.clubOther : c).join(', '),
       roleType:   state.roleType,
       staffRoles: state.staffRoles.join(', '),
       workshop:   state.workshop,
@@ -524,6 +527,20 @@ const CLUBS = [
   const tagsEl      = document.getElementById('clubSelectTags');
   const placeholder = document.getElementById('clubSelectPlaceholder');
   const wrapper     = document.getElementById('clubSelect');
+  const otherInput  = document.getElementById('clubOther');
+
+  function toggleOtherField() {
+    const hasOther = state.clubs.includes('Other');
+    otherInput.hidden = !hasOther;
+    if (hasOther) {
+      otherInput.focus();
+    } else {
+      otherInput.value = '';
+      state.clubOther = '';
+    }
+  }
+
+  otherInput.addEventListener('input', () => { state.clubOther = otherInput.value.trim(); });
 
   function renderList(filter = '') {
     listEl.innerHTML = '';
@@ -542,6 +559,7 @@ const CLUBS = [
         }
         opt.classList.toggle('club-option--selected', e.target.checked);
         renderTags();
+        toggleOtherField();
       });
       listEl.appendChild(opt);
     });
@@ -559,6 +577,7 @@ const CLUBS = [
         state.clubs = state.clubs.filter(c => c !== club);
         renderTags();
         renderList(searchInput.value);
+        toggleOtherField();
       });
       tagsEl.appendChild(tag);
     });

@@ -108,6 +108,7 @@
 
           <div class="form__group form__group--hidden" id="clubGroup">
             <label class="form__label" data-i18n="reg.clubName">Club(s)</label>
+            <p class="form__hint" data-i18n="reg.clubHint">You can select multiple clubs if you are a member of more than one.</p>
             <div class="club-select" id="clubSelect" role="combobox" aria-expanded="false" aria-haspopup="listbox" tabindex="0">
               <div class="club-select__trigger" id="clubSelectTrigger">
                 <span class="club-select__placeholder" id="clubSelectPlaceholder" data-i18n="reg.clubPlaceholder">Select your club(s)…</span>
@@ -121,6 +122,7 @@
                 <div class="club-select__list" id="clubSelectList"></div>
               </div>
             </div>
+            <input class="form__input club-other-input" type="text" id="clubOther" placeholder="Please enter your club name" hidden />
           </div>
         </div>
 
