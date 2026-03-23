@@ -11,7 +11,7 @@
 const i18n = {
   en: {
     'nav.brand':        'Division D · District 95',
-    'nav.cta':          'Register',
+    'nav.cta':          'Register Now',
     'nav.about':        'About',
     'nav.tm':           'Toastmasters',
     'nav.venue':        'Venue',
@@ -23,7 +23,7 @@ const i18n = {
     'hero.tagline':     'Where Stories Connect',
     'hero.date':        '25 April 2026',
     'hero.location':    'Munich, Germany',
-    'hero.cta':         'Register',
+    'hero.cta':         'Register Now',
 
     'about.label':      'The Event',
     'about.title':      'A day where voices come alive',
@@ -53,11 +53,9 @@ const i18n = {
     'venue.directions': 'Get Directions ↗',
     'venue.calendar':   '+ Add to Calendar',
 
-    'tickets.label':    'Secure Your Spot',
-    'tickets.title':    'Join Us on 25 April',
-    'tickets.body':     'Tickets will be available soon. Register on pretix.',
-    'tickets.cta':      'Register',
-    'tickets.soon':     'Ticket sales opening soon — check back shortly.',
+    'tickets.label':    'Register',
+    'tickets.title':    'Register Now',
+    'tickets.soon':     'Registration opens on 25 March 2026.',
 
     'share.label':      'Spread the Word',
     'share.title':      'Share the Event',
@@ -78,7 +76,7 @@ const i18n = {
 
   de: {
     'nav.brand':        'Division D · Distrikt 95',
-    'nav.cta':          'Registrieren',
+    'nav.cta':          'Jetzt registrieren',
     'nav.about':        'Über uns',
     'nav.tm':           'Toastmasters',
     'nav.venue':        'Veranstaltungsort',
@@ -90,7 +88,7 @@ const i18n = {
     'hero.tagline':     'Wo Geschichten sich begegnen',
     'hero.date':        '25. April 2026',
     'hero.location':    'München, Deutschland',
-    'hero.cta':         'Registrieren',
+    'hero.cta':         'Jetzt registrieren',
 
     'about.label':      'Die Veranstaltung',
     'about.title':      'Ein Tag, an dem Stimmen lebendig werden',
@@ -120,11 +118,9 @@ const i18n = {
     'venue.directions': 'Route berechnen ↗',
     'venue.calendar':   '+ Zum Kalender hinzufügen',
 
-    'tickets.label':    'Sichere deinen Platz',
-    'tickets.title':    'Sei dabei am 25. April',
-    'tickets.body':     'Tickets sind bald verfügbar. Auf pretix registrieren.',
-    'tickets.cta':      'Registrieren',
-    'tickets.soon':     'Ticketverkauf startet bald — schau bald wieder vorbei.',
+    'tickets.label':    'Registrieren',
+    'tickets.title':    'Jetzt registrieren',
+    'tickets.soon':     'Registrierung öffnet am 25. März 2026.',
 
     'share.label':      'Sag es weiter',
     'share.title':      'Veranstaltung teilen',
@@ -264,6 +260,13 @@ const shareMap = [
 shareMap.forEach(([id, platform]) => {
   const el = document.getElementById(id);
   if (el) el.addEventListener('click', () => doShare(platform));
+});
+
+/* ── Register Now buttons → scroll to #tickets ─────────── */
+['heroCta', 'navCta'].forEach(id => {
+  document.getElementById(id)?.addEventListener('click', () => {
+    document.getElementById('tickets').scrollIntoView({ behavior: 'smooth' });
+  });
 });
 
 /* ── Venue: Add to Calendar (placeholder) ─────────────── */
