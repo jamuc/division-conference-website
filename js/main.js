@@ -58,6 +58,11 @@ const i18n = {
     'tickets.title':    'Register Now',
     'tickets.soon':     'Registration opens on 25 March 2026.',
 
+    'contribute.label': 'Get Involved',
+    'contribute.title': 'Want to Help Make It Happen?',
+    'contribute.body':  'Behind every great conference is a great team. We\'re looking for enthusiastic volunteers to help bring this event to life. Join one of our organising teams on WhatsApp and make your mark.',
+    'contribute.join':  'Join group →',
+
     'fb.label':         'Community',
     'fb.title':         'Find us on Facebook',
     'fb.body':          'Follow our page for the latest news, updates, and announcements from Toastmasters Bayern.',
@@ -133,6 +138,11 @@ const i18n = {
     'tickets.label':    'Registrieren',
     'tickets.title':    'Jetzt registrieren',
     'tickets.soon':     'Registrierung öffnet am 25. März 2026.',
+
+    'contribute.label': 'Mitmachen',
+    'contribute.title': 'Willst du mithelfen?',
+    'contribute.body':  'Hinter jeder großartigen Konferenz steckt ein großartiges Team. Wir suchen engagierte Freiwillige, die helfen, dieses Event zum Leben zu erwecken. Tritt einem unserer Organisationsteams auf WhatsApp bei.',
+    'contribute.join':  'Gruppe beitreten →',
 
     'fb.label':         'Community',
     'fb.title':         'Auf Facebook folgen',
