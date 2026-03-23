@@ -706,20 +706,48 @@ pretix-widget + * + .tickets__coming-soon {
 /* ══════════════════════════════════════════════════════
    SHARE — desktop section
 ══════════════════════════════════════════════════════ */
+/* ── Cookie consent banner ─────────────────────────── */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: var(--navy-dk);
+  color: var(--white);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem 2rem;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 -4px 24px rgba(0,0,0,.35);
+}
+.cookie-banner__text {
+  flex: 1 1 260px;
+  font-size: .875rem;
+  opacity: .9;
+  margin: 0;
+  line-height: 1.5;
+}
+.cookie-banner__actions {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  flex-shrink: 0;
+}
+.cookie-banner__link {
+  font-size: .8rem;
+  color: rgba(255,255,255,.6);
+  text-decoration: underline;
+}
+.cookie-banner__link:hover { color: #fff; }
+
 /* ── Facebook section ──────────────────────────────── */
 .fb-section__body {
   color: rgba(255,255,255,.75);
   font-size: .9375rem;
   margin-bottom: 2rem;
   max-width: 560px;
-}
-.fb-section__embed {
-  margin-bottom: 2rem;
-  border-radius: 10px;
-  overflow: hidden;
-  /* keeps the FB iframe contained and centred */
-  display: flex;
-  justify-content: center;
 }
 .fb-section__actions {
   display: flex;

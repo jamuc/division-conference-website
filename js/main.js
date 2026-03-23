@@ -64,6 +64,10 @@ const i18n = {
     'fb.follow':        'Follow on Facebook',
     'fb.message':       'Message us on Messenger',
 
+    'consent.text':     'This site stores only your language preference in your browser\'s local storage — no tracking cookies, no third-party data.',
+    'consent.link':     'More info',
+    'consent.accept':   'Got it',
+
     'share.label':      'Spread the Word',
     'share.title':      'Share the Event',
     'share.body':       'Know someone who belongs on this stage? Share this page and help us fill the room with stories.',
@@ -135,6 +139,10 @@ const i18n = {
     'fb.body':          'Folge unserer Seite für die neuesten Nachrichten und Ankündigungen von Toastmasters Bayern.',
     'fb.follow':        'Auf Facebook folgen',
     'fb.message':       'Schreib uns auf Messenger',
+
+    'consent.text':     'Diese Website speichert nur Ihre Sprachpräferenz im lokalen Speicher Ihres Browsers — keine Tracking-Cookies, keine Drittanbieterdaten.',
+    'consent.link':     'Mehr Infos',
+    'consent.accept':   'Alles klar',
 
     'share.label':      'Sag es weiter',
     'share.title':      'Veranstaltung teilen',
@@ -274,6 +282,19 @@ const shareMap = [
 shareMap.forEach(([id, platform]) => {
   const el = document.getElementById(id);
   if (el) el.addEventListener('click', () => doShare(platform));
+});
+
+/* ── Cookie consent banner ────────────────────────────── */
+const CONSENT_KEY = 'tm-consent';
+const cookieBanner = document.getElementById('cookieBanner');
+
+if (!localStorage.getItem(CONSENT_KEY)) {
+  cookieBanner?.removeAttribute('hidden');
+}
+
+document.getElementById('consentAccept')?.addEventListener('click', () => {
+  localStorage.setItem(CONSENT_KEY, 'acknowledged');
+  cookieBanner?.setAttribute('hidden', '');
 });
 
 /* ── Venue: Add to Calendar (placeholder) ─────────────── */
