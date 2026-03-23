@@ -706,6 +706,55 @@ pretix-widget + * + .tickets__coming-soon {
 /* ══════════════════════════════════════════════════════
    SHARE — desktop section
 ══════════════════════════════════════════════════════ */
+/* ── Facebook section ──────────────────────────────── */
+.fb-section__body {
+  color: rgba(255,255,255,.75);
+  font-size: .9375rem;
+  margin-bottom: 2rem;
+  max-width: 560px;
+}
+.fb-section__embed {
+  margin-bottom: 2rem;
+  border-radius: 10px;
+  overflow: hidden;
+  /* keeps the FB iframe contained and centred */
+  display: flex;
+  justify-content: center;
+}
+.fb-section__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.fb-section__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  font-size: .9rem;
+  padding: .65rem 1.4rem;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: filter .15s ease, transform .1s ease;
+}
+.fb-section__btn:hover  { filter: brightness(1.1); }
+.fb-section__btn:active { transform: scale(.97); }
+.fb-section__btn--page {
+  background: #1877F2;
+  color: #fff;
+}
+.fb-section__btn--messenger {
+  background: #fff;
+  color: #1877F2;
+}
+.fb-section__btn-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
 .share__body {
   color: var(--text-muted);
   font-size: .9375rem;

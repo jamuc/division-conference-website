@@ -58,6 +58,12 @@ const i18n = {
     'tickets.title':    'Register Now',
     'tickets.soon':     'Registration opens on 25 March 2026.',
 
+    'fb.label':         'Community',
+    'fb.title':         'Find us on Facebook',
+    'fb.body':          'Follow our page for the latest news, updates, and announcements from Toastmasters Bayern.',
+    'fb.follow':        'Follow on Facebook',
+    'fb.message':       'Message us on Messenger',
+
     'share.label':      'Spread the Word',
     'share.title':      'Share the Event',
     'share.body':       'Know someone who belongs on this stage? Share this page and help us fill the room with stories.',
@@ -123,6 +129,12 @@ const i18n = {
     'tickets.label':    'Registrieren',
     'tickets.title':    'Jetzt registrieren',
     'tickets.soon':     'Registrierung öffnet am 25. März 2026.',
+
+    'fb.label':         'Community',
+    'fb.title':         'Auf Facebook folgen',
+    'fb.body':          'Folge unserer Seite für die neuesten Nachrichten und Ankündigungen von Toastmasters Bayern.',
+    'fb.follow':        'Auf Facebook folgen',
+    'fb.message':       'Schreib uns auf Messenger',
 
     'share.label':      'Sag es weiter',
     'share.title':      'Veranstaltung teilen',
