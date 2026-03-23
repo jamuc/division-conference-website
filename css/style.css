@@ -429,6 +429,12 @@ body.lang-de .lang-toggle__de { color: var(--yellow); }
 .hero__cta {
   font-size: clamp(.875rem, 2.5vw, 1rem);
 }
+.hero__register-note {
+  margin-top: .75rem;
+  font-size: .875rem;
+  color: rgba(255,255,255,.75);
+  letter-spacing: .01em;
+}
 
 .hero__scroll-cue {
   position: absolute;

@@ -24,6 +24,7 @@ const i18n = {
     'hero.date':        '25 April 2026',
     'hero.location':    'Munich, Germany',
     'hero.cta':         'Register Now',
+    'hero.registerNote': 'Registration opens 25 March 2026',
 
     'about.label':      'The Event',
     'about.title':      'A day where voices come alive',
@@ -89,6 +90,7 @@ const i18n = {
     'hero.date':        '25. April 2026',
     'hero.location':    'München, Deutschland',
     'hero.cta':         'Jetzt registrieren',
+    'hero.registerNote': 'Registrierung öffnet am 25. März 2026',
 
     'about.label':      'Die Veranstaltung',
     'about.title':      'Ein Tag, an dem Stimmen lebendig werden',
@@ -260,13 +262,6 @@ const shareMap = [
 shareMap.forEach(([id, platform]) => {
   const el = document.getElementById(id);
   if (el) el.addEventListener('click', () => doShare(platform));
-});
-
-/* ── Register Now buttons → scroll to #tickets ─────────── */
-['heroCta', 'navCta'].forEach(id => {
-  document.getElementById(id)?.addEventListener('click', () => {
-    document.getElementById('tickets').scrollIntoView({ behavior: 'smooth' });
-  });
 });
 
 /* ── Venue: Add to Calendar (placeholder) ─────────────── */
