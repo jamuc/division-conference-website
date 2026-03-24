@@ -348,7 +348,7 @@ function generateRef() {
 }
 
 async function initiatePayment() {
-  const btn = document.getElementById('step4Confirm');
+  const btn = document.getElementById('step5Confirm');
   btn.disabled = true;
   btn.textContent = t('reg.confirm.paying');
 
