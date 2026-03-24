@@ -26,6 +26,8 @@ const i18n = {
     'hero.location':    'Munich, Germany',
     'hero.cta':         'Register Now',
     'hero.registerNote': 'Registration opens 1 April 2026',
+    'hero.agenda':       'View Programme',
+    'nav.agenda':        'Programme',
 
     'about.label':      'The Event',
     'about.title':      'A day where voices come alive',
@@ -108,6 +110,8 @@ const i18n = {
     'hero.location':    'München, Deutschland',
     'hero.cta':         'Jetzt registrieren',
     'hero.registerNote': 'Registrierung öffnet am 1. April 2026',
+    'hero.agenda':       'Programm anzeigen',
+    'nav.agenda':        'Programm',
 
     'about.label':      'Die Veranstaltung',
     'about.title':      'Ein Tag, an dem Stimmen lebendig werden',

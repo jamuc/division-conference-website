@@ -245,6 +245,22 @@ ul { list-style: none; }
 }
 
 /* Right cluster */
+.nav__agenda-link {
+  font-size: .8rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.8);
+  text-decoration: none;
+  letter-spacing: .04em;
+  padding: .3rem .6rem;
+  border-radius: 5px;
+  transition: color .15s, background .15s;
+}
+.nav__agenda-link:hover {
+  color: #fff;
+  background: rgba(255,255,255,.1);
+}
+@media (max-width: 600px) { .nav__agenda-link { display: none; } }
+
 .nav__right {
   display: flex;
   align-items: center;
@@ -445,6 +461,20 @@ body.lang-de .lang-toggle__de { color: var(--yellow); }
   opacity: .9;
   letter-spacing: .02em;
 }
+.hero__agenda-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  margin-top: 1rem;
+  color: var(--yellow);
+  font-weight: 600;
+  font-size: .9rem;
+  text-decoration: none;
+  letter-spacing: .02em;
+  opacity: .9;
+  transition: opacity .15s;
+}
+.hero__agenda-link:hover { opacity: 1; text-decoration: underline; }
 
 .hero__scroll-cue {
   position: absolute;
