@@ -119,7 +119,7 @@ const i18n = {
 
     'pdf.district':           'TOASTMASTERS DISTRICT 95 · DIVISION D',
     'pdf.conference':         'Division D Conference 2026',
-    'pdf.tagline':            'Where Stories Connect',
+    'pdf.tagline':            'Growing Through Connection',
     'pdf.date':               '25 April 2026',
     'pdf.venue':              'Stadtteilkultur 2411, Munich',
     'pdf.workshop':           'Workshop Package: Included',

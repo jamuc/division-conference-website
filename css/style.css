@@ -388,8 +388,17 @@ body.lang-de .lang-toggle__de { color: var(--yellow); }
   font-weight: 400;
   color: var(--yellow);
   font-style: italic;
-  margin-bottom: 1.75rem;
+  margin-bottom: .5rem;
   opacity: .95;
+}
+
+.hero__values {
+  font-size: clamp(.7rem, 2vw, .85rem);
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 1.75rem;
 }
 
 .hero__meta {

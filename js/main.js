@@ -20,7 +20,8 @@ const i18n = {
 
     'hero.eyebrow':     'Toastmasters District 95 · Division D',
     'hero.title':       'Division D<br>Conference 2026',
-    'hero.tagline':     'Where Stories Connect',
+    'hero.tagline':     'Growing Through Connection',
+    'hero.values':      'Integrity | Respect | Service | Excellence',
     'hero.date':        '25 April 2026',
     'hero.location':    'Munich, Germany',
     'hero.cta':         'Register Now',
@@ -101,7 +102,8 @@ const i18n = {
 
     'hero.eyebrow':     'Toastmasters Distrikt 95 · Division D',
     'hero.title':       'Division D<br>Konferenz 2026',
-    'hero.tagline':     'Wo Geschichten sich begegnen',
+    'hero.tagline':     'Growing Through Connection',
+    'hero.values':      'Integrity | Respect | Service | Excellence',
     'hero.date':        '25. April 2026',
     'hero.location':    'München, Deutschland',
     'hero.cta':         'Jetzt registrieren',
@@ -250,7 +252,7 @@ const PAGE_URL = 'https://toastmasters-bayern.com/';
 function shareMessage() {
   return currentLang === 'de'
     ? `Komm zur Division D Konferenz am 25. April 2026! Wo Geschichten sich begegnen ${PAGE_URL}`
-    : `Join me at the Division D Conference on 25 April 2026! Where Stories Connect ${PAGE_URL}`;
+    : `Join me at the Division D Conference on 25 April 2026! Growing Through Connection ${PAGE_URL}`;
 }
 
 function doShare(platform) {
@@ -313,7 +315,7 @@ document.querySelector('.venue__cal')?.addEventListener('click', () => {
   const start  = '20260425T090000';
   const end    = '20260425T180000';
   const title  = encodeURIComponent('Division D Conference 2026');
-  const detail = encodeURIComponent('Where Stories Connect — toastmasters-bayern.com');
+  const detail = encodeURIComponent('Growing Through Connection — toastmasters-bayern.com');
   const gcal   = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${detail}`;
   window.open(gcal, '_blank', 'noopener,noreferrer');
 });
