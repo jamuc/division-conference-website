@@ -60,7 +60,12 @@
         <div class="funnel__prog-line"></div>
         <div class="funnel__prog-step" data-step="4">
           <div class="funnel__prog-dot"><span>4</span></div>
-          <span class="funnel__prog-label" data-i18n="reg.step4.nav">Confirm</span>
+          <span class="funnel__prog-label" data-i18n="reg.step4.nav">Interests</span>
+        </div>
+        <div class="funnel__prog-line"></div>
+        <div class="funnel__prog-step" data-step="5">
+          <div class="funnel__prog-dot"><span>5</span></div>
+          <span class="funnel__prog-label" data-i18n="reg.step5.nav">Confirm</span>
         </div>
       </div>
 
@@ -211,12 +216,70 @@
         </div>
       </div>
 
-      <!-- ── Step 4: Summary & Confirm ─────────────────────── -->
-      <div class="funnel__panel" id="step4" aria-label="Step 4: Confirm" hidden>
+      <!-- ── Step 4: Interests ──────────────────────────────── -->
+      <div class="funnel__panel" id="step4" aria-label="Step 4: Interests" hidden>
         <div class="funnel__header">
-          <span class="section__label" data-i18n="reg.step4.eyebrow">Step 4 of 4</span>
-          <h1 class="funnel__title" data-i18n="reg.step4.title">Confirm Registration</h1>
-          <p class="funnel__subtitle" data-i18n="reg.step4.subtitle">Review your details before confirming.</p>
+          <span class="section__label" data-i18n="reg.step4.eyebrow">Step 4 of 5</span>
+          <h1 class="funnel__title" data-i18n="reg.step4.title">A Few Quick Questions</h1>
+          <p class="funnel__subtitle" data-i18n="reg.step4.subtitle">Help us plan the best possible event.</p>
+        </div>
+
+        <div class="funnel__form">
+          <label class="addon-card" id="sponsorCard">
+            <div class="addon-card__inner">
+              <div class="addon-card__info">
+                <span class="addon-card__title" data-i18n="reg.interest.sponsor.title">Become a Sponsor</span>
+                <span class="addon-card__desc" data-i18n="reg.interest.sponsor.desc">Would you or your organisation be interested in sponsoring the conference?</span>
+              </div>
+              <div class="addon-card__right">
+                <div class="addon-toggle" id="sponsorToggle" role="switch" aria-checked="false" tabindex="0" aria-label="Interested in sponsoring">
+                  <div class="addon-toggle__knob"></div>
+                </div>
+              </div>
+            </div>
+          </label>
+
+          <label class="addon-card" id="dayCareCard">
+            <div class="addon-card__inner">
+              <div class="addon-card__info">
+                <span class="addon-card__title" data-i18n="reg.interest.daycare.title">Day Care</span>
+                <span class="addon-card__desc" data-i18n="reg.interest.daycare.desc">If we offer on-site day care, would you bring your children and use it?</span>
+              </div>
+              <div class="addon-card__right">
+                <div class="addon-toggle" id="dayCareToggle" role="switch" aria-checked="false" tabindex="0" aria-label="Interested in day care">
+                  <div class="addon-toggle__knob"></div>
+                </div>
+              </div>
+            </div>
+          </label>
+
+          <label class="addon-card" id="lunchCard">
+            <div class="addon-card__inner">
+              <div class="addon-card__info">
+                <span class="addon-card__title" data-i18n="reg.interest.lunch.title">Organised Lunch Package</span>
+                <span class="addon-card__desc" data-i18n="reg.interest.lunch.desc">Would you be interested in a pre-arranged lunch package at the venue?</span>
+              </div>
+              <div class="addon-card__right">
+                <div class="addon-toggle" id="lunchToggle" role="switch" aria-checked="false" tabindex="0" aria-label="Interested in lunch package">
+                  <div class="addon-toggle__knob"></div>
+                </div>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <div class="funnel__actions">
+          <button class="btn btn--outline btn--lg" id="step4Back" data-i18n="reg.back">← Back</button>
+          <button class="btn btn--yellow btn--lg" id="step4Next" data-i18n="reg.next">Continue →</button>
+        </div>
+      </div>
+
+      <!-- ── Step 5: Summary & Confirm ─────────────────────── -->
+      <div class="funnel__panel" id="step5" aria-label="Step 5: Confirm" hidden>
+        <div class="funnel__header">
+          <span class="section__label" data-i18n="reg.step5.eyebrow">Step 5 of 5</span>
+          <h1 class="funnel__title" data-i18n="reg.step5.title">Confirm Registration</h1>
+          <p class="funnel__subtitle" data-i18n="reg.step5.subtitle">Review your details before confirming.</p>
         </div>
 
         <div class="funnel__form">
@@ -273,13 +336,13 @@
         </div>
 
         <div class="funnel__actions">
-          <button class="btn btn--outline btn--lg" id="step4Back" data-i18n="reg.back">← Back</button>
-          <button class="btn btn--yellow btn--lg" id="step4Confirm" data-i18n="reg.confirm">Complete Registration</button>
+          <button class="btn btn--outline btn--lg" id="step5Back" data-i18n="reg.back">← Back</button>
+          <button class="btn btn--yellow btn--lg" id="step5Confirm" data-i18n="reg.confirm">Complete Registration</button>
         </div>
       </div>
 
-      <!-- ── Step 5: Confirmation ──────────────────────────── -->
-      <div class="funnel__panel" id="step5" aria-label="Registration confirmed" hidden>
+      <!-- ── Step 6: Confirmation ──────────────────────────── -->
+      <div class="funnel__panel" id="step6" aria-label="Registration confirmed" hidden>
         <div class="funnel__confirmation">
           <div class="confirm__icon" aria-hidden="true">
             <svg viewBox="0 0 48 48" fill="none">
@@ -336,6 +399,6 @@
 
   <!-- jsPDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="js/register.js?v=8"></script>
+  <script src="js/register.js?v=9"></script>
 </body>
 </html>

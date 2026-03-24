@@ -17,21 +17,34 @@ const i18n = {
     'reg.step3.nav':          'Add-ons',
     'reg.step4.nav':          'Confirm',
 
-    'reg.step1.eyebrow':      'Step 1 of 4',
+    'reg.step1.eyebrow':      'Step 1 of 5',
     'reg.step1.title':        'Your Details',
     'reg.step1.subtitle':     'Tell us a little about yourself.',
 
-    'reg.step2.eyebrow':      'Step 2 of 4',
+    'reg.step2.eyebrow':      'Step 2 of 5',
     'reg.step2.title':        'Your Role',
     'reg.step2.subtitle':     'How will you be participating?',
 
-    'reg.step3.eyebrow':      'Step 3 of 4',
+    'reg.step3.eyebrow':      'Step 3 of 5',
     'reg.step3.title':        'Add-ons',
     'reg.step3.subtitle':     'Enhance your conference experience.',
 
-    'reg.step4.eyebrow':      'Step 4 of 4',
-    'reg.step4.title':        'Confirm Registration',
-    'reg.step4.subtitle':     'Review your details before confirming.',
+    'reg.step4.nav':          'Interests',
+    'reg.step4.eyebrow':      'Step 4 of 5',
+    'reg.step4.title':        'A Few Quick Questions',
+    'reg.step4.subtitle':     'Help us plan the best possible event.',
+
+    'reg.interest.sponsor.title': 'Become a Sponsor',
+    'reg.interest.sponsor.desc':  'Would you or your organisation be interested in sponsoring the conference?',
+    'reg.interest.daycare.title': 'Day Care',
+    'reg.interest.daycare.desc':  'If we offer on-site day care, would you bring your children and use it?',
+    'reg.interest.lunch.title':   'Organised Lunch Package',
+    'reg.interest.lunch.desc':    'Would you be interested in a pre-arranged lunch package at the venue?',
+
+    'reg.step5.nav':          'Confirm',
+    'reg.step5.eyebrow':      'Step 5 of 5',
+    'reg.step5.title':        'Confirm Registration',
+    'reg.step5.subtitle':     'Review your details before confirming.',
 
     'reg.firstName':          'First Name',
     'reg.lastName':           'Last Name',
@@ -128,21 +141,34 @@ const i18n = {
     'reg.step3.nav':          'Extras',
     'reg.step4.nav':          'Bestätigen',
 
-    'reg.step1.eyebrow':      'Schritt 1 von 4',
+    'reg.step1.eyebrow':      'Schritt 1 von 5',
     'reg.step1.title':        'Deine Angaben',
     'reg.step1.subtitle':     'Erzähl uns ein wenig über dich.',
 
-    'reg.step2.eyebrow':      'Schritt 2 von 4',
+    'reg.step2.eyebrow':      'Schritt 2 von 5',
     'reg.step2.title':        'Deine Rolle',
     'reg.step2.subtitle':     'Wie nimmst du teil?',
 
-    'reg.step3.eyebrow':      'Schritt 3 von 4',
+    'reg.step3.eyebrow':      'Schritt 3 von 5',
     'reg.step3.title':        'Extras',
     'reg.step3.subtitle':     'Bereichere dein Konferenzerlebnis.',
 
-    'reg.step4.eyebrow':      'Schritt 4 von 4',
-    'reg.step4.title':        'Anmeldung bestätigen',
-    'reg.step4.subtitle':     'Überprüfe deine Daten vor der Bestätigung.',
+    'reg.step4.nav':          'Interessen',
+    'reg.step4.eyebrow':      'Schritt 4 von 5',
+    'reg.step4.title':        'Ein paar kurze Fragen',
+    'reg.step4.subtitle':     'Hilf uns, das bestmögliche Event zu planen.',
+
+    'reg.interest.sponsor.title': 'Sponsor werden',
+    'reg.interest.sponsor.desc':  'Bist du oder deine Organisation daran interessiert, die Konferenz zu sponsern?',
+    'reg.interest.daycare.title': 'Kinderbetreuung',
+    'reg.interest.daycare.desc':  'Falls wir eine Kinderbetreuung vor Ort anbieten, würdest du deine Kinder mitbringen?',
+    'reg.interest.lunch.title':   'Organisiertes Mittagessen',
+    'reg.interest.lunch.desc':    'Wärst du an einem vorbereiteten Mittagspaket im Veranstaltungsort interessiert?',
+
+    'reg.step5.nav':          'Bestätigen',
+    'reg.step5.eyebrow':      'Schritt 5 von 5',
+    'reg.step5.title':        'Anmeldung bestätigen',
+    'reg.step5.subtitle':     'Überprüfe deine Daten vor der Bestätigung.',
 
     'reg.firstName':          'Vorname',
     'reg.lastName':           'Nachname',
@@ -277,6 +303,9 @@ const state = {
   roleType:    '',       // 'audience' | 'volunteer' | 'contestant'
   staffRoles:  [],       // array of selected volunteer roles (e.g. ['timekeeper','judge'])
   workshop:    false,
+  sponsor:     false,
+  dayCare:     false,
+  lunch:       false,
   ref:         '',   // booking reference, generated on confirm
   paidViaStripe: false,
 };
@@ -339,6 +368,9 @@ async function initiatePayment() {
         roleType:   state.roleType,
         staffRoles: state.staffRoles.join(', '),
         workshop:   state.workshop,
+        sponsor:    state.sponsor,
+        dayCare:    state.dayCare,
+        lunch:      state.lunch,
         total:      calcTotal(),
         lang:       currentLang,
       }),
@@ -370,7 +402,7 @@ function handlePaymentReturn() {
     Object.assign(state, JSON.parse(saved));
     sessionStorage.removeItem('divD_reg');
     state.paidViaStripe = true;
-    goToStep(5);
+    goToStep(6);
     return true;
   }
 
@@ -380,10 +412,10 @@ function handlePaymentReturn() {
     if (!saved) return false;
     Object.assign(state, JSON.parse(saved));
     // Don't remove from sessionStorage — let them retry
-    goToStep(4);
+    goToStep(5);
     document.getElementById('paymentErrorBanner').hidden = false;
     // Re-enable the pay button
-    const btn = document.getElementById('step4Confirm');
+    const btn = document.getElementById('step5Confirm');
     btn.disabled = false;
     btn.textContent = `${t('reg.confirm')} — €${calcTotal()}`;
     return true;
@@ -418,9 +450,9 @@ function goToStep(n) {
   // Scroll to top of funnel
   document.getElementById('funnel').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-  // If going to step 4, populate summary
-  if (n === 4) populateSummary();
-  if (n === 5) populateConfirmation();
+  // If going to step 5, populate summary; step 6 is confirmation
+  if (n === 5) populateSummary();
+  if (n === 6) populateConfirmation();
 }
 
 /* ── Toast ────────────────────────────────────────────── */
@@ -688,7 +720,34 @@ workshopCard.addEventListener('click', e => {
 document.getElementById('step3Back').addEventListener('click', () => goToStep(2));
 document.getElementById('step3Next').addEventListener('click', () => goToStep(4));
 
-/* ── Step 4: Summary ─────────────────────────────────── */
+/* ── Step 4 wiring: Interests ────────────────────────── */
+function makeInterestToggle(toggleId, cardId, stateKey) {
+  const toggle = document.getElementById(toggleId);
+  const card   = document.getElementById(cardId);
+
+  function set(val) {
+    state[stateKey] = val;
+    toggle.setAttribute('aria-checked', String(val));
+    card.classList.toggle('addon-card--active', val);
+  }
+
+  toggle.addEventListener('click', () => set(!state[stateKey]));
+  toggle.addEventListener('keydown', e => {
+    if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); set(!state[stateKey]); }
+  });
+  card.addEventListener('click', e => {
+    if (!e.target.closest('.addon-toggle')) set(!state[stateKey]);
+  });
+}
+
+makeInterestToggle('sponsorToggle',  'sponsorCard',  'sponsor');
+makeInterestToggle('dayCareToggle',  'dayCareCard',  'dayCare');
+makeInterestToggle('lunchToggle',    'lunchCard',    'lunch');
+
+document.getElementById('step4Back').addEventListener('click', () => goToStep(3));
+document.getElementById('step4Next').addEventListener('click', () => goToStep(5));
+
+/* ── Step 5: Summary ─────────────────────────────────── */
 function populateSummary() {
   document.getElementById('summaryName').textContent  = `${state.firstName} ${state.lastName}`;
   document.getElementById('summaryEmail').textContent = state.email;
@@ -713,13 +772,13 @@ function populateSummary() {
   document.getElementById('priceTotal').textContent = `€${calcTotal()}`;
 
   // Update confirm button to show amount
-  const btn = document.getElementById('step4Confirm');
+  const btn = document.getElementById('step5Confirm');
   btn.disabled = false;
   btn.textContent = `${t('reg.confirm')} — €${calcTotal()}`;
 }
 
-document.getElementById('step4Back').addEventListener('click', () => goToStep(3));
-document.getElementById('step4Confirm').addEventListener('click', async () => {
+document.getElementById('step5Back').addEventListener('click', () => goToStep(4));
+document.getElementById('step5Confirm').addEventListener('click', async () => {
   if (!state.ref) state.ref = generateRef(); // keep existing ref on retry
   await initiatePayment();
 });
