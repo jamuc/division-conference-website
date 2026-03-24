@@ -58,8 +58,7 @@
       color: rgba(255,255,255,.75);
     }
     .agenda-updated__dot {
-      width: 7px;
-      height: 7px;
+      width: 7px; height: 7px;
       background: #4ade80;
       border-radius: 50%;
       flex-shrink: 0;
@@ -78,9 +77,32 @@
       border-radius: 6px;
       border: none;
       cursor: pointer;
-      text-decoration: none;
     }
     .agenda-print-btn:hover { opacity: .9; }
+
+    /* ── Lang toggle ──────────────────────────────────── */
+    .agenda-lang {
+      display: inline-flex;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .agenda-lang__btn {
+      padding: .3rem .85rem;
+      font-size: .75rem;
+      font-weight: 700;
+      color: rgba(255,255,255,.6);
+      background: none;
+      border: none;
+      cursor: pointer;
+      letter-spacing: .06em;
+      transition: background .15s, color .15s;
+    }
+    .agenda-lang__btn.active {
+      background: rgba(255,255,255,.22);
+      color: #fff;
+    }
 
     /* ── Legend ───────────────────────────────────────── */
     .agenda-legend {
@@ -102,16 +124,15 @@
       letter-spacing: .06em;
     }
     .legend-dot {
-      width: 10px;
-      height: 10px;
+      width: 10px; height: 10px;
       border-radius: 2px;
       flex-shrink: 0;
     }
-    .legend-dot--saal    { background: #00d4ff; }
-    .legend-dot--raum1   { background: #a78bfa; }
-    .legend-dot--raum2   { background: #fb923c; }
-    .legend-dot--all     { background: var(--yellow); }
-    .legend-dot--break   { background: #6b7280; }
+    .legend-dot--saal  { background: #00d4ff; }
+    .legend-dot--raum1 { background: #a78bfa; }
+    .legend-dot--raum2 { background: #fb923c; }
+    .legend-dot--all   { background: var(--yellow); }
+    .legend-dot--break { background: #6b7280; }
 
     /* ── Schedule body ────────────────────────────────── */
     .agenda-body {
@@ -119,7 +140,6 @@
       margin: 0 auto;
       padding: 2rem 1rem 4rem;
     }
-
     .slot {
       display: grid;
       grid-template-columns: 90px 1fr;
@@ -127,11 +147,7 @@
       margin-bottom: .5rem;
       align-items: stretch;
     }
-
-    .slot__time {
-      padding-top: .85rem;
-      text-align: right;
-    }
+    .slot__time { padding-top: .85rem; text-align: right; }
     .slot__time-start {
       font-family: var(--font-head);
       font-weight: 800;
@@ -139,50 +155,22 @@
       color: var(--navy);
       line-height: 1;
     }
-    .slot__time-end {
-      font-size: .68rem;
-      color: var(--gray);
-      line-height: 1.2;
-      margin-top: .15rem;
-    }
-    .slot__time-dur {
-      font-size: .62rem;
-      color: var(--gray);
-      font-style: italic;
-    }
-
-    .slot__content { position: relative; }
-
-    /* Left border line */
+    .slot__time-end  { font-size: .68rem; color: var(--gray); line-height: 1.2; margin-top: .15rem; }
+    .slot__time-dur  { font-size: .62rem; color: var(--gray); font-style: italic; }
+    .slot__content   { position: relative; }
     .slot__content::before {
       content: '';
       position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
+      left: 0; top: 0; bottom: 0;
       width: 3px;
       background: var(--slot-color, var(--gray));
       border-radius: 2px;
     }
-
     .slot__card {
       margin-left: 14px;
       padding: .75rem 1rem;
       border-radius: 8px;
       background: var(--slot-bg, #f4f5f5);
-    }
-
-    .slot__room-tag {
-      display: inline-block;
-      font-size: .6rem;
-      font-weight: 700;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--slot-color, #666);
-      border: 1px solid var(--slot-color, #666);
-      border-radius: 3px;
-      padding: .1rem .4rem;
-      margin-bottom: .3rem;
     }
     .slot__title {
       font-family: var(--font-head);
@@ -191,41 +179,21 @@
       color: var(--navy);
       line-height: 1.2;
     }
-    .slot__desc {
-      font-size: .78rem;
-      color: #555;
-      margin-top: .2rem;
-    }
-    .slot__lang {
-      display: inline-flex;
-      align-items: center;
-      gap: .3rem;
-      font-size: .65rem;
-      font-weight: 600;
-      color: #888;
-      margin-top: .25rem;
-    }
+    .slot__desc  { font-size: .78rem; color: #555; margin-top: .2rem; }
 
-    /* Plenary (all-room) slots */
-    .slot--all .slot__card {
-      background: #fefce8;
-      border-left: none;
-    }
+    /* Plenary */
+    .slot--all .slot__card { background: #fefce8; }
     .slot--all .slot__content::before { background: var(--yellow); }
     .slot--all .slot__title { color: var(--navy-dk); }
 
-    /* Break slots */
+    /* Break */
     .slot--break .slot__card { background: #f9fafb; }
     .slot--break .slot__content::before { background: #d1d5db; }
     .slot--break .slot__title { color: #6b7280; font-weight: 600; font-size: .9rem; }
 
-    /* Parallel sessions */
-    .slot--parallel .slot__card {
-      padding: 0;
-      background: none;
-    }
+    /* Parallel */
+    .slot--parallel .slot__card { padding: 0; background: none; }
     .slot--parallel .slot__content::before { background: transparent; }
-
     .parallel-tracks {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -253,18 +221,12 @@
       color: var(--navy);
       line-height: 1.2;
     }
-    .track__detail {
-      font-size: .72rem;
-      color: #666;
-      margin-top: .2rem;
-    }
+    .track__detail { font-size: .72rem; color: #666; margin-top: .2rem; }
 
-    /* Room colour tokens */
     .track--saal  { --track-color: #0078a0; --track-bg: #f0f9ff; }
     .track--raum1 { --track-color: #7c3aed; --track-bg: #f5f3ff; }
     .track--raum2 { --track-color: #c2410c; --track-bg: #fff7ed; }
 
-    /* Day separator */
     .day-header {
       font-family: var(--font-head);
       font-weight: 900;
@@ -276,8 +238,6 @@
       padding-bottom: .4rem;
       margin: 2rem 0 1.25rem;
     }
-
-    /* Sponsor note */
     .agenda-note {
       margin: 2rem 0 0;
       padding: 1rem;
@@ -288,8 +248,6 @@
       color: #374151;
     }
     .agenda-note strong { display: block; color: var(--navy); margin-bottom: .25rem; }
-
-    /* Footer */
     .agenda-footer {
       text-align: center;
       padding: 2rem 1rem 3rem;
@@ -299,9 +257,9 @@
     }
     .agenda-footer a { color: var(--navy); }
 
-    /* ── Print styles ────────────────────────────────── */
+    /* ── Print ───────────────────────────────────────── */
     @media print {
-      .nav, .agenda-hero__meta, .agenda-print-btn, .agenda-legend { display: none !important; }
+      .nav, .agenda-hero__meta, .agenda-legend { display: none !important; }
       .agenda-hero {
         background: #fff !important;
         color: #000 !important;
@@ -309,9 +267,9 @@
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
-      .agenda-hero__eyebrow { color: #000 !important; }
-      .agenda-hero__title { color: #000 !important; font-size: 1.8rem; }
-      .agenda-hero__sub { color: #333 !important; }
+      .agenda-hero__eyebrow { color: #772432 !important; }
+      .agenda-hero__title   { color: #000 !important; font-size: 1.8rem; }
+      .agenda-hero__sub     { color: #333 !important; }
       .agenda-updated { border-color: #ccc !important; color: #333 !important; background: none !important; }
       .agenda-body { padding: .5rem 0 2rem; }
       .slot { page-break-inside: avoid; }
@@ -329,7 +287,7 @@
         <span class="nav__brand-text">Division D · District 95</span>
       </a>
       <div class="nav__right">
-        <a href="/" class="btn btn--sm" style="background:transparent;border:1.5px solid rgba(255,255,255,.35);color:#fff;font-size:.8rem;padding:.35rem .9rem;border-radius:6px;text-decoration:none;">← Back to Website</a>
+        <a href="/" class="btn btn--sm" style="background:transparent;border:1.5px solid rgba(255,255,255,.35);color:#fff;font-size:.8rem;padding:.35rem .9rem;border-radius:6px;text-decoration:none;" data-i18n-en="← Back to Website" data-i18n-de="← Zurück zur Website">← Back to Website</a>
       </div>
     </div>
   </header>
@@ -337,131 +295,123 @@
   <!-- ── Hero banner ───────────────────────────────── -->
   <div class="agenda-hero">
     <p class="agenda-hero__eyebrow">Toastmasters District 95 · Division D</p>
-    <h1 class="agenda-hero__title">Conference Programme</h1>
-    <p class="agenda-hero__sub">25 April 2026 · Stadtteilkultur 2411 · Munich</p>
+    <h1 class="agenda-hero__title" data-i18n-en="Conference Programme" data-i18n-de="Konferenzprogramm">Conference Programme</h1>
+    <p class="agenda-hero__sub">25 April 2026 · Stadtteilkultur 2411 · München</p>
     <div class="agenda-hero__meta">
       <span class="agenda-updated">
         <span class="agenda-updated__dot"></span>
-        Last updated: 24 March 2026
+        <span data-i18n-en="Last updated: 24 March 2026" data-i18n-de="Zuletzt aktualisiert: 24. März 2026">Last updated: 24 March 2026</span>
       </span>
+      <div class="agenda-lang">
+        <button class="agenda-lang__btn active" id="langEn" onclick="setLang('en')">EN</button>
+        <button class="agenda-lang__btn" id="langDe" onclick="setLang('de')">DE</button>
+      </div>
       <button class="agenda-print-btn" onclick="window.print()">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-        Save / Print PDF
+        <span data-i18n-en="Save / Print PDF" data-i18n-de="Speichern / Als PDF drucken">Save / Print PDF</span>
       </button>
     </div>
   </div>
 
   <!-- ── Room legend ───────────────────────────────── -->
   <div class="agenda-legend">
-    <span class="legend-item"><span class="legend-dot legend-dot--all"></span>All Rooms</span>
-    <span class="legend-item"><span class="legend-dot legend-dot--saal"></span>Saal — Speech Contests</span>
-    <span class="legend-item"><span class="legend-dot legend-dot--raum1"></span>Raum 1 — Workshops</span>
-    <span class="legend-item"><span class="legend-dot legend-dot--raum2"></span>Raum 2 — Kids Programme</span>
-    <span class="legend-item"><span class="legend-dot legend-dot--break"></span>Break</span>
+    <span class="legend-item"><span class="legend-dot legend-dot--all"></span><span data-i18n-en="All Rooms" data-i18n-de="Alle Räume">All Rooms</span></span>
+    <span class="legend-item"><span class="legend-dot legend-dot--saal"></span><span data-i18n-en="Saal — Speech Contests" data-i18n-de="Saal — Redewettbewerbe">Saal — Speech Contests</span></span>
+    <span class="legend-item"><span class="legend-dot legend-dot--raum1"></span><span data-i18n-en="Raum 1 — Workshops" data-i18n-de="Raum 1 — Workshops">Raum 1 — Workshops</span></span>
+    <span class="legend-item"><span class="legend-dot legend-dot--raum2"></span><span data-i18n-en="Raum 2 — Youth Leadership" data-i18n-de="Raum 2 — Jugendführung">Raum 2 — Youth Leadership</span></span>
+    <span class="legend-item"><span class="legend-dot legend-dot--break"></span><span data-i18n-en="Break" data-i18n-de="Pause">Break</span></span>
   </div>
 
   <!-- ── Schedule ──────────────────────────────────── -->
   <main class="agenda-body">
 
-    <div class="day-header">Saturday, 25 April 2026</div>
+    <div class="day-header" data-i18n-en="Saturday, 25 April 2026" data-i18n-de="Samstag, 25. April 2026">Saturday, 25 April 2026</div>
 
-    <!-- 09:00 Doors open -->
+    <!-- 09:00 -->
     <div class="slot slot--break">
-      <div class="slot__time">
-        <div class="slot__time-start">09:00</div>
-      </div>
-      <div class="slot__content">
-        <div class="slot__card">
-          <div class="slot__title">Doors Open · Venue Setup</div>
-          <div class="slot__desc">Organisers and volunteers arrive. Registration desk opens.</div>
-        </div>
-      </div>
+      <div class="slot__time"><div class="slot__time-start">09:00</div></div>
+      <div class="slot__content"><div class="slot__card">
+        <div class="slot__title" data-i18n-en="Doors Open · Venue Setup" data-i18n-de="Einlass · Aufbau">Doors Open · Venue Setup</div>
+        <div class="slot__desc" data-i18n-en="Organisers and volunteers arrive. Registration desk opens." data-i18n-de="Organisatoren und Freiwillige treffen ein. Anmeldepult öffnet.">Organisers and volunteers arrive. Registration desk opens.</div>
+      </div></div>
     </div>
 
-    <!-- 09:30 Registration -->
+    <!-- 09:30 -->
     <div class="slot slot--all">
       <div class="slot__time">
         <div class="slot__time-start">09:30</div>
         <div class="slot__time-end">10:00</div>
         <div class="slot__time-dur">30 min</div>
       </div>
-      <div class="slot__content">
-        <div class="slot__card">
-          <div class="slot__title">☕ Registration &amp; Welcome Coffee</div>
-          <div class="slot__desc">Pick up your badge, grab a coffee, and connect with fellow Toastmasters. Kids programme check-in at Raum 2.</div>
-        </div>
-      </div>
+      <div class="slot__content"><div class="slot__card">
+        <div class="slot__title" data-i18n-en="☕ Registration &amp; Welcome Coffee" data-i18n-de="☕ Registrierung &amp; Willkommenswelcome">☕ Registration &amp; Welcome Coffee</div>
+        <div class="slot__desc" data-i18n-en="Pick up your badge, grab a coffee, and connect with fellow Toastmasters. Youth Leadership check-in at Raum 2." data-i18n-de="Holen Sie Ihr Badge ab, genießen Sie einen Kaffee und vernetzen Sie sich. Jugendführungsprogramm-Anmeldung in Raum 2.">Pick up your badge, grab a coffee, and connect with fellow Toastmasters. Youth Leadership check-in at Raum 2.</div>
+      </div></div>
     </div>
 
-    <!-- 10:00 Opening -->
+    <!-- 10:00 -->
     <div class="slot slot--all">
       <div class="slot__time">
         <div class="slot__time-start">10:00</div>
         <div class="slot__time-end">10:15</div>
         <div class="slot__time-dur">15 min</div>
       </div>
-      <div class="slot__content">
-        <div class="slot__card">
-          <div class="slot__title">🎙️ Opening Ceremony</div>
-          <div class="slot__desc">Welcome by the Division Director. Programme overview and housekeeping. All attendees in the Saal.</div>
-        </div>
-      </div>
+      <div class="slot__content"><div class="slot__card">
+        <div class="slot__title" data-i18n-en="🎙️ Opening Ceremony" data-i18n-de="🎙️ Eröffnungsfeier">🎙️ Opening Ceremony</div>
+        <div class="slot__desc" data-i18n-en="Welcome by the Division Director. Programme overview and housekeeping. All attendees in the Saal." data-i18n-de="Begrüßung durch die Divisionsleiterin. Programmübersicht und organisatorische Hinweise. Alle Teilnehmer im Saal.">Welcome by the Division Director. Programme overview and housekeeping. All attendees in the Saal.</div>
+      </div></div>
     </div>
 
-    <!-- 10:15 Parallel: EN ISC + Workshop + Kids -->
+    <!-- 10:15 -->
     <div class="slot slot--parallel">
       <div class="slot__time">
         <div class="slot__time-start">10:15</div>
         <div class="slot__time-end">11:15</div>
         <div class="slot__time-dur">60 min</div>
       </div>
-      <div class="slot__content">
-        <div class="parallel-tracks">
-          <div class="track track--saal">
-            <div class="track__room">Saal</div>
-            <div class="track__title">🏆 EN International Speech Contest</div>
-            <div class="track__detail">English · 5–7 min speeches · Judged</div>
-          </div>
-          <div class="track track--raum1">
-            <div class="track__room">Raum 1</div>
-            <div class="track__title">Workshop (DE)</div>
-            <div class="track__detail">German · Interactive session</div>
-          </div>
-          <div class="track track--raum2">
-            <div class="track__room">Raum 2</div>
-            <div class="track__title">Kids Programme</div>
-            <div class="track__detail">Youth Leadership · TBD</div>
-          </div>
+      <div class="slot__content"><div class="parallel-tracks">
+        <div class="track track--saal">
+          <div class="track__room">Saal</div>
+          <div class="track__title" data-i18n-en="🏆 EN International Speech Contest" data-i18n-de="🏆 EN Internationaler Redekreiswettbewerb">🏆 EN International Speech Contest</div>
+          <div class="track__detail" data-i18n-en="English · 5–7 min speeches · Judged" data-i18n-de="Englisch · 5–7 Min. Reden · Bewertet">English · 5–7 min speeches · Judged</div>
         </div>
-      </div>
+        <div class="track track--raum1">
+          <div class="track__room">Raum 1</div>
+          <div class="track__title" data-i18n-en="Workshop (DE)" data-i18n-de="Workshop (DE)">Workshop (DE)</div>
+          <div class="track__detail" data-i18n-en="German · Interactive session" data-i18n-de="Deutsch · Interaktive Einheit">German · Interactive session</div>
+        </div>
+        <div class="track track--raum2">
+          <div class="track__room">Raum 2</div>
+          <div class="track__title" data-i18n-en="Youth Leadership" data-i18n-de="Jugendführungsprogramm">Youth Leadership</div>
+          <div class="track__detail" data-i18n-en="TBD" data-i18n-de="Noch offen">TBD</div>
+        </div>
+      </div></div>
     </div>
 
-    <!-- 11:15 Parallel: DE ISC + Workshop + Kids -->
+    <!-- 11:15 -->
     <div class="slot slot--parallel">
       <div class="slot__time">
         <div class="slot__time-start">11:15</div>
         <div class="slot__time-end">12:15</div>
         <div class="slot__time-dur">60 min</div>
       </div>
-      <div class="slot__content">
-        <div class="parallel-tracks">
-          <div class="track track--saal">
-            <div class="track__room">Saal</div>
-            <div class="track__title">🏆 DE International Speech Contest</div>
-            <div class="track__detail">Deutsch · 5–7 Min Reden · Bewertet</div>
-          </div>
-          <div class="track track--raum1">
-            <div class="track__room">Raum 1</div>
-            <div class="track__title">Workshop (EN)</div>
-            <div class="track__detail">English · Interactive session</div>
-          </div>
-          <div class="track track--raum2">
-            <div class="track__room">Raum 2</div>
-            <div class="track__title">Kids Programme</div>
-            <div class="track__detail">Youth Leadership · TBD</div>
-          </div>
+      <div class="slot__content"><div class="parallel-tracks">
+        <div class="track track--saal">
+          <div class="track__room">Saal</div>
+          <div class="track__title" data-i18n-en="🏆 DE International Speech Contest" data-i18n-de="🏆 DE Internationaler Redekreiswettbewerb">🏆 DE International Speech Contest</div>
+          <div class="track__detail" data-i18n-en="German · 5–7 min speeches · Judged" data-i18n-de="Deutsch · 5–7 Min. Reden · Bewertet">German · 5–7 min speeches · Judged</div>
         </div>
-      </div>
+        <div class="track track--raum1">
+          <div class="track__room">Raum 1</div>
+          <div class="track__title" data-i18n-en="Workshop (EN)" data-i18n-de="Workshop (EN)">Workshop (EN)</div>
+          <div class="track__detail" data-i18n-en="English · Interactive session" data-i18n-de="Englisch · Interaktive Einheit">English · Interactive session</div>
+        </div>
+        <div class="track track--raum2">
+          <div class="track__room">Raum 2</div>
+          <div class="track__title" data-i18n-en="Youth Leadership" data-i18n-de="Jugendführungsprogramm">Youth Leadership</div>
+          <div class="track__detail" data-i18n-en="TBD" data-i18n-de="Noch offen">TBD</div>
+        </div>
+      </div></div>
     </div>
 
     <!-- 12:15 Lunch -->
@@ -471,100 +421,90 @@
         <div class="slot__time-end">13:15</div>
         <div class="slot__time-dur">60 min</div>
       </div>
-      <div class="slot__content">
-        <div class="slot__card">
-          <div class="slot__title">🍽️ Lunch Break</div>
-          <div class="slot__desc">Lunch served on site. A great opportunity to connect with speakers, judges, and new Toastmaster friends. Lunch package available for pre-order during registration.</div>
-        </div>
-      </div>
+      <div class="slot__content"><div class="slot__card">
+        <div class="slot__title" data-i18n-en="🍽️ Lunch Break" data-i18n-de="🍽️ Mittagspause">🍽️ Lunch Break</div>
+        <div class="slot__desc" data-i18n-en="Lunch served on site. Connect with speakers, judges, and new Toastmaster friends. Lunch package available for pre-order during registration." data-i18n-de="Mittagessen vor Ort. Vernetzen Sie sich mit Rednern, Juroren und neuen Toastmaster-Freunden. Mittagspaket kann bei der Anmeldung vorbestellt werden.">Lunch served on site. Connect with speakers, judges, and new Toastmaster friends. Lunch package available for pre-order during registration.</div>
+      </div></div>
     </div>
 
-    <!-- 13:15 Parallel: EN Eval + Workshop + Kids -->
+    <!-- 13:15 -->
     <div class="slot slot--parallel">
       <div class="slot__time">
         <div class="slot__time-start">13:15</div>
         <div class="slot__time-end">14:10</div>
         <div class="slot__time-dur">55 min</div>
       </div>
-      <div class="slot__content">
-        <div class="parallel-tracks">
-          <div class="track track--saal">
-            <div class="track__room">Saal</div>
-            <div class="track__title">🏆 EN Evaluation Contest</div>
-            <div class="track__detail">English · Test &amp; evaluation speeches · Judged</div>
-          </div>
-          <div class="track track--raum1">
-            <div class="track__room">Raum 1</div>
-            <div class="track__title">Workshop (EN)</div>
-            <div class="track__detail">English · Interactive session</div>
-          </div>
-          <div class="track track--raum2">
-            <div class="track__room">Raum 2</div>
-            <div class="track__title">Kids Programme</div>
-            <div class="track__detail">Youth Leadership · TBD</div>
-          </div>
+      <div class="slot__content"><div class="parallel-tracks">
+        <div class="track track--saal">
+          <div class="track__room">Saal</div>
+          <div class="track__title" data-i18n-en="🏆 EN Evaluation Contest" data-i18n-de="🏆 EN Bewertungswettbewerb">🏆 EN Evaluation Contest</div>
+          <div class="track__detail" data-i18n-en="English · Test &amp; evaluation speeches · Judged" data-i18n-de="Englisch · Test- &amp; Bewertungsreden · Bewertet">English · Test &amp; evaluation speeches · Judged</div>
         </div>
-      </div>
+        <div class="track track--raum1">
+          <div class="track__room">Raum 1</div>
+          <div class="track__title" data-i18n-en="Workshop (EN)" data-i18n-de="Workshop (EN)">Workshop (EN)</div>
+          <div class="track__detail" data-i18n-en="English · Interactive session" data-i18n-de="Englisch · Interaktive Einheit">English · Interactive session</div>
+        </div>
+        <div class="track track--raum2">
+          <div class="track__room">Raum 2</div>
+          <div class="track__title" data-i18n-en="Youth Leadership" data-i18n-de="Jugendführungsprogramm">Youth Leadership</div>
+          <div class="track__detail" data-i18n-en="TBD" data-i18n-de="Noch offen">TBD</div>
+        </div>
+      </div></div>
     </div>
 
-    <!-- 14:10 Coffee break -->
+    <!-- 14:10 Coffee -->
     <div class="slot slot--break">
       <div class="slot__time">
         <div class="slot__time-start">14:10</div>
         <div class="slot__time-end">14:30</div>
         <div class="slot__time-dur">20 min</div>
       </div>
-      <div class="slot__content">
-        <div class="slot__card">
-          <div class="slot__title">☕ Coffee Break &amp; Networking</div>
-        </div>
-      </div>
+      <div class="slot__content"><div class="slot__card">
+        <div class="slot__title" data-i18n-en="☕ Coffee Break &amp; Networking" data-i18n-de="☕ Kaffeepause &amp; Networking">☕ Coffee Break &amp; Networking</div>
+      </div></div>
     </div>
 
-    <!-- 14:30 DE Eval -->
+    <!-- 14:30 -->
     <div class="slot slot--parallel">
       <div class="slot__time">
         <div class="slot__time-start">14:30</div>
         <div class="slot__time-end">15:05</div>
         <div class="slot__time-dur">35 min</div>
       </div>
-      <div class="slot__content">
-        <div class="parallel-tracks">
-          <div class="track track--saal">
-            <div class="track__room">Saal</div>
-            <div class="track__title">🏆 DE Evaluation Contest</div>
-            <div class="track__detail">Deutsch · Test- &amp; Bewertungsreden · Bewertet</div>
-          </div>
-          <div class="track track--raum2">
-            <div class="track__room">Raum 2</div>
-            <div class="track__title">Kids Programme</div>
-            <div class="track__detail">Youth Leadership · TBD</div>
-          </div>
+      <div class="slot__content"><div class="parallel-tracks">
+        <div class="track track--saal">
+          <div class="track__room">Saal</div>
+          <div class="track__title" data-i18n-en="🏆 DE Evaluation Contest" data-i18n-de="🏆 DE Bewertungswettbewerb">🏆 DE Evaluation Contest</div>
+          <div class="track__detail" data-i18n-en="German · Test &amp; evaluation speeches · Judged" data-i18n-de="Deutsch · Test- &amp; Bewertungsreden · Bewertet">German · Test &amp; evaluation speeches · Judged</div>
         </div>
-      </div>
+        <div class="track track--raum2">
+          <div class="track__room">Raum 2</div>
+          <div class="track__title" data-i18n-en="Youth Leadership" data-i18n-de="Jugendführungsprogramm">Youth Leadership</div>
+          <div class="track__detail" data-i18n-en="TBD" data-i18n-de="Noch offen">TBD</div>
+        </div>
+      </div></div>
     </div>
 
-    <!-- 15:05 EN TT -->
+    <!-- 15:05 -->
     <div class="slot slot--parallel">
       <div class="slot__time">
         <div class="slot__time-start">15:05</div>
         <div class="slot__time-end">15:40</div>
         <div class="slot__time-dur">35 min</div>
       </div>
-      <div class="slot__content">
-        <div class="parallel-tracks">
-          <div class="track track--saal">
-            <div class="track__room">Saal</div>
-            <div class="track__title">🏆 EN Table Topics Contest</div>
-            <div class="track__detail">English · Impromptu speeches · 1–2 min · Judged</div>
-          </div>
-          <div class="track track--raum2">
-            <div class="track__room">Raum 2</div>
-            <div class="track__title">Kids Programme</div>
-            <div class="track__detail">Youth Leadership · TBD</div>
-          </div>
+      <div class="slot__content"><div class="parallel-tracks">
+        <div class="track track--saal">
+          <div class="track__room">Saal</div>
+          <div class="track__title" data-i18n-en="🏆 EN Table Topics Contest" data-i18n-de="🏆 EN Stegreifredewettbewerb">🏆 EN Table Topics Contest</div>
+          <div class="track__detail" data-i18n-en="English · Impromptu speeches · 1–2 min · Judged" data-i18n-de="Englisch · Stegreifrede · 1–2 Min. · Bewertet">English · Impromptu speeches · 1–2 min · Judged</div>
         </div>
-      </div>
+        <div class="track track--raum2">
+          <div class="track__room">Raum 2</div>
+          <div class="track__title" data-i18n-en="Youth Leadership" data-i18n-de="Jugendführungsprogramm">Youth Leadership</div>
+          <div class="track__detail" data-i18n-en="TBD" data-i18n-de="Noch offen">TBD</div>
+        </div>
+      </div></div>
     </div>
 
     <!-- 15:40 Short break -->
@@ -574,49 +514,43 @@
         <div class="slot__time-end">15:55</div>
         <div class="slot__time-dur">15 min</div>
       </div>
-      <div class="slot__content">
-        <div class="slot__card">
-          <div class="slot__title">☕ Short Break</div>
-        </div>
-      </div>
+      <div class="slot__content"><div class="slot__card">
+        <div class="slot__title" data-i18n-en="☕ Short Break" data-i18n-de="☕ Kurze Pause">☕ Short Break</div>
+      </div></div>
     </div>
 
-    <!-- 15:55 DE TT -->
+    <!-- 15:55 -->
     <div class="slot slot--parallel">
       <div class="slot__time">
         <div class="slot__time-start">15:55</div>
         <div class="slot__time-end">16:25</div>
         <div class="slot__time-dur">30 min</div>
       </div>
-      <div class="slot__content">
-        <div class="parallel-tracks">
-          <div class="track track--saal">
-            <div class="track__room">Saal</div>
-            <div class="track__title">🏆 DE Table Topics Contest</div>
-            <div class="track__detail">Deutsch · Stegreifrede · 1–2 Min · Bewertet</div>
-          </div>
-          <div class="track track--raum2">
-            <div class="track__room">Raum 2</div>
-            <div class="track__title">Kids Programme</div>
-            <div class="track__detail">Youth Leadership · TBD</div>
-          </div>
+      <div class="slot__content"><div class="parallel-tracks">
+        <div class="track track--saal">
+          <div class="track__room">Saal</div>
+          <div class="track__title" data-i18n-en="🏆 DE Table Topics Contest" data-i18n-de="🏆 DE Stegreifredewettbewerb">🏆 DE Table Topics Contest</div>
+          <div class="track__detail" data-i18n-en="German · Impromptu speeches · 1–2 min · Judged" data-i18n-de="Deutsch · Stegreifrede · 1–2 Min. · Bewertet">German · Impromptu speeches · 1–2 min · Judged</div>
         </div>
-      </div>
+        <div class="track track--raum2">
+          <div class="track__room">Raum 2</div>
+          <div class="track__title" data-i18n-en="Youth Leadership" data-i18n-de="Jugendführungsprogramm">Youth Leadership</div>
+          <div class="track__detail" data-i18n-en="TBD" data-i18n-de="Noch offen">TBD</div>
+        </div>
+      </div></div>
     </div>
 
-    <!-- 16:25 Award ceremony -->
+    <!-- 16:25 Awards -->
     <div class="slot slot--all">
       <div class="slot__time">
         <div class="slot__time-start">16:25</div>
         <div class="slot__time-end">16:55</div>
         <div class="slot__time-dur">30 min</div>
       </div>
-      <div class="slot__content">
-        <div class="slot__card">
-          <div class="slot__title">🏅 Award Ceremony &amp; Closing</div>
-          <div class="slot__desc">Winners announced for all six contests. Closing remarks by the Division Director. All attendees gather in the Saal.</div>
-        </div>
-      </div>
+      <div class="slot__content"><div class="slot__card">
+        <div class="slot__title" data-i18n-en="🏅 Award Ceremony &amp; Closing" data-i18n-de="🏅 Siegerehrung &amp; Abschluss">🏅 Award Ceremony &amp; Closing</div>
+        <div class="slot__desc" data-i18n-en="Winners announced for all six contests. Closing remarks by the Division Director. All attendees in the Saal." data-i18n-de="Gewinner aller sechs Wettbewerbe werden bekannt gegeben. Abschlussworte der Divisionsleiterin. Alle Teilnehmer im Saal.">Winners announced for all six contests. Closing remarks by the Division Director. All attendees in the Saal.</div>
+      </div></div>
     </div>
 
     <!-- 16:55 Farewell -->
@@ -625,20 +559,16 @@
         <div class="slot__time-start">16:55</div>
         <div class="slot__time-end">~17:30</div>
       </div>
-      <div class="slot__content">
-        <div class="slot__card">
-          <div class="slot__title">🥂 Farewell &amp; Networking</div>
-          <div class="slot__desc">Stay, celebrate, and connect. Conference ends around 17:30.</div>
-        </div>
-      </div>
+      <div class="slot__content"><div class="slot__card">
+        <div class="slot__title" data-i18n-en="🥂 Farewell &amp; Networking" data-i18n-de="🥂 Verabschiedung &amp; Networking">🥂 Farewell &amp; Networking</div>
+        <div class="slot__desc" data-i18n-en="Stay, celebrate, and connect. Conference ends around 17:30." data-i18n-de="Bleiben Sie, feiern Sie und vernetzen Sie sich. Konferenz endet gegen 17:30 Uhr.">Stay, celebrate, and connect. Conference ends around 17:30.</div>
+      </div></div>
     </div>
 
     <!-- Notes -->
     <div class="agenda-note">
-      <strong>📌 Notes</strong>
-      All times are indicative and subject to change. Schedule updates will be reflected here. WiFi and further details will be shared at check-in.
-      Lunch packages can be pre-ordered during registration.
-      Kids Programme details for Raum 2 will be confirmed closer to the event.
+      <strong data-i18n-en="📌 Notes" data-i18n-de="📌 Hinweise">📌 Notes</strong>
+      <span data-i18n-en="All times are indicative and subject to change. WiFi and further details will be shared at check-in. Lunch packages can be pre-ordered during registration. Youth Leadership programme details for Raum 2 will be confirmed closer to the event." data-i18n-de="Alle Zeiten sind Richtwerte und können sich ändern. WLAN und weitere Details werden beim Einlass mitgeteilt. Mittagspakete können bei der Anmeldung vorbestellt werden. Details zum Jugendführungsprogramm in Raum 2 folgen.">All times are indicative and subject to change. WiFi and further details will be shared at check-in. Lunch packages can be pre-ordered during registration. Youth Leadership programme details for Raum 2 will be confirmed closer to the event.</span>
     </div>
 
   </main>
@@ -646,8 +576,23 @@
   <!-- ── Footer ────────────────────────────────────── -->
   <div class="agenda-footer">
     <p>Division D Conference 2026 · Toastmasters District 95</p>
-    <p><a href="/">toastmasters-bayern.com</a> · <a href="mailto:info@toastmasters-bayern.com">Contact Organisers</a></p>
+    <p><a href="/">toastmasters-bayern.com</a></p>
   </div>
+
+  <script>
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      document.getElementById('langEn').classList.toggle('active', lang === 'en');
+      document.getElementById('langDe').classList.toggle('active', lang === 'de');
+      document.querySelectorAll('[data-i18n-' + lang + ']').forEach(el => {
+        el.innerHTML = el.getAttribute('data-i18n-' + lang);
+      });
+      localStorage.setItem('agenda-lang', lang);
+    }
+    // restore saved language
+    const saved = localStorage.getItem('agenda-lang') || 'en';
+    if (saved === 'de') setLang('de');
+  </script>
 
 </body>
 </html>
