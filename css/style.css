@@ -761,9 +761,10 @@ pretix-widget + * + .tickets__coming-soon {
 /* ── Volunteer bookmark cards ──────────────────────── */
 .vol-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
-  gap: 1.5rem;
-  align-items: start;
+  grid-template-columns: repeat(5, minmax(170px, 1fr));
+  gap: 1.25rem;
+  overflow-x: auto;
+  padding-bottom: .5rem;
 }
 
 .vol-card {
@@ -772,131 +773,133 @@ pretix-widget + * + .tickets__coming-soon {
   text-decoration: none;
   color: #fff;
   background: var(--vol-bg);
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 22px), 50% 100%, 0 calc(100% - 22px));
+  border-radius: 14px;
+  overflow: hidden;
   transition: transform .2s ease, filter .2s ease;
-}
-.vol-card::before {
-  content: '';
-  display: block;
-  height: 5px;
-  background: var(--vol-accent);
-  flex-shrink: 0;
 }
 .vol-card:hover {
   transform: translateY(-5px);
-  filter: drop-shadow(0 14px 28px rgba(0,0,0,.45));
+  filter: drop-shadow(0 14px 28px rgba(0,0,0,.5));
 }
 
-.vol-card__inner {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  padding: 1rem 1rem 2.75rem;
+.vol-card__hole {
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at 40% 38%, rgba(20,20,20,.15) 0%, rgba(0,0,0,.55) 65%);
+  border-radius: 50%;
+  margin: 12px auto 6px;
+  box-shadow: inset 0 2px 3px rgba(0,0,0,.6), 0 1px 0 rgba(255,255,255,.06);
+  flex-shrink: 0;
 }
 
-.vol-card__date {
-  display: inline-flex;
-  align-items: center;
-  gap: .25rem;
+.vol-card__icon-box {
+  width: 62px;
+  height: 62px;
   background: rgba(255,255,255,.1);
-  border: 1px solid rgba(255,255,255,.15);
-  border-radius: 4px;
-  padding: .18rem .45rem;
-  font-size: .64rem;
-  font-weight: 600;
-  color: rgba(255,255,255,.85);
-  margin-bottom: .45rem;
-  width: fit-content;
+  border: 1.5px solid rgba(255,255,255,.15);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  margin: 0 auto 1rem;
+  flex-shrink: 0;
 }
+
 .vol-card__conf {
-  font-size: .57rem;
+  font-size: .56rem;
   font-weight: 700;
-  letter-spacing: .06em;
+  letter-spacing: .05em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.38);
-  margin-bottom: .7rem;
-  line-height: 1.4;
+  color: rgba(255,255,255,.42);
+  text-align: center;
+  margin: 0 1rem .85rem;
+  line-height: 1.45;
 }
+
 .vol-card__headline {
   font-family: var(--font-head);
   font-weight: 900;
-  font-size: 1.4rem;
+  font-size: 1.55rem;
   line-height: 1.0;
   text-transform: uppercase;
   color: #fff;
-  margin-bottom: .7rem;
+  text-align: center;
+  margin: 0 1rem .85rem;
 }
 .vol-card__headline em {
   color: var(--vol-accent);
   font-style: normal;
   display: block;
 }
-.vol-card__desc {
-  font-size: .72rem;
-  color: rgba(255,255,255,.58);
-  line-height: 1.55;
-  margin-bottom: .85rem;
-  flex: 1;
+
+.vol-card__divider {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,.15);
+  margin: 0 1rem .85rem;
+  flex-shrink: 0;
 }
+
 .vol-card__roles {
   display: flex;
-  flex-wrap: wrap;
-  gap: .28rem;
-  margin-bottom: 1.1rem;
+  flex-direction: column;
+  gap: .3rem;
+  margin: 0 1rem;
+  flex: 1;
 }
 .vol-card__role {
-  font-size: .57rem;
+  font-size: .59rem;
   font-weight: 700;
-  letter-spacing: .05em;
+  letter-spacing: .06em;
   text-transform: uppercase;
-  padding: .17rem .42rem;
+  padding: .3rem .5rem;
   border: 1px solid rgba(255,255,255,.22);
-  border-radius: 3px;
-  color: rgba(255,255,255,.68);
+  border-radius: 4px;
+  color: rgba(255,255,255,.75);
+  text-align: center;
 }
+
 .vol-card__footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: .6rem;
-  padding-top: .8rem;
+  padding: .9rem 1rem 1rem;
+  margin-top: .85rem;
   border-top: 1px solid rgba(255,255,255,.1);
-  margin-top: auto;
-}
-.vol-card__join-label {
-  display: block;
-  font-size: .57rem;
-  font-weight: 700;
-  letter-spacing: .09em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,.33);
-  margin-bottom: .32rem;
-}
-.vol-card__btn {
-  display: inline-block;
-  background: var(--vol-accent);
-  color: #000;
-  font-family: var(--font-head);
-  font-weight: 800;
-  font-size: .75rem;
-  letter-spacing: .07em;
-  text-transform: uppercase;
-  padding: .42rem .85rem;
-  border-radius: 3px;
+  flex-shrink: 0;
 }
 .vol-card__team-name {
-  font-size: .67rem;
+  font-size: .78rem;
   font-weight: 700;
-  color: rgba(255,255,255,.72);
-  text-align: right;
-  white-space: nowrap;
+  color: #fff;
+  margin-bottom: .12rem;
 }
 .vol-card__team-sub {
-  font-size: .57rem;
-  color: rgba(255,255,255,.33);
-  text-align: right;
-  line-height: 1.45;
+  font-size: .6rem;
+  color: rgba(255,255,255,.42);
+  margin-bottom: .5rem;
 }
+.vol-card__join-label {
+  font-size: .54rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.32);
+  margin-bottom: .45rem;
+}
+.vol-card__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  width: 100%;
+  background: #25D366;
+  color: #fff;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: .82rem;
+  padding: .55rem .9rem;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+.vol-card__btn svg { width: 16px; height: 16px; flex-shrink: 0; }
 
 /* card colour themes */
 .vol-card--social        { --vol-bg: #011a0e; --vol-accent: #00e87a; }
