@@ -761,10 +761,11 @@ pretix-widget + * + .tickets__coming-soon {
 /* ── Volunteer bookmark cards ──────────────────────── */
 .vol-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(170px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
   gap: 1.25rem;
-  overflow-x: auto;
-  padding-bottom: .5rem;
+}
+@media (max-width: 500px) {
+  .vol-grid { grid-template-columns: 1fr; }
 }
 
 .vol-card {
