@@ -25,7 +25,7 @@ const i18n = {
     'hero.date':        '25 April 2026',
     'hero.location':    'Munich, Germany',
     'hero.cta':         'Register Now',
-    'hero.registerNote': 'Registration opens 25 March 2026',
+    'hero.registerNote': 'Registration opens 1 April 2026',
 
     'about.label':      'The Event',
     'about.title':      'A day where voices come alive',
@@ -57,7 +57,7 @@ const i18n = {
 
     'tickets.label':    'Register',
     'tickets.title':    'Register Now',
-    'tickets.soon':     'Registration opens on 25 March 2026.',
+    'tickets.soon':     'Registration opens on 1 April 2026.',
 
     'contribute.label': 'Get Involved',
     'contribute.title': 'Want to Help Make It Happen?',
@@ -107,7 +107,7 @@ const i18n = {
     'hero.date':        '25. April 2026',
     'hero.location':    'München, Deutschland',
     'hero.cta':         'Jetzt registrieren',
-    'hero.registerNote': 'Registrierung öffnet am 25. März 2026',
+    'hero.registerNote': 'Registrierung öffnet am 1. April 2026',
 
     'about.label':      'Die Veranstaltung',
     'about.title':      'Ein Tag, an dem Stimmen lebendig werden',
@@ -139,7 +139,7 @@ const i18n = {
 
     'tickets.label':    'Registrieren',
     'tickets.title':    'Jetzt registrieren',
-    'tickets.soon':     'Registrierung öffnet am 25. März 2026.',
+    'tickets.soon':     'Registrierung öffnet am 1. April 2026.',
 
     'contribute.label': 'Mitmachen',
     'contribute.title': 'Willst du mithelfen?',
