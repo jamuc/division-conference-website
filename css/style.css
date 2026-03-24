@@ -758,53 +758,152 @@ pretix-widget + * + .tickets__coming-soon {
   max-width: 600px;
   margin-bottom: 2.5rem;
 }
-.contribute__grid {
+/* ── Volunteer bookmark cards ──────────────────────── */
+.vol-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+  gap: 1.5rem;
+  align-items: start;
 }
-.contribute__card {
+
+.vol-card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: .6rem;
-  padding: 1.5rem 1rem;
-  background: #fff;
-  border: 1.5px solid #e8edf2;
-  border-radius: 12px;
   text-decoration: none;
-  text-align: center;
-  transition: border-color .15s ease, box-shadow .15s ease, transform .1s ease;
-}
-.contribute__card:hover {
-  border-color: #25D366;
-  box-shadow: 0 4px 16px rgba(37,211,102,.15);
-  transform: translateY(-2px);
-}
-.contribute__card:active { transform: translateY(0); }
-.contribute__card-icon {
-  width: 40px;
-  height: 40px;
-  background: #25D366;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: #fff;
+  background: var(--vol-bg);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 22px), 50% 100%, 0 calc(100% - 22px));
+  transition: transform .2s ease, filter .2s ease;
+}
+.vol-card::before {
+  content: '';
+  display: block;
+  height: 5px;
+  background: var(--vol-accent);
   flex-shrink: 0;
 }
-.contribute__card-icon svg { width: 22px; height: 22px; }
-.contribute__card-name {
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: .95rem;
-  color: var(--navy);
+.vol-card:hover {
+  transform: translateY(-5px);
+  filter: drop-shadow(0 14px 28px rgba(0,0,0,.45));
 }
-.contribute__card-join {
-  font-size: .8rem;
-  color: #25D366;
+
+.vol-card__inner {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1rem 1rem 2.75rem;
+}
+
+.vol-card__date {
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 4px;
+  padding: .18rem .45rem;
+  font-size: .64rem;
   font-weight: 600;
+  color: rgba(255,255,255,.85);
+  margin-bottom: .45rem;
+  width: fit-content;
 }
+.vol-card__conf {
+  font-size: .57rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.38);
+  margin-bottom: .7rem;
+  line-height: 1.4;
+}
+.vol-card__headline {
+  font-family: var(--font-head);
+  font-weight: 900;
+  font-size: 1.4rem;
+  line-height: 1.0;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: .7rem;
+}
+.vol-card__headline em {
+  color: var(--vol-accent);
+  font-style: normal;
+  display: block;
+}
+.vol-card__desc {
+  font-size: .72rem;
+  color: rgba(255,255,255,.58);
+  line-height: 1.55;
+  margin-bottom: .85rem;
+  flex: 1;
+}
+.vol-card__roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .28rem;
+  margin-bottom: 1.1rem;
+}
+.vol-card__role {
+  font-size: .57rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: .17rem .42rem;
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 3px;
+  color: rgba(255,255,255,.68);
+}
+.vol-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: .6rem;
+  padding-top: .8rem;
+  border-top: 1px solid rgba(255,255,255,.1);
+  margin-top: auto;
+}
+.vol-card__join-label {
+  display: block;
+  font-size: .57rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.33);
+  margin-bottom: .32rem;
+}
+.vol-card__btn {
+  display: inline-block;
+  background: var(--vol-accent);
+  color: #000;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: .75rem;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  padding: .42rem .85rem;
+  border-radius: 3px;
+}
+.vol-card__team-name {
+  font-size: .67rem;
+  font-weight: 700;
+  color: rgba(255,255,255,.72);
+  text-align: right;
+  white-space: nowrap;
+}
+.vol-card__team-sub {
+  font-size: .57rem;
+  color: rgba(255,255,255,.33);
+  text-align: right;
+  line-height: 1.45;
+}
+
+/* card colour themes */
+.vol-card--social        { --vol-bg: #011a0e; --vol-accent: #00e87a; }
+.vol-card--communication { --vol-bg: #2a0a00; --vol-accent: #ff5c1a; }
+.vol-card--operations    { --vol-bg: #150826; --vol-accent: #c940ff; }
+.vol-card--facilities    { --vol-bg: #001e24; --vol-accent: #00d4ff; }
+.vol-card--finance       { --vol-bg: #181200; --vol-accent: #ffcc00; }
 
 /* ── Facebook section ──────────────────────────────── */
 .fb-section__body {
