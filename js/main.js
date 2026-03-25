@@ -318,19 +318,15 @@ document.getElementById('consentAccept')?.addEventListener('click', () => {
 (function () {
   const fab = document.getElementById('volFab');
   if (!fab) return;
-  const hero = document.getElementById('hero');
   const contribute = document.getElementById('contribute');
 
-  // Show after hero scrolls out; hide when contribute section is in view
-  const showObserver = new IntersectionObserver(([e]) => {
-    fab.classList.toggle('vol-fab--visible', !e.isIntersecting);
-  }, { threshold: 0 });
+  // Always visible; hide when volunteer section is in view
+  fab.classList.add('vol-fab--visible');
 
   const hideObserver = new IntersectionObserver(([e]) => {
-    if (e.isIntersecting) fab.classList.remove('vol-fab--visible');
+    fab.classList.toggle('vol-fab--visible', !e.isIntersecting);
   }, { threshold: 0.25 });
 
-  if (hero) showObserver.observe(hero);
   if (contribute) hideObserver.observe(contribute);
 
   fab.addEventListener('click', e => {
