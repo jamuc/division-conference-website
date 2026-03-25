@@ -72,7 +72,7 @@ const i18n = {
     'fb.follow':        'Follow on Facebook',
     'fb.message':       'Message us on Messenger',
 
-    'consent.text':     'This site stores only your language preference in your browser\'s local storage — no tracking cookies, no third-party data.',
+    'consent.text':     'This site stores your language preference locally. If you register, payment is processed securely by Stripe — see our privacy notice for details. No tracking cookies.',
     'consent.link':     'More info',
     'consent.accept':   'Got it',
 
@@ -156,7 +156,7 @@ const i18n = {
     'fb.follow':        'Auf Facebook folgen',
     'fb.message':       'Schreib uns auf Messenger',
 
-    'consent.text':     'Diese Website speichert nur Ihre Sprachpräferenz im lokalen Speicher Ihres Browsers — keine Tracking-Cookies, keine Drittanbieterdaten.',
+    'consent.text':     'Diese Website speichert Ihre Sprachpräferenz lokal. Bei der Anmeldung wird die Zahlung sicher über Stripe abgewickelt — Details in unserem Datenschutzhinweis. Keine Tracking-Cookies.',
     'consent.link':     'Mehr Infos',
     'consent.accept':   'Alles klar',
 
