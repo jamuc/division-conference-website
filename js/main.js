@@ -314,6 +314,32 @@ document.getElementById('consentAccept')?.addEventListener('click', () => {
 });
 
 /* ── Venue: Add to Calendar (placeholder) ─────────────── */
+/* ── Volunteer FAB ────────────────────────────────────── */
+(function () {
+  const fab = document.getElementById('volFab');
+  if (!fab) return;
+  const hero = document.getElementById('hero');
+  const contribute = document.getElementById('contribute');
+
+  // Show after hero scrolls out; hide when contribute section is in view
+  const showObserver = new IntersectionObserver(([e]) => {
+    fab.classList.toggle('vol-fab--visible', !e.isIntersecting);
+  }, { threshold: 0 });
+
+  const hideObserver = new IntersectionObserver(([e]) => {
+    if (e.isIntersecting) fab.classList.remove('vol-fab--visible');
+  }, { threshold: 0.25 });
+
+  if (hero) showObserver.observe(hero);
+  if (contribute) hideObserver.observe(contribute);
+
+  fab.addEventListener('click', e => {
+    e.preventDefault();
+    contribute?.scrollIntoView({ behavior: 'smooth' });
+  });
+}());
+
+/* ── Venue: Add to Calendar (placeholder) ─────────────── */
 document.querySelector('.venue__cal')?.addEventListener('click', () => {
   // Google Calendar deep link — update when venue is confirmed
   const start  = '20260425T090000';
