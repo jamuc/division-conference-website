@@ -314,24 +314,32 @@ document.getElementById('consentAccept')?.addEventListener('click', () => {
 });
 
 /* ── Venue: Add to Calendar (placeholder) ─────────────── */
-/* ── Volunteer FAB ────────────────────────────────────── */
+/* ── Volunteer Strip ──────────────────────────────────── */
 (function () {
-  const fab = document.getElementById('volFab');
-  if (!fab) return;
+  const strip = document.getElementById('volStrip');
+  if (!strip) return;
+  const link  = document.getElementById('volStripLink');
+  const close = document.getElementById('volStripClose');
   const contribute = document.getElementById('contribute');
 
-  // Always visible; hide when volunteer section is in view
-  fab.classList.add('vol-fab--visible');
+  // Show immediately; hide when volunteer section is in view
+  strip.classList.add('vol-strip--visible');
 
   const hideObserver = new IntersectionObserver(([e]) => {
-    fab.classList.toggle('vol-fab--visible', !e.isIntersecting);
+    strip.classList.toggle('vol-strip--visible', !e.isIntersecting);
   }, { threshold: 0.25 });
 
   if (contribute) hideObserver.observe(contribute);
 
-  fab.addEventListener('click', e => {
+  link.addEventListener('click', e => {
     e.preventDefault();
     contribute?.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  close.addEventListener('click', e => {
+    e.stopPropagation();
+    strip.classList.remove('vol-strip--visible');
+    strip.style.display = 'none';
   });
 }());
 
