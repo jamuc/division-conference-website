@@ -28,6 +28,7 @@ const i18n = {
     'hero.registerNote': 'Registration opens 1 April 2026',
     'hero.agenda':       'View Programme',
     'nav.agenda':        'Programme',
+    'vol.rail':          'Help Make This Happen\u00a0·\u00a0Volunteer\u00a0↓',
 
     'about.label':      'The Event',
     'about.title':      'A day where voices come alive',
@@ -112,6 +113,7 @@ const i18n = {
     'hero.registerNote': 'Registrierung öffnet am 1. April 2026',
     'hero.agenda':       'Programm anzeigen',
     'nav.agenda':        'Programm',
+    'vol.rail':          'Hilf Mit\u00a0·\u00a0Jetzt Mitmachen\u00a0↓',
 
     'about.label':      'Die Veranstaltung',
     'about.title':      'Ein Tag, an dem Stimmen lebendig werden',
