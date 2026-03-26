@@ -317,10 +317,35 @@
 
       .agenda-note { margin: .75rem 0 0; padding: .6rem .75rem; font-size: .65rem; }
       .agenda-footer { padding: .75rem 0 .5rem; font-size: .65rem; }
+
+      /* Running head — hidden on screen, fixed on every print page */
+      .print-head {
+        display: flex;
+        justify-content: space-between;
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        padding: .3rem 0;
+        border-bottom: 1px solid #ccc;
+        font-size: .6rem;
+        color: #777;
+        background: #fff;
+      }
+      /* Page 1: push content below the running head */
+      .agenda-hero { margin-top: 1rem; }
+      /* Day header: extra top breathing room after a page break */
+      .day-header { margin-top: 1.5rem; }
     }
+
+    .print-head { display: none; }
   </style>
 </head>
 <body>
+
+  <!-- Print-only running head (repeats on every page via position:fixed) -->
+  <div class="print-head">
+    <span data-i18n-en="Division D Conference 2026 · Toastmasters District 95" data-i18n-de="Division D Konferenz 2026 · Toastmasters District 95">Division D Conference 2026 · Toastmasters District 95</span>
+    <span data-i18n-en="Conference Programme · 25 April 2026" data-i18n-de="Konferenzprogramm · 25. April 2026">Conference Programme · 25 April 2026</span>
+  </div>
 
   <!-- ── Nav ───────────────────────────────────────── -->
   <header class="nav" id="nav">
@@ -343,7 +368,7 @@
     <div class="agenda-hero__meta">
       <span class="agenda-updated">
         <span class="agenda-updated__dot"></span>
-        <span data-i18n-en="Last updated: 26 March 2026, 17:41" data-i18n-de="Zuletzt aktualisiert: 26. März 2026, 17:41">Last updated: 26 March 2026, 17:41</span>
+        <span data-i18n-en="Last updated: 26 March 2026, 17:49" data-i18n-de="Zuletzt aktualisiert: 26. März 2026, 17:49">Last updated: 26 March 2026, 17:49</span>
         <!-- UPDATE DATE + TIME whenever the agenda changes -->
       </span>
       <div class="agenda-lang">
