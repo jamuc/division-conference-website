@@ -369,7 +369,7 @@
     <div class="agenda-hero__meta">
       <span class="agenda-updated">
         <span class="agenda-updated__dot"></span>
-        <span data-i18n-en="Last updated: 26 March 2026, 20:08" data-i18n-de="Zuletzt aktualisiert: 26. März 2026, 20:08">Last updated: 26 March 2026, 20:08</span>
+        <span data-i18n-en="Last updated: 26 March 2026, 20:10" data-i18n-de="Zuletzt aktualisiert: 26. März 2026, 20:10">Last updated: 26 March 2026, 20:10</span>
         <!-- UPDATE DATE + TIME whenever the agenda changes -->
       </span>
       <div class="agenda-lang">
@@ -675,10 +675,10 @@
       document.querySelectorAll('[data-i18n-' + lang + ']').forEach(el => {
         el.innerHTML = el.getAttribute('data-i18n-' + lang);
       });
-      localStorage.setItem('agenda-lang', lang);
+      localStorage.setItem('tm-lang', lang);
     }
-    // restore saved language
-    const saved = localStorage.getItem('agenda-lang') || 'en';
+    // restore saved language (shared key with main site)
+    const saved = localStorage.getItem('tm-lang') || 'en';
     if (saved === 'de') setLang('de');
   </script>
 
