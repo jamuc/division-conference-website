@@ -314,32 +314,14 @@ document.getElementById('consentAccept')?.addEventListener('click', () => {
 });
 
 /* ── Venue: Add to Calendar (placeholder) ─────────────── */
-/* ── Volunteer Strip ──────────────────────────────────── */
+/* ── Volunteer Rail ───────────────────────────────────── */
 (function () {
-  const strip = document.getElementById('volStrip');
-  if (!strip) return;
-  const link  = document.getElementById('volStripLink');
-  const close = document.getElementById('volStripClose');
+  const rail = document.getElementById('volRail');
+  if (!rail) return;
   const contribute = document.getElementById('contribute');
-
-  // Show immediately; hide when volunteer section is in view
-  strip.classList.add('vol-strip--visible');
-
-  const hideObserver = new IntersectionObserver(([e]) => {
-    strip.classList.toggle('vol-strip--visible', !e.isIntersecting);
-  }, { threshold: 0.25 });
-
-  if (contribute) hideObserver.observe(contribute);
-
-  link.addEventListener('click', e => {
+  rail.addEventListener('click', e => {
     e.preventDefault();
     contribute?.scrollIntoView({ behavior: 'smooth' });
-  });
-
-  close.addEventListener('click', e => {
-    e.stopPropagation();
-    strip.classList.remove('vol-strip--visible');
-    strip.style.display = 'none';
   });
 }());
 
