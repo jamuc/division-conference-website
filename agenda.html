@@ -278,21 +278,45 @@
 
     /* ── Print ───────────────────────────────────────── */
     @media print {
-      .nav, .agenda-hero__meta, .agenda-legend { display: none !important; }
+      @page { margin: 1cm 1.4cm; }
+
+      .nav, .agenda-hero__meta, .agenda-legend, .vol-rail { display: none !important; }
+
       .agenda-hero {
         background: #fff !important;
         color: #000 !important;
-        padding: 1.5rem 0 1rem;
+        padding: .6rem 0 .5rem;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
-      .agenda-hero__eyebrow { color: #772432 !important; }
-      .agenda-hero__title   { color: #000 !important; font-size: 1.8rem; }
-      .agenda-hero__sub     { color: #333 !important; }
-      .agenda-updated { border-color: #ccc !important; color: #333 !important; background: none !important; }
-      .agenda-body { padding: .5rem 0 2rem; }
-      .slot { page-break-inside: avoid; }
-      .parallel-tracks { grid-template-columns: repeat(3, 1fr); }
+      .agenda-hero__eyebrow { color: #772432 !important; font-size: .7rem; }
+      .agenda-hero__title   { color: #000 !important; font-size: 1.4rem; }
+      .agenda-hero__sub     { color: #333 !important; font-size: .75rem; }
+      .agenda-updated { border-color: #ccc !important; color: #333 !important; background: none !important; font-size: .65rem; }
+
+      .agenda-body { padding: .2rem 0 .5rem; }
+
+      .day-header { font-size: .7rem; margin: .75rem 0 .6rem; padding-bottom: .3rem; }
+
+      .slot { page-break-inside: avoid; margin-bottom: .25rem; }
+      .slot__time { padding-top: .5rem; }
+      .slot__time-start { font-size: 1rem; }
+      .slot__time-end   { font-size: .65rem; }
+      .slot__time-dur   { font-size: .58rem; }
+
+      .track { padding: .35rem .45rem; }
+      .track__room   { font-size: .55rem; margin-bottom: .15rem; }
+      .track__title  { font-size: .78rem; line-height: 1.2; }
+      .track__detail { font-size: .6rem; margin-top: .1rem; }
+
+      .parallel-tracks { grid-template-columns: repeat(3, 1fr); gap: .3rem; }
+
+      .slot-group { margin-bottom: .25rem; }
+      .slot-group__times { gap: .25rem; }
+      .slot-group__body  { gap: .3rem; }
+
+      .agenda-note { margin: .75rem 0 0; padding: .6rem .75rem; font-size: .65rem; }
+      .agenda-footer { padding: .75rem 0 .5rem; font-size: .65rem; }
     }
   </style>
 </head>
@@ -319,7 +343,7 @@
     <div class="agenda-hero__meta">
       <span class="agenda-updated">
         <span class="agenda-updated__dot"></span>
-        <span data-i18n-en="Last updated: 26 March 2026, 17:37" data-i18n-de="Zuletzt aktualisiert: 26. März 2026, 17:37">Last updated: 26 March 2026, 17:37</span>
+        <span data-i18n-en="Last updated: 26 March 2026, 17:41" data-i18n-de="Zuletzt aktualisiert: 26. März 2026, 17:41">Last updated: 26 March 2026, 17:41</span>
         <!-- UPDATE DATE + TIME whenever the agenda changes -->
       </span>
       <div class="agenda-lang">
