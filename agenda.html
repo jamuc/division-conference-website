@@ -280,7 +280,7 @@
     @media print {
       @page { margin: 1cm 1.4cm; }
 
-      .nav, .agenda-hero__meta, .agenda-legend, .vol-rail { display: none !important; }
+      .nav, .agenda-hero__meta, .agenda-legend { display: none !important; }
 
       .agenda-hero {
         background: #fff !important;
@@ -368,7 +368,7 @@
     <div class="agenda-hero__meta">
       <span class="agenda-updated">
         <span class="agenda-updated__dot"></span>
-        <span data-i18n-en="Last updated: 26 March 2026, 19:38" data-i18n-de="Zuletzt aktualisiert: 26. März 2026, 19:38">Last updated: 26 March 2026, 19:38</span>
+        <span data-i18n-en="Last updated: 26 March 2026, 20:06" data-i18n-de="Zuletzt aktualisiert: 26. März 2026, 20:06">Last updated: 26 March 2026, 20:06</span>
         <!-- UPDATE DATE + TIME whenever the agenda changes -->
       </span>
       <div class="agenda-lang">
@@ -680,14 +680,6 @@
     const saved = localStorage.getItem('agenda-lang') || 'en';
     if (saved === 'de') setLang('de');
   </script>
-
-  <!-- Volunteer side rail -->
-  <a href="index.html#contribute" class="vol-rail"
-     aria-label="Help make this happen — Volunteer"
-     data-i18n-en="Help Make This Happen&nbsp;·&nbsp;Volunteer&nbsp;↓"
-     data-i18n-de="Hilf Mit&nbsp;·&nbsp;Jetzt Mitmachen&nbsp;↓">
-    Help Make This Happen&nbsp;·&nbsp;Volunteer&nbsp;↓
-  </a>
 
 </body>
 </html>

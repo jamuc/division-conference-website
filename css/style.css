@@ -1804,32 +1804,4 @@ body { padding-bottom: 70px; }
   .confirm__actions { flex-direction: row; max-width: none; }
 }
 
-/* ══════════════════════════════════════════════════════
-   VOLUNTEER SIDE RAIL
-══════════════════════════════════════════════════════ */
-.vol-rail {
-  position: fixed;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%) rotate(180deg);
-  transform-origin: center center;
-  z-index: 89;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  background: var(--yellow);
-  color: #1a1200;
-  text-decoration: none;
-  font-size: .68rem;
-  font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  padding: 1.1rem .45rem;
-  border-radius: 0 8px 8px 0; /* flush to right edge, rounded on left */
-  box-shadow: -3px 0 14px rgba(0,0,0,.3);
-  transition: filter .2s, box-shadow .2s;
-  white-space: nowrap;
-}
-.vol-rail:hover {
-  filter: brightness(1.08);
-  box-shadow: -4px 0 20px rgba(0,0,0,.4);
-}
+

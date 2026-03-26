@@ -11,7 +11,7 @@
 const i18n = {
   en: {
     'nav.brand':        'Division D · District 95',
-    'nav.cta':          'Register Now',
+    'nav.cta':          'Join Now',
     'nav.about':        'About',
     'nav.tm':           'Toastmasters',
     'nav.venue':        'Venue',
@@ -24,8 +24,8 @@ const i18n = {
     'hero.values':      'Integrity | Respect | Service | Excellence',
     'hero.date':        '25 April 2026',
     'hero.location':    'Munich, Germany',
-    'hero.cta':         'Register Now',
-    'hero.registerNote': 'Registration opens 1 April 2026',
+    'hero.cta':         'Join Now',
+    'hero.registerNote': 'What are you waiting for?',
     'hero.agenda':       'View Programme',
     'nav.agenda':        'Programme',
     'vol.rail':          'Help Make This Happen\u00a0·\u00a0Volunteer\u00a0↓',
@@ -96,7 +96,7 @@ const i18n = {
 
   de: {
     'nav.brand':        'Division D · Distrikt 95',
-    'nav.cta':          'Jetzt registrieren',
+    'nav.cta':          'Jetzt mitmachen',
     'nav.about':        'Über uns',
     'nav.tm':           'Toastmasters',
     'nav.venue':        'Veranstaltungsort',
@@ -109,8 +109,8 @@ const i18n = {
     'hero.values':      'Integrity | Respect | Service | Excellence',
     'hero.date':        '25. April 2026',
     'hero.location':    'München, Deutschland',
-    'hero.cta':         'Jetzt registrieren',
-    'hero.registerNote': 'Registrierung öffnet am 1. April 2026',
+    'hero.cta':         'Jetzt mitmachen',
+    'hero.registerNote': 'Worauf wartest du noch?',
     'hero.agenda':       'Programm anzeigen',
     'nav.agenda':        'Programm',
     'vol.rail':          'Hilf Mit\u00a0·\u00a0Jetzt Mitmachen\u00a0↓',
