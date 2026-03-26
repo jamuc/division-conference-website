@@ -369,7 +369,7 @@
     <div class="agenda-hero__meta">
       <span class="agenda-updated">
         <span class="agenda-updated__dot"></span>
-        <span data-i18n-en="Last updated: 26 March 2026, 20:10" data-i18n-de="Zuletzt aktualisiert: 26. März 2026, 20:10">Last updated: 26 March 2026, 20:10</span>
+        <span data-i18n-en="Last updated: 26 March 2026, 21:34" data-i18n-de="Zuletzt aktualisiert: 26. März 2026, 21:34">Last updated: 26 March 2026, 21:34</span>
         <!-- UPDATE DATE + TIME whenever the agenda changes -->
       </span>
       <div class="agenda-lang">
@@ -680,6 +680,32 @@
     // restore saved language (shared key with main site)
     const saved = localStorage.getItem('tm-lang') || 'en';
     if (saved === 'de') setLang('de');
+  </script>
+
+  <!-- Floating volunteer pill -->
+  <a href="index.html#contribute" class="join-pill"
+     data-i18n-en="🙋 Join Our Team"
+     data-i18n-de="🙋 Mitmachen"
+     aria-label="Join the organising team">
+    🙋 Join Our Team
+  </a>
+
+  <script>
+    // Keep join-pill above the consent banner
+    function positionPill() {
+      const pill = document.querySelector('.join-pill');
+      if (!pill) return;
+      const banner = document.getElementById('cookieBanner');
+      const bannerH = (banner && !banner.hidden) ? banner.offsetHeight : 0;
+      pill.style.bottom = (bannerH + 12) + 'px';
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      positionPill();
+      document.getElementById('consentAccept')?.addEventListener('click', () => {
+        setTimeout(positionPill, 50);
+      });
+    });
+    window.addEventListener('resize', positionPill);
   </script>
 
 </body>

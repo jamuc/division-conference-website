@@ -11,7 +11,7 @@
 const i18n = {
   en: {
     'nav.brand':        'Division D · District 95',
-    'nav.cta':          'Join Now',
+    'nav.cta':          'Register Now',
     'nav.about':        'About',
     'nav.tm':           'Toastmasters',
     'nav.venue':        'Venue',
@@ -24,11 +24,11 @@ const i18n = {
     'hero.values':      'Integrity | Respect | Service | Excellence',
     'hero.date':        '25 April 2026',
     'hero.location':    'Munich, Germany',
-    'hero.cta':         'Join Now',
-    'hero.registerNote': 'What are you waiting for?',
+    'hero.cta':         'Register Now',
+    'hero.registerNote': 'Registration opens 1 April 2026',
     'hero.agenda':       'View Programme',
     'nav.agenda':        'Programme',
-    'vol.rail':          'Help Make This Happen\u00a0·\u00a0Volunteer\u00a0↓',
+    'join.pill':         '🙋 Join Our Team',
 
     'about.label':      'The Event',
     'about.title':      'A day where voices come alive',
@@ -96,7 +96,7 @@ const i18n = {
 
   de: {
     'nav.brand':        'Division D · Distrikt 95',
-    'nav.cta':          'Jetzt mitmachen',
+    'nav.cta':          'Jetzt registrieren',
     'nav.about':        'Über uns',
     'nav.tm':           'Toastmasters',
     'nav.venue':        'Veranstaltungsort',
@@ -109,11 +109,11 @@ const i18n = {
     'hero.values':      'Integrity | Respect | Service | Excellence',
     'hero.date':        '25. April 2026',
     'hero.location':    'München, Deutschland',
-    'hero.cta':         'Jetzt mitmachen',
-    'hero.registerNote': 'Worauf wartest du noch?',
+    'hero.cta':         'Jetzt registrieren',
+    'hero.registerNote': 'Registrierung öffnet am 1. April 2026',
     'hero.agenda':       'Programm anzeigen',
     'nav.agenda':        'Programm',
-    'vol.rail':          'Hilf Mit\u00a0·\u00a0Jetzt Mitmachen\u00a0↓',
+    'join.pill':         '🙋 Mitmachen',
 
     'about.label':      'Die Veranstaltung',
     'about.title':      'Ein Tag, an dem Stimmen lebendig werden',
