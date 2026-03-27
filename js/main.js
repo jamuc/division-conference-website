@@ -11,7 +11,7 @@
 const i18n = {
   en: {
     'nav.brand':        'Division D · District 95',
-    'nav.cta':          'Register Now',
+    'nav.cta':          'Pre-Signup',
     'nav.about':        'About',
     'nav.tm':           'Toastmasters',
     'nav.venue':        'Venue',
@@ -24,7 +24,7 @@ const i18n = {
     'hero.values':      'Integrity | Respect | Service | Excellence',
     'hero.date':        '25 April 2026',
     'hero.location':    'Munich, Germany',
-    'hero.cta':         'Register Now',
+    'hero.cta':         'Pre-Signup',
     'hero.registerNote': 'Registration opens 1 April 2026',
     'hero.agenda':       'View Programme',
     'nav.agenda':        'Programme',
@@ -59,7 +59,7 @@ const i18n = {
     'venue.calendar':   '+ Add to Calendar',
 
     'tickets.label':    'Register',
-    'tickets.title':    'Register Now',
+    'tickets.title':    'Pre-Signup',
     'tickets.soon':     'Registration opens on 1 April 2026.',
 
     'contribute.label': 'Get Involved',
@@ -96,7 +96,7 @@ const i18n = {
 
   de: {
     'nav.brand':        'Division D · Distrikt 95',
-    'nav.cta':          'Jetzt registrieren',
+    'nav.cta':          'Voranmeldung',
     'nav.about':        'Über uns',
     'nav.tm':           'Toastmasters',
     'nav.venue':        'Veranstaltungsort',
@@ -109,7 +109,7 @@ const i18n = {
     'hero.values':      'Integrity | Respect | Service | Excellence',
     'hero.date':        '25. April 2026',
     'hero.location':    'München, Deutschland',
-    'hero.cta':         'Jetzt registrieren',
+    'hero.cta':         'Voranmeldung',
     'hero.registerNote': 'Registrierung öffnet am 1. April 2026',
     'hero.agenda':       'Programm anzeigen',
     'nav.agenda':        'Programm',
@@ -144,7 +144,7 @@ const i18n = {
     'venue.calendar':   '+ Zum Kalender hinzufügen',
 
     'tickets.label':    'Registrieren',
-    'tickets.title':    'Jetzt registrieren',
+    'tickets.title':    'Voranmeldung',
     'tickets.soon':     'Registrierung öffnet am 1. April 2026.',
 
     'contribute.label': 'Mitmachen',
