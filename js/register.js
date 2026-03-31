@@ -15,13 +15,14 @@ const i18n = {
     'reg.step1.nav':          'Details',
     'reg.step2.nav':          'Fee',
     'reg.step3.nav':          'Workshop',
-    'reg.step4.nav':          'Confirm',
+    'reg.step4.nav':          'Donate',
+    'reg.step5.nav':          'Confirm',
 
-    'reg.step1.eyebrow':      'Step 1 of 4',
+    'reg.step1.eyebrow':      'Step 1 of 5',
     'reg.step1.title':        'Your Details',
     'reg.step1.subtitle':     'Tell us a little about yourself.',
 
-    'reg.step2.eyebrow':      'Step 2 of 4',
+    'reg.step2.eyebrow':      'Step 2 of 5',
     'reg.step2.title':        'Venue Cleaning Fee',
     'reg.step2.subtitle':     'A small contribution to keep the venue in great shape.',
 
@@ -29,7 +30,7 @@ const i18n = {
     'reg.cleaning.accept':    'I have read and accept the €5.25 cleaning fee',
     'reg.cleaning.acceptHint':'You must accept to continue with your registration.',
 
-    'reg.step3.eyebrow':      'Step 3 of 4',
+    'reg.step3.eyebrow':      'Step 3 of 5',
     'reg.step3.title':        'Workshop Package',
     'reg.step3.subtitle':     'Would you like to join a workshop session?',
 
@@ -38,9 +39,16 @@ const i18n = {
     'reg.workshop.memberFree':'Free for Toastmasters members',
     'reg.workshop.free':      'FREE',
 
-    'reg.step4.eyebrow':      'Step 4 of 4',
-    'reg.step4.title':        'Confirm Registration',
-    'reg.step4.subtitle':     'Review your details before paying.',
+    'reg.step4.eyebrow':      'Step 4 of 5',
+    'reg.step4.title':        'Support the Conference',
+    'reg.step4.subtitle':     'Help us make this event great with a voluntary donation.',
+
+    'reg.donation.desc':      'Your donation goes directly towards financing the conference. Every contribution helps — but it is entirely optional.',
+    'reg.donation.label':     'Or enter your own amount (€)',
+
+    'reg.step5.eyebrow':      'Step 5 of 5',
+    'reg.step5.title':        'Confirm Registration',
+    'reg.step5.subtitle':     'Review your details before paying.',
 
     'reg.firstName':          'First Name',
     'reg.lastName':           'Last Name',
@@ -62,6 +70,7 @@ const i18n = {
     'reg.summary.cleaning':       'Cleaning fee',
     'reg.summary.workshop':       'Workshop Package',
     'reg.summary.memberDiscount': 'Toastmasters member discount',
+    'reg.summary.donation':       'Donation',
     'reg.summary.total':          'Total',
     'reg.summary.paymentNote':    '💡 You will be redirected to Stripe to pay securely by card.',
     'reg.confirm.paying':         'Redirecting to payment…',
@@ -112,13 +121,14 @@ const i18n = {
     'reg.step1.nav':          'Details',
     'reg.step2.nav':          'Gebühr',
     'reg.step3.nav':          'Workshop',
-    'reg.step4.nav':          'Bestätigen',
+    'reg.step4.nav':          'Spenden',
+    'reg.step5.nav':          'Bestätigen',
 
-    'reg.step1.eyebrow':      'Schritt 1 von 4',
+    'reg.step1.eyebrow':      'Schritt 1 von 5',
     'reg.step1.title':        'Deine Angaben',
     'reg.step1.subtitle':     'Erzähl uns ein wenig über dich.',
 
-    'reg.step2.eyebrow':      'Schritt 2 von 4',
+    'reg.step2.eyebrow':      'Schritt 2 von 5',
     'reg.step2.title':        'Reinigungsgebühr',
     'reg.step2.subtitle':     'Ein kleiner Beitrag, um den Veranstaltungsort sauber zu halten.',
 
@@ -126,7 +136,7 @@ const i18n = {
     'reg.cleaning.accept':    'Ich habe die €5,25 Reinigungsgebühr gelesen und akzeptiere sie',
     'reg.cleaning.acceptHint':'Du musst zustimmen, um mit der Anmeldung fortzufahren.',
 
-    'reg.step3.eyebrow':      'Schritt 3 von 4',
+    'reg.step3.eyebrow':      'Schritt 3 von 5',
     'reg.step3.title':        'Workshop-Paket',
     'reg.step3.subtitle':     'Möchtest du an einem Workshop teilnehmen?',
 
@@ -135,9 +145,16 @@ const i18n = {
     'reg.workshop.memberFree':'Kostenlos für Toastmasters-Mitglieder',
     'reg.workshop.free':      'GRATIS',
 
-    'reg.step4.eyebrow':      'Schritt 4 von 4',
-    'reg.step4.title':        'Anmeldung bestätigen',
-    'reg.step4.subtitle':     'Überprüfe deine Daten vor der Zahlung.',
+    'reg.step4.eyebrow':      'Schritt 4 von 5',
+    'reg.step4.title':        'Konferenz unterstützen',
+    'reg.step4.subtitle':     'Hilf uns, dieses Event mit einer freiwilligen Spende zu finanzieren.',
+
+    'reg.donation.desc':      'Deine Spende fließt direkt in die Finanzierung der Konferenz. Jeder Beitrag hilft — aber es ist völlig freiwillig.',
+    'reg.donation.label':     'Oder gib deinen eigenen Betrag ein (€)',
+
+    'reg.step5.eyebrow':      'Schritt 5 von 5',
+    'reg.step5.title':        'Anmeldung bestätigen',
+    'reg.step5.subtitle':     'Überprüfe deine Daten vor der Zahlung.',
 
     'reg.firstName':          'Vorname',
     'reg.lastName':           'Nachname',
@@ -159,6 +176,7 @@ const i18n = {
     'reg.summary.cleaning':       'Reinigungsgebühr',
     'reg.summary.workshop':       'Workshop-Paket',
     'reg.summary.memberDiscount': 'Toastmasters-Mitgliederrabatt',
+    'reg.summary.donation':       'Spende',
     'reg.summary.total':          'Gesamtbetrag',
     'reg.summary.paymentNote':    '💡 Du wirst zur sicheren Kartenzahlung über Stripe weitergeleitet.',
     'reg.confirm.paying':         'Weiterleitung zur Zahlung…',
@@ -245,6 +263,7 @@ const state = {
   clubOther:        '',
   cleaningAccepted: false,
   workshop:         false,
+  donation:         0,
   ref:              '',
   paidViaStripe:    false,
 };
@@ -254,7 +273,8 @@ const PRICES = { cleaning: 5.25, workshop: 10 };
 function calcTotal() {
   let total = PRICES.cleaning;
   if (state.workshop && !state.isMember) total += PRICES.workshop;
-  return total;
+  if (state.donation > 0) total += state.donation;
+  return Math.round(total * 100) / 100;
 }
 
 function generateRef() {
@@ -266,7 +286,7 @@ function generateRef() {
 
 /* ── Payment ──────────────────────────────────────────── */
 async function initiatePayment() {
-  const btn = document.getElementById('step4Confirm');
+  const btn = document.getElementById('step5Confirm');
   btn.disabled = true;
   btn.textContent = t('reg.confirm.paying');
 
@@ -283,6 +303,7 @@ async function initiatePayment() {
         member:     state.isMember,
         club:       state.clubOther || state.clubs.join(', '),
         workshop:   state.workshop,
+        donation:   state.donation,
         total:      calcTotal(),
         lang:       currentLang,
       }),
@@ -297,7 +318,7 @@ async function initiatePayment() {
     console.warn('Payment initiation failed:', err);
     showToast('Could not connect to payment provider. Please try again.');
     btn.disabled = false;
-    btn.textContent = `${t('reg.confirm')} — €${calcTotal()}`;
+    btn.textContent = `${t('reg.confirm')} — €${calcTotal().toFixed(2)}`;
   }
 }
 
@@ -311,7 +332,7 @@ function handlePaymentReturn() {
     Object.assign(state, JSON.parse(saved));
     sessionStorage.removeItem('divD_reg');
     state.paidViaStripe = true;
-    goToStep(5);
+    goToStep(6);
     return true;
   }
 
@@ -319,11 +340,11 @@ function handlePaymentReturn() {
     const saved = sessionStorage.getItem('divD_reg');
     if (!saved) return false;
     Object.assign(state, JSON.parse(saved));
-    goToStep(4);
+    goToStep(5);
     document.getElementById('paymentErrorBanner').hidden = false;
-    const btn = document.getElementById('step4Confirm');
+    const btn = document.getElementById('step5Confirm');
     btn.disabled = false;
-    btn.textContent = `${t('reg.confirm')} — €${calcTotal()}`;
+    btn.textContent = `${t('reg.confirm')} — €${calcTotal().toFixed(2)}`;
     return true;
   }
 
@@ -350,8 +371,9 @@ function goToStep(n) {
   document.getElementById('funnel').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   if (n === 3) updateWorkshopPricing();
-  if (n === 4) populateSummary();
-  if (n === 5) populateConfirmation();
+  if (n === 4) updateDonationStep();
+  if (n === 5) populateSummary();
+  if (n === 6) populateConfirmation();
 }
 
 /* ── Toast ────────────────────────────────────────────── */
@@ -612,6 +634,42 @@ workshopCard.addEventListener('click', e => {
 document.getElementById('step3Back').addEventListener('click', () => goToStep(2));
 document.getElementById('step3Next').addEventListener('click', () => goToStep(4));
 
+/* ── Step 4: Donation ─────────────────────────────────── */
+const donationInput = document.getElementById('donationAmount');
+
+function updateDonationStep() {
+  donationInput.value = state.donation > 0 ? state.donation : '';
+  document.querySelectorAll('.donation-preset').forEach(btn => {
+    btn.classList.toggle('donation-preset--active', Number(btn.dataset.amount) === state.donation);
+  });
+}
+
+function setDonation(amount) {
+  state.donation = amount;
+  donationInput.value = amount > 0 ? amount : '';
+  document.querySelectorAll('.donation-preset').forEach(btn => {
+    btn.classList.toggle('donation-preset--active', Number(btn.dataset.amount) === amount);
+  });
+}
+
+document.querySelectorAll('.donation-preset').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const amount = Number(btn.dataset.amount);
+    setDonation(state.donation === amount ? 0 : amount); // toggle off if already selected
+  });
+});
+
+donationInput.addEventListener('input', () => {
+  const val = parseFloat(donationInput.value);
+  state.donation = (!isNaN(val) && val > 0) ? val : 0;
+  document.querySelectorAll('.donation-preset').forEach(btn => {
+    btn.classList.toggle('donation-preset--active', Number(btn.dataset.amount) === state.donation);
+  });
+});
+
+document.getElementById('step4Back').addEventListener('click', () => goToStep(3));
+document.getElementById('step4Next').addEventListener('click', () => goToStep(5));
+
 /* ── Step 4: Summary ─────────────────────────────────── */
 function populateSummary() {
   document.getElementById('summaryName').textContent   = `${state.firstName} ${state.lastName}`;
@@ -629,23 +687,29 @@ function populateSummary() {
   memberRow.hidden     = !(state.workshop && state.isMember);
   discountRow.hidden   = !(state.workshop && state.isMember);
 
-  document.getElementById('priceTotal').textContent = `€${calcTotal()}`;
+  const donationRow = document.getElementById('priceDonationRow');
+  donationRow.hidden = !(state.donation > 0);
+  if (state.donation > 0) {
+    document.getElementById('priceDonationAmount').textContent = `+€${state.donation.toFixed(2)}`;
+  }
 
-  const btn = document.getElementById('step4Confirm');
+  document.getElementById('priceTotal').textContent = `€${calcTotal().toFixed(2)}`;
+
+  const btn = document.getElementById('step5Confirm');
   btn.disabled = false;
-  btn.textContent = `${t('reg.confirm')} — €${calcTotal()}`;
+  btn.textContent = `${t('reg.confirm')} — €${calcTotal().toFixed(2)}`;
 }
 
-document.getElementById('step4Back').addEventListener('click', () => goToStep(3));
-document.getElementById('step4Confirm').addEventListener('click', async () => {
+document.getElementById('step5Back').addEventListener('click', () => goToStep(4));
+document.getElementById('step5Confirm').addEventListener('click', async () => {
   if (!state.ref) state.ref = generateRef();
   await initiatePayment();
 });
 
-/* ── Step 5: Confirmation ────────────────────────────── */
+/* ── Step 6: Confirmation ────────────────────────────── */
 function populateConfirmation() {
   document.getElementById('confirmName').textContent  = `${state.firstName} ${state.lastName}`;
-  document.getElementById('confirmTotal').textContent = `€${calcTotal()}`;
+  document.getElementById('confirmTotal').textContent = `€${calcTotal().toFixed(2)}`;
   document.getElementById('confirmDueLabel').textContent = t(state.paidViaStripe ? 'reg.confirm.paid' : 'reg.confirm.due');
 
   const workshopRow = document.getElementById('confirmWorkshopRow');

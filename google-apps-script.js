@@ -52,11 +52,22 @@ function doPost(e) {
     lineItems['line_items[0][quantity]']                          = '1';
 
     // Line item 1: workshop (non-members only — members get it free)
+    let nextItem = 1;
     if (data.workshop && !data.member) {
-      lineItems['line_items[1][price_data][currency]']            = 'eur';
-      lineItems['line_items[1][price_data][product_data][name]']  = 'Workshop Package';
-      lineItems['line_items[1][price_data][unit_amount]']         = String(PRICE_WORKSHOP);
-      lineItems['line_items[1][quantity]']                        = '1';
+      lineItems[`line_items[${nextItem}][price_data][currency]`]            = 'eur';
+      lineItems[`line_items[${nextItem}][price_data][product_data][name]`]  = 'Workshop Package';
+      lineItems[`line_items[${nextItem}][price_data][unit_amount]`]         = String(PRICE_WORKSHOP);
+      lineItems[`line_items[${nextItem}][quantity]`]                        = '1';
+      nextItem++;
+    }
+
+    // Line item 2: voluntary donation (if provided)
+    if (data.donation && data.donation > 0) {
+      const donationCents = Math.round(data.donation * 100);
+      lineItems[`line_items[${nextItem}][price_data][currency]`]            = 'eur';
+      lineItems[`line_items[${nextItem}][price_data][product_data][name]`]  = 'Voluntary Donation';
+      lineItems[`line_items[${nextItem}][price_data][unit_amount]`]         = String(donationCents);
+      lineItems[`line_items[${nextItem}][quantity]`]                        = '1';
     }
 
     const payload = {
@@ -69,6 +80,7 @@ function doPost(e) {
       'metadata[lastName]':    data.lastName    || '',
       'metadata[member]':      data.member ? 'true' : 'false',
       'metadata[workshop]':    data.workshop ? 'true' : 'false',
+      'metadata[donation]':    String(data.donation || 0),
       ...lineItems,
     };
 

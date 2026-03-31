@@ -60,7 +60,12 @@
         <div class="funnel__prog-line"></div>
         <div class="funnel__prog-step" data-step="4">
           <div class="funnel__prog-dot"><span>4</span></div>
-          <span class="funnel__prog-label" data-i18n="reg.step4.nav">Confirm</span>
+          <span class="funnel__prog-label" data-i18n="reg.step4.nav">Donate</span>
+        </div>
+        <div class="funnel__prog-line"></div>
+        <div class="funnel__prog-step" data-step="5">
+          <div class="funnel__prog-dot"><span>5</span></div>
+          <span class="funnel__prog-label" data-i18n="reg.step5.nav">Confirm</span>
         </div>
       </div>
 
@@ -207,12 +212,41 @@
         </div>
       </div>
 
-      <!-- ── Step 4: Checkout / Confirm ─────────────────── -->
-      <div class="funnel__panel" id="step4" aria-label="Step 4: Confirm" hidden>
+      <!-- ── Step 4: Donation ────────────────────────────── -->
+      <div class="funnel__panel" id="step4" aria-label="Step 4: Donation" hidden>
         <div class="funnel__header">
-          <span class="section__label" data-i18n="reg.step4.eyebrow">Step 4 of 4</span>
-          <h1 class="funnel__title" data-i18n="reg.step4.title">Confirm Registration</h1>
-          <p class="funnel__subtitle" data-i18n="reg.step4.subtitle">Review your details before paying.</p>
+          <span class="section__label" data-i18n="reg.step4.eyebrow">Step 4 of 5</span>
+          <h1 class="funnel__title" data-i18n="reg.step4.title">Support the Conference</h1>
+          <p class="funnel__subtitle" data-i18n="reg.step4.subtitle">Help us make this event great with a voluntary donation.</p>
+        </div>
+
+        <div class="funnel__form">
+          <div class="donation-card">
+            <p class="donation-card__desc" data-i18n="reg.donation.desc">Your donation goes directly towards financing the conference. Every contribution helps — but it is entirely optional.</p>
+            <div class="donation-card__presets">
+              <button class="donation-preset" type="button" data-amount="5">€5</button>
+              <button class="donation-preset" type="button" data-amount="10">€10</button>
+              <button class="donation-preset" type="button" data-amount="20">€20</button>
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="donationAmount" data-i18n="reg.donation.label">Or enter your own amount (€)</label>
+              <input class="form__input" type="number" id="donationAmount" min="0" step="1" placeholder="0">
+            </div>
+          </div>
+        </div>
+
+        <div class="funnel__actions">
+          <button class="btn btn--outline btn--lg" id="step4Back" data-i18n="reg.back">← Back</button>
+          <button class="btn btn--yellow btn--lg" id="step4Next" data-i18n="reg.next">Continue →</button>
+        </div>
+      </div>
+
+      <!-- ── Step 5: Checkout / Confirm ─────────────────── -->
+      <div class="funnel__panel" id="step5" aria-label="Step 5: Confirm" hidden>
+        <div class="funnel__header">
+          <span class="section__label" data-i18n="reg.step5.eyebrow">Step 5 of 5</span>
+          <h1 class="funnel__title" data-i18n="reg.step5.title">Confirm Registration</h1>
+          <p class="funnel__subtitle" data-i18n="reg.step5.subtitle">Review your details before paying.</p>
         </div>
 
         <div class="funnel__form">
@@ -254,6 +288,11 @@
               <span data-i18n="reg.summary.memberDiscount">Toastmasters member discount</span>
               <span>-€10</span>
             </div>
+            <!-- Donation -->
+            <div class="price-summary__row price-summary__row--donation" id="priceDonationRow" hidden>
+              <span data-i18n="reg.summary.donation">Donation</span>
+              <span id="priceDonationAmount">€0</span>
+            </div>
             <div class="price-summary__divider"></div>
             <div class="price-summary__row price-summary__row--total">
               <span data-i18n="reg.summary.total">Total</span>
@@ -276,13 +315,13 @@
         </div>
 
         <div class="funnel__actions">
-          <button class="btn btn--outline btn--lg" id="step4Back" data-i18n="reg.back">← Back</button>
-          <button class="btn btn--yellow btn--lg" id="step4Confirm" data-i18n="reg.confirm">Pay with Stripe</button>
+          <button class="btn btn--outline btn--lg" id="step5Back" data-i18n="reg.back">← Back</button>
+          <button class="btn btn--yellow btn--lg" id="step5Confirm" data-i18n="reg.confirm">Pay with Stripe</button>
         </div>
       </div>
 
-      <!-- ── Step 5: Confirmation ──────────────────────────── -->
-      <div class="funnel__panel" id="step5" aria-label="Registration confirmed" hidden>
+      <!-- ── Step 6: Confirmation ──────────────────────────── -->
+      <div class="funnel__panel" id="step6" aria-label="Registration confirmed" hidden>
         <div class="funnel__confirmation">
           <div class="confirm__icon" aria-hidden="true">
             <svg viewBox="0 0 48 48" fill="none">
@@ -330,6 +369,6 @@
   <!-- Toast notification -->
   <div class="toast" id="toast" role="alert" aria-live="polite"></div>
 
-  <script src="js/register.js?v=11"></script>
+  <script src="js/register.js?v=12"></script>
 </body>
 </html>

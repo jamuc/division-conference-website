@@ -1802,6 +1802,46 @@ body { padding-bottom: 70px; }
   color: var(--text-muted);
 }
 
+/* ── Donation card ──────────────────────────────────── */
+.donation-card {
+  border: 2px solid var(--navy);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.donation-card__desc {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0 0 1.25rem;
+}
+.donation-card__presets {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+.donation-preset {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.5rem 1.25rem;
+  border: 2px solid var(--navy);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--navy);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+.donation-preset:hover {
+  background: var(--navy);
+  color: #fff;
+}
+.donation-preset--active {
+  background: var(--navy);
+  color: #fff;
+}
+
 /* ── Actions (next/back buttons) ────────────────────── */
 .funnel__actions {
   display: flex;
