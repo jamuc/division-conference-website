@@ -615,6 +615,9 @@ function updateWorkshopPricing() {
   document.getElementById('workshopPriceMember').hidden    = !state.isMember;
   document.getElementById('workshopPriceNonMember').hidden =  state.isMember;
   document.getElementById('workshopMemberBadge').hidden    = !state.isMember;
+
+  // Auto-enable workshop for members
+  if (state.isMember && !state.workshop) setWorkshop(true);
 }
 
 function setWorkshop(val) {
