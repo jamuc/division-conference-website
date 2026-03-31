@@ -11,7 +11,7 @@
   <link rel="icon" href="/images/favicon.ico" sizes="any" />
   <link rel="apple-touch-icon" href="/images/favicon.ico" />
 
-  <link rel="stylesheet" href="css/style.css?v=6" />
+  <link rel="stylesheet" href="css/style.css?v=7" />
 </head>
 <body class="lang-en">
 
@@ -50,22 +50,17 @@
         <div class="funnel__prog-line"></div>
         <div class="funnel__prog-step" data-step="2">
           <div class="funnel__prog-dot"><span>2</span></div>
-          <span class="funnel__prog-label" data-i18n="reg.step2.nav">Role</span>
+          <span class="funnel__prog-label" data-i18n="reg.step2.nav">Fee</span>
         </div>
         <div class="funnel__prog-line"></div>
         <div class="funnel__prog-step" data-step="3">
           <div class="funnel__prog-dot"><span>3</span></div>
-          <span class="funnel__prog-label" data-i18n="reg.step3.nav">Add-ons</span>
+          <span class="funnel__prog-label" data-i18n="reg.step3.nav">Workshop</span>
         </div>
         <div class="funnel__prog-line"></div>
         <div class="funnel__prog-step" data-step="4">
           <div class="funnel__prog-dot"><span>4</span></div>
-          <span class="funnel__prog-label" data-i18n="reg.step4.nav">Interests</span>
-        </div>
-        <div class="funnel__prog-line"></div>
-        <div class="funnel__prog-step" data-step="5">
-          <div class="funnel__prog-dot"><span>5</span></div>
-          <span class="funnel__prog-label" data-i18n="reg.step5.nav">Confirm</span>
+          <span class="funnel__prog-label" data-i18n="reg.step4.nav">Confirm</span>
         </div>
       </div>
 
@@ -140,43 +135,34 @@
         </div>
       </div>
 
-      <!-- ── Step 2: Role ──────────────────────────────────── -->
-      <div class="funnel__panel" id="step2" aria-label="Step 2: Your Role" hidden>
+      <!-- ── Step 2: Cleaning Fee ────────────────────────── -->
+      <div class="funnel__panel" id="step2" aria-label="Step 2: Venue Cleaning Fee" hidden>
         <div class="funnel__header">
           <span class="section__label" data-i18n="reg.step2.eyebrow">Step 2 of 4</span>
-          <h1 class="funnel__title" data-i18n="reg.step2.title">Your Role</h1>
-          <p class="funnel__subtitle" data-i18n="reg.step2.subtitle">How will you be participating?</p>
+          <h1 class="funnel__title" data-i18n="reg.step2.title">Venue Cleaning Fee</h1>
+          <p class="funnel__subtitle" data-i18n="reg.step2.subtitle">A small contribution to keep the venue in great shape.</p>
         </div>
 
         <div class="funnel__form">
-          <!-- Primary type: Audience / Volunteer / Contestant -->
-          <div class="role-type-row">
-            <label class="role-type-card" id="typeAudienceCard">
-              <input type="radio" name="roleType" value="audience" id="typeAudience" />
-              <span class="role-type-card__title" data-i18n="reg.role.audience">Audience Member</span>
-              <span class="role-card__price">+€5</span>
-            </label>
-            <label class="role-type-card" id="typeVolunteerCard">
-              <input type="radio" name="roleType" value="volunteer" id="typeVolunteer" />
-              <span class="role-type-card__title" data-i18n="reg.role.volunteer">Conference Volunteer</span>
-              <span class="role-card__price role-card__price--free" data-i18n="reg.role.free">Included</span>
-            </label>
-            <label class="role-type-card" id="typeContestantCard">
-              <input type="radio" name="roleType" value="contestant" id="typeContestant" />
-              <span class="role-type-card__title" data-i18n="reg.role.contestantTitle">Contestant</span>
-              <span class="role-card__price role-card__price--free" data-i18n="reg.role.free">Included</span>
-            </label>
+          <div class="fee-explainer">
+            <div class="fee-explainer__amount">€5</div>
+            <p class="fee-explainer__desc" data-i18n="reg.cleaning.desc">All attendees contribute a one-time venue cleaning fee of €5. This helps cover post-event cleaning costs at Stadtteilkultur 2411.</p>
           </div>
 
-          <!-- Access code — shown when Volunteer or Contestant is selected -->
-          <div class="access-code-field" id="accessCodeField" hidden>
-            <label class="form__label" for="accessCode" data-i18n="reg.role.enterCode">Access Code</label>
-            <input class="form__input" type="text" id="accessCode" autocomplete="off"
-                   placeholder="e.g. DIVD2026" spellcheck="false" />
-            <span class="form__hint" data-i18n="reg.role.codeHint">Contact your conference organiser if you don't have a code.</span>
-          </div>
-
-          <span class="form__error" id="roleErr" role="alert"></span>
+          <label class="addon-card" id="cleaningCard">
+            <div class="addon-card__inner">
+              <div class="addon-card__info">
+                <span class="addon-card__title" data-i18n="reg.cleaning.accept">I have read and accept the €5 cleaning fee</span>
+                <span class="addon-card__desc" data-i18n="reg.cleaning.acceptHint">You must accept to continue with your registration.</span>
+              </div>
+              <div class="addon-card__right">
+                <div class="addon-toggle" id="cleaningToggle" role="switch" aria-checked="false" tabindex="0" aria-label="Accept cleaning fee">
+                  <div class="addon-toggle__knob"></div>
+                </div>
+              </div>
+            </div>
+          </label>
+          <span class="form__error" id="cleaningErr" role="alert"></span>
         </div>
 
         <div class="funnel__actions">
@@ -185,12 +171,12 @@
         </div>
       </div>
 
-      <!-- ── Step 3: Add-ons ────────────────────────────────── -->
-      <div class="funnel__panel" id="step3" aria-label="Step 3: Add-ons" hidden>
+      <!-- ── Step 3: Workshop Package ───────────────────── -->
+      <div class="funnel__panel" id="step3" aria-label="Step 3: Workshop Package" hidden>
         <div class="funnel__header">
           <span class="section__label" data-i18n="reg.step3.eyebrow">Step 3 of 4</span>
-          <h1 class="funnel__title" data-i18n="reg.step3.title">Add-ons</h1>
-          <p class="funnel__subtitle" data-i18n="reg.step3.subtitle">Enhance your conference experience.</p>
+          <h1 class="funnel__title" data-i18n="reg.step3.title">Workshop Package</h1>
+          <p class="funnel__subtitle" data-i18n="reg.step3.subtitle">Would you like to join a workshop session?</p>
         </div>
 
         <div class="funnel__form">
@@ -199,9 +185,14 @@
               <div class="addon-card__info">
                 <span class="addon-card__title" data-i18n="reg.workshop.title">Workshop Package</span>
                 <span class="addon-card__desc" data-i18n="reg.workshop.desc">Join an interactive workshop session to sharpen your skills and connect with fellow Toastmasters. Limited spaces available.</span>
+                <span class="addon-card__member-badge" id="workshopMemberBadge" hidden data-i18n="reg.workshop.memberFree">Free for Toastmasters members</span>
               </div>
               <div class="addon-card__right">
-                <span class="addon-card__price">+€5</span>
+                <span class="addon-card__price-wrap" id="workshopPriceMember" hidden>
+                  <span class="addon-card__price--strike">€10</span>
+                  <span class="addon-card__price addon-card__price--free" data-i18n="reg.workshop.free">FREE</span>
+                </span>
+                <span class="addon-card__price" id="workshopPriceNonMember">+€10</span>
                 <div class="addon-toggle" id="workshopToggle" role="switch" aria-checked="false" tabindex="0" aria-label="Add Workshop Package">
                   <div class="addon-toggle__knob"></div>
                 </div>
@@ -216,70 +207,12 @@
         </div>
       </div>
 
-      <!-- ── Step 4: Interests ──────────────────────────────── -->
-      <div class="funnel__panel" id="step4" aria-label="Step 4: Interests" hidden>
+      <!-- ── Step 4: Checkout / Confirm ─────────────────── -->
+      <div class="funnel__panel" id="step4" aria-label="Step 4: Confirm" hidden>
         <div class="funnel__header">
-          <span class="section__label" data-i18n="reg.step4.eyebrow">Step 4 of 5</span>
-          <h1 class="funnel__title" data-i18n="reg.step4.title">A Few Quick Questions</h1>
-          <p class="funnel__subtitle" data-i18n="reg.step4.subtitle">Help us plan the best possible event.</p>
-        </div>
-
-        <div class="funnel__form">
-          <label class="addon-card" id="sponsorCard">
-            <div class="addon-card__inner">
-              <div class="addon-card__info">
-                <span class="addon-card__title" data-i18n="reg.interest.sponsor.title">Become a Sponsor</span>
-                <span class="addon-card__desc" data-i18n="reg.interest.sponsor.desc">Would you or your organisation be interested in sponsoring the conference?</span>
-              </div>
-              <div class="addon-card__right">
-                <div class="addon-toggle" id="sponsorToggle" role="switch" aria-checked="false" tabindex="0" aria-label="Interested in sponsoring">
-                  <div class="addon-toggle__knob"></div>
-                </div>
-              </div>
-            </div>
-          </label>
-
-          <label class="addon-card" id="dayCareCard">
-            <div class="addon-card__inner">
-              <div class="addon-card__info">
-                <span class="addon-card__title" data-i18n="reg.interest.daycare.title">Day Care</span>
-                <span class="addon-card__desc" data-i18n="reg.interest.daycare.desc">If we offer on-site day care, would you bring your children and use it?</span>
-              </div>
-              <div class="addon-card__right">
-                <div class="addon-toggle" id="dayCareToggle" role="switch" aria-checked="false" tabindex="0" aria-label="Interested in day care">
-                  <div class="addon-toggle__knob"></div>
-                </div>
-              </div>
-            </div>
-          </label>
-
-          <label class="addon-card" id="lunchCard">
-            <div class="addon-card__inner">
-              <div class="addon-card__info">
-                <span class="addon-card__title" data-i18n="reg.interest.lunch.title">Organised Lunch Package</span>
-                <span class="addon-card__desc" data-i18n="reg.interest.lunch.desc">Would you be interested in a pre-arranged lunch package at the venue?</span>
-              </div>
-              <div class="addon-card__right">
-                <div class="addon-toggle" id="lunchToggle" role="switch" aria-checked="false" tabindex="0" aria-label="Interested in lunch package">
-                  <div class="addon-toggle__knob"></div>
-                </div>
-              </div>
-            </div>
-          </label>
-        </div>
-
-        <div class="funnel__actions">
-          <button class="btn btn--outline btn--lg" id="step4Back" data-i18n="reg.back">← Back</button>
-          <button class="btn btn--yellow btn--lg" id="step4Next" data-i18n="reg.next">Continue →</button>
-        </div>
-      </div>
-
-      <!-- ── Step 5: Summary & Confirm ─────────────────────── -->
-      <div class="funnel__panel" id="step5" aria-label="Step 5: Confirm" hidden>
-        <div class="funnel__header">
-          <span class="section__label" data-i18n="reg.step5.eyebrow">Step 5 of 5</span>
-          <h1 class="funnel__title" data-i18n="reg.step5.title">Confirm Registration</h1>
-          <p class="funnel__subtitle" data-i18n="reg.step5.subtitle">Review your details before confirming.</p>
+          <span class="section__label" data-i18n="reg.step4.eyebrow">Step 4 of 4</span>
+          <h1 class="funnel__title" data-i18n="reg.step4.title">Confirm Registration</h1>
+          <p class="funnel__subtitle" data-i18n="reg.step4.subtitle">Review your details before paying.</p>
         </div>
 
         <div class="funnel__form">
@@ -294,8 +227,8 @@
               <span class="summary-card__value" id="summaryEmail">—</span>
             </div>
             <div class="summary-card__row">
-              <span class="summary-card__label" data-i18n="reg.summary.role">Role</span>
-              <span class="summary-card__value" id="summaryRole">—</span>
+              <span class="summary-card__label" data-i18n="reg.summary.status">Status</span>
+              <span class="summary-card__value" id="summaryStatus">—</span>
             </div>
           </div>
 
@@ -306,27 +239,34 @@
               <span data-i18n="reg.summary.cleaning">Cleaning fee</span>
               <span>€5</span>
             </div>
-            <div class="price-summary__row" id="priceRoleRow">
-              <span id="priceRoleLabel" data-i18n="reg.summary.roleAudience">Audience</span>
-              <span id="priceRoleValue">€5</span>
-            </div>
+            <!-- Workshop: non-member (+€10) -->
             <div class="price-summary__row" id="priceWorkshopRow" hidden>
               <span data-i18n="reg.summary.workshop">Workshop Package</span>
-              <span>€5</span>
+              <span>+€10</span>
+            </div>
+            <!-- Workshop: member (struck-through €10) -->
+            <div class="price-summary__row" id="priceWorkshopMemberRow" hidden>
+              <span data-i18n="reg.summary.workshop">Workshop Package</span>
+              <span class="price-strike">€10</span>
+            </div>
+            <!-- Member discount -->
+            <div class="price-summary__row price-summary__row--discount" id="priceDiscountRow" hidden>
+              <span data-i18n="reg.summary.memberDiscount">Toastmasters member discount</span>
+              <span>-€10</span>
             </div>
             <div class="price-summary__divider"></div>
             <div class="price-summary__row price-summary__row--total">
-              <span data-i18n="reg.summary.total">Total due at door</span>
+              <span data-i18n="reg.summary.total">Total</span>
               <span id="priceTotal">€5</span>
             </div>
           </div>
 
           <p class="funnel__note" data-i18n="reg.summary.paymentNote">
-            💡 Payment is collected at the door on the day of the event. No online payment required.
+            💡 You will be redirected to Stripe to pay securely by card.
           </p>
         </div>
 
-        <!-- Payment cancelled / failed banner — shown on return from Stripe -->
+        <!-- Payment cancelled / failed banner -->
         <div class="payment-error-banner" id="paymentErrorBanner" hidden>
           <span class="payment-error-banner__icon" aria-hidden="true">⚠️</span>
           <div>
@@ -336,13 +276,13 @@
         </div>
 
         <div class="funnel__actions">
-          <button class="btn btn--outline btn--lg" id="step5Back" data-i18n="reg.back">← Back</button>
-          <button class="btn btn--yellow btn--lg" id="step5Confirm" data-i18n="reg.confirm">Complete Registration</button>
+          <button class="btn btn--outline btn--lg" id="step4Back" data-i18n="reg.back">← Back</button>
+          <button class="btn btn--yellow btn--lg" id="step4Confirm" data-i18n="reg.confirm">Pay with Stripe</button>
         </div>
       </div>
 
-      <!-- ── Step 6: Confirmation ──────────────────────────── -->
-      <div class="funnel__panel" id="step6" aria-label="Registration confirmed" hidden>
+      <!-- ── Step 5: Confirmation ──────────────────────────── -->
+      <div class="funnel__panel" id="step5" aria-label="Registration confirmed" hidden>
         <div class="funnel__confirmation">
           <div class="confirm__icon" aria-hidden="true">
             <svg viewBox="0 0 48 48" fill="none">
@@ -360,13 +300,9 @@
               <span data-i18n="reg.confirm.name">Name</span>
               <strong id="confirmName">—</strong>
             </div>
-            <div class="confirm__summary-row">
-              <span data-i18n="reg.confirm.role">Role</span>
-              <strong id="confirmRole">—</strong>
-            </div>
             <div class="confirm__summary-row" id="confirmWorkshopRow" hidden>
               <span data-i18n="reg.confirm.workshop">Workshop</span>
-              <strong data-i18n="reg.confirm.workshopIncluded">Included</strong>
+              <strong id="confirmWorkshopValue">—</strong>
             </div>
             <div class="confirm__summary-row confirm__summary-row--total">
               <span id="confirmDueLabel" data-i18n="reg.confirm.due">Total due at door</span>
@@ -399,6 +335,6 @@
 
   <!-- jsPDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="js/register.js?v=9"></script>
+  <script src="js/register.js?v=10"></script>
 </body>
 </html>

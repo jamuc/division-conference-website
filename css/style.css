@@ -1734,6 +1734,74 @@ body { padding-bottom: 70px; }
   line-height: 1.5;
 }
 
+/* ── Fee explainer ──────────────────────────────────── */
+.fee-explainer {
+  background: rgba(0,65,101,.05);
+  border: 2px solid rgba(0,65,101,.15);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+.fee-explainer__amount {
+  font-family: var(--font-head);
+  font-weight: 900;
+  font-size: 3rem;
+  color: var(--navy);
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+.fee-explainer__desc {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Workshop member pricing ────────────────────────── */
+.addon-card__price-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+.addon-card__price--strike {
+  font-family: var(--font-head);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+.addon-card__price--free {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 0.875rem;
+  color: #1a7a45;
+  background: rgba(26,122,69,.12);
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+}
+.addon-card__member-badge {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #1a7a45;
+  background: rgba(26,122,69,.12);
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
+/* ── Price summary extras ───────────────────────────── */
+.price-summary__row--discount {
+  color: #1a7a45;
+  font-weight: 600;
+}
+.price-strike {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
 /* ── Actions (next/back buttons) ────────────────────── */
 .funnel__actions {
   display: flex;

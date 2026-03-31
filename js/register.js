@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════
    Division D Conference 2026 — register.js
-   · Multi-step registration funnel
+   · Multi-step registration funnel (4 steps + success)
    · Price calculation
    · PDF ticket generation (jsPDF)
    · i18n (EN / DE)
@@ -13,38 +13,34 @@ const i18n = {
     'reg.backToSite':         '← Back to site',
 
     'reg.step1.nav':          'Details',
-    'reg.step2.nav':          'Role',
-    'reg.step3.nav':          'Add-ons',
+    'reg.step2.nav':          'Fee',
+    'reg.step3.nav':          'Workshop',
     'reg.step4.nav':          'Confirm',
 
-    'reg.step1.eyebrow':      'Step 1 of 5',
+    'reg.step1.eyebrow':      'Step 1 of 4',
     'reg.step1.title':        'Your Details',
     'reg.step1.subtitle':     'Tell us a little about yourself.',
 
-    'reg.step2.eyebrow':      'Step 2 of 5',
-    'reg.step2.title':        'Your Role',
-    'reg.step2.subtitle':     'How will you be participating?',
+    'reg.step2.eyebrow':      'Step 2 of 4',
+    'reg.step2.title':        'Venue Cleaning Fee',
+    'reg.step2.subtitle':     'A small contribution to keep the venue in great shape.',
 
-    'reg.step3.eyebrow':      'Step 3 of 5',
-    'reg.step3.title':        'Add-ons',
-    'reg.step3.subtitle':     'Enhance your conference experience.',
+    'reg.cleaning.desc':      'All attendees contribute a one-time venue cleaning fee of €5. This helps cover post-event cleaning costs at Stadtteilkultur 2411.',
+    'reg.cleaning.accept':    'I have read and accept the €5 cleaning fee',
+    'reg.cleaning.acceptHint':'You must accept to continue with your registration.',
 
-    'reg.step4.nav':          'Interests',
-    'reg.step4.eyebrow':      'Step 4 of 5',
-    'reg.step4.title':        'A Few Quick Questions',
-    'reg.step4.subtitle':     'Help us plan the best possible event.',
+    'reg.step3.eyebrow':      'Step 3 of 4',
+    'reg.step3.title':        'Workshop Package',
+    'reg.step3.subtitle':     'Would you like to join a workshop session?',
 
-    'reg.interest.sponsor.title': 'Become a Sponsor',
-    'reg.interest.sponsor.desc':  'Would you or your organisation be interested in sponsoring the conference?',
-    'reg.interest.daycare.title': 'Day Care',
-    'reg.interest.daycare.desc':  'If we offer on-site day care, would you bring your children and use it?',
-    'reg.interest.lunch.title':   'Organised Lunch Package',
-    'reg.interest.lunch.desc':    'Would you be interested in a pre-arranged lunch package at the venue?',
+    'reg.workshop.title':     'Workshop Package',
+    'reg.workshop.desc':      'Join an interactive workshop session to sharpen your skills and connect with fellow Toastmasters. Limited spaces available.',
+    'reg.workshop.memberFree':'Free for Toastmasters members',
+    'reg.workshop.free':      'FREE',
 
-    'reg.step5.nav':          'Confirm',
-    'reg.step5.eyebrow':      'Step 5 of 5',
-    'reg.step5.title':        'Confirm Registration',
-    'reg.step5.subtitle':     'Review your details before confirming.',
+    'reg.step4.eyebrow':      'Step 4 of 4',
+    'reg.step4.title':        'Confirm Registration',
+    'reg.step4.subtitle':     'Review your details before paying.',
 
     'reg.firstName':          'First Name',
     'reg.lastName':           'Last Name',
@@ -57,39 +53,18 @@ const i18n = {
     'reg.clubHint':           'You can select multiple clubs if you are a member of more than one.',
     'reg.clubNotListed':      'My club is not in the list',
 
-    'reg.role.audience':        'Audience Member',
-    'reg.role.audienceDesc':    'Enjoy the speeches, contests, and networking as a guest.',
-    'reg.role.volunteer':       'Conference Volunteer',
-    'reg.role.volunteerDesc':   'You have one or more roles in running the conference.',
-    'reg.role.contestantTitle': 'Contestant',
-    'reg.role.contestantDesc':  'You are competing in one of the speaking contests.',
-    'reg.role.staffRolesLabel': 'Select your role(s) — you can choose more than one',
-    'reg.role.enterCode':       'Access Code',
-    'reg.role.codeHint':        "Contact your conference organiser if you don't have a code.",
-    'reg.role.timekeeper':      'Time Keeper',
-    'reg.role.ballot':          'Ballot Counter',
-    'reg.role.judge':           'Judge',
-    'reg.role.chiefjudge':      'Chief Judge',
-    'reg.role.contestchair':    'Contest Chair',
-    'reg.role.sargeant':        'Sergeant at Arms',
-    'reg.role.contestant':      'Contestant',
-    'reg.role.free':            'Included',
-
-    'reg.workshop.title':     'Workshop Package',
-    'reg.workshop.desc':      'Join an interactive workshop session to sharpen your skills and connect with fellow Toastmasters. Limited spaces available.',
-
-    'reg.summary.name':       'Name',
-    'reg.summary.email':      'Email',
-    'reg.summary.role':       'Role',
-    'reg.summary.priceTitle': 'Price Breakdown',
-    'reg.summary.cleaning':   'Cleaning fee',
-    'reg.summary.roleAudience':   'Audience',
-    'reg.summary.roleVolunteer':  'Volunteer',
-    'reg.summary.roleContestant': 'Contestant',
-    'reg.summary.workshop':   'Workshop Package',
-    'reg.summary.total':      'Total',
-    'reg.summary.paymentNote':'💡 You will be redirected to Stripe to pay securely by card.',
-    'reg.confirm.paying':     'Redirecting to payment…',
+    'reg.summary.name':           'Name',
+    'reg.summary.email':          'Email',
+    'reg.summary.status':         'Status',
+    'reg.summary.statusMember':   'Toastmasters member',
+    'reg.summary.statusGuest':    'Guest',
+    'reg.summary.priceTitle':     'Price Breakdown',
+    'reg.summary.cleaning':       'Cleaning fee',
+    'reg.summary.workshop':       'Workshop Package',
+    'reg.summary.memberDiscount': 'Toastmasters member discount',
+    'reg.summary.total':          'Total',
+    'reg.summary.paymentNote':    '💡 You will be redirected to Stripe to pay securely by card.',
+    'reg.confirm.paying':         'Redirecting to payment…',
 
     'reg.next':               'Continue →',
     'reg.back':               '← Back',
@@ -98,22 +73,19 @@ const i18n = {
     'reg.confirm.title':      "You're Registered!",
     'reg.confirm.body':       'See you on 25 April at Stadtteilkultur 2411, Munich!',
     'reg.confirm.name':       'Name',
-    'reg.confirm.role':       'Role',
     'reg.confirm.workshop':   'Workshop',
     'reg.confirm.workshopIncluded': 'Included ✓',
+    'reg.confirm.workshopPaid': '+€10 ✓',
     'reg.confirm.due':        'Total due at door',
     'reg.confirm.paid':       'Payment received',
     'reg.confirm.download':   '↓ Download Ticket (PDF)',
     'reg.confirm.backHome':   '← Back to main site',
-
-    'reg.confirm.receiptNote':  '📧 A payment receipt has been sent to your email address.',
+    'reg.confirm.receiptNote':'📧 A payment receipt has been sent to your email address.',
 
     'reg.err.firstName':      'Please enter your first name.',
     'reg.err.lastName':       'Please enter your last name.',
     'reg.err.email':          'Please enter a valid email address.',
-    'reg.err.role':           'Please select your role to continue.',
-    'reg.err.staffRole':      'Please select at least one volunteer role.',
-    'reg.err.code':           'Invalid access code. Please contact your conference organiser.',
+    'reg.err.cleaning':       'Please accept the cleaning fee to continue.',
     'reg.err.paymentTitle':   'Payment not completed',
     'reg.err.paymentBody':    'Something went wrong or you cancelled. Please try again — your details are still saved.',
 
@@ -123,6 +95,7 @@ const i18n = {
     'pdf.date':               '25 April 2026',
     'pdf.venue':              'Stadtteilkultur 2411, Munich',
     'pdf.workshop':           'Workshop Package: Included',
+    'pdf.workshopPaid':       'Workshop Package: +€10',
     'pdf.totalLabel':         'TOTAL DUE AT DOOR',
     'pdf.totalNote':          'Cash payment on arrival',
     'pdf.totalLabelPaid':     'PAYMENT RECEIVED',
@@ -137,38 +110,34 @@ const i18n = {
     'reg.backToSite':         '← Zurück zur Seite',
 
     'reg.step1.nav':          'Details',
-    'reg.step2.nav':          'Rolle',
-    'reg.step3.nav':          'Extras',
+    'reg.step2.nav':          'Gebühr',
+    'reg.step3.nav':          'Workshop',
     'reg.step4.nav':          'Bestätigen',
 
-    'reg.step1.eyebrow':      'Schritt 1 von 5',
+    'reg.step1.eyebrow':      'Schritt 1 von 4',
     'reg.step1.title':        'Deine Angaben',
     'reg.step1.subtitle':     'Erzähl uns ein wenig über dich.',
 
-    'reg.step2.eyebrow':      'Schritt 2 von 5',
-    'reg.step2.title':        'Deine Rolle',
-    'reg.step2.subtitle':     'Wie nimmst du teil?',
+    'reg.step2.eyebrow':      'Schritt 2 von 4',
+    'reg.step2.title':        'Reinigungsgebühr',
+    'reg.step2.subtitle':     'Ein kleiner Beitrag, um den Veranstaltungsort sauber zu halten.',
 
-    'reg.step3.eyebrow':      'Schritt 3 von 5',
-    'reg.step3.title':        'Extras',
-    'reg.step3.subtitle':     'Bereichere dein Konferenzerlebnis.',
+    'reg.cleaning.desc':      'Alle Teilnehmenden leisten einen einmaligen Beitrag von €5 zur Reinigung des Veranstaltungsortes nach der Konferenz.',
+    'reg.cleaning.accept':    'Ich habe die €5 Reinigungsgebühr gelesen und akzeptiere sie',
+    'reg.cleaning.acceptHint':'Du musst zustimmen, um mit der Anmeldung fortzufahren.',
 
-    'reg.step4.nav':          'Interessen',
-    'reg.step4.eyebrow':      'Schritt 4 von 5',
-    'reg.step4.title':        'Ein paar kurze Fragen',
-    'reg.step4.subtitle':     'Hilf uns, das bestmögliche Event zu planen.',
+    'reg.step3.eyebrow':      'Schritt 3 von 4',
+    'reg.step3.title':        'Workshop-Paket',
+    'reg.step3.subtitle':     'Möchtest du an einem Workshop teilnehmen?',
 
-    'reg.interest.sponsor.title': 'Sponsor werden',
-    'reg.interest.sponsor.desc':  'Bist du oder deine Organisation daran interessiert, die Konferenz zu sponsern?',
-    'reg.interest.daycare.title': 'Kinderbetreuung',
-    'reg.interest.daycare.desc':  'Falls wir eine Kinderbetreuung vor Ort anbieten, würdest du deine Kinder mitbringen?',
-    'reg.interest.lunch.title':   'Organisiertes Mittagessen',
-    'reg.interest.lunch.desc':    'Wärst du an einem vorbereiteten Mittagspaket im Veranstaltungsort interessiert?',
+    'reg.workshop.title':     'Workshop-Paket',
+    'reg.workshop.desc':      'Nimm an einem interaktiven Workshop teil, um deine Fähigkeiten zu schärfen und dich mit anderen Toastmasters zu vernetzen. Begrenzte Plätze verfügbar.',
+    'reg.workshop.memberFree':'Kostenlos für Toastmasters-Mitglieder',
+    'reg.workshop.free':      'GRATIS',
 
-    'reg.step5.nav':          'Bestätigen',
-    'reg.step5.eyebrow':      'Schritt 5 von 5',
-    'reg.step5.title':        'Anmeldung bestätigen',
-    'reg.step5.subtitle':     'Überprüfe deine Daten vor der Bestätigung.',
+    'reg.step4.eyebrow':      'Schritt 4 von 4',
+    'reg.step4.title':        'Anmeldung bestätigen',
+    'reg.step4.subtitle':     'Überprüfe deine Daten vor der Zahlung.',
 
     'reg.firstName':          'Vorname',
     'reg.lastName':           'Nachname',
@@ -181,39 +150,18 @@ const i18n = {
     'reg.clubHint':           'Du kannst mehrere Clubs auswählen, wenn du Mitglied in mehr als einem bist.',
     'reg.clubNotListed':      'Mein Club ist nicht in der Liste',
 
-    'reg.role.audience':        'Zuschauer',
-    'reg.role.audienceDesc':    'Genieße die Reden, Wettbewerbe und das Networking als Gast.',
-    'reg.role.volunteer':       'Konferenz-Volunteer',
-    'reg.role.volunteerDesc':   'Du hast eine oder mehrere Rollen bei der Durchführung der Konferenz.',
-    'reg.role.contestantTitle': 'Teilnehmer',
-    'reg.role.contestantDesc':  'Du nimmst an einem der Redewettbewerbe teil.',
-    'reg.role.staffRolesLabel': 'Wähle deine Rolle(n) — Mehrfachauswahl möglich',
-    'reg.role.enterCode':       'Zugangscode',
-    'reg.role.codeHint':        'Kontaktiere den Konferenzorganisator, wenn du keinen Code hast.',
-    'reg.role.timekeeper':      'Zeitnehmer',
-    'reg.role.ballot':          'Stimmenauszähler',
-    'reg.role.judge':           'Richter',
-    'reg.role.chiefjudge':      'Chefrichter',
-    'reg.role.contestchair':    'Wettbewerbsleiter',
-    'reg.role.sargeant':        'Sergeant at Arms',
-    'reg.role.contestant':      'Teilnehmer (Wettbewerb)',
-    'reg.role.free':            'Inklusive',
-
-    'reg.workshop.title':     'Workshop-Paket',
-    'reg.workshop.desc':      'Nimm an einem interaktiven Workshop teil, um deine Fähigkeiten zu schärfen. Begrenzte Plätze verfügbar.',
-
-    'reg.summary.name':       'Name',
-    'reg.summary.email':      'E-Mail',
-    'reg.summary.role':       'Rolle',
-    'reg.summary.priceTitle': 'Preisübersicht',
-    'reg.summary.cleaning':   'Reinigungsgebühr',
-    'reg.summary.roleAudience':   'Zuschauer',
-    'reg.summary.roleVolunteer':  'Volunteer',
-    'reg.summary.roleContestant': 'Teilnehmer',
-    'reg.summary.workshop':   'Workshop-Paket',
-    'reg.summary.total':      'Gesamtbetrag',
-    'reg.summary.paymentNote':'💡 Du wirst zur sicheren Kartenzahlung über Stripe weitergeleitet.',
-    'reg.confirm.paying':     'Weiterleitung zur Zahlung…',
+    'reg.summary.name':           'Name',
+    'reg.summary.email':          'E-Mail',
+    'reg.summary.status':         'Status',
+    'reg.summary.statusMember':   'Toastmasters-Mitglied',
+    'reg.summary.statusGuest':    'Gast',
+    'reg.summary.priceTitle':     'Preisübersicht',
+    'reg.summary.cleaning':       'Reinigungsgebühr',
+    'reg.summary.workshop':       'Workshop-Paket',
+    'reg.summary.memberDiscount': 'Toastmasters-Mitgliederrabatt',
+    'reg.summary.total':          'Gesamtbetrag',
+    'reg.summary.paymentNote':    '💡 Du wirst zur sicheren Kartenzahlung über Stripe weitergeleitet.',
+    'reg.confirm.paying':         'Weiterleitung zur Zahlung…',
 
     'reg.next':               'Weiter →',
     'reg.back':               '← Zurück',
@@ -222,22 +170,19 @@ const i18n = {
     'reg.confirm.title':      'Du bist angemeldet!',
     'reg.confirm.body':       'Wir sehen uns am 25. April in der Stadtteilkultur 2411, München!',
     'reg.confirm.name':       'Name',
-    'reg.confirm.role':       'Rolle',
     'reg.confirm.workshop':   'Workshop',
     'reg.confirm.workshopIncluded': 'Inklusive ✓',
+    'reg.confirm.workshopPaid': '+€10 ✓',
     'reg.confirm.due':        'Gesamtbetrag (vor Ort)',
     'reg.confirm.paid':       'Zahlung erhalten',
     'reg.confirm.download':   '↓ Ticket herunterladen (PDF)',
     'reg.confirm.backHome':   '← Zurück zur Hauptseite',
-
-    'reg.confirm.receiptNote':  '📧 Eine Zahlungsbestätigung wurde an deine E-Mail-Adresse gesendet.',
+    'reg.confirm.receiptNote':'📧 Eine Zahlungsbestätigung wurde an deine E-Mail-Adresse gesendet.',
 
     'reg.err.firstName':      'Bitte gib deinen Vornamen ein.',
     'reg.err.lastName':       'Bitte gib deinen Nachnamen ein.',
     'reg.err.email':          'Bitte gib eine gültige E-Mail-Adresse ein.',
-    'reg.err.role':           'Bitte wähle deine Rolle aus.',
-    'reg.err.staffRole':      'Bitte wähle mindestens eine Volunteer-Rolle aus.',
-    'reg.err.code':           'Ungültiger Zugangscode. Bitte kontaktiere den Konferenzorganisator.',
+    'reg.err.cleaning':       'Bitte akzeptiere die Reinigungsgebühr, um fortzufahren.',
     'reg.err.paymentTitle':   'Zahlung nicht abgeschlossen',
     'reg.err.paymentBody':    'Etwas ist schiefgelaufen oder du hast abgebrochen. Bitte versuche es erneut — deine Daten sind noch gespeichert.',
 
@@ -247,6 +192,7 @@ const i18n = {
     'pdf.date':               '25. April 2026',
     'pdf.venue':              'Stadtteilkultur 2411, München',
     'pdf.workshop':           'Workshop-Paket: Inklusive',
+    'pdf.workshopPaid':       'Workshop-Paket: +€10',
     'pdf.totalLabel':         'GESAMTBETRAG VOR ORT',
     'pdf.totalNote':          'Barzahlung bei Ankunft',
     'pdf.totalLabelPaid':     'ZAHLUNG ERHALTEN',
@@ -258,11 +204,8 @@ const i18n = {
 };
 
 /* ── Google Sheets endpoint ───────────────────────────── */
-// Replace with your deployed Apps Script Web App URL
-const APPS_SCRIPT_URL    = 'https://script.google.com/macros/s/AKfycbxKreCl6hQoqlbO3JcsIU8kZ_8SVmQ05ha49KU_WUuheuvNQB1OaPgBjZxTESzkfcZ6aQ/exec';
-const STRIPE_PUBLIC_KEY  = 'pk_test_51TDjKJRtImJpS3aDh6XmontWzR953d7ax0A3iG8eN4x9BkNMXxYTiYd7ZNztqYCa4Ho3TC5hZyLL8uxJ8f15nWn400AwBQQ4F3';
-const VOLUNTEER_CODE     = 'DIVD2026';
-const CONTESTANT_CODE    = 'SPEAK2026';
+const APPS_SCRIPT_URL   = 'https://script.google.com/macros/s/AKfycbxKreCl6hQoqlbO3JcsIU8kZ_8SVmQ05ha49KU_WUuheuvNQB1OaPgBjZxTESzkfcZ6aQ/exec';
+const STRIPE_PUBLIC_KEY = 'pk_test_51TDjKJRtImJpS3aDh6XmontWzR953d7ax0A3iG8eN4x9BkNMXxYTiYd7ZNztqYCa4Ho3TC5hZyLL8uxJ8f15nWn400AwBQQ4F3';
 
 /* ── i18n ─────────────────────────────────────────────── */
 let currentLang = localStorage.getItem('tm-lang') || 'en';
@@ -293,51 +236,25 @@ document.getElementById('langToggle').addEventListener('click', toggleLang);
 
 /* ── State ────────────────────────────────────────────── */
 const state = {
-  currentStep: 1,
-  firstName:   '',
-  lastName:    '',
-  email:       '',
-  isMember:    false,
-  clubs:       [],   // array of selected club names
-  clubOther:   '',   // free-text when manual mode is active
-  roleType:    '',       // 'audience' | 'volunteer' | 'contestant'
-  staffRoles:  [],       // array of selected volunteer roles (e.g. ['timekeeper','judge'])
-  workshop:    false,
-  sponsor:     false,
-  dayCare:     false,
-  lunch:       false,
-  ref:         '',   // booking reference, generated on confirm
-  paidViaStripe: false,
+  currentStep:      1,
+  firstName:        '',
+  lastName:         '',
+  email:            '',
+  isMember:         false,
+  clubs:            [],
+  clubOther:        '',
+  cleaningAccepted: false,
+  workshop:         false,
+  ref:              '',
+  paidViaStripe:    false,
 };
 
-const PRICES = { cleaning: 5, audience: 5, workshop: 5 };
+const PRICES = { cleaning: 5, workshop: 10 };
 
 function calcTotal() {
   let total = PRICES.cleaning;
-  if (state.roleType === 'audience') total += PRICES.audience;
-  if (state.workshop) total += PRICES.workshop;
+  if (state.workshop && !state.isMember) total += PRICES.workshop;
   return total;
-}
-
-function roleLabel() {
-  if (state.roleType === 'audience')   return t('reg.summary.roleAudience');
-  if (state.roleType === 'contestant') return t('reg.summary.roleContestant');
-  // volunteer — list their specific roles
-  const names = state.staffRoles.map(r => t(`reg.role.${r}`));
-  return names.length ? names.join(', ') : t('reg.summary.roleVolunteer');
-}
-
-function roleBadgeText() {
-  if (state.roleType === 'audience')   return 'AUDIENCE';
-  if (state.roleType === 'contestant') return 'CONTESTANT';
-  return 'VOLUNTEER';
-}
-
-// Human-readable role for ticket + confirmation screen
-function ticketRole() {
-  if (state.roleType === 'audience')   return t('reg.role.audience');
-  if (state.roleType === 'contestant') return t('reg.role.contestantTitle');
-  return t('reg.role.volunteer');
 }
 
 function generateRef() {
@@ -347,17 +264,17 @@ function generateRef() {
   ).join('');
 }
 
+/* ── Payment ──────────────────────────────────────────── */
 async function initiatePayment() {
-  const btn = document.getElementById('step5Confirm');
+  const btn = document.getElementById('step4Confirm');
   btn.disabled = true;
   btn.textContent = t('reg.confirm.paying');
 
-  // Persist state so we can restore it after Stripe redirect
   sessionStorage.setItem('divD_reg', JSON.stringify({ ...state, total: calcTotal() }));
 
   try {
     const res  = await fetch(APPS_SCRIPT_URL, {
-      method:  'POST',
+      method: 'POST',
       body: JSON.stringify({
         bookingRef: state.ref,
         firstName:  state.firstName,
@@ -365,12 +282,7 @@ async function initiatePayment() {
         email:      state.email,
         member:     state.isMember,
         club:       state.clubOther || state.clubs.join(', '),
-        roleType:   state.roleType,
-        staffRoles: state.staffRoles.join(', '),
         workshop:   state.workshop,
-        sponsor:    state.sponsor,
-        dayCare:    state.dayCare,
-        lunch:      state.lunch,
         total:      calcTotal(),
         lang:       currentLang,
       }),
@@ -389,33 +301,27 @@ async function initiatePayment() {
   }
 }
 
-// Called on page load — restores state if returning from Stripe.
-// Returns true if it navigated to a step (so init skips goToStep(1)).
 function handlePaymentReturn() {
   const params = new URLSearchParams(window.location.search);
-  history.replaceState({}, '', window.location.pathname); // clean URL immediately
+  history.replaceState({}, '', window.location.pathname);
 
-  // ── Success ──────────────────────────────────────────────
   if (params.get('success') && params.get('session_id')) {
     const saved = sessionStorage.getItem('divD_reg');
     if (!saved) return false;
     Object.assign(state, JSON.parse(saved));
     sessionStorage.removeItem('divD_reg');
     state.paidViaStripe = true;
-    goToStep(6);
+    goToStep(5);
     return true;
   }
 
-  // ── Cancelled / failed ───────────────────────────────────
   if (params.get('cancelled')) {
     const saved = sessionStorage.getItem('divD_reg');
     if (!saved) return false;
     Object.assign(state, JSON.parse(saved));
-    // Don't remove from sessionStorage — let them retry
-    goToStep(5);
+    goToStep(4);
     document.getElementById('paymentErrorBanner').hidden = false;
-    // Re-enable the pay button
-    const btn = document.getElementById('step5Confirm');
+    const btn = document.getElementById('step4Confirm');
     btn.disabled = false;
     btn.textContent = `${t('reg.confirm')} — €${calcTotal()}`;
     return true;
@@ -424,21 +330,16 @@ function handlePaymentReturn() {
   return false;
 }
 
-function isAudience()    { return state.roleType === 'audience'; }
-
 /* ── Step navigation ──────────────────────────────────── */
 function goToStep(n) {
-  // Hide all panels
   document.querySelectorAll('.funnel__panel').forEach(p => {
     p.classList.remove('active');
     p.hidden = true;
   });
-  // Show target
   const panel = document.getElementById('step' + n);
   panel.hidden = false;
   panel.classList.add('active');
 
-  // Update progress dots
   document.querySelectorAll('.funnel__prog-step').forEach(dot => {
     const s = parseInt(dot.dataset.step);
     dot.classList.toggle('active', s === n);
@@ -446,17 +347,15 @@ function goToStep(n) {
   });
 
   state.currentStep = n;
-
-  // Scroll to top of funnel
   document.getElementById('funnel').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-  // If going to step 5, populate summary; step 6 is confirmation
-  if (n === 5) populateSummary();
-  if (n === 6) populateConfirmation();
+  if (n === 3) updateWorkshopPricing();
+  if (n === 4) populateSummary();
+  if (n === 5) populateConfirmation();
 }
 
 /* ── Toast ────────────────────────────────────────────── */
-const toastEl    = document.getElementById('toast');
+const toastEl = document.getElementById('toast');
 let   toastTimer;
 
 function showToast(msg) {
@@ -482,7 +381,6 @@ function showError(fieldId, errId, msg) {
 function validateStep1() {
   clearErrors();
   let valid = true;
-
   if (!state.firstName.trim()) {
     showError('firstName', 'firstNameErr', t('reg.err.firstName'));
     valid = false;
@@ -500,20 +398,9 @@ function validateStep1() {
 }
 
 function validateStep2() {
-  clearErrors();
-  if (!state.roleType) {
-    document.getElementById('roleErr').textContent = t('reg.err.role');
+  if (!state.cleaningAccepted) {
+    document.getElementById('cleaningErr').textContent = t('reg.err.cleaning');
     return false;
-  }
-  // Check access code for gated roles
-  if (state.roleType === 'volunteer' || state.roleType === 'contestant') {
-    const entered  = document.getElementById('accessCode').value.trim().toUpperCase();
-    const expected = state.roleType === 'volunteer' ? VOLUNTEER_CODE : CONTESTANT_CODE;
-    if (entered !== expected) {
-      document.getElementById('roleErr').textContent = t('reg.err.code');
-      document.getElementById('accessCode').focus();
-      return false;
-    }
   }
   return true;
 }
@@ -587,16 +474,14 @@ const CLUBS = [
   const placeholder = document.getElementById('clubSelectPlaceholder');
   const wrapper     = document.getElementById('clubSelect');
 
-  // Manual entry — checkbox swaps dropdown for text input
-  const notListedCb  = document.getElementById('clubNotListed');
-  const manualInput  = document.getElementById('clubOther');
+  const notListedCb = document.getElementById('clubNotListed');
+  const manualInput = document.getElementById('clubOther');
 
   notListedCb.addEventListener('change', () => {
     const manual = notListedCb.checked;
-    wrapper.hidden  = manual;
+    wrapper.hidden     = manual;
     manualInput.hidden = !manual;
     if (manual) {
-      // Clear dropdown selections when switching to manual
       state.clubs = [];
       renderTags();
       closeDropdown();
@@ -676,22 +561,23 @@ document.getElementById('step1Next').addEventListener('click', () => {
   if (validateStep1()) goToStep(2);
 });
 
-/* ── Step 2 wiring ────────────────────────────────────── */
-const accessCodeField = document.getElementById('accessCodeField');
-const accessCodeInput = document.getElementById('accessCode');
+/* ── Step 2 wiring: Cleaning fee ─────────────────────── */
+const cleaningToggle = document.getElementById('cleaningToggle');
+const cleaningCard   = document.getElementById('cleaningCard');
 
-document.querySelectorAll('input[name="roleType"]').forEach(radio => {
-  radio.addEventListener('change', () => {
-    state.roleType   = radio.value;
-    state.staffRoles = [];
-    // Highlight selected card
-    document.querySelectorAll('.role-type-card').forEach(c => c.classList.remove('selected'));
-    radio.closest('.role-type-card').classList.add('selected');
-    // Show access code field for gated roles
-    const needsCode = (state.roleType === 'volunteer' || state.roleType === 'contestant');
-    accessCodeField.hidden = !needsCode;
-    if (needsCode) { accessCodeInput.value = ''; accessCodeInput.focus(); }
-  });
+function setCleaning(val) {
+  state.cleaningAccepted = val;
+  cleaningToggle.setAttribute('aria-checked', String(val));
+  cleaningCard.classList.toggle('addon-card--active', val);
+  if (val) document.getElementById('cleaningErr').textContent = '';
+}
+
+cleaningToggle.addEventListener('click', () => setCleaning(!state.cleaningAccepted));
+cleaningToggle.addEventListener('keydown', e => {
+  if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); setCleaning(!state.cleaningAccepted); }
+});
+cleaningCard.addEventListener('click', e => {
+  if (!e.target.closest('.addon-toggle')) setCleaning(!state.cleaningAccepted);
 });
 
 document.getElementById('step2Back').addEventListener('click', () => goToStep(1));
@@ -699,9 +585,15 @@ document.getElementById('step2Next').addEventListener('click', () => {
   if (validateStep2()) goToStep(3);
 });
 
-/* ── Step 3 wiring ────────────────────────────────────── */
+/* ── Step 3 wiring: Workshop ─────────────────────────── */
 const workshopToggle = document.getElementById('workshopToggle');
 const workshopCard   = document.getElementById('workshopCard');
+
+function updateWorkshopPricing() {
+  document.getElementById('workshopPriceMember').hidden    = !state.isMember;
+  document.getElementById('workshopPriceNonMember').hidden =  state.isMember;
+  document.getElementById('workshopMemberBadge').hidden    = !state.isMember;
+}
 
 function setWorkshop(val) {
   state.workshop = val;
@@ -720,80 +612,51 @@ workshopCard.addEventListener('click', e => {
 document.getElementById('step3Back').addEventListener('click', () => goToStep(2));
 document.getElementById('step3Next').addEventListener('click', () => goToStep(4));
 
-/* ── Step 4 wiring: Interests ────────────────────────── */
-function makeInterestToggle(toggleId, cardId, stateKey) {
-  const toggle = document.getElementById(toggleId);
-  const card   = document.getElementById(cardId);
-
-  function set(val) {
-    state[stateKey] = val;
-    toggle.setAttribute('aria-checked', String(val));
-    card.classList.toggle('addon-card--active', val);
-  }
-
-  toggle.addEventListener('click', () => set(!state[stateKey]));
-  toggle.addEventListener('keydown', e => {
-    if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); set(!state[stateKey]); }
-  });
-  card.addEventListener('click', e => {
-    if (!e.target.closest('.addon-toggle')) set(!state[stateKey]);
-  });
-}
-
-makeInterestToggle('sponsorToggle',  'sponsorCard',  'sponsor');
-makeInterestToggle('dayCareToggle',  'dayCareCard',  'dayCare');
-makeInterestToggle('lunchToggle',    'lunchCard',    'lunch');
-
-document.getElementById('step4Back').addEventListener('click', () => goToStep(3));
-document.getElementById('step4Next').addEventListener('click', () => goToStep(5));
-
-/* ── Step 5: Summary ─────────────────────────────────── */
+/* ── Step 4: Summary ─────────────────────────────────── */
 function populateSummary() {
-  document.getElementById('summaryName').textContent  = `${state.firstName} ${state.lastName}`;
-  document.getElementById('summaryEmail').textContent = state.email;
-  document.getElementById('summaryRole').textContent  = roleLabel();
+  document.getElementById('summaryName').textContent   = `${state.firstName} ${state.lastName}`;
+  document.getElementById('summaryEmail').textContent  = state.email;
+  document.getElementById('summaryStatus').textContent = state.isMember
+    ? t('reg.summary.statusMember')
+    : t('reg.summary.statusGuest');
 
-  // Role price row
-  const roleLabelEl = document.getElementById('priceRoleLabel');
-  const roleValEl   = document.getElementById('priceRoleValue');
-  if (isAudience()) {
-    roleLabelEl.textContent = t('reg.summary.roleAudience');
-    roleValEl.textContent   = '€5';
-  } else {
-    roleLabelEl.textContent = ticketRole();
-    roleValEl.textContent   = '€0';
-  }
-  document.getElementById('priceRoleRow').hidden = false;
+  // Workshop rows
+  const nonMemberRow  = document.getElementById('priceWorkshopRow');
+  const memberRow     = document.getElementById('priceWorkshopMemberRow');
+  const discountRow   = document.getElementById('priceDiscountRow');
 
-  // Workshop row
-  document.getElementById('priceWorkshopRow').hidden = !state.workshop;
+  nonMemberRow.hidden  = !(state.workshop && !state.isMember);
+  memberRow.hidden     = !(state.workshop && state.isMember);
+  discountRow.hidden   = !(state.workshop && state.isMember);
 
-  // Total
   document.getElementById('priceTotal').textContent = `€${calcTotal()}`;
 
-  // Update confirm button to show amount
-  const btn = document.getElementById('step5Confirm');
+  const btn = document.getElementById('step4Confirm');
   btn.disabled = false;
   btn.textContent = `${t('reg.confirm')} — €${calcTotal()}`;
 }
 
-document.getElementById('step5Back').addEventListener('click', () => goToStep(4));
-document.getElementById('step5Confirm').addEventListener('click', async () => {
-  if (!state.ref) state.ref = generateRef(); // keep existing ref on retry
+document.getElementById('step4Back').addEventListener('click', () => goToStep(3));
+document.getElementById('step4Confirm').addEventListener('click', async () => {
+  if (!state.ref) state.ref = generateRef();
   await initiatePayment();
 });
-
-// handlePaymentReturn() is called during init below
 
 /* ── Step 5: Confirmation ────────────────────────────── */
 function populateConfirmation() {
   document.getElementById('confirmName').textContent  = `${state.firstName} ${state.lastName}`;
-  document.getElementById('confirmRole').textContent  = ticketRole();
   document.getElementById('confirmTotal').textContent = `€${calcTotal()}`;
   document.getElementById('confirmDueLabel').textContent = t(state.paidViaStripe ? 'reg.confirm.paid' : 'reg.confirm.due');
 
   const workshopRow = document.getElementById('confirmWorkshopRow');
-  workshopRow.hidden = !state.workshop;
+  if (state.workshop) {
+    workshopRow.hidden = false;
+    document.getElementById('confirmWorkshopValue').textContent = state.isMember
+      ? t('reg.confirm.workshopIncluded')
+      : t('reg.confirm.workshopPaid');
+  } else {
+    workshopRow.hidden = true;
+  }
 
   const refEl = document.getElementById('confirmRef');
   if (refEl) refEl.textContent = state.ref;
@@ -803,7 +666,6 @@ document.getElementById('downloadTicket').addEventListener('click', generatePDF)
 
 /* ── PDF Generation ──────────────────────────────────── */
 function generatePDF() {
-  // Load TM logo as base64, then build PDF
   const img = new Image();
   img.crossOrigin = 'anonymous';
   img.onload = function () {
@@ -811,37 +673,32 @@ function generatePDF() {
     canvas.width  = img.naturalWidth  || img.width;
     canvas.height = img.naturalHeight || img.height;
     canvas.getContext('2d').drawImage(img, 0, 0);
-    const logoB64 = canvas.toDataURL('image/png');
-    buildPDF(logoB64);
+    buildPDF(canvas.toDataURL('image/png'));
   };
-  img.onerror = function () {
-    buildPDF(null); // proceed without logo
-  };
+  img.onerror = function () { buildPDF(null); };
   img.src = 'images/tm-logo.png';
 }
 
 function buildPDF(logoB64) {
   const { jsPDF } = window.jspdf;
-  // A5 landscape: 210 × 148 mm
   const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a5' });
   const W = 210, H = 148;
 
-  /* ── Background ── */
-  // Navy full background
-  doc.setFillColor(0, 65, 101);       // #004165
+  // Background
+  doc.setFillColor(0, 65, 101);
   doc.rect(0, 0, W, H, 'F');
 
-  /* ── Left accent strip ── */
+  // Left accent strip
   const stripW = 50;
-  doc.setFillColor(119, 36, 50);      // #772432
+  doc.setFillColor(119, 36, 50);
   doc.rect(0, 0, stripW, H, 'F');
 
-  /* ── Bottom footer strip ── */
+  // Footer strip
   const footerH = 10;
-  doc.setFillColor(0, 44, 70);        // slightly darker navy
+  doc.setFillColor(0, 44, 70);
   doc.rect(0, H - footerH, W, footerH, 'F');
 
-  /* ── TM Logo (left strip, centred) ── */
+  // TM Logo
   if (logoB64) {
     const logoSize = 28;
     const logoX    = (stripW - logoSize) / 2;
@@ -849,74 +706,63 @@ function buildPDF(logoB64) {
     doc.addImage(logoB64, 'PNG', logoX, logoY, logoSize, logoSize);
   }
 
-  /* ── Role badge (left strip) ── */
-  const role = ticketRole();
-  // Badge background
-  doc.setFillColor(242, 223, 116);    // #F2DF74 yellow
+  // Member/Guest badge (left strip)
+  const badgeLabel = state.isMember ? 'MEMBER' : 'GUEST';
+  doc.setFillColor(242, 223, 116);
   const badgeY = 60, badgeH = 14, badgePad = 4;
   doc.roundedRect(badgePad, badgeY, stripW - badgePad * 2, badgeH, 2, 2, 'F');
-  // Badge text
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(11);
   doc.setTextColor(0, 44, 70);
-  doc.text(role, stripW / 2, badgeY + badgeH / 2 + 0.5, { align: 'center', baseline: 'middle' });
+  doc.text(badgeLabel, stripW / 2, badgeY + badgeH / 2 + 0.5, { align: 'center', baseline: 'middle' });
 
-  /* ── Workshop badge (left strip, below role) ── */
+  // Workshop badge
   if (state.workshop) {
+    const workshopKey = state.isMember ? 'pdf.workshop' : 'pdf.workshopPaid';
     doc.setFillColor(255, 255, 255);
     doc.setDrawColor(255, 255, 255);
     doc.roundedRect(badgePad, badgeY + badgeH + 5, stripW - badgePad * 2, 9, 2, 2, 'FD');
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(7);
     doc.setTextColor(0, 44, 70);
-    doc.text(t('pdf.workshop'), stripW / 2, badgeY + badgeH + 5 + 4.5, { align: 'center', baseline: 'middle' });
+    doc.text(t(workshopKey), stripW / 2, badgeY + badgeH + 5 + 4.5, { align: 'center', baseline: 'middle' });
   }
 
-  /* ── Right content area ── */
+  // Right content area
   const contentX = stripW + 10;
-  const contentW = W - stripW - 14;
 
-  // Eyebrow
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(6.5);
-  doc.setTextColor(242, 223, 116);     // yellow
+  doc.setTextColor(242, 223, 116);
   doc.text(t('pdf.district'), contentX, 18);
 
-  // Conference name
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(20);
   doc.setTextColor(255, 255, 255);
   doc.text('Division D', contentX, 32);
   doc.text('Conference 2026', contentX, 43);
 
-  // Tagline
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(9);
   doc.setTextColor(200, 220, 235);
   doc.text(t('pdf.tagline'), contentX, 51);
 
-  // Divider line
   doc.setDrawColor(119, 36, 50);
   doc.setLineWidth(0.4);
   doc.line(contentX, 56, W - 10, 56);
 
-  // Attendee name
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(22);
-  doc.setTextColor(255, 255, 255);
   const fullName = `${state.firstName} ${state.lastName}`;
-  // Scale down if name is very long
   const nameSize = fullName.length > 24 ? 16 : fullName.length > 18 ? 18 : 22;
   doc.setFontSize(nameSize);
+  doc.setTextColor(255, 255, 255);
   doc.text(fullName, contentX, 73);
 
-  // Date & venue
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(8.5);
   doc.setTextColor(200, 220, 235);
   doc.text(`${t('pdf.date')}  ·  ${t('pdf.venue')}`, contentX, 84);
 
-  /* ── Total due at door ── */
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(8);
   doc.setTextColor(242, 223, 116);
@@ -929,24 +775,21 @@ function buildPDF(logoB64) {
   doc.setTextColor(200, 220, 235);
   doc.text(t(state.paidViaStripe ? 'pdf.totalNotePaid' : 'pdf.totalNote'), contentX, 118);
 
-  /* ── Booking reference ── */
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(7);
-  doc.setTextColor(169, 178, 177);   // TM gray
+  doc.setTextColor(169, 178, 177);
   doc.text(`REF: ${state.ref}`, contentX, 127);
 
-  /* ── Footer text ── */
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(7);
   doc.setTextColor(200, 220, 235);
   doc.text(t('pdf.footer'), W / 2, H - footerH / 2, { align: 'center', baseline: 'middle' });
 
-  /* ── Save ── */
   const safeName = `${state.firstName}-${state.lastName}`.replace(/[^a-zA-Z0-9-]/g, '-');
   doc.save(`${t('pdf.filename')}-${safeName}.pdf`);
 }
 
-/* ── Sticky nav scroll behaviour ─────────────────────── */
+/* ── Sticky nav ───────────────────────────────────────── */
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 20);
