@@ -25,8 +25,8 @@ const i18n = {
     'reg.step2.title':        'Venue Cleaning Fee',
     'reg.step2.subtitle':     'A small contribution to keep the venue in great shape.',
 
-    'reg.cleaning.desc':      'All attendees contribute a one-time venue cleaning fee of €5. This helps cover post-event cleaning costs at Stadtteilkultur 2411.',
-    'reg.cleaning.accept':    'I have read and accept the €5 cleaning fee',
+    'reg.cleaning.desc':      'All attendees contribute a one-time venue cleaning fee of €5.25. This helps cover post-event cleaning costs at Stadtteilkultur 2411.',
+    'reg.cleaning.accept':    'I have read and accept the €5.25 cleaning fee',
     'reg.cleaning.acceptHint':'You must accept to continue with your registration.',
 
     'reg.step3.eyebrow':      'Step 3 of 4',
@@ -122,8 +122,8 @@ const i18n = {
     'reg.step2.title':        'Reinigungsgebühr',
     'reg.step2.subtitle':     'Ein kleiner Beitrag, um den Veranstaltungsort sauber zu halten.',
 
-    'reg.cleaning.desc':      'Alle Teilnehmenden leisten einen einmaligen Beitrag von €5 zur Reinigung des Veranstaltungsortes nach der Konferenz.',
-    'reg.cleaning.accept':    'Ich habe die €5 Reinigungsgebühr gelesen und akzeptiere sie',
+    'reg.cleaning.desc':      'Alle Teilnehmenden leisten einen einmaligen Beitrag von €5,25 zur Reinigung des Veranstaltungsortes nach der Konferenz.',
+    'reg.cleaning.accept':    'Ich habe die €5,25 Reinigungsgebühr gelesen und akzeptiere sie',
     'reg.cleaning.acceptHint':'Du musst zustimmen, um mit der Anmeldung fortzufahren.',
 
     'reg.step3.eyebrow':      'Schritt 3 von 4',
@@ -249,7 +249,7 @@ const state = {
   paidViaStripe:    false,
 };
 
-const PRICES = { cleaning: 5, workshop: 10 };
+const PRICES = { cleaning: 5.25, workshop: 10 };
 
 function calcTotal() {
   let total = PRICES.cleaning;
