@@ -223,7 +223,7 @@ const i18n = {
 
 /* ── Google Sheets endpoint ───────────────────────────── */
 const APPS_SCRIPT_URL   = 'https://script.google.com/macros/s/AKfycbxKreCl6hQoqlbO3JcsIU8kZ_8SVmQ05ha49KU_WUuheuvNQB1OaPgBjZxTESzkfcZ6aQ/exec';
-const STRIPE_PUBLIC_KEY = 'pk_test_51TDjKJRtImJpS3aDh6XmontWzR953d7ax0A3iG8eN4x9BkNMXxYTiYd7ZNztqYCa4Ho3TC5hZyLL8uxJ8f15nWn400AwBQQ4F3';
+const STRIPE_PUBLIC_KEY = 'pk_live_51TDjK02OdpBFIs6xXcAP3czI5cJeh0oIWWkNr8xvDTPebqjmYskEdCgmHXvfC6Nwqo8Jf9VyW1iuiXkfaYzt7uGk00A6nqOPBA';
 
 /* ── i18n ─────────────────────────────────────────────── */
 let currentLang = localStorage.getItem('tm-lang') || 'en';
