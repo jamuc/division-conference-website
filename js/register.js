@@ -222,7 +222,7 @@ const i18n = {
 };
 
 /* ── Google Sheets endpoint ───────────────────────────── */
-const APPS_SCRIPT_URL   = 'https://script.google.com/macros/s/AKfycbygl0OJOv8LCr5utvB3TQx_h_WuhPCjtHmXZJXBf529ERuSYAh-zzaP6SuyTYzIl-KAlg/exec';
+const APPS_SCRIPT_URL   = 'https://script.google.com/macros/s/AKfycbwyw6w7LLkdF68_2r3m-CARpMh99JrdG1jA0NY1b2f3PagKDAfaRelgwlpgEpgn36OWZw/exec';
 const STRIPE_PUBLIC_KEY = 'pk_live_51TDjK02OdpBFIs6xXcAP3czI5cJeh0oIWWkNr8xvDTPebqjmYskEdCgmHXvfC6Nwqo8Jf9VyW1iuiXkfaYzt7uGk00A6nqOPBA';
 
 /* ── i18n ─────────────────────────────────────────────── */
