@@ -31,10 +31,10 @@ const i18n = {
     'reg.cleaning.acceptHint':'You must accept to continue with your registration.',
 
     'reg.step3.eyebrow':      'Step 3 of 5',
-    'reg.step3.title':        'Workshop Package',
+    'reg.step3.title':        'Workshop Pass',
     'reg.step3.subtitle':     'Would you like to join a workshop session?',
 
-    'reg.workshop.title':     'Workshop Package',
+    'reg.workshop.title':     'Workshop Pass',
     'reg.workshop.desc':      'Join an interactive workshop session to sharpen your skills and connect with fellow Toastmasters. Limited spaces available.',
     'reg.workshop.memberFree':'Free for Toastmasters members',
     'reg.workshop.free':      'FREE',
@@ -68,7 +68,7 @@ const i18n = {
     'reg.summary.statusGuest':    'Guest',
     'reg.summary.priceTitle':     'Price Breakdown',
     'reg.summary.cleaning':       'Cleaning fee',
-    'reg.summary.workshop':       'Workshop Package',
+    'reg.summary.workshop':       'Workshop Pass',
     'reg.summary.memberDiscount': 'Toastmasters member discount',
     'reg.summary.donation':       'Donation',
     'reg.summary.total':          'Total',
@@ -94,6 +94,7 @@ const i18n = {
     'reg.err.firstName':      'Please enter your first name.',
     'reg.err.lastName':       'Please enter your last name.',
     'reg.err.email':          'Please enter a valid email address.',
+    'reg.err.club':           'Please select or enter your club name.',
     'reg.err.cleaning':       'Please accept the cleaning fee to continue.',
     'reg.err.paymentTitle':   'Payment not completed',
     'reg.err.paymentBody':    'Something went wrong or you cancelled. Please try again — your details are still saved.',
@@ -137,10 +138,10 @@ const i18n = {
     'reg.cleaning.acceptHint':'Du musst zustimmen, um mit der Anmeldung fortzufahren.',
 
     'reg.step3.eyebrow':      'Schritt 3 von 5',
-    'reg.step3.title':        'Workshop-Paket',
+    'reg.step3.title':        'Workshop-Pass',
     'reg.step3.subtitle':     'Möchtest du an einem Workshop teilnehmen?',
 
-    'reg.workshop.title':     'Workshop-Paket',
+    'reg.workshop.title':     'Workshop-Pass',
     'reg.workshop.desc':      'Nimm an einem interaktiven Workshop teil, um deine Fähigkeiten zu schärfen und dich mit anderen Toastmasters zu vernetzen. Begrenzte Plätze verfügbar.',
     'reg.workshop.memberFree':'Kostenlos für Toastmasters-Mitglieder',
     'reg.workshop.free':      'GRATIS',
@@ -174,7 +175,7 @@ const i18n = {
     'reg.summary.statusGuest':    'Gast',
     'reg.summary.priceTitle':     'Preisübersicht',
     'reg.summary.cleaning':       'Reinigungsgebühr',
-    'reg.summary.workshop':       'Workshop-Paket',
+    'reg.summary.workshop':       'Workshop-Pass',
     'reg.summary.memberDiscount': 'Toastmasters-Mitgliederrabatt',
     'reg.summary.donation':       'Spende',
     'reg.summary.total':          'Gesamtbetrag',
@@ -200,6 +201,7 @@ const i18n = {
     'reg.err.firstName':      'Bitte gib deinen Vornamen ein.',
     'reg.err.lastName':       'Bitte gib deinen Nachnamen ein.',
     'reg.err.email':          'Bitte gib eine gültige E-Mail-Adresse ein.',
+    'reg.err.club':           'Bitte wähle deinen Club aus oder gib ihn ein.',
     'reg.err.cleaning':       'Bitte akzeptiere die Reinigungsgebühr, um fortzufahren.',
     'reg.err.paymentTitle':   'Zahlung nicht abgeschlossen',
     'reg.err.paymentBody':    'Etwas ist schiefgelaufen oder du hast abgebrochen. Bitte versuche es erneut — deine Daten sind noch gespeichert.',
@@ -415,6 +417,13 @@ function validateStep1() {
   if (!emailRe.test(state.email.trim())) {
     showError('email', 'emailErr', t('reg.err.email'));
     valid = false;
+  }
+  if (state.isMember) {
+    const hasClub = state.clubs.length > 0 || state.clubOther.trim().length > 0;
+    if (!hasClub) {
+      document.getElementById('clubErr').textContent = t('reg.err.club');
+      valid = false;
+    }
   }
   return valid;
 }
