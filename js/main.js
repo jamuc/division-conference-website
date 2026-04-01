@@ -11,7 +11,7 @@
 const i18n = {
   en: {
     'nav.brand':        'Division D · District 95',
-    'nav.cta':          'Register Now!',
+    'nav.cta':          'Pre-Signup',
     'nav.about':        'About',
     'nav.tm':           'Toastmasters',
     'nav.venue':        'Venue',
@@ -24,7 +24,8 @@ const i18n = {
     'hero.values':      'Integrity | Respect | Service | Excellence',
     'hero.date':        '25 April 2026',
     'hero.location':    'Munich, Germany',
-    'hero.cta':         'Register Now!',
+    'hero.cta':         'Pre-Signup',
+    'hero.registerNote': 'Registration opens 4 April 2026',
     'hero.visitorCount':   '{n} people have visited this page',
     'hero.agenda':         'View Programme',
     'nav.agenda':        'Programme',
@@ -96,7 +97,7 @@ const i18n = {
 
   de: {
     'nav.brand':        'Division D · Distrikt 95',
-    'nav.cta':          'Jetzt registrieren!',
+    'nav.cta':          'Voranmeldung',
     'nav.about':        'Über uns',
     'nav.tm':           'Toastmasters',
     'nav.venue':        'Veranstaltungsort',
@@ -109,7 +110,8 @@ const i18n = {
     'hero.values':      'Integrity | Respect | Service | Excellence',
     'hero.date':        '25. April 2026',
     'hero.location':    'München, Deutschland',
-    'hero.cta':         'Jetzt registrieren!',
+    'hero.cta':         'Voranmeldung',
+    'hero.registerNote': 'Registrierung öffnet am 4. April 2026',
     'hero.visitorCount':   '{n} Personen haben diese Seite besucht',
     'hero.agenda':         'Programm anzeigen',
     'nav.agenda':        'Programm',
