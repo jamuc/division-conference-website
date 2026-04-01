@@ -347,7 +347,17 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxKreCl6hQoqlbO
   const el = document.getElementById('visitorCount');
   if (!el) return;
 
-  // Only count once per browser session
+  function showCount(n) {
+    const lang = localStorage.getItem('tm-lang') || 'en';
+    const tpl  = (i18n[lang] || i18n.en)['hero.visitorCount'] || '{n} people have visited this page';
+    el.textContent = tpl.replace('{n}', Number(n).toLocaleString());
+  }
+
+  // Always show cached count immediately (no flicker on reload)
+  const cached = localStorage.getItem('divD_visitorCount');
+  if (cached) showCount(cached);
+
+  // Only increment once per browser session
   if (sessionStorage.getItem('divD_visited')) return;
   sessionStorage.setItem('divD_visited', '1');
 
@@ -355,9 +365,8 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxKreCl6hQoqlbO
     const res  = await fetch(APPS_SCRIPT_URL);
     const data = await res.json();
     if (data.count) {
-      const lang = localStorage.getItem('tm-lang') || 'en';
-      const tpl  = (i18n[lang] || i18n.en)['hero.visitorCount'] || '{n} people have visited this page';
-      el.textContent = tpl.replace('{n}', data.count.toLocaleString());
+      localStorage.setItem('divD_visitorCount', data.count);
+      showCount(data.count);
     }
   } catch (_) {
     // Silently fail — counter is non-essential
