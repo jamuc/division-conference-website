@@ -25,8 +25,9 @@ const i18n = {
     'hero.date':        '25 April 2026',
     'hero.location':    'Munich, Germany',
     'hero.cta':         'Pre-Signup',
-    'hero.registerNote': 'Registration opens 1 April 2026',
-    'hero.agenda':       'View Programme',
+    'hero.registerNote':   'Registration opens 1 April 2026',
+    'hero.visitorCount':   '{n} people have visited this page',
+    'hero.agenda':         'View Programme',
     'nav.agenda':        'Programme',
     'join.pill':         '🙋 Join Our Team',
 
@@ -110,8 +111,9 @@ const i18n = {
     'hero.date':        '25. April 2026',
     'hero.location':    'München, Deutschland',
     'hero.cta':         'Voranmeldung',
-    'hero.registerNote': 'Registrierung öffnet am 1. April 2026',
-    'hero.agenda':       'Programm anzeigen',
+    'hero.registerNote':   'Registrierung öffnet am 1. April 2026',
+    'hero.visitorCount':   '{n} Personen haben diese Seite besucht',
+    'hero.agenda':         'Programm anzeigen',
     'nav.agenda':        'Programm',
     'join.pill':         '🙋 Mitmachen',
 
@@ -337,3 +339,27 @@ document.querySelector('.venue__cal')?.addEventListener('click', () => {
   const gcal   = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${detail}`;
   window.open(gcal, '_blank', 'noopener,noreferrer');
 });
+
+/* ── Visitor counter ──────────────────────────────────── */
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxKreCl6hQoqlbO3JcsIU8kZ_8SVmQ05ha49KU_WUuheuvNQB1OaPgBjZxTESzkfcZ6aQ/exec';
+
+(async function trackVisit() {
+  const el = document.getElementById('visitorCount');
+  if (!el) return;
+
+  // Only count once per browser session
+  if (sessionStorage.getItem('divD_visited')) return;
+  sessionStorage.setItem('divD_visited', '1');
+
+  try {
+    const res  = await fetch(APPS_SCRIPT_URL);
+    const data = await res.json();
+    if (data.count) {
+      const lang = localStorage.getItem('tm-lang') || 'en';
+      const tpl  = (i18n[lang] || i18n.en)['hero.visitorCount'] || '{n} people have visited this page';
+      el.textContent = tpl.replace('{n}', data.count.toLocaleString());
+    }
+  } catch (_) {
+    // Silently fail — counter is non-essential
+  }
+}());

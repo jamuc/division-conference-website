@@ -461,6 +461,14 @@ body.lang-de .lang-toggle__de { color: var(--yellow); }
   opacity: .9;
   letter-spacing: .02em;
 }
+.hero__visitor-count {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #fff;
+  opacity: .65;
+  letter-spacing: .02em;
+  min-height: 1.25em;
+}
 .hero__agenda-link {
   display: inline-flex;
   align-items: center;

@@ -133,3 +133,15 @@ function testCheckout() {
     lang:       'en',
   })}});
 }
+
+// Visitor counter — called via GET on each page load
+function doGet() {
+  const props = PropertiesService.getScriptProperties();
+  const current = parseInt(props.getProperty('VISITOR_COUNT') || '1011');
+  const next = current + 1;
+  props.setProperty('VISITOR_COUNT', String(next));
+
+  return ContentService
+    .createTextOutput(JSON.stringify({ count: next }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
