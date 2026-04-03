@@ -1587,6 +1587,76 @@ body { padding-bottom: 70px; }
   justify-content: space-between;
 }
 
+/* ── Role selection (step 2 members) ──────────────────────────── */
+.role-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.role-card--funnel {
+  display: block;
+  border: 2px solid var(--gray);
+  border-radius: var(--radius);
+  padding: 0.875rem 1rem;
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition);
+}
+.role-card--funnel:has(.role-checkbox:checked) {
+  border-color: var(--maroon);
+  background: rgba(119,36,50,.04);
+}
+.role-card--judge {
+  display: block;
+}
+.role-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+.role-card--funnel .role-checkbox,
+.role-card__header .role-checkbox {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--maroon);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.role-card__label {
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+.role-card__elig {
+  margin-top: 0.875rem;
+  padding-top: 0.875rem;
+  border-top: 1px solid var(--gray-lt);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.role-card__elig-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin: 0 0 0.25rem;
+}
+.role-elig-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+.role-elig-check input[type="checkbox"] {
+  margin-top: 0.15rem;
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--maroon);
+  flex-shrink: 0;
+}
+
 /* ── Addon card ─────────────────────────────────────── */
 .addon-card {
   display: block;

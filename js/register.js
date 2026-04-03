@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════
    Division D Conference 2026 — register.js
-   · Multi-step registration funnel (4 steps + success)
+   · Multi-step registration funnel (6 steps + success)
    · Price calculation
    · PDF ticket generation (jsPDF)
    · i18n (EN / DE)
@@ -13,42 +13,55 @@ const i18n = {
     'reg.backToSite':         '← Back to site',
 
     'reg.step1.nav':          'Details',
-    'reg.step2.nav':          'Fee',
-    'reg.step3.nav':          'Workshop',
-    'reg.step4.nav':          'Donate',
-    'reg.step5.nav':          'Confirm',
+    'reg.step2.nav':          'Roles',
+    'reg.step3.nav':          'Fee',
+    'reg.step4.nav':          'Workshop',
+    'reg.step5.nav':          'Donate',
+    'reg.step6.nav':          'Confirm',
 
     'reg.step1.eyebrow':      'Step 1 of 5',
     'reg.step1.title':        'Your Details',
     'reg.step1.subtitle':     'Tell us a little about yourself.',
 
-    'reg.step2.eyebrow':      'Step 2 of 5',
-    'reg.step2.title':        'Venue Cleaning Fee',
-    'reg.step2.subtitle':     'A small contribution to keep the venue in great shape.',
+    'reg.step2.title':        'Contest Roles',
+    'reg.step2.subtitle':     'Select your role(s) for the contest day. Multiple selections allowed.',
+
+    'reg.step3.title':        'Venue Cleaning Fee',
+    'reg.step3.subtitle':     'A small contribution to keep the venue in great shape.',
 
     'reg.cleaning.desc':      'All attendees contribute a one-time venue cleaning fee of €5.25. This helps cover post-event cleaning costs at Stadtteilkultur 2411.',
     'reg.cleaning.accept':    'I have read and accept the €5.25 cleaning fee',
     'reg.cleaning.acceptHint':'You must accept to continue with your registration.',
 
-    'reg.step3.eyebrow':      'Step 3 of 5',
-    'reg.step3.title':        'Workshop Pass',
-    'reg.step3.subtitle':     'Would you like to join a workshop session?',
+    'reg.step4.title':        'Workshop Pass',
+    'reg.step4.subtitle':     'Would you like to join a workshop session?',
 
     'reg.workshop.title':     'Workshop Pass',
     'reg.workshop.desc':      'Join an interactive workshop session to sharpen your skills and connect with fellow Toastmasters. Limited spaces available.',
     'reg.workshop.memberFree':'Free for Toastmasters members',
     'reg.workshop.free':      'FREE',
 
-    'reg.step4.eyebrow':      'Step 4 of 5',
-    'reg.step4.title':        'Support the Conference',
-    'reg.step4.subtitle':     'Help us make this event great with a voluntary donation.',
+    'reg.step5.title':        'Support the Conference',
+    'reg.step5.subtitle':     'Help us make this event great with a voluntary donation.',
 
     'reg.donation.desc':      'Your donation goes directly towards financing the conference. Every contribution helps — but it is entirely optional.',
     'reg.donation.label':     'Or enter your own amount (€)',
 
-    'reg.step5.eyebrow':      'Step 5 of 5',
-    'reg.step5.title':        'Confirm Registration',
-    'reg.step5.subtitle':     'Review your details before paying.',
+    'reg.step6.title':        'Confirm Registration',
+    'reg.step6.subtitle':     'Review your details before paying.',
+
+    'reg.role.contestant':    'Contestant',
+    'reg.role.general':       'General Support',
+    'reg.role.judge':         'Judge',
+    'reg.role.technical':     'Technical Support',
+    'reg.role.registration':  'Registration Support',
+    'reg.role.photo':         'Photo',
+    'reg.role.timekeeper':    'Timekeeper',
+    'reg.role.eventSupport':  'SAA / Ballot Counter / Logistics',
+    'reg.role.judgeEligTitle':'Eligibility requirements — please confirm all:',
+    'reg.role.judgeElig1':    'I have achieved Pathways Level 2',
+    'reg.role.judgeElig2':    'I have been a Toastmasters member for at least 6 months',
+    'reg.role.judgeElig3':    'I have completed a minimum of 6 speech projects in the Competent Communication manual',
 
     'reg.firstName':          'First Name',
     'reg.lastName':           'Last Name',
@@ -64,6 +77,7 @@ const i18n = {
     'reg.summary.name':           'Name',
     'reg.summary.email':          'Email',
     'reg.summary.status':         'Status',
+    'reg.summary.roles':          'Role(s)',
     'reg.summary.statusMember':   'Toastmasters member',
     'reg.summary.statusGuest':    'Guest',
     'reg.summary.priceTitle':     'Price Breakdown',
@@ -96,6 +110,8 @@ const i18n = {
     'reg.err.email':          'Please enter a valid email address.',
     'reg.err.club':           'Please select or enter your club name.',
     'reg.err.cleaning':       'Please accept the cleaning fee to continue.',
+    'reg.err.roles':          'Please select at least one role.',
+    'reg.err.judgeElig':      'Please confirm all judge eligibility requirements.',
     'reg.err.paymentTitle':   'Payment not completed',
     'reg.err.paymentBody':    'Something went wrong or you cancelled. Please try again — your details are still saved.',
 
@@ -120,42 +136,55 @@ const i18n = {
     'reg.backToSite':         '← Zurück zur Seite',
 
     'reg.step1.nav':          'Details',
-    'reg.step2.nav':          'Gebühr',
-    'reg.step3.nav':          'Workshop',
-    'reg.step4.nav':          'Spenden',
-    'reg.step5.nav':          'Bestätigen',
+    'reg.step2.nav':          'Rollen',
+    'reg.step3.nav':          'Gebühr',
+    'reg.step4.nav':          'Workshop',
+    'reg.step5.nav':          'Spenden',
+    'reg.step6.nav':          'Bestätigen',
 
     'reg.step1.eyebrow':      'Schritt 1 von 5',
     'reg.step1.title':        'Deine Angaben',
     'reg.step1.subtitle':     'Erzähl uns ein wenig über dich.',
 
-    'reg.step2.eyebrow':      'Schritt 2 von 5',
-    'reg.step2.title':        'Reinigungsgebühr',
-    'reg.step2.subtitle':     'Ein kleiner Beitrag, um den Veranstaltungsort sauber zu halten.',
+    'reg.step2.title':        'Wettbewerbsrollen',
+    'reg.step2.subtitle':     'Wähle deine Rolle(n) für den Wettkampftag. Mehrfachauswahl möglich.',
+
+    'reg.step3.title':        'Reinigungsgebühr',
+    'reg.step3.subtitle':     'Ein kleiner Beitrag, um den Veranstaltungsort sauber zu halten.',
 
     'reg.cleaning.desc':      'Alle Teilnehmenden leisten einen einmaligen Beitrag von €5,25 zur Reinigung des Veranstaltungsortes nach der Konferenz.',
     'reg.cleaning.accept':    'Ich habe die €5,25 Reinigungsgebühr gelesen und akzeptiere sie',
     'reg.cleaning.acceptHint':'Du musst zustimmen, um mit der Anmeldung fortzufahren.',
 
-    'reg.step3.eyebrow':      'Schritt 3 von 5',
-    'reg.step3.title':        'Workshop-Pass',
-    'reg.step3.subtitle':     'Möchtest du an einem Workshop teilnehmen?',
+    'reg.step4.title':        'Workshop-Pass',
+    'reg.step4.subtitle':     'Möchtest du an einem Workshop teilnehmen?',
 
     'reg.workshop.title':     'Workshop-Pass',
     'reg.workshop.desc':      'Nimm an einem interaktiven Workshop teil, um deine Fähigkeiten zu schärfen und dich mit anderen Toastmasters zu vernetzen. Begrenzte Plätze verfügbar.',
     'reg.workshop.memberFree':'Kostenlos für Toastmasters-Mitglieder',
     'reg.workshop.free':      'GRATIS',
 
-    'reg.step4.eyebrow':      'Schritt 4 von 5',
-    'reg.step4.title':        'Konferenz unterstützen',
-    'reg.step4.subtitle':     'Hilf uns, dieses Event mit einer freiwilligen Spende zu finanzieren.',
+    'reg.step5.title':        'Konferenz unterstützen',
+    'reg.step5.subtitle':     'Hilf uns, dieses Event mit einer freiwilligen Spende zu finanzieren.',
 
     'reg.donation.desc':      'Deine Spende fließt direkt in die Finanzierung der Konferenz. Jeder Beitrag hilft — aber es ist völlig freiwillig.',
     'reg.donation.label':     'Oder gib deinen eigenen Betrag ein (€)',
 
-    'reg.step5.eyebrow':      'Schritt 5 von 5',
-    'reg.step5.title':        'Anmeldung bestätigen',
-    'reg.step5.subtitle':     'Überprüfe deine Daten vor der Zahlung.',
+    'reg.step6.title':        'Anmeldung bestätigen',
+    'reg.step6.subtitle':     'Überprüfe deine Daten vor der Zahlung.',
+
+    'reg.role.contestant':    'Teilnehmer/in',
+    'reg.role.general':       'Allgemeine Unterstützung',
+    'reg.role.judge':         'Richter/in',
+    'reg.role.technical':     'Technischer Support',
+    'reg.role.registration':  'Anmeldungsunterstützung',
+    'reg.role.photo':         'Foto',
+    'reg.role.timekeeper':    'Zeitnehmer/in',
+    'reg.role.eventSupport':  'SAA / Stimmenauszählung / Logistik',
+    'reg.role.judgeEligTitle':'Eignungsvoraussetzungen — bitte alle bestätigen:',
+    'reg.role.judgeElig1':    'Ich habe Pathways Level 2 erreicht',
+    'reg.role.judgeElig2':    'Ich bin seit mindestens 6 Monaten Toastmasters-Mitglied',
+    'reg.role.judgeElig3':    'Ich habe mindestens 6 Redeprojekte im Competent Communication Manual abgeschlossen',
 
     'reg.firstName':          'Vorname',
     'reg.lastName':           'Nachname',
@@ -171,6 +200,7 @@ const i18n = {
     'reg.summary.name':           'Name',
     'reg.summary.email':          'E-Mail',
     'reg.summary.status':         'Status',
+    'reg.summary.roles':          'Rolle(n)',
     'reg.summary.statusMember':   'Toastmasters-Mitglied',
     'reg.summary.statusGuest':    'Gast',
     'reg.summary.priceTitle':     'Preisübersicht',
@@ -203,6 +233,8 @@ const i18n = {
     'reg.err.email':          'Bitte gib eine gültige E-Mail-Adresse ein.',
     'reg.err.club':           'Bitte wähle deinen Club aus oder gib ihn ein.',
     'reg.err.cleaning':       'Bitte akzeptiere die Reinigungsgebühr, um fortzufahren.',
+    'reg.err.roles':          'Bitte wähle mindestens eine Rolle aus.',
+    'reg.err.judgeElig':      'Bitte bestätige alle Eignungsvoraussetzungen für Richter/innen.',
     'reg.err.paymentTitle':   'Zahlung nicht abgeschlossen',
     'reg.err.paymentBody':    'Etwas ist schiefgelaufen oder du hast abgebrochen. Bitte versuche es erneut — deine Daten sind noch gespeichert.',
 
@@ -246,6 +278,8 @@ function applyLang(lang) {
     const text = i18n[lang][key];
     if (text !== undefined) el.innerHTML = text;
   });
+
+  updateStepEyebrow(state.currentStep);
 }
 
 function toggleLang() {
@@ -266,6 +300,8 @@ const state = {
   cleaningAccepted: false,
   workshop:         false,
   donation:         0,
+  roles:            [],
+  judgeElig:        [false, false, false],
   ref:              '',
   paidViaStripe:    false,
 };
@@ -286,9 +322,56 @@ function generateRef() {
   ).join('');
 }
 
+/* ── Progress bar ─────────────────────────────────────── */
+function buildProgressBar() {
+  const container = document.getElementById('funnelProgress');
+  const steps = state.isMember
+    ? [
+        { panel: 1, key: 'reg.step1.nav' },
+        { panel: 2, key: 'reg.step2.nav' },
+        { panel: 3, key: 'reg.step3.nav' },
+        { panel: 4, key: 'reg.step4.nav' },
+        { panel: 5, key: 'reg.step5.nav' },
+        { panel: 6, key: 'reg.step6.nav' },
+      ]
+    : [
+        { panel: 1, key: 'reg.step1.nav' },
+        { panel: 3, key: 'reg.step3.nav' },
+        { panel: 4, key: 'reg.step4.nav' },
+        { panel: 5, key: 'reg.step5.nav' },
+        { panel: 6, key: 'reg.step6.nav' },
+      ];
+  container.innerHTML = '';
+  steps.forEach(({ panel, key }, i) => {
+    if (i > 0) {
+      const l = document.createElement('div');
+      l.className = 'funnel__prog-line';
+      container.appendChild(l);
+    }
+    const dot = document.createElement('div');
+    dot.className = 'funnel__prog-step' + (panel === 1 ? ' done' : '');
+    dot.dataset.panel = panel;
+    dot.innerHTML = `<div class="funnel__prog-dot"><span>${i + 1}</span></div><span class="funnel__prog-label">${t(key)}</span>`;
+    container.appendChild(dot);
+  });
+}
+
+/* ── Step eyebrow ─────────────────────────────────────── */
+function updateStepEyebrow(n) {
+  const order = state.isMember ? [1, 2, 3, 4, 5, 6] : [1, 3, 4, 5, 6];
+  const idx = order.indexOf(n);
+  if (idx === -1) return;
+  const panel = document.getElementById('step' + n);
+  const eyebrow = panel?.querySelector('.section__label');
+  if (!eyebrow) return;
+  eyebrow.textContent = currentLang === 'de'
+    ? `Schritt ${idx + 1} von ${order.length}`
+    : `Step ${idx + 1} of ${order.length}`;
+}
+
 /* ── Payment ──────────────────────────────────────────── */
 async function initiatePayment() {
-  const btn = document.getElementById('step5Confirm');
+  const btn = document.getElementById('step6Confirm');
   btn.disabled = true;
   btn.textContent = t('reg.confirm.paying');
 
@@ -304,6 +387,7 @@ async function initiatePayment() {
         email:      state.email,
         member:     state.isMember,
         club:       state.clubOther || state.clubs.join(', '),
+        roles:      state.roles.join(', '),
         workshop:   state.workshop,
         donation:   state.donation,
         total:      calcTotal(),
@@ -334,7 +418,7 @@ function handlePaymentReturn() {
     Object.assign(state, JSON.parse(saved));
     sessionStorage.removeItem('divD_reg');
     state.paidViaStripe = true;
-    goToStep(6);
+    goToStep(7);
     return true;
   }
 
@@ -342,9 +426,10 @@ function handlePaymentReturn() {
     const saved = sessionStorage.getItem('divD_reg');
     if (!saved) return false;
     Object.assign(state, JSON.parse(saved));
-    goToStep(5);
+    buildProgressBar();
+    goToStep(6);
     document.getElementById('paymentErrorBanner').hidden = false;
-    const btn = document.getElementById('step5Confirm');
+    const btn = document.getElementById('step6Confirm');
     btn.disabled = false;
     btn.textContent = `${t('reg.confirm')} — €${calcTotal().toFixed(2)}`;
     return true;
@@ -363,19 +448,23 @@ function goToStep(n) {
   panel.hidden = false;
   panel.classList.add('active');
 
+  const order = state.isMember ? [1, 2, 3, 4, 5, 6] : [1, 3, 4, 5, 6];
+  const currentIdx = order.indexOf(n);
   document.querySelectorAll('.funnel__prog-step').forEach(dot => {
-    const s = parseInt(dot.dataset.step);
-    dot.classList.toggle('active', s === n);
-    dot.classList.toggle('done', s < n);
+    const p = parseInt(dot.dataset.panel);
+    const dotIdx = order.indexOf(p);
+    dot.classList.toggle('active', p === n);
+    dot.classList.toggle('done', dotIdx !== -1 && dotIdx < currentIdx);
   });
 
   state.currentStep = n;
+  updateStepEyebrow(n);
   document.getElementById('funnel').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-  if (n === 3) updateWorkshopPricing();
-  if (n === 4) updateDonationStep();
-  if (n === 5) populateSummary();
-  if (n === 6) populateConfirmation();
+  if (n === 4) updateWorkshopPricing();
+  if (n === 5) updateDonationStep();
+  if (n === 6) populateSummary();
+  if (n === 7) populateConfirmation();
 }
 
 /* ── Toast ────────────────────────────────────────────── */
@@ -429,6 +518,23 @@ function validateStep1() {
 }
 
 function validateStep2() {
+  const errEl = document.getElementById('rolesErr');
+  errEl.textContent = '';
+  if (state.roles.length === 0) {
+    errEl.textContent = t('reg.err.roles');
+    return false;
+  }
+  if (state.roles.includes('judge')) {
+    const allElig = state.judgeElig.every(Boolean);
+    if (!allElig) {
+      errEl.textContent = t('reg.err.judgeElig');
+      return false;
+    }
+  }
+  return true;
+}
+
+function validateStep3() {
   if (!state.cleaningAccepted) {
     document.getElementById('cleaningErr').textContent = t('reg.err.cleaning');
     return false;
@@ -589,10 +695,49 @@ const CLUBS = [
 })();
 
 document.getElementById('step1Next').addEventListener('click', () => {
-  if (validateStep1()) goToStep(2);
+  if (validateStep1()) {
+    buildProgressBar();
+    updateStepEyebrow(1);
+    goToStep(state.isMember ? 2 : 3);
+  }
 });
 
-/* ── Step 2 wiring: Cleaning fee ─────────────────────── */
+/* ── Step 2 wiring: Contest Roles ────────────────────── */
+document.querySelectorAll('.role-checkbox').forEach(cb => {
+  cb.addEventListener('change', () => {
+    // collect all checked role values
+    state.roles = Array.from(document.querySelectorAll('.role-checkbox:checked')).map(el => el.value);
+    // clear error on change
+    document.getElementById('rolesErr').textContent = '';
+  });
+});
+
+const judgeCheckbox   = document.getElementById('judgeCheckbox');
+const judgeEligSection = document.getElementById('judgeEligSection');
+
+judgeCheckbox.addEventListener('change', () => {
+  judgeEligSection.hidden = !judgeCheckbox.checked;
+  if (!judgeCheckbox.checked) {
+    // reset eligibility state when judge is unchecked
+    state.judgeElig = [false, false, false];
+    document.getElementById('judgeElig1').checked = false;
+    document.getElementById('judgeElig2').checked = false;
+    document.getElementById('judgeElig3').checked = false;
+  }
+});
+
+['judgeElig1', 'judgeElig2', 'judgeElig3'].forEach((id, i) => {
+  document.getElementById(id).addEventListener('change', e => {
+    state.judgeElig[i] = e.target.checked;
+  });
+});
+
+document.getElementById('step2Back').addEventListener('click', () => goToStep(1));
+document.getElementById('step2Next').addEventListener('click', () => {
+  if (validateStep2()) goToStep(3);
+});
+
+/* ── Step 3 wiring: Cleaning fee ─────────────────────── */
 const cleaningToggle = document.getElementById('cleaningToggle');
 const cleaningCard   = document.getElementById('cleaningCard');
 
@@ -611,12 +756,12 @@ cleaningCard.addEventListener('click', e => {
   if (!e.target.closest('.addon-toggle')) setCleaning(!state.cleaningAccepted);
 });
 
-document.getElementById('step2Back').addEventListener('click', () => goToStep(1));
-document.getElementById('step2Next').addEventListener('click', () => {
-  if (validateStep2()) goToStep(3);
+document.getElementById('step3Back').addEventListener('click', () => goToStep(state.isMember ? 2 : 1));
+document.getElementById('step3Next').addEventListener('click', () => {
+  if (validateStep3()) goToStep(4);
 });
 
-/* ── Step 3 wiring: Workshop ─────────────────────────── */
+/* ── Step 4 wiring: Workshop ─────────────────────────── */
 const workshopToggle = document.getElementById('workshopToggle');
 const workshopCard   = document.getElementById('workshopCard');
 
@@ -643,10 +788,10 @@ workshopCard.addEventListener('click', e => {
   if (!e.target.closest('.addon-toggle')) setWorkshop(!state.workshop);
 });
 
-document.getElementById('step3Back').addEventListener('click', () => goToStep(2));
-document.getElementById('step3Next').addEventListener('click', () => goToStep(4));
+document.getElementById('step4Back').addEventListener('click', () => goToStep(3));
+document.getElementById('step4Next').addEventListener('click', () => goToStep(5));
 
-/* ── Step 4: Donation ─────────────────────────────────── */
+/* ── Step 5: Donation ─────────────────────────────────── */
 const donationInput = document.getElementById('donationAmount');
 
 function updateDonationStep() {
@@ -679,16 +824,37 @@ donationInput.addEventListener('input', () => {
   });
 });
 
-document.getElementById('step4Back').addEventListener('click', () => goToStep(3));
-document.getElementById('step4Next').addEventListener('click', () => goToStep(5));
+document.getElementById('step5Back').addEventListener('click', () => goToStep(4));
+document.getElementById('step5Next').addEventListener('click', () => goToStep(6));
 
-/* ── Step 4: Summary ─────────────────────────────────── */
+/* ── Step 6: Summary ─────────────────────────────────── */
+const ROLE_KEYS = {
+  contestant:   'reg.role.contestant',
+  general:      'reg.role.general',
+  judge:        'reg.role.judge',
+  technical:    'reg.role.technical',
+  registration: 'reg.role.registration',
+  photo:        'reg.role.photo',
+  timekeeper:   'reg.role.timekeeper',
+  eventSupport: 'reg.role.eventSupport',
+};
+
 function populateSummary() {
   document.getElementById('summaryName').textContent   = `${state.firstName} ${state.lastName}`;
   document.getElementById('summaryEmail').textContent  = state.email;
   document.getElementById('summaryStatus').textContent = state.isMember
     ? t('reg.summary.statusMember')
     : t('reg.summary.statusGuest');
+
+  // Roles row
+  const rolesRow = document.getElementById('summaryRolesRow');
+  if (state.isMember && state.roles.length > 0) {
+    rolesRow.hidden = false;
+    document.getElementById('summaryRoles').textContent =
+      state.roles.map(r => t(ROLE_KEYS[r] || r)).join(', ');
+  } else {
+    rolesRow.hidden = true;
+  }
 
   // Workshop rows
   const nonMemberRow  = document.getElementById('priceWorkshopRow');
@@ -707,18 +873,18 @@ function populateSummary() {
 
   document.getElementById('priceTotal').textContent = `€${calcTotal().toFixed(2)}`;
 
-  const btn = document.getElementById('step5Confirm');
+  const btn = document.getElementById('step6Confirm');
   btn.disabled = false;
   btn.textContent = `${t('reg.confirm')} — €${calcTotal().toFixed(2)}`;
 }
 
-document.getElementById('step5Back').addEventListener('click', () => goToStep(4));
-document.getElementById('step5Confirm').addEventListener('click', async () => {
+document.getElementById('step6Back').addEventListener('click', () => goToStep(5));
+document.getElementById('step6Confirm').addEventListener('click', async () => {
   if (!state.ref) state.ref = generateRef();
   await initiatePayment();
 });
 
-/* ── Step 6: Confirmation ────────────────────────────── */
+/* ── Step 7: Confirmation ────────────────────────────── */
 function populateConfirmation() {
   document.getElementById('confirmName').textContent  = `${state.firstName} ${state.lastName}`;
   document.getElementById('confirmTotal').textContent = `€${calcTotal().toFixed(2)}`;

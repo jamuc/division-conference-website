@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(git init:*)",
+      "WebFetch(domain:toastmasters-95.org)",
+      "WebFetch(domain:archive.d6tm.org)",
+      "WebFetch(domain:www.toastmasters.org)",
+      "Bash(curl -s -o /Users/jason.franklin/repositories/division_conference_website/images/tm-logo.png \"https://www.toastmasters.org/content/images/globals/toastmasters-logo@2x.png\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(gh repo:*)",
+      "Bash(git remote:*)",
+      "Bash(git push:*)",
+      "Bash(gh api:*)",
+      "Bash(git pull:*)",
+      "Bash(python3 -c \"from PIL import Image, ImageDraw, ImageFont; print\\(''''Pillow OK''''\\)\")",
+      "Bash(convert --version)",
+      "Bash(python3:*)",
+      "Bash(curl -s \"https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500&display=swap\" -H \"User-Agent: Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0.0.0 Safari/537.36\")",
+      "Bash(curl -sI https://www.toastmasters.org/favicon.ico)",
+      "Bash(curl -sL \"https://www.toastmasters.org\")",
+      "Bash(curl -sL \"https://toastmasters-95.org\")",
+      "Bash(curl -sL \"https://www.toastmasters.org/Content/images/favicon.ico\" -o /tmp/tm-favicon.ico)",
+      "Read(//tmp/**)",
+      "WebFetch(domain:pretix.eu)",
+      "Bash(git mv:*)",
+      "Bash(Respect)",
+      "Bash(Service)",
+      "Bash(chmod +x /Users/jason.franklin/repositories/division_conference_website/.git/hooks/pre-commit)",
+      "Bash(sed -i '' \"s/''reg.step3.title'':        ''Workshop Package''/''reg.step3.title'':        ''Workshop Pass''/\" /Users/jason.franklin/repositories/division_conference_website/js/register.js)",
+      "Bash(sed -i '' \"s/''reg.workshop.title'':     ''Workshop Package''/''reg.workshop.title'':     ''Workshop Pass''/\" /Users/jason.franklin/repositories/division_conference_website/js/register.js)",
+      "Bash(sed -i '' \"s/''reg.summary.workshop'':       ''Workshop Package''/''reg.summary.workshop'':       ''Workshop Pass''/\" /Users/jason.franklin/repositories/division_conference_website/js/register.js)",
+      "Bash(sed -i '' \"s/''reg.step3.title'':        ''Workshop-Paket''/''reg.step3.title'':        ''Workshop-Pass''/\" /Users/jason.franklin/repositories/division_conference_website/js/register.js)",
+      "Bash(sed -i '' \"s/''reg.workshop.title'':     ''Workshop-Paket''/''reg.workshop.title'':     ''Workshop-Pass''/\" /Users/jason.franklin/repositories/division_conference_website/js/register.js)",
+      "Bash(sed -i '' 's/Youth Leadership/Youth Bootcamp/g' /Users/jason.franklin/repositories/division_conference_website/agenda.html)",
+      "Bash(sed -i '' 's/Jugendführungsprogramm/Jugend-Bootcamp/g' /Users/jason.franklin/repositories/division_conference_website/agenda.html)",
+      "Bash(sed -i '' 's/Jugendführung/Jugend-Bootcamp/g' /Users/jason.franklin/repositories/division_conference_website/agenda.html)"
+    ]
+  }
+}
