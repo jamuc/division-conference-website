@@ -18,7 +18,7 @@ const i18n = {
     'reg.step4.nav':          'Workshop',
     'reg.step5.nav':          'Lunch',
     'reg.step6.nav':          'Donate',
-    'reg.step7.nav':          'Fee',
+    'reg.step7.nav':          'Clean-up',
     'reg.step8.nav':          'Confirm',
 
     'reg.step1.eyebrow':      'Step 1 of 5',
@@ -60,11 +60,11 @@ const i18n = {
     'reg.donation.desc':      'Your donation goes directly towards financing the conference. Every contribution helps — but it is entirely optional.',
     'reg.donation.label':     'Or enter your own amount (€)',
 
-    'reg.step7.title':        'Venue Cleaning Fee',
-    'reg.step7.subtitle':     'A small contribution to keep the venue in great shape.',
-    'reg.cleaning.desc':      'All attendees contribute a one-time venue cleaning fee of €5.25. This helps cover post-event cleaning costs at Stadtteilkultur 2411.',
-    'reg.cleaning.accept':    'I have read and accept the €5.25 cleaning fee',
-    'reg.cleaning.acceptHint':'You must accept to continue with your registration.',
+    'reg.step7.title':        'Leave It Better Than You Found It',
+    'reg.step7.subtitle':     'A €5.25 contribution towards post-event clean-up.',
+    'reg.cleaning.desc':      'Stadtteilkultur 2411 is a community venue we\'re proud to call home for the day. After 200+ speakers, lunches, and great conversations, there\'s tidying to do — rubbish removed, dishes washed, cutlery sorted. This small contribution covers the professional clean-up crew so we can hand the space back spotless.',
+    'reg.cleaning.accept':    'I\'m happy to contribute €5.25 to the post-event clean-up',
+    'reg.cleaning.acceptHint':'Every attendee contributes — thank you for keeping it fair.',
 
     'reg.step8.title':        'Confirm Registration',
     'reg.step8.subtitle':     'Review your details before paying.',
@@ -163,7 +163,7 @@ const i18n = {
     'reg.step4.nav':          'Workshop',
     'reg.step5.nav':          'Mittagessen',
     'reg.step6.nav':          'Spenden',
-    'reg.step7.nav':          'Gebühr',
+    'reg.step7.nav':          'Aufräumen',
     'reg.step8.nav':          'Bestätigen',
 
     'reg.step1.eyebrow':      'Schritt 1 von 5',
@@ -205,11 +205,11 @@ const i18n = {
     'reg.donation.desc':      'Deine Spende fließt direkt in die Finanzierung der Konferenz. Jeder Beitrag hilft — aber es ist völlig freiwillig.',
     'reg.donation.label':     'Oder gib deinen eigenen Betrag ein (€)',
 
-    'reg.step7.title':        'Reinigungsgebühr',
-    'reg.step7.subtitle':     'Ein kleiner Beitrag, um den Veranstaltungsort sauber zu halten.',
-    'reg.cleaning.desc':      'Alle Teilnehmenden leisten einen einmaligen Beitrag von €5,25 zur Reinigung des Veranstaltungsortes nach der Konferenz.',
-    'reg.cleaning.accept':    'Ich habe die €5,25 Reinigungsgebühr gelesen und akzeptiere sie',
-    'reg.cleaning.acceptHint':'Du musst zustimmen, um mit der Anmeldung fortzufahren.',
+    'reg.step7.title':        'Besser hinterlassen als vorgefunden',
+    'reg.step7.subtitle':     'Ein Beitrag von €5,25 für die Reinigung nach der Veranstaltung.',
+    'reg.cleaning.desc':      'Die Stadtteilkultur 2411 ist ein Gemeinschaftsort, den wir für diesen Tag mit Freude nutzen. Nach 200+ Redner/innen, Mittagessen und großartigen Gesprächen gibt es einiges aufzuräumen — Müll wegbringen, Geschirr spülen, Besteck sortieren. Dieser kleine Beitrag deckt das professionelle Reinigungsteam, damit wir den Raum makellos zurückgeben können.',
+    'reg.cleaning.accept':    'Ich leiste gerne €5,25 für die Reinigung nach der Veranstaltung',
+    'reg.cleaning.acceptHint':'Alle Teilnehmenden tragen bei — danke, dass du mitmachst.',
 
     'reg.step8.title':        'Anmeldung bestätigen',
     'reg.step8.subtitle':     'Überprüfe deine Daten vor der Zahlung.',
