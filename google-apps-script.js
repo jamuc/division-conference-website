@@ -16,27 +16,42 @@ const PRICE_CLEANING = 525;   // €5.25
 const PRICE_WORKSHOP = 1000;  // €10.00
 const PRICE_LUNCH    = 1500;  // €15.00 per package
 
+const HEADERS = [
+  'Timestamp', 'Booking Ref', 'First Name', 'Last Name', 'Email',
+  'Club', 'Member', 'Roles', 'Workshop',
+  'Youth (10–14)', 'Youth (14–17)',
+  'Lunch (Non-vegan)', 'Lunch (Vegan)',
+  'Donation (€)', 'Total (€)',
+  'Language', 'Payment Status', 'Stripe Session ID',
+];
+
+// ── Run this once manually to update headers on an existing sheet ────────
+function setupSheet() {
+  const ss    = SpreadsheetApp.openById('1KePmBJx2AWMrycSn1nWtWwnOtMX6wkse-jGVvMFVNHs');
+  let sheet   = ss.getSheetByName(SHEET_NAME);
+  if (!sheet) {
+    sheet = ss.insertSheet(SHEET_NAME);
+    sheet.appendRow(HEADERS);
+  } else {
+    sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]);
+  }
+  sheet.setFrozenRows(1);
+  const headerRange = sheet.getRange(1, 1, 1, HEADERS.length);
+  headerRange.setFontWeight('bold');
+  headerRange.setBackground('#004165');
+  headerRange.setFontColor('#F2DF74');
+  SpreadsheetApp.flush();
+  Logger.log('Headers updated on sheet: ' + SHEET_NAME);
+}
+
 function doPost(e) {
   const data = JSON.parse(e.postData.contents);
 
   // ── 1. Write to Sheet ────────────────────────────────────────────────
   const ss    = SpreadsheetApp.openById('1KePmBJx2AWMrycSn1nWtWwnOtMX6wkse-jGVvMFVNHs');
   let sheet   = ss.getSheetByName(SHEET_NAME);
-  if (!sheet) {
-    sheet = ss.insertSheet(SHEET_NAME);
-    sheet.appendRow([
-      'Timestamp', 'Booking Ref', 'First Name', 'Last Name', 'Email',
-      'Club', 'Member', 'Roles', 'Workshop',
-      'Youth (10–14)', 'Youth (14–17)',
-      'Lunch (Non-vegan)', 'Lunch (Vegan)',
-      'Donation (€)', 'Total (€)',
-      'Language', 'Payment Status', 'Stripe Session ID',
-    ]);
-    sheet.setFrozenRows(1);
-    sheet.getRange(1, 1, 1, 18).setFontWeight('bold');
-    sheet.getRange(1, 1, 1, 18).setBackground('#004165');
-    sheet.getRange(1, 1, 1, 18).setFontColor('#F2DF74');
-  }
+  if (!sheet) setupSheet();
+  sheet = ss.getSheetByName(SHEET_NAME);
 
   const lunchNonVegan = parseInt(data.lunchNonVegan) || 0;
   const lunchVegan    = parseInt(data.lunchVegan)    || 0;
