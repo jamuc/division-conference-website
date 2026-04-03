@@ -123,6 +123,7 @@ const i18n = {
     'reg.err.club':           'Please select or enter your club name.',
     'reg.err.cleaning':       'Please accept the cleaning fee to continue.',
     'reg.err.youthChoice':    'Please let us know whether you are bringing any young people.',
+    'reg.err.youthCount':     'Please enter at least one young person across the age groups.',
     'reg.err.roles':          'Please select at least one role.',
     'reg.err.judgeElig':      'Please confirm all judge eligibility requirements.',
     'reg.err.paymentTitle':   'Payment not completed',
@@ -259,6 +260,7 @@ const i18n = {
     'reg.err.club':           'Bitte wähle deinen Club aus oder gib ihn ein.',
     'reg.err.cleaning':       'Bitte akzeptiere die Reinigungsgebühr, um fortzufahren.',
     'reg.err.youthChoice':    'Bitte teile uns mit, ob du Jugendliche mitbringst.',
+    'reg.err.youthCount':     'Bitte gib mindestens eine jugendliche Person in einer der Altersgruppen an.',
     'reg.err.roles':          'Bitte wähle mindestens eine Rolle aus.',
     'reg.err.judgeElig':      'Bitte bestätige alle Eignungsvoraussetzungen für Richter/innen.',
     'reg.err.paymentTitle':   'Zahlung nicht abgeschlossen',
@@ -572,6 +574,10 @@ function validateStep3() {
   errEl.textContent = '';
   if (!state.youthAttendance) {
     errEl.textContent = t('reg.err.youthChoice');
+    return false;
+  }
+  if (state.youthAttendance === 'yes' && state.youth1014 === 0 && state.youth1417 === 0) {
+    errEl.textContent = t('reg.err.youthCount');
     return false;
   }
   return true;
