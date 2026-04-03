@@ -5,6 +5,13 @@
 // ── SECRET KEY ────────────────────────────────────────────────────────────
 // Project Settings (⚙) → Script Properties → STRIPE_SECRET_KEY = sk_live_...
 // ─────────────────────────────────────────────────────────────────────────
+//
+// ── STRIPE WEBHOOK SETUP ─────────────────────────────────────────────────
+// Stripe Dashboard → Developers → Webhooks → Add endpoint
+//   URL:    <this Apps Script web app URL>
+//   Events: checkout.session.completed
+// Registrations are written to the sheet only after payment is confirmed.
+// ─────────────────────────────────────────────────────────────────────────
 
 const STRIPE_SECRET_KEY = PropertiesService.getScriptProperties().getProperty('STRIPE_SECRET_KEY');
 const SHEET_NAME        = 'Division D Conference Registration';
@@ -25,7 +32,7 @@ const HEADERS = [
   'Language', 'Payment Status', 'Stripe Session ID',
 ];
 
-// ── Run this once manually to update headers on an existing sheet ────────
+// ── Run this once manually to update headers on an existing sheet ─────────
 function setupSheet() {
   const ss    = SpreadsheetApp.openById('1KePmBJx2AWMrycSn1nWtWwnOtMX6wkse-jGVvMFVNHs');
   let sheet   = ss.getSheetByName(SHEET_NAME);
@@ -44,43 +51,27 @@ function setupSheet() {
   Logger.log('Headers updated on sheet: ' + SHEET_NAME);
 }
 
+// ── Route incoming POST ───────────────────────────────────────────────────
 function doPost(e) {
-  const data = JSON.parse(e.postData.contents);
+  const body = JSON.parse(e.postData.contents);
 
-  // ── 1. Write to Sheet ────────────────────────────────────────────────
-  const ss    = SpreadsheetApp.openById('1KePmBJx2AWMrycSn1nWtWwnOtMX6wkse-jGVvMFVNHs');
-  let sheet   = ss.getSheetByName(SHEET_NAME);
-  if (!sheet) setupSheet();
-  sheet = ss.getSheetByName(SHEET_NAME);
+  // Stripe webhooks carry a `type` field (e.g. "checkout.session.completed")
+  if (body.type && body.data && body.data.object) {
+    return handleStripeWebhook(body);
+  }
 
-  const lunchSpring   = parseInt(data.lunchSpring)   || 0;
-  const lunchHummus   = parseInt(data.lunchHummus)   || 0;
-  const lunchSweet    = parseInt(data.lunchSweet)    || 0;
-  const donation      = parseFloat(data.donation)    || 0;
+  // Otherwise it's a registration form submission
+  return handleRegistration(body);
+}
 
-  sheet.appendRow([
-    new Date().toISOString(),
-    data.bookingRef       || '',
-    data.firstName        || '',
-    data.lastName         || '',
-    data.email            || '',
-    data.club             || '',
-    data.member           ? 'Yes' : 'No',
-    data.roles            || '',
-    data.workshop         ? 'Yes' : 'No',
-    data.youth1014        || 0,
-    data.youth1417        || 0,
-    lunchSpring,
-    lunchHummus,
-    lunchSweet,
-    donation,
-    data.total            || 0,
-    data.lang             || 'en',
-    'PENDING',
-    '', // Stripe Session ID — filled in after checkout session is created
-  ]);
+// ── Step 1: receive form data, create Stripe session, park data ──────────
+function handleRegistration(data) {
+  const lunchSpring = parseInt(data.lunchSpring) || 0;
+  const lunchHummus = parseInt(data.lunchHummus) || 0;
+  const lunchSweet  = parseInt(data.lunchSweet)  || 0;
+  const donation    = parseFloat(data.donation)  || 0;
 
-  // ── 2. Build Stripe line items ───────────────────────────────────────
+  // ── Build Stripe line items ────────────────────────────────────────────
   const payload = {
     'payment_method_types[0]':            'card',
     'payment_intent_data[receipt_email]': data.email,
@@ -121,7 +112,7 @@ function doPost(e) {
     idx++;
   }
 
-  // Lunch — Spring Quinoa Bowl (vegan, GF)
+  // Lunch — Spring Quinoa Bowl with Green Asparagus (vegan, GF)
   if (lunchSpring > 0) {
     payload[`line_items[${idx}][price_data][currency]`]           = 'eur';
     payload[`line_items[${idx}][price_data][product_data][name]`] = 'Lunch — Spring Quinoa Bowl with Green Asparagus';
@@ -156,7 +147,7 @@ function doPost(e) {
     payload[`line_items[${idx}][quantity]`]                       = '1';
   }
 
-  // ── 3. Create Stripe Checkout Session ────────────────────────────────
+  // ── Create Stripe Checkout Session ─────────────────────────────────────
   const resp = UrlFetchApp.fetch('https://api.stripe.com/v1/checkout/sessions', {
     method:             'post',
     headers:            { 'Authorization': 'Bearer ' + STRIPE_SECRET_KEY },
@@ -167,9 +158,30 @@ function doPost(e) {
   const session = JSON.parse(resp.getContentText());
 
   if (session.url) {
-    // Write Stripe session ID into the last row
-    const lastRow = sheet.getLastRow();
-    sheet.getRange(lastRow, 19).setValue(session.id);
+    // Park registration data in Script Properties until payment is confirmed.
+    // Key: PENDING_<bookingRef>  — cleaned up after the webhook writes the row.
+    PropertiesService.getScriptProperties().setProperty(
+      'PENDING_' + data.bookingRef,
+      JSON.stringify({
+        bookingRef:  data.bookingRef  || '',
+        firstName:   data.firstName   || '',
+        lastName:    data.lastName    || '',
+        email:       data.email       || '',
+        club:        data.club        || '',
+        member:      data.member      || false,
+        roles:       data.roles       || '',
+        workshop:    data.workshop    || false,
+        youth1014:   data.youth1014   || 0,
+        youth1417:   data.youth1417   || 0,
+        lunchSpring: lunchSpring,
+        lunchHummus: lunchHummus,
+        lunchSweet:  lunchSweet,
+        donation:    donation,
+        total:       data.total       || 0,
+        lang:        data.lang        || 'en',
+        sessionId:   session.id,
+      })
+    );
   }
 
   return ContentService
@@ -181,11 +193,72 @@ function doPost(e) {
     .setMimeType(ContentService.MimeType.JSON);
 }
 
-// Visitor counter — called via GET on each page load
+// ── Step 2: Stripe webhook — write to sheet only after payment confirmed ──
+function handleStripeWebhook(event) {
+  // Only act on successful payments
+  if (event.type !== 'checkout.session.completed') {
+    return ContentService
+      .createTextOutput(JSON.stringify({ received: true }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  const session    = event.data.object;
+  const bookingRef = session.client_reference_id;
+
+  // Retrieve parked registration data
+  const props      = PropertiesService.getScriptProperties();
+  const pendingJson = props.getProperty('PENDING_' + bookingRef);
+
+  if (!pendingJson) {
+    Logger.log('Webhook received for unknown bookingRef: ' + bookingRef);
+    return ContentService
+      .createTextOutput(JSON.stringify({ received: true, warning: 'no pending data found' }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  const reg = JSON.parse(pendingJson);
+
+  // ── Write confirmed registration to sheet ─────────────────────────────
+  const ss    = SpreadsheetApp.openById('1KePmBJx2AWMrycSn1nWtWwnOtMX6wkse-jGVvMFVNHs');
+  let sheet   = ss.getSheetByName(SHEET_NAME);
+  if (!sheet) setupSheet();
+  sheet = ss.getSheetByName(SHEET_NAME);
+
+  sheet.appendRow([
+    new Date().toISOString(),
+    reg.bookingRef,
+    reg.firstName,
+    reg.lastName,
+    reg.email,
+    reg.club,
+    reg.member    ? 'Yes' : 'No',
+    reg.roles,
+    reg.workshop  ? 'Yes' : 'No',
+    reg.youth1014,
+    reg.youth1417,
+    reg.lunchSpring,
+    reg.lunchHummus,
+    reg.lunchSweet,
+    reg.donation,
+    reg.total,
+    reg.lang,
+    'PAID',
+    session.id,   // Stripe Session ID
+  ]);
+
+  // Clean up parked data
+  props.deleteProperty('PENDING_' + bookingRef);
+
+  return ContentService
+    .createTextOutput(JSON.stringify({ received: true }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+// ── Visitor counter — called via GET on each page load ────────────────────
 function doGet() {
-  const props = PropertiesService.getScriptProperties();
+  const props   = PropertiesService.getScriptProperties();
   const current = parseInt(props.getProperty('VISITOR_COUNT') || '1011');
-  const next = current + 1;
+  const next    = current + 1;
   props.setProperty('VISITOR_COUNT', String(next));
 
   return ContentService
