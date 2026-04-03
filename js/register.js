@@ -27,6 +27,8 @@ const i18n = {
 
     'reg.step2.title':        'Contest Roles',
     'reg.step2.subtitle':     'Select your role(s) for the contest day. Multiple selections allowed.',
+    'reg.step2.whatsapp':     '📲 Once your role is confirmed by email, you\'ll be invited to a dedicated WhatsApp group to coordinate with your team.',
+    'reg.role.judgeAnon':     '🔒 This is an anonymous role — contestants will not know who the judges are.',
 
     'reg.step3.title':        'Youth Bootcamp',
     'reg.step3.subtitle':     'Will you be bringing any young people to the Youth Bootcamp?',
@@ -74,7 +76,7 @@ const i18n = {
     'reg.role.judge':         'Judge',
     'reg.role.technical':     'Technical Support',
     'reg.role.registration':  'Registration Support',
-    'reg.role.photo':         'Photo',
+    'reg.role.photo':         'Contest Photographer',
     'reg.role.timekeeper':    'Timekeeper',
     'reg.role.eventSupport':  'SAA / Ballot Counter / Logistics',
     'reg.role.judgeEligTitle':'Eligibility requirements — please confirm all:',
@@ -172,6 +174,8 @@ const i18n = {
 
     'reg.step2.title':        'Wettbewerbsrollen',
     'reg.step2.subtitle':     'Wähle deine Rolle(n) für den Wettkampftag. Mehrfachauswahl möglich.',
+    'reg.step2.whatsapp':     '📲 Sobald deine Rolle per E-Mail bestätigt wurde, wirst du in eine dedizierte WhatsApp-Gruppe eingeladen, um dich mit deinem Team abzustimmen.',
+    'reg.role.judgeAnon':     '🔒 Dies ist eine anonyme Rolle — die Teilnehmenden erfahren nicht, wer die Richter/innen sind.',
 
     'reg.step3.title':        'Jugend-Bootcamp',
     'reg.step3.subtitle':     'Bringst du Jugendliche zum Jugend-Bootcamp mit?',
@@ -219,7 +223,7 @@ const i18n = {
     'reg.role.judge':         'Richter/in',
     'reg.role.technical':     'Technischer Support',
     'reg.role.registration':  'Anmeldungsunterstützung',
-    'reg.role.photo':         'Foto',
+    'reg.role.photo':         'Fotograf/in (Wettbewerbsdokumentation)',
     'reg.role.timekeeper':    'Zeitnehmer/in',
     'reg.role.eventSupport':  'SAA / Stimmenauszählung / Logistik',
     'reg.role.judgeEligTitle':'Eignungsvoraussetzungen — bitte alle bestätigen:',
