@@ -53,9 +53,9 @@ Panel numbers in HTML: step1=Details, step2=ContestRoles (members only), step3=C
 8 checkboxes (multi-select, at least 1 required):
 - Contestant, General Support, Judge, Technical Support, Registration Support, Photo, Timekeeper, SAA / Ballot Counter / Logistics
 
-**Judge** expands an eligibility sub-section — both conditions must be met to proceed:
-1. Member for at least 6 months (required)
-2. Speech experience — **either** Pathways Level 2 **or** minimum 6 CC speech projects (at least one required)
+**Judge** expands an eligibility sub-section — both must be checked to proceed:
+1. Pathways Level 2 **or** minimum 6 CC speech projects (single combined checkbox)
+2. Member for at least 6 months
 
 ### Payment
 Stripe Checkout (live mode). Card only (`payment_method_types: ['card']`). Backend is Google Apps Script.
@@ -66,7 +66,7 @@ Stripe Checkout (live mode). Card only (`payment_method_types: ['card']`). Backe
 ### Key JS functions in `register.js`
 - `buildProgressBar()` — called after step 1, builds 5 or 6 dots depending on `state.isMember`
 - `updateStepEyebrow(n)` — computes "Step X of Y" dynamically (no `data-i18n` on eyebrow spans for steps 2+)
-- `validateStep2()` — roles: at least 1 selected; if judge selected: judgeElig[1] (6 months) AND (judgeElig[0] (Pathways L2) OR judgeElig[2] (6 CC speeches))
+- `validateStep2()` — roles: at least 1 selected; if judge selected: both judgeElig checkboxes must be true (judgeElig[0]=speech experience, judgeElig[1]=6 months)
 - `goToStep(n)` — central navigation; hooks at n=4 (workshop auto-toggle for members), n=5 (donation), n=6 (summary populate), n=7 (confirmation)
 - `initiatePayment()` — creates Stripe Checkout Session via Apps Script, redirects
 - `handlePaymentReturn()` — on page load, checks `?payment=success|cancel` URL param

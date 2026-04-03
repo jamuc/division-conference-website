@@ -58,11 +58,9 @@ const i18n = {
     'reg.role.photo':         'Photo',
     'reg.role.timekeeper':    'Timekeeper',
     'reg.role.eventSupport':  'SAA / Ballot Counter / Logistics',
-    'reg.role.judgeEligTitle':     'Eligibility requirements — please confirm:',
-    'reg.role.judgeEligSpeechNote':'Speech experience — confirm at least one:',
-    'reg.role.judgeElig1':         'I have achieved Pathways Level 2',
-    'reg.role.judgeElig2':         'I have been a Toastmasters member for at least 6 months',
-    'reg.role.judgeElig3':         'I have completed a minimum of 6 speech projects in the Competent Communication manual',
+    'reg.role.judgeEligTitle':'Eligibility requirements — please confirm all:',
+    'reg.role.judgeElig1':    'I have achieved Pathways Level 2 or completed a minimum of 6 speech projects in the Competent Communication manual',
+    'reg.role.judgeElig2':    'I have been a Toastmasters member for at least 6 months',
 
     'reg.firstName':          'First Name',
     'reg.lastName':           'Last Name',
@@ -112,7 +110,7 @@ const i18n = {
     'reg.err.club':           'Please select or enter your club name.',
     'reg.err.cleaning':       'Please accept the cleaning fee to continue.',
     'reg.err.roles':          'Please select at least one role.',
-    'reg.err.judgeElig':      'Please confirm 6 months membership and at least one speech experience requirement.',
+    'reg.err.judgeElig':      'Please confirm all judge eligibility requirements.',
     'reg.err.paymentTitle':   'Payment not completed',
     'reg.err.paymentBody':    'Something went wrong or you cancelled. Please try again — your details are still saved.',
 
@@ -182,11 +180,9 @@ const i18n = {
     'reg.role.photo':         'Foto',
     'reg.role.timekeeper':    'Zeitnehmer/in',
     'reg.role.eventSupport':  'SAA / Stimmenauszählung / Logistik',
-    'reg.role.judgeEligTitle':     'Eignungsvoraussetzungen — bitte bestätigen:',
-    'reg.role.judgeEligSpeechNote':'Redeerfahrung — mindestens eine bestätigen:',
-    'reg.role.judgeElig1':         'Ich habe Pathways Level 2 erreicht',
-    'reg.role.judgeElig2':         'Ich bin seit mindestens 6 Monaten Toastmasters-Mitglied',
-    'reg.role.judgeElig3':         'Ich habe mindestens 6 Redeprojekte im Competent Communication Manual abgeschlossen',
+    'reg.role.judgeEligTitle':'Eignungsvoraussetzungen — bitte alle bestätigen:',
+    'reg.role.judgeElig1':    'Ich habe Pathways Level 2 erreicht oder mindestens 6 Redeprojekte im Competent Communication Manual abgeschlossen',
+    'reg.role.judgeElig2':    'Ich bin seit mindestens 6 Monaten Toastmasters-Mitglied',
 
     'reg.firstName':          'Vorname',
     'reg.lastName':           'Nachname',
@@ -236,7 +232,7 @@ const i18n = {
     'reg.err.club':           'Bitte wähle deinen Club aus oder gib ihn ein.',
     'reg.err.cleaning':       'Bitte akzeptiere die Reinigungsgebühr, um fortzufahren.',
     'reg.err.roles':          'Bitte wähle mindestens eine Rolle aus.',
-    'reg.err.judgeElig':      'Bitte bestätige die 6-monatige Mitgliedschaft und mindestens eine Redeerfahrung.',
+    'reg.err.judgeElig':      'Bitte bestätige alle Eignungsvoraussetzungen für Richter/innen.',
     'reg.err.paymentTitle':   'Zahlung nicht abgeschlossen',
     'reg.err.paymentBody':    'Etwas ist schiefgelaufen oder du hast abgebrochen. Bitte versuche es erneut — deine Daten sind noch gespeichert.',
 
@@ -303,7 +299,7 @@ const state = {
   workshop:         false,
   donation:         0,
   roles:            [],
-  judgeElig:        [false, false, false],
+  judgeElig:        [false, false],
   ref:              '',
   paidViaStripe:    false,
 };
@@ -527,8 +523,7 @@ function validateStep2() {
     return false;
   }
   if (state.roles.includes('judge')) {
-    // judgeElig[0]=Pathways L2, judgeElig[1]=6 months, judgeElig[2]=6 CC speeches
-    const eligOk = state.judgeElig[1] && (state.judgeElig[0] || state.judgeElig[2]);
+    const eligOk = state.judgeElig.every(Boolean);
     if (!eligOk) {
       errEl.textContent = t('reg.err.judgeElig');
       return false;
@@ -722,14 +717,13 @@ judgeCheckbox.addEventListener('change', () => {
   judgeEligSection.hidden = !judgeCheckbox.checked;
   if (!judgeCheckbox.checked) {
     // reset eligibility state when judge is unchecked
-    state.judgeElig = [false, false, false];
+    state.judgeElig = [false, false];
     document.getElementById('judgeElig1').checked = false;
     document.getElementById('judgeElig2').checked = false;
-    document.getElementById('judgeElig3').checked = false;
   }
 });
 
-['judgeElig1', 'judgeElig2', 'judgeElig3'].forEach((id, i) => {
+['judgeElig1', 'judgeElig2'].forEach((id, i) => {
   document.getElementById(id).addEventListener('change', e => {
     state.judgeElig[i] = e.target.checked;
   });
