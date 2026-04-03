@@ -12,6 +12,9 @@ const i18n = {
     'nav.brand':              'Division D · District 95',
     'reg.backToSite':         '← Back to site',
 
+    'reg.nav.start':          'Start',
+    'reg.nav.end':            'End',
+
     'reg.step1.nav':          'Details',
     'reg.step2.nav':          'Roles',
     'reg.step3.nav':          'Youth',
@@ -158,6 +161,9 @@ const i18n = {
   de: {
     'nav.brand':              'Division D · Distrikt 95',
     'reg.backToSite':         '← Zurück zur Seite',
+
+    'reg.nav.start':          'Start',
+    'reg.nav.end':            'Ende',
 
     'reg.step1.nav':          'Details',
     'reg.step2.nav':          'Rollen',
@@ -401,7 +407,8 @@ function buildProgressBar() {
         { panel: 8, key: 'reg.step8.nav' },
       ];
   container.innerHTML = '';
-  steps.forEach(({ panel, key }, i) => {
+  const last = steps.length - 1;
+  steps.forEach(({ panel }, i) => {
     if (i > 0) {
       const l = document.createElement('div');
       l.className = 'funnel__prog-line';
@@ -410,7 +417,10 @@ function buildProgressBar() {
     const dot = document.createElement('div');
     dot.className = 'funnel__prog-step' + (panel === 1 ? ' done' : '');
     dot.dataset.panel = panel;
-    dot.innerHTML = `<div class="funnel__prog-dot"><span>${i + 1}</span></div><span class="funnel__prog-label">${t(key)}</span>`;
+    const label = i === 0    ? t('reg.nav.start')
+                : i === last ? t('reg.nav.end')
+                :              String(i);
+    dot.innerHTML = `<div class="funnel__prog-dot"><span>${i + 1}</span></div><span class="funnel__prog-label">${label}</span>`;
     container.appendChild(dot);
   });
 }
