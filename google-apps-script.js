@@ -6,7 +6,7 @@
 // ── SECRET KEY SETUP ──────────────────────────────────────────────────────
 // Before deploying, add your Stripe secret key via:
 //   Project Settings (⚙) → Script Properties → Add property
-//   Name: STRIPE_SECRET_KEY   Value: sk_test_51TDjKJ...
+//   Name: STRIPE_SECRET_KEY   Value: sk_live_...
 // Never hardcode the secret key in this file.
 // ─────────────────────────────────────────────────────────────────────────
 
@@ -17,70 +17,110 @@ const SUCCESS_URL = 'https://toastmasters-bayern.com/registration.html?success=t
 const CANCEL_URL  = 'https://toastmasters-bayern.com/registration.html?cancelled=true';
 
 // Prices in euro cents
-const PRICE_CLEANING  = 525;   // €5.25
-const PRICE_WORKSHOP  = 1000;  // €10.00
+const PRICE_CLEANING  =  525;   // €5.25
+const PRICE_WORKSHOP  = 1000;   // €10.00
+const PRICE_LUNCH     = 1500;   // €15.00 per package
+
+// Sheet columns (17 total)
+const HEADERS = [
+  'Timestamp', 'Ref', 'First Name', 'Last Name', 'Email',
+  'TM Member', 'Club', 'Roles',
+  'Workshop',
+  'Youth (10–14)', 'Youth (14–17)',
+  'Lunch (Non-vegan)', 'Lunch (Vegan)',
+  'Donation (€)', 'Total (€)',
+  'Language', 'Stripe Session',
+];
 
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents);
 
-    // ── 1. Save to Google Sheet ──────────────────────────────────────────
+    // ── 1. Get or create Sheet ───────────────────────────────────────────
     const ss = SpreadsheetApp.openById(SHEET_ID);
     let sheet = ss.getSheetByName(SHEET_NAME);
     if (!sheet) {
       sheet = ss.insertSheet(SHEET_NAME);
-      sheet.appendRow([
-        'Timestamp', 'Ref', 'First Name', 'Last Name', 'Email',
-        'TM Member', 'Club', 'Workshop', 'Total (€)', 'Language', 'Stripe Session'
-      ]);
-      const header = sheet.getRange(1, 1, 1, 11);
+      sheet.appendRow(HEADERS);
+      const header = sheet.getRange(1, 1, 1, HEADERS.length);
       header.setFontWeight('bold');
       header.setBackground('#004165');
       header.setFontColor('#F2DF74');
+      sheet.setFrozenRows(1);
     }
 
-    // ── 2. Create Stripe Checkout session ────────────────────────────────
+    // ── 2. Build Stripe line items ───────────────────────────────────────
     const secretKey = PropertiesService.getScriptProperties().getProperty('STRIPE_SECRET_KEY');
     if (!secretKey) throw new Error('STRIPE_SECRET_KEY not set in Script Properties.');
 
     const lineItems = {};
+    let idx = 0;
 
-    // Line item 0: cleaning fee (always)
-    lineItems['line_items[0][price_data][currency]']              = 'eur';
-    lineItems['line_items[0][price_data][product_data][name]']    = 'Venue Cleaning Fee';
-    lineItems['line_items[0][price_data][unit_amount]']           = String(PRICE_CLEANING);
-    lineItems['line_items[0][quantity]']                          = '1';
+    // Venue cleaning fee (everyone)
+    lineItems[`line_items[${idx}][price_data][currency]`]             = 'eur';
+    lineItems[`line_items[${idx}][price_data][product_data][name]`]   = 'Venue Cleaning Fee';
+    lineItems[`line_items[${idx}][price_data][unit_amount]`]          = String(PRICE_CLEANING);
+    lineItems[`line_items[${idx}][quantity]`]                         = '1';
+    idx++;
 
-    // Line item 1: workshop (non-members only — members get it free)
-    let nextItem = 1;
+    // Workshop (non-members only — members get it free)
     if (data.workshop && !data.member) {
-      lineItems[`line_items[${nextItem}][price_data][currency]`]            = 'eur';
-      lineItems[`line_items[${nextItem}][price_data][product_data][name]`]  = 'Workshop Package';
-      lineItems[`line_items[${nextItem}][price_data][unit_amount]`]         = String(PRICE_WORKSHOP);
-      lineItems[`line_items[${nextItem}][quantity]`]                        = '1';
-      nextItem++;
+      lineItems[`line_items[${idx}][price_data][currency]`]           = 'eur';
+      lineItems[`line_items[${idx}][price_data][product_data][name]`] = 'Workshop Pass';
+      lineItems[`line_items[${idx}][price_data][unit_amount]`]        = String(PRICE_WORKSHOP);
+      lineItems[`line_items[${idx}][quantity]`]                       = '1';
+      idx++;
     }
 
-    // Line item 2: voluntary donation (if provided)
-    if (data.donation && data.donation > 0) {
-      const donationCents = Math.round(data.donation * 100);
-      lineItems[`line_items[${nextItem}][price_data][currency]`]            = 'eur';
-      lineItems[`line_items[${nextItem}][price_data][product_data][name]`]  = 'Voluntary Donation';
-      lineItems[`line_items[${nextItem}][price_data][unit_amount]`]         = String(donationCents);
-      lineItems[`line_items[${nextItem}][quantity]`]                        = '1';
+    // Lunch — non-vegan (if any)
+    const lunchNonVegan = parseInt(data.lunchNonVegan) || 0;
+    if (lunchNonVegan > 0) {
+      lineItems[`line_items[${idx}][price_data][currency]`]           = 'eur';
+      lineItems[`line_items[${idx}][price_data][product_data][name]`] = 'Lunch Package — Non-vegan';
+      lineItems[`line_items[${idx}][price_data][unit_amount]`]        = String(PRICE_LUNCH);
+      lineItems[`line_items[${idx}][quantity]`]                       = String(lunchNonVegan);
+      idx++;
     }
 
+    // Lunch — vegan (if any)
+    const lunchVegan = parseInt(data.lunchVegan) || 0;
+    if (lunchVegan > 0) {
+      lineItems[`line_items[${idx}][price_data][currency]`]           = 'eur';
+      lineItems[`line_items[${idx}][price_data][product_data][name]`] = 'Lunch Package — Vegan';
+      lineItems[`line_items[${idx}][price_data][unit_amount]`]        = String(PRICE_LUNCH);
+      lineItems[`line_items[${idx}][quantity]`]                       = String(lunchVegan);
+      idx++;
+    }
+
+    // Voluntary donation (if provided)
+    const donation = parseFloat(data.donation) || 0;
+    if (donation > 0) {
+      lineItems[`line_items[${idx}][price_data][currency]`]           = 'eur';
+      lineItems[`line_items[${idx}][price_data][product_data][name]`] = 'Voluntary Donation';
+      lineItems[`line_items[${idx}][price_data][unit_amount]`]        = String(Math.round(donation * 100));
+      lineItems[`line_items[${idx}][quantity]`]                       = '1';
+    }
+
+    // ── 3. Create Stripe Checkout Session ────────────────────────────────
     const payload = {
-      mode:             'payment',
-      customer_email:   data.email,
-      success_url:      SUCCESS_URL,
-      cancel_url:       CANCEL_URL,
-      'metadata[bookingRef]':  data.bookingRef  || '',
-      'metadata[firstName]':   data.firstName   || '',
-      'metadata[lastName]':    data.lastName    || '',
-      'metadata[member]':      data.member ? 'true' : 'false',
-      'metadata[workshop]':    data.workshop ? 'true' : 'false',
-      'metadata[donation]':    String(data.donation || 0),
+      mode:           'payment',
+      customer_email: data.email,
+      success_url:    SUCCESS_URL,
+      cancel_url:     CANCEL_URL,
+      'payment_intent_data[receipt_email]': data.email,
+      'metadata[bookingRef]':    data.bookingRef    || '',
+      'metadata[firstName]':     data.firstName     || '',
+      'metadata[lastName]':      data.lastName      || '',
+      'metadata[member]':        data.member        ? 'true' : 'false',
+      'metadata[club]':          data.club          || '',
+      'metadata[roles]':         data.roles         || '',
+      'metadata[workshop]':      data.workshop      ? 'true' : 'false',
+      'metadata[youth1014]':     String(data.youth1014     || 0),
+      'metadata[youth1417]':     String(data.youth1417     || 0),
+      'metadata[lunchNonVegan]': String(lunchNonVegan),
+      'metadata[lunchVegan]':    String(lunchVegan),
+      'metadata[donation]':      String(donation),
+      'metadata[total]':         String(data.total  || 0),
       ...lineItems,
     };
 
@@ -93,19 +133,25 @@ function doPost(e) {
     const session = JSON.parse(stripeRes.getContentText());
     if (!session.url) throw new Error(session.error?.message || 'No session URL returned');
 
-    // ── 3. Log to sheet (include Stripe session ID) ──────────────────────
+    // ── 4. Log registration to Sheet ─────────────────────────────────────
     sheet.appendRow([
       new Date().toISOString(),
-      data.bookingRef  || '',
-      data.firstName   || '',
-      data.lastName    || '',
-      data.email       || '',
-      data.member      ? 'Yes' : 'No',
-      data.club        || '',
-      data.workshop    ? 'Yes' : 'No',
-      data.total       || 0,
-      data.lang        || 'en',
-      session.id       || '',
+      data.bookingRef     || '',
+      data.firstName      || '',
+      data.lastName       || '',
+      data.email          || '',
+      data.member         ? 'Yes' : 'No',
+      data.club           || '',
+      data.roles          || '',
+      data.workshop       ? 'Yes' : 'No',
+      data.youth1014      || 0,
+      data.youth1417      || 0,
+      lunchNonVegan,
+      lunchVegan,
+      donation,
+      data.total          || 0,
+      data.lang           || 'en',
+      session.id          || '',
     ]);
 
     return ContentService
@@ -122,15 +168,21 @@ function doPost(e) {
 // Test function — run manually to verify Sheet + Stripe are reachable
 function testCheckout() {
   doPost({ postData: { contents: JSON.stringify({
-    bookingRef: 'TEST-001',
-    firstName:  'Test',
-    lastName:   'User',
-    email:      'test@example.com',
-    member:     true,
-    club:       'Munich TM',
-    workshop:   true,
-    total:      5.25,
-    lang:       'en',
+    bookingRef:    'TEST-001',
+    firstName:     'Test',
+    lastName:      'User',
+    email:         'test@example.com',
+    member:        true,
+    club:          'Munich TM',
+    roles:         'General Support',
+    workshop:      true,
+    youth1014:     1,
+    youth1417:     0,
+    lunchNonVegan: 2,
+    lunchVegan:    1,
+    donation:      10,
+    total:         65.25,
+    lang:          'en',
   })}});
 }
 
