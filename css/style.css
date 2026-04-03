@@ -1927,6 +1927,74 @@ body { padding-bottom: 70px; }
   color: #fff;
 }
 
+/* ── Youth Bootcamp counters ────────────────────────── */
+.youth-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+.youth-group-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border: 2px solid var(--gray);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--transition), background var(--transition);
+}
+.youth-group-card--active {
+  border-color: var(--navy);
+  background: rgba(0,65,101,.04);
+}
+.youth-group-card__label {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--navy);
+}
+.youth-counter {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+.youth-counter__btn {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 2px solid var(--maroon);
+  background: transparent;
+  color: var(--maroon);
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+  flex-shrink: 0;
+}
+.youth-counter__btn:hover:not(:disabled) {
+  background: var(--maroon);
+  color: #fff;
+}
+.youth-counter__btn:disabled {
+  border-color: var(--gray);
+  color: var(--gray);
+  cursor: not-allowed;
+}
+.youth-counter__val {
+  font-family: var(--font-head);
+  font-size: 1.375rem;
+  font-weight: 800;
+  color: var(--navy);
+  min-width: 1.5rem;
+  text-align: center;
+  line-height: 1;
+}
+
 /* ── Actions (next/back buttons) ────────────────────── */
 .funnel__actions {
   display: flex;

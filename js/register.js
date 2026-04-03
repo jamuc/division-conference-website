@@ -791,6 +791,10 @@ const youthCountEls = {
 function renderYouthCounts() {
   youthCountEls[1014].textContent = String(state.youth1014);
   youthCountEls[1417].textContent = String(state.youth1417);
+  document.getElementById('dec1014').disabled = state.youth1014 === 0;
+  document.getElementById('dec1417').disabled = state.youth1417 === 0;
+  document.getElementById('dec1014').closest('.youth-group-card').classList.toggle('youth-group-card--active', state.youth1014 > 0);
+  document.getElementById('dec1417').closest('.youth-group-card').classList.toggle('youth-group-card--active', state.youth1417 > 0);
 }
 
 function setYouthAttendance(val) {
