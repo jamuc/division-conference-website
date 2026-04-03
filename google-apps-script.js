@@ -20,7 +20,7 @@ const HEADERS = [
   'Timestamp', 'Booking Ref', 'First Name', 'Last Name', 'Email',
   'Club', 'Member', 'Roles', 'Workshop',
   'Youth (10–14)', 'Youth (14–17)',
-  'Lunch (Non-vegan)', 'Lunch (Vegan)',
+  'Lunch – Spring Quinoa Bowl', 'Lunch – Hummus Beef Kofta', 'Lunch – Quinoa Sweet Potato',
   'Donation (€)', 'Total (€)',
   'Language', 'Payment Status', 'Stripe Session ID',
 ];
@@ -53,8 +53,9 @@ function doPost(e) {
   if (!sheet) setupSheet();
   sheet = ss.getSheetByName(SHEET_NAME);
 
-  const lunchNonVegan = parseInt(data.lunchNonVegan) || 0;
-  const lunchVegan    = parseInt(data.lunchVegan)    || 0;
+  const lunchSpring   = parseInt(data.lunchSpring)   || 0;
+  const lunchHummus   = parseInt(data.lunchHummus)   || 0;
+  const lunchSweet    = parseInt(data.lunchSweet)    || 0;
   const donation      = parseFloat(data.donation)    || 0;
 
   sheet.appendRow([
@@ -69,8 +70,9 @@ function doPost(e) {
     data.workshop         ? 'Yes' : 'No',
     data.youth1014        || 0,
     data.youth1417        || 0,
-    lunchNonVegan,
-    lunchVegan,
+    lunchSpring,
+    lunchHummus,
+    lunchSweet,
     donation,
     data.total            || 0,
     data.lang             || 'en',
@@ -94,8 +96,9 @@ function doPost(e) {
     'metadata[workshop]':                 data.workshop ? 'yes' : 'no',
     'metadata[youth_1014]':               String(data.youth1014 || 0),
     'metadata[youth_1417]':               String(data.youth1417 || 0),
-    'metadata[lunch_non_vegan]':          String(lunchNonVegan),
-    'metadata[lunch_vegan]':              String(lunchVegan),
+    'metadata[lunch_spring]':             String(lunchSpring),
+    'metadata[lunch_hummus]':             String(lunchHummus),
+    'metadata[lunch_sweet]':              String(lunchSweet),
     'metadata[donation]':                 String(donation),
     'metadata[total]':                    String(data.total || 0),
   };
@@ -118,21 +121,30 @@ function doPost(e) {
     idx++;
   }
 
-  // Lunch — non-vegan
-  if (lunchNonVegan > 0) {
+  // Lunch — Spring Quinoa Bowl (vegan, GF)
+  if (lunchSpring > 0) {
     payload[`line_items[${idx}][price_data][currency]`]           = 'eur';
-    payload[`line_items[${idx}][price_data][product_data][name]`] = 'Lunch Package — Non-vegan';
+    payload[`line_items[${idx}][price_data][product_data][name]`] = 'Lunch — Spring Quinoa Bowl with Green Asparagus';
     payload[`line_items[${idx}][price_data][unit_amount]`]        = String(PRICE_LUNCH);
-    payload[`line_items[${idx}][quantity]`]                       = String(lunchNonVegan);
+    payload[`line_items[${idx}][quantity]`]                       = String(lunchSpring);
     idx++;
   }
 
-  // Lunch — vegan
-  if (lunchVegan > 0) {
+  // Lunch — Hummus Bowl with Beef Kofta
+  if (lunchHummus > 0) {
     payload[`line_items[${idx}][price_data][currency]`]           = 'eur';
-    payload[`line_items[${idx}][price_data][product_data][name]`] = 'Lunch Package — Vegan';
+    payload[`line_items[${idx}][price_data][product_data][name]`] = 'Lunch — Hummus Bowl with Beef Kofta';
     payload[`line_items[${idx}][price_data][unit_amount]`]        = String(PRICE_LUNCH);
-    payload[`line_items[${idx}][quantity]`]                       = String(lunchVegan);
+    payload[`line_items[${idx}][quantity]`]                       = String(lunchHummus);
+    idx++;
+  }
+
+  // Lunch — Quinoa Bowl with Sweet Potatoes (vegan, GF)
+  if (lunchSweet > 0) {
+    payload[`line_items[${idx}][price_data][currency]`]           = 'eur';
+    payload[`line_items[${idx}][price_data][product_data][name]`] = 'Lunch — Quinoa Bowl with Sweet Potatoes';
+    payload[`line_items[${idx}][price_data][unit_amount]`]        = String(PRICE_LUNCH);
+    payload[`line_items[${idx}][quantity]`]                       = String(lunchSweet);
     idx++;
   }
 
@@ -157,7 +169,7 @@ function doPost(e) {
   if (session.url) {
     // Write Stripe session ID into the last row
     const lastRow = sheet.getLastRow();
-    sheet.getRange(lastRow, 18).setValue(session.id);
+    sheet.getRange(lastRow, 19).setValue(session.id);
   }
 
   return ContentService

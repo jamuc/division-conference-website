@@ -55,9 +55,17 @@ const i18n = {
 
     'reg.step5.title':        'Lunch Package',
     'reg.step5.subtitle':     'Order lunch and fuel up for a full day of speeches and workshops.',
-    'reg.lunch.desc':         "Each lunch package is €15. Order as many as you need — including for any young guests you're bringing along.",
-    'reg.lunch.nonVegan':     'Non-vegan',
-    'reg.lunch.vegan':        'Vegan',
+    'reg.lunch.desc':              "Each lunch package is €15. Order as many as you need — including for any young guests you're bringing along.",
+    'reg.lunch.spring.name':       'Spring Quinoa Bowl with Green Asparagus',
+    'reg.lunch.spring.desc':       'Quinoa · Green Asparagus · Sweet Potato · Mushrooms · Radishes · Mango Chili Dressing',
+    'reg.lunch.hummus.name':       'Hummus Bowl with Beef Kofta',
+    'reg.lunch.hummus.desc':       'Hummus Tahini · Beef Kofta · Pickled Radishes · Red Cabbage · Cucumber · Carrot · Parsley',
+    'reg.lunch.sweet.name':        'Quinoa Bowl with Sweet Potatoes',
+    'reg.lunch.sweet.desc':        'Organic Quinoa · Cajun Sweet Potato · Corn · Kidney Beans · Bell Pepper · Tomato Dressing',
+    'reg.lunch.tag.vegan':         'Vegan',
+    'reg.lunch.tag.gf':            'Gluten-free',
+    'reg.lunch.tag.lf':            'Lactose-free',
+    'reg.lunch.tag.meat':          'Contains meat',
 
     'reg.step6.title':        'Support the Conference',
     'reg.step6.subtitle':     'Help us make this event great with a voluntary donation.',
@@ -205,9 +213,17 @@ const i18n = {
 
     'reg.step5.title':        'Mittagspaket',
     'reg.step5.subtitle':     'Bestelle dein Mittagessen und tanke Energie für einen vollen Tag.',
-    'reg.lunch.desc':         'Jedes Mittagspaket kostet €15. Bestelle so viele wie du benötigst — auch für mitgebrachte Kinder.',
-    'reg.lunch.nonVegan':     'Nicht vegan',
-    'reg.lunch.vegan':        'Vegan',
+    'reg.lunch.desc':              'Jedes Mittagspaket kostet €15. Bestelle so viele wie du benötigst — auch für mitgebrachte Kinder.',
+    'reg.lunch.spring.name':       'Frühlings-Quinoa-Bowl mit grünem Spargel',
+    'reg.lunch.spring.desc':       'Quinoa · Grüner Spargel · Süßkartoffelwürfel · Gedünstete Pilze · Radieschen · Mango-Chili-Dressing',
+    'reg.lunch.hummus.name':       'Hummus-Bowl mit Rinderköfte',
+    'reg.lunch.hummus.desc':       'Hummus Tahini · Rinderköfte · Eingelegte Radieschen · Rotkohl · Gurke · Karotte · Petersilie',
+    'reg.lunch.sweet.name':        'Quinoa-Bowl mit Süßkartoffeln',
+    'reg.lunch.sweet.desc':        'Bio-Quinoa · Cajun-Süßkartoffel · Mais · Kidneybohnen · Paprika · Tomaten-Dressing',
+    'reg.lunch.tag.vegan':         'Vegan',
+    'reg.lunch.tag.gf':            'Glutenfrei',
+    'reg.lunch.tag.lf':            'Laktosefrei',
+    'reg.lunch.tag.meat':          'Enthält Fleisch',
 
     'reg.step6.title':        'Konferenz unterstützen',
     'reg.step6.subtitle':     'Hilf uns, dieses Event mit einer freiwilligen Spende zu finanzieren.',
@@ -357,8 +373,9 @@ const state = {
   youthAttendance:  '',
   youth1014:        0,
   youth1417:        0,
-  lunchNonVegan:    0,
-  lunchVegan:       0,
+  lunchSpring:      0,
+  lunchHummus:      0,
+  lunchSweet:       0,
   roles:            [],
   judgeElig:        [false, false],
   ref:              '',
@@ -370,7 +387,7 @@ const PRICES = { cleaning: 5.25, workshop: 10, lunch: 15 };
 function calcTotal() {
   let total = PRICES.cleaning;
   if (state.workshop && !state.isMember) total += PRICES.workshop;
-  const totalLunches = state.lunchNonVegan + state.lunchVegan;
+  const totalLunches = state.lunchSpring + state.lunchHummus + state.lunchSweet;
   if (totalLunches > 0) total += totalLunches * PRICES.lunch;
   if (state.donation > 0) total += state.donation;
   return Math.round(total * 100) / 100;
@@ -460,8 +477,9 @@ async function initiatePayment() {
         workshop:      state.workshop,
         youth1014:     state.youth1014,
         youth1417:     state.youth1417,
-        lunchNonVegan: state.lunchNonVegan,
-        lunchVegan:    state.lunchVegan,
+        lunchSpring:   state.lunchSpring,
+        lunchHummus:   state.lunchHummus,
+        lunchSweet:    state.lunchSweet,
         donation:      state.donation,
         total:         calcTotal(),
         lang:          currentLang,
@@ -953,29 +971,36 @@ document.getElementById('step4Next').addEventListener('click', () => goToStep(5)
 
 /* ── Step 5 wiring: Lunch Package ────────────────────── */
 const lunchCountEls = {
-  nonVegan: document.getElementById('valLunchNonVegan'),
-  vegan:    document.getElementById('valLunchVegan'),
+  spring: document.getElementById('valLunchSpring'),
+  hummus: document.getElementById('valLunchHummus'),
+  sweet:  document.getElementById('valLunchSweet'),
 };
 
 function renderLunchStep() {
-  lunchCountEls.nonVegan.textContent = String(state.lunchNonVegan);
-  lunchCountEls.vegan.textContent    = String(state.lunchVegan);
-  document.getElementById('decLunchNonVegan').disabled = state.lunchNonVegan === 0;
-  document.getElementById('decLunchVegan').disabled    = state.lunchVegan === 0;
-  document.getElementById('decLunchNonVegan').closest('.youth-group-card').classList.toggle('youth-group-card--active', state.lunchNonVegan > 0);
-  document.getElementById('decLunchVegan').closest('.youth-group-card').classList.toggle('youth-group-card--active', state.lunchVegan > 0);
+  lunchCountEls.spring.textContent = String(state.lunchSpring);
+  lunchCountEls.hummus.textContent = String(state.lunchHummus);
+  lunchCountEls.sweet.textContent  = String(state.lunchSweet);
+  document.getElementById('decLunchSpring').disabled = state.lunchSpring === 0;
+  document.getElementById('decLunchHummus').disabled = state.lunchHummus === 0;
+  document.getElementById('decLunchSweet').disabled  = state.lunchSweet  === 0;
+  document.getElementById('lunchCardSpring').classList.toggle('lunch-card--active', state.lunchSpring > 0);
+  document.getElementById('lunchCardHummus').classList.toggle('lunch-card--active', state.lunchHummus > 0);
+  document.getElementById('lunchCardSweet').classList.toggle('lunch-card--active',  state.lunchSweet  > 0);
 }
 
 function adjustLunchCount(type, delta) {
-  if (type === 'nonVegan') state.lunchNonVegan = Math.max(0, state.lunchNonVegan + delta);
-  else                     state.lunchVegan    = Math.max(0, state.lunchVegan    + delta);
+  if (type === 'spring')      state.lunchSpring = Math.max(0, state.lunchSpring + delta);
+  else if (type === 'hummus') state.lunchHummus = Math.max(0, state.lunchHummus + delta);
+  else                        state.lunchSweet  = Math.max(0, state.lunchSweet  + delta);
   renderLunchStep();
 }
 
-document.getElementById('decLunchNonVegan').addEventListener('click', () => adjustLunchCount('nonVegan', -1));
-document.getElementById('incLunchNonVegan').addEventListener('click', () => adjustLunchCount('nonVegan',  1));
-document.getElementById('decLunchVegan').addEventListener('click',    () => adjustLunchCount('vegan',    -1));
-document.getElementById('incLunchVegan').addEventListener('click',    () => adjustLunchCount('vegan',     1));
+document.getElementById('decLunchSpring').addEventListener('click', () => adjustLunchCount('spring', -1));
+document.getElementById('incLunchSpring').addEventListener('click', () => adjustLunchCount('spring',  1));
+document.getElementById('decLunchHummus').addEventListener('click', () => adjustLunchCount('hummus', -1));
+document.getElementById('incLunchHummus').addEventListener('click', () => adjustLunchCount('hummus',  1));
+document.getElementById('decLunchSweet').addEventListener('click',  () => adjustLunchCount('sweet',  -1));
+document.getElementById('incLunchSweet').addEventListener('click',  () => adjustLunchCount('sweet',   1));
 
 document.getElementById('step5Back').addEventListener('click', () => goToStep(4));
 document.getElementById('step5Next').addEventListener('click', () => goToStep(6));
@@ -1064,7 +1089,7 @@ function populateSummary() {
     document.getElementById('priceDonationAmount').textContent = `+€${state.donation.toFixed(2)}`;
   }
 
-  const lunchCount = state.lunchNonVegan + state.lunchVegan;
+  const lunchCount = state.lunchSpring + state.lunchHummus + state.lunchSweet;
   const lunchRow = document.getElementById('priceLunchRow');
   lunchRow.hidden = lunchCount === 0;
   if (lunchCount > 0) {
