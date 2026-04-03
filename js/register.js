@@ -419,7 +419,7 @@ function buildProgressBar() {
     dot.dataset.panel = panel;
     const label = i === 0    ? t('reg.nav.start')
                 : i === last ? t('reg.nav.end')
-                :              String(i);
+                :              String(i + 1);
     dot.innerHTML = `<div class="funnel__prog-dot"><span>${i + 1}</span></div><span class="funnel__prog-label">${label}</span>`;
     container.appendChild(dot);
   });
