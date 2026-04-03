@@ -300,12 +300,48 @@
         </div>
       </div>
 
-      <!-- ── Step 5: Donation ────────────────────────────── -->
-      <div class="funnel__panel" id="step5" aria-label="Step 5: Donation" hidden>
+      <!-- ── Step 5: Lunch Package ─────────────────────────── -->
+      <div class="funnel__panel" id="step5" aria-label="Step 5: Lunch Package" hidden>
+        <div class="funnel__header">
+          <span class="section__label">Step 4 of 7</span>
+          <h1 class="funnel__title" data-i18n="reg.step5.title">Lunch Package</h1>
+          <p class="funnel__subtitle" data-i18n="reg.step5.subtitle">Order lunch and fuel up for a full day of speeches and workshops.</p>
+        </div>
+
+        <div class="funnel__form">
+          <p class="funnel__note" data-i18n="reg.lunch.desc">Each lunch package is €15. Order as many as you need — including for any young guests you're bringing along.</p>
+          <div class="youth-groups">
+            <div class="youth-group-card">
+              <span class="youth-group-card__label" data-i18n="reg.lunch.nonVegan">Non-vegan</span>
+              <div class="youth-counter">
+                <button class="youth-counter__btn" id="decLunchNonVegan" type="button" aria-label="Decrease non-vegan">−</button>
+                <span class="youth-counter__val" id="valLunchNonVegan">0</span>
+                <button class="youth-counter__btn" id="incLunchNonVegan" type="button" aria-label="Increase non-vegan">+</button>
+              </div>
+            </div>
+            <div class="youth-group-card">
+              <span class="youth-group-card__label" data-i18n="reg.lunch.vegan">Vegan</span>
+              <div class="youth-counter">
+                <button class="youth-counter__btn" id="decLunchVegan" type="button" aria-label="Decrease vegan">−</button>
+                <span class="youth-counter__val" id="valLunchVegan">0</span>
+                <button class="youth-counter__btn" id="incLunchVegan" type="button" aria-label="Increase vegan">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="funnel__actions">
+          <button class="btn btn--outline btn--lg" id="step5Back" data-i18n="reg.back">← Back</button>
+          <button class="btn btn--yellow btn--lg" id="step5Next" data-i18n="reg.next">Continue →</button>
+        </div>
+      </div>
+
+      <!-- ── Step 6: Donation ────────────────────────────── -->
+      <div class="funnel__panel" id="step6" aria-label="Step 6: Donation" hidden>
         <div class="funnel__header">
           <span class="section__label">Step 4 of 5</span>
-          <h1 class="funnel__title" data-i18n="reg.step5.title">Support the Conference</h1>
-          <p class="funnel__subtitle" data-i18n="reg.step5.subtitle">Help us make this event great with a voluntary donation.</p>
+          <h1 class="funnel__title" data-i18n="reg.step6.title">Support the Conference</h1>
+          <p class="funnel__subtitle" data-i18n="reg.step6.subtitle">Help us make this event great with a voluntary donation.</p>
         </div>
 
         <div class="funnel__form">
@@ -324,17 +360,17 @@
         </div>
 
         <div class="funnel__actions">
-          <button class="btn btn--outline btn--lg" id="step5Back" data-i18n="reg.back">← Back</button>
-          <button class="btn btn--yellow btn--lg" id="step5Next" data-i18n="reg.next">Continue →</button>
+          <button class="btn btn--outline btn--lg" id="step6Back" data-i18n="reg.back">← Back</button>
+          <button class="btn btn--yellow btn--lg" id="step6Next" data-i18n="reg.next">Continue →</button>
         </div>
       </div>
 
-      <!-- ── Step 6: Cleaning Fee ────────────────────────── -->
-      <div class="funnel__panel" id="step6" aria-label="Step 6: Venue Cleaning Fee" hidden>
+      <!-- ── Step 7: Cleaning Fee ────────────────────────── -->
+      <div class="funnel__panel" id="step7" aria-label="Step 7: Venue Cleaning Fee" hidden>
         <div class="funnel__header">
           <span class="section__label">Step 5 of 6</span>
-          <h1 class="funnel__title" data-i18n="reg.step6.title">Venue Cleaning Fee</h1>
-          <p class="funnel__subtitle" data-i18n="reg.step6.subtitle">A small contribution to keep the venue in great shape.</p>
+          <h1 class="funnel__title" data-i18n="reg.step7.title">Venue Cleaning Fee</h1>
+          <p class="funnel__subtitle" data-i18n="reg.step7.subtitle">A small contribution to keep the venue in great shape.</p>
         </div>
 
         <div class="funnel__form">
@@ -360,17 +396,17 @@
         </div>
 
         <div class="funnel__actions">
-          <button class="btn btn--outline btn--lg" id="step6Back" data-i18n="reg.back">← Back</button>
-          <button class="btn btn--yellow btn--lg" id="step6Next" data-i18n="reg.next">Continue →</button>
+          <button class="btn btn--outline btn--lg" id="step7Back" data-i18n="reg.back">← Back</button>
+          <button class="btn btn--yellow btn--lg" id="step7Next" data-i18n="reg.next">Continue →</button>
         </div>
       </div>
 
-      <!-- ── Step 7: Checkout / Confirm ─────────────────── -->
-      <div class="funnel__panel" id="step7" aria-label="Step 7: Confirm" hidden>
+      <!-- ── Step 8: Checkout / Confirm ─────────────────── -->
+      <div class="funnel__panel" id="step8" aria-label="Step 8: Confirm" hidden>
         <div class="funnel__header">
           <span class="section__label">Step 6 of 6</span>
-          <h1 class="funnel__title" data-i18n="reg.step7.title">Confirm Registration</h1>
-          <p class="funnel__subtitle" data-i18n="reg.step7.subtitle">Review your details before paying.</p>
+          <h1 class="funnel__title" data-i18n="reg.step8.title">Confirm Registration</h1>
+          <p class="funnel__subtitle" data-i18n="reg.step8.subtitle">Review your details before paying.</p>
         </div>
 
         <div class="funnel__form">
@@ -415,6 +451,10 @@
               <span data-i18n="reg.summary.memberDiscount">Toastmasters member discount</span>
               <span>-€10</span>
             </div>
+            <div class="price-summary__row" id="priceLunchRow" hidden>
+              <span data-i18n="reg.summary.lunch">Lunch Package</span>
+              <span id="priceLunchAmount">+€0</span>
+            </div>
             <div class="price-summary__row price-summary__row--donation" id="priceDonationRow" hidden>
               <span data-i18n="reg.summary.donation">Donation</span>
               <span id="priceDonationAmount">€0</span>
@@ -441,13 +481,13 @@
         </div>
 
         <div class="funnel__actions">
-          <button class="btn btn--outline btn--lg" id="step7Back" data-i18n="reg.back">← Back</button>
-          <button class="btn btn--yellow btn--lg" id="step7Confirm" data-i18n="reg.confirm">Pay with Stripe</button>
+          <button class="btn btn--outline btn--lg" id="step8Back" data-i18n="reg.back">← Back</button>
+          <button class="btn btn--yellow btn--lg" id="step8Confirm" data-i18n="reg.confirm">Pay with Stripe</button>
         </div>
       </div>
 
-      <!-- ── Step 8: Confirmation ──────────────────────────── -->
-      <div class="funnel__panel" id="step8" aria-label="Registration confirmed" hidden>
+      <!-- ── Step 9: Confirmation ──────────────────────────── -->
+      <div class="funnel__panel" id="step9" aria-label="Registration confirmed" hidden>
         <div class="funnel__confirmation">
           <div class="confirm__icon" aria-hidden="true">
             <svg viewBox="0 0 48 48" fill="none">
@@ -495,6 +535,6 @@
   <!-- Toast notification -->
   <div class="toast" id="toast" role="alert" aria-live="polite"></div>
 
-  <script src="js/register.js?v=14"></script>
+  <script src="js/register.js?v=15"></script>
 </body>
 </html>
