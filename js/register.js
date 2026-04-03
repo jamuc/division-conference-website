@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════
    Division D Conference 2026 — register.js
-   · Multi-step registration funnel (6 steps + success)
+   · Multi-step registration funnel (7 steps + success)
    · Price calculation
    · PDF ticket generation (jsPDF)
    · i18n (EN / DE)
@@ -14,10 +14,11 @@ const i18n = {
 
     'reg.step1.nav':          'Details',
     'reg.step2.nav':          'Roles',
-    'reg.step3.nav':          'Fee',
+    'reg.step3.nav':          'Youth',
     'reg.step4.nav':          'Workshop',
     'reg.step5.nav':          'Donate',
-    'reg.step6.nav':          'Confirm',
+    'reg.step6.nav':          'Fee',
+    'reg.step7.nav':          'Confirm',
 
     'reg.step1.eyebrow':      'Step 1 of 5',
     'reg.step1.title':        'Your Details',
@@ -26,12 +27,17 @@ const i18n = {
     'reg.step2.title':        'Contest Roles',
     'reg.step2.subtitle':     'Select your role(s) for the contest day. Multiple selections allowed.',
 
-    'reg.step3.title':        'Venue Cleaning Fee',
-    'reg.step3.subtitle':     'A small contribution to keep the venue in great shape.',
-
-    'reg.cleaning.desc':      'All attendees contribute a one-time venue cleaning fee of €5.25. This helps cover post-event cleaning costs at Stadtteilkultur 2411.',
-    'reg.cleaning.accept':    'I have read and accept the €5.25 cleaning fee',
-    'reg.cleaning.acceptHint':'You must accept to continue with your registration.',
+    'reg.step3.title':        'Youth Bootcamp',
+    'reg.step3.subtitle':     'Will you be bringing any young people to the Youth Bootcamp?',
+    'reg.youth.question':     'Who is joining the Youth Bootcamp with you?',
+    'reg.youth.yes':          "Yes, I'm bringing young people",
+    'reg.youth.no':           "No, I'm not bringing any young people",
+    'reg.youth.desc':         'If yes, please tell us how many young people are in each age group.',
+    'reg.youth.group1014':    'Ages 10–14',
+    'reg.youth.group1417':    'Ages 14–17',
+    'reg.youth.none':         'No young people attending',
+    'reg.youth.summary1014':  'Ages 10–14',
+    'reg.youth.summary1417':  'Ages 14–17',
 
     'reg.step4.title':        'Workshop Pass',
     'reg.step4.subtitle':     'Would you like to join a workshop session?',
@@ -47,8 +53,14 @@ const i18n = {
     'reg.donation.desc':      'Your donation goes directly towards financing the conference. Every contribution helps — but it is entirely optional.',
     'reg.donation.label':     'Or enter your own amount (€)',
 
-    'reg.step6.title':        'Confirm Registration',
-    'reg.step6.subtitle':     'Review your details before paying.',
+    'reg.step6.title':        'Venue Cleaning Fee',
+    'reg.step6.subtitle':     'A small contribution to keep the venue in great shape.',
+    'reg.cleaning.desc':      'All attendees contribute a one-time venue cleaning fee of €5.25. This helps cover post-event cleaning costs at Stadtteilkultur 2411.',
+    'reg.cleaning.accept':    'I have read and accept the €5.25 cleaning fee',
+    'reg.cleaning.acceptHint':'You must accept to continue with your registration.',
+
+    'reg.step7.title':        'Confirm Registration',
+    'reg.step7.subtitle':     'Review your details before paying.',
 
     'reg.role.contestant':    'Contestant',
     'reg.role.general':       'General Support',
@@ -77,6 +89,7 @@ const i18n = {
     'reg.summary.email':          'Email',
     'reg.summary.status':         'Status',
     'reg.summary.roles':          'Role(s)',
+    'reg.summary.youth':          'Youth Bootcamp',
     'reg.summary.statusMember':   'Toastmasters member',
     'reg.summary.statusGuest':    'Guest',
     'reg.summary.priceTitle':     'Price Breakdown',
@@ -109,6 +122,7 @@ const i18n = {
     'reg.err.email':          'Please enter a valid email address.',
     'reg.err.club':           'Please select or enter your club name.',
     'reg.err.cleaning':       'Please accept the cleaning fee to continue.',
+    'reg.err.youthChoice':    'Please let us know whether you are bringing any young people.',
     'reg.err.roles':          'Please select at least one role.',
     'reg.err.judgeElig':      'Please confirm all judge eligibility requirements.',
     'reg.err.paymentTitle':   'Payment not completed',
@@ -136,10 +150,11 @@ const i18n = {
 
     'reg.step1.nav':          'Details',
     'reg.step2.nav':          'Rollen',
-    'reg.step3.nav':          'Gebühr',
+    'reg.step3.nav':          'Jugend',
     'reg.step4.nav':          'Workshop',
     'reg.step5.nav':          'Spenden',
-    'reg.step6.nav':          'Bestätigen',
+    'reg.step6.nav':          'Gebühr',
+    'reg.step7.nav':          'Bestätigen',
 
     'reg.step1.eyebrow':      'Schritt 1 von 5',
     'reg.step1.title':        'Deine Angaben',
@@ -148,12 +163,17 @@ const i18n = {
     'reg.step2.title':        'Wettbewerbsrollen',
     'reg.step2.subtitle':     'Wähle deine Rolle(n) für den Wettkampftag. Mehrfachauswahl möglich.',
 
-    'reg.step3.title':        'Reinigungsgebühr',
-    'reg.step3.subtitle':     'Ein kleiner Beitrag, um den Veranstaltungsort sauber zu halten.',
-
-    'reg.cleaning.desc':      'Alle Teilnehmenden leisten einen einmaligen Beitrag von €5,25 zur Reinigung des Veranstaltungsortes nach der Konferenz.',
-    'reg.cleaning.accept':    'Ich habe die €5,25 Reinigungsgebühr gelesen und akzeptiere sie',
-    'reg.cleaning.acceptHint':'Du musst zustimmen, um mit der Anmeldung fortzufahren.',
+    'reg.step3.title':        'Jugend-Bootcamp',
+    'reg.step3.subtitle':     'Bringst du Jugendliche zum Jugend-Bootcamp mit?',
+    'reg.youth.question':     'Wer nimmt mit dir am Jugend-Bootcamp teil?',
+    'reg.youth.yes':          'Ja, ich bringe Jugendliche mit',
+    'reg.youth.no':           'Nein, ich bringe keine Jugendlichen mit',
+    'reg.youth.desc':         'Wenn ja, teile uns bitte mit, wie viele Jugendliche zu jeder Altersgruppe gehören.',
+    'reg.youth.group1014':    '10–14 Jahre',
+    'reg.youth.group1417':    '14–17 Jahre',
+    'reg.youth.none':         'Keine Jugendlichen angemeldet',
+    'reg.youth.summary1014':  '10–14 Jahre',
+    'reg.youth.summary1417':  '14–17 Jahre',
 
     'reg.step4.title':        'Workshop-Pass',
     'reg.step4.subtitle':     'Möchtest du an einem Workshop teilnehmen?',
@@ -169,8 +189,14 @@ const i18n = {
     'reg.donation.desc':      'Deine Spende fließt direkt in die Finanzierung der Konferenz. Jeder Beitrag hilft — aber es ist völlig freiwillig.',
     'reg.donation.label':     'Oder gib deinen eigenen Betrag ein (€)',
 
-    'reg.step6.title':        'Anmeldung bestätigen',
-    'reg.step6.subtitle':     'Überprüfe deine Daten vor der Zahlung.',
+    'reg.step6.title':        'Reinigungsgebühr',
+    'reg.step6.subtitle':     'Ein kleiner Beitrag, um den Veranstaltungsort sauber zu halten.',
+    'reg.cleaning.desc':      'Alle Teilnehmenden leisten einen einmaligen Beitrag von €5,25 zur Reinigung des Veranstaltungsortes nach der Konferenz.',
+    'reg.cleaning.accept':    'Ich habe die €5,25 Reinigungsgebühr gelesen und akzeptiere sie',
+    'reg.cleaning.acceptHint':'Du musst zustimmen, um mit der Anmeldung fortzufahren.',
+
+    'reg.step7.title':        'Anmeldung bestätigen',
+    'reg.step7.subtitle':     'Überprüfe deine Daten vor der Zahlung.',
 
     'reg.role.contestant':    'Teilnehmer/in',
     'reg.role.general':       'Allgemeine Unterstützung',
@@ -199,6 +225,7 @@ const i18n = {
     'reg.summary.email':          'E-Mail',
     'reg.summary.status':         'Status',
     'reg.summary.roles':          'Rolle(n)',
+    'reg.summary.youth':          'Jugend-Bootcamp',
     'reg.summary.statusMember':   'Toastmasters-Mitglied',
     'reg.summary.statusGuest':    'Gast',
     'reg.summary.priceTitle':     'Preisübersicht',
@@ -231,6 +258,7 @@ const i18n = {
     'reg.err.email':          'Bitte gib eine gültige E-Mail-Adresse ein.',
     'reg.err.club':           'Bitte wähle deinen Club aus oder gib ihn ein.',
     'reg.err.cleaning':       'Bitte akzeptiere die Reinigungsgebühr, um fortzufahren.',
+    'reg.err.youthChoice':    'Bitte teile uns mit, ob du Jugendliche mitbringst.',
     'reg.err.roles':          'Bitte wähle mindestens eine Rolle aus.',
     'reg.err.judgeElig':      'Bitte bestätige alle Eignungsvoraussetzungen für Richter/innen.',
     'reg.err.paymentTitle':   'Zahlung nicht abgeschlossen',
@@ -298,6 +326,9 @@ const state = {
   cleaningAccepted: false,
   workshop:         false,
   donation:         0,
+  youthAttendance:  '',
+  youth1014:        0,
+  youth1417:        0,
   roles:            [],
   judgeElig:        [false, false],
   ref:              '',
@@ -331,6 +362,7 @@ function buildProgressBar() {
         { panel: 4, key: 'reg.step4.nav' },
         { panel: 5, key: 'reg.step5.nav' },
         { panel: 6, key: 'reg.step6.nav' },
+        { panel: 7, key: 'reg.step7.nav' },
       ]
     : [
         { panel: 1, key: 'reg.step1.nav' },
@@ -338,6 +370,7 @@ function buildProgressBar() {
         { panel: 4, key: 'reg.step4.nav' },
         { panel: 5, key: 'reg.step5.nav' },
         { panel: 6, key: 'reg.step6.nav' },
+        { panel: 7, key: 'reg.step7.nav' },
       ];
   container.innerHTML = '';
   steps.forEach(({ panel, key }, i) => {
@@ -356,7 +389,7 @@ function buildProgressBar() {
 
 /* ── Step eyebrow ─────────────────────────────────────── */
 function updateStepEyebrow(n) {
-  const order = state.isMember ? [1, 2, 3, 4, 5, 6] : [1, 3, 4, 5, 6];
+  const order = state.isMember ? [1, 2, 3, 4, 5, 6, 7] : [1, 3, 4, 5, 6, 7];
   const idx = order.indexOf(n);
   if (idx === -1) return;
   const panel = document.getElementById('step' + n);
@@ -369,7 +402,7 @@ function updateStepEyebrow(n) {
 
 /* ── Payment ──────────────────────────────────────────── */
 async function initiatePayment() {
-  const btn = document.getElementById('step6Confirm');
+  const btn = document.getElementById('step7Confirm');
   btn.disabled = true;
   btn.textContent = t('reg.confirm.paying');
 
@@ -416,7 +449,7 @@ function handlePaymentReturn() {
     Object.assign(state, JSON.parse(saved));
     sessionStorage.removeItem('divD_reg');
     state.paidViaStripe = true;
-    goToStep(7);
+    goToStep(8);
     return true;
   }
 
@@ -425,9 +458,9 @@ function handlePaymentReturn() {
     if (!saved) return false;
     Object.assign(state, JSON.parse(saved));
     buildProgressBar();
-    goToStep(6);
+    goToStep(7);
     document.getElementById('paymentErrorBanner').hidden = false;
-    const btn = document.getElementById('step6Confirm');
+    const btn = document.getElementById('step7Confirm');
     btn.disabled = false;
     btn.textContent = `${t('reg.confirm')} — €${calcTotal().toFixed(2)}`;
     return true;
@@ -446,7 +479,7 @@ function goToStep(n) {
   panel.hidden = false;
   panel.classList.add('active');
 
-  const order = state.isMember ? [1, 2, 3, 4, 5, 6] : [1, 3, 4, 5, 6];
+  const order = state.isMember ? [1, 2, 3, 4, 5, 6, 7] : [1, 3, 4, 5, 6, 7];
   const currentIdx = order.indexOf(n);
   document.querySelectorAll('.funnel__prog-step').forEach(dot => {
     const p = parseInt(dot.dataset.panel);
@@ -459,10 +492,12 @@ function goToStep(n) {
   updateStepEyebrow(n);
   document.getElementById('funnel').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
+  if (n === 3) renderYouthStep();
   if (n === 4) updateWorkshopPricing();
+  if (n === 6) renderCleaningState();
   if (n === 5) updateDonationStep();
-  if (n === 6) populateSummary();
-  if (n === 7) populateConfirmation();
+  if (n === 7) populateSummary();
+  if (n === 8) populateConfirmation();
 }
 
 /* ── Toast ────────────────────────────────────────────── */
@@ -533,6 +568,16 @@ function validateStep2() {
 }
 
 function validateStep3() {
+  const errEl = document.getElementById('youthErr');
+  errEl.textContent = '';
+  if (!state.youthAttendance) {
+    errEl.textContent = t('reg.err.youthChoice');
+    return false;
+  }
+  return true;
+}
+
+function validateStep6() {
   if (!state.cleaningAccepted) {
     document.getElementById('cleaningErr').textContent = t('reg.err.cleaning');
     return false;
@@ -734,15 +779,76 @@ document.getElementById('step2Next').addEventListener('click', () => {
   if (validateStep2()) goToStep(3);
 });
 
-/* ── Step 3 wiring: Cleaning fee ─────────────────────── */
+/* ── Step 3 wiring: Youth Bootcamp ───────────────────── */
+const youthYes = document.getElementById('youthYes');
+const youthNo = document.getElementById('youthNo');
+const youthGroups = document.getElementById('youthGroups');
+const youthCountEls = {
+  1014: document.getElementById('val1014'),
+  1417: document.getElementById('val1417'),
+};
+
+function renderYouthCounts() {
+  youthCountEls[1014].textContent = String(state.youth1014);
+  youthCountEls[1417].textContent = String(state.youth1417);
+}
+
+function setYouthAttendance(val) {
+  state.youthAttendance = val;
+  renderYouthStep();
+  document.getElementById('youthErr').textContent = '';
+  if (val !== 'yes') {
+    state.youth1014 = 0;
+    state.youth1417 = 0;
+    renderYouthCounts();
+  }
+}
+
+function renderYouthStep() {
+  const val = state.youthAttendance;
+  youthYes.checked = val === 'yes';
+  youthNo.checked = val === 'no';
+  youthGroups.hidden = val !== 'yes';
+  renderYouthCounts();
+}
+
+function adjustYouthCount(group, delta) {
+  if (state.youthAttendance !== 'yes') return;
+  const key = group === 1014 ? 'youth1014' : 'youth1417';
+  state[key] = Math.max(0, state[key] + delta);
+  renderYouthCounts();
+}
+
+[youthYes, youthNo].forEach(radio => {
+  radio.addEventListener('change', () => {
+    if (radio.checked) setYouthAttendance(radio.value);
+  });
+});
+
+document.getElementById('dec1014').addEventListener('click', () => adjustYouthCount(1014, -1));
+document.getElementById('inc1014').addEventListener('click', () => adjustYouthCount(1014, 1));
+document.getElementById('dec1417').addEventListener('click', () => adjustYouthCount(1417, -1));
+document.getElementById('inc1417').addEventListener('click', () => adjustYouthCount(1417, 1));
+
+document.getElementById('step3Back').addEventListener('click', () => goToStep(state.isMember ? 2 : 1));
+document.getElementById('step3Next').addEventListener('click', () => {
+  if (validateStep3()) goToStep(4);
+});
+
+/* ── Step 6 wiring: Cleaning fee ─────────────────────── */
 const cleaningToggle = document.getElementById('cleaningToggle');
 const cleaningCard   = document.getElementById('cleaningCard');
 
 function setCleaning(val) {
   state.cleaningAccepted = val;
+  renderCleaningState();
+  if (val) document.getElementById('cleaningErr').textContent = '';
+}
+
+function renderCleaningState() {
+  const val = state.cleaningAccepted;
   cleaningToggle.setAttribute('aria-checked', String(val));
   cleaningCard.classList.toggle('addon-card--active', val);
-  if (val) document.getElementById('cleaningErr').textContent = '';
 }
 
 cleaningToggle.addEventListener('click', () => setCleaning(!state.cleaningAccepted));
@@ -753,9 +859,9 @@ cleaningCard.addEventListener('click', e => {
   if (!e.target.closest('.addon-toggle')) setCleaning(!state.cleaningAccepted);
 });
 
-document.getElementById('step3Back').addEventListener('click', () => goToStep(state.isMember ? 2 : 1));
-document.getElementById('step3Next').addEventListener('click', () => {
-  if (validateStep3()) goToStep(4);
+document.getElementById('step6Back').addEventListener('click', () => goToStep(5));
+document.getElementById('step6Next').addEventListener('click', () => {
+  if (validateStep6()) goToStep(7);
 });
 
 /* ── Step 4 wiring: Workshop ─────────────────────────── */
@@ -766,6 +872,7 @@ function updateWorkshopPricing() {
   document.getElementById('workshopPriceMember').hidden    = !state.isMember;
   document.getElementById('workshopPriceNonMember').hidden =  state.isMember;
   document.getElementById('workshopMemberBadge').hidden    = !state.isMember;
+  renderWorkshopState();
 
   // Auto-enable workshop for members
   if (state.isMember && !state.workshop) setWorkshop(true);
@@ -773,6 +880,11 @@ function updateWorkshopPricing() {
 
 function setWorkshop(val) {
   state.workshop = val;
+  renderWorkshopState();
+}
+
+function renderWorkshopState() {
+  const val = state.workshop;
   workshopToggle.setAttribute('aria-checked', String(val));
   workshopCard.classList.toggle('addon-card--active', val);
 }
@@ -853,6 +965,10 @@ function populateSummary() {
     rolesRow.hidden = true;
   }
 
+  document.getElementById('summaryYouth').textContent = state.youthAttendance === 'yes'
+    ? `${t('reg.youth.summary1014')}: ${state.youth1014}, ${t('reg.youth.summary1417')}: ${state.youth1417}`
+    : t('reg.youth.none');
+
   // Workshop rows
   const nonMemberRow  = document.getElementById('priceWorkshopRow');
   const memberRow     = document.getElementById('priceWorkshopMemberRow');
@@ -870,13 +986,13 @@ function populateSummary() {
 
   document.getElementById('priceTotal').textContent = `€${calcTotal().toFixed(2)}`;
 
-  const btn = document.getElementById('step6Confirm');
+  const btn = document.getElementById('step7Confirm');
   btn.disabled = false;
   btn.textContent = `${t('reg.confirm')} — €${calcTotal().toFixed(2)}`;
 }
 
-document.getElementById('step6Back').addEventListener('click', () => goToStep(5));
-document.getElementById('step6Confirm').addEventListener('click', async () => {
+document.getElementById('step7Back').addEventListener('click', () => goToStep(6));
+document.getElementById('step7Confirm').addEventListener('click', async () => {
   if (!state.ref) state.ref = generateRef();
   await initiatePayment();
 });

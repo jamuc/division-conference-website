@@ -213,34 +213,49 @@
         </div>
       </div>
 
-      <!-- ── Step 3: Cleaning Fee ────────────────────────── -->
-      <div class="funnel__panel" id="step3" aria-label="Step 3: Venue Cleaning Fee" hidden>
+      <!-- ── Step 3: Youth Bootcamp ───────────────────────── -->
+      <div class="funnel__panel" id="step3" aria-label="Step 3: Youth Bootcamp" hidden>
         <div class="funnel__header">
-          <span class="section__label">Step 2 of 5</span>
-          <h1 class="funnel__title" data-i18n="reg.step3.title">Venue Cleaning Fee</h1>
-          <p class="funnel__subtitle" data-i18n="reg.step3.subtitle">A small contribution to keep the venue in great shape.</p>
+          <span class="section__label">Step 2 of 6</span>
+          <h1 class="funnel__title" data-i18n="reg.step3.title">Youth Bootcamp</h1>
+          <p class="funnel__subtitle" data-i18n="reg.step3.subtitle">Will you be bringing any young people to the Youth Bootcamp?</p>
         </div>
 
         <div class="funnel__form">
-          <div class="fee-explainer">
-            <div class="fee-explainer__amount">€5.25</div>
-            <p class="fee-explainer__desc" data-i18n="reg.cleaning.desc">All attendees contribute a one-time venue cleaning fee of €5. This helps cover post-event cleaning costs at Stadtteilkultur 2411.</p>
+          <div class="form__group">
+            <span class="form__label" data-i18n="reg.youth.question">Who is joining the Youth Bootcamp with you?</span>
+            <div class="form__toggle-group">
+              <label class="form__toggle-opt">
+                <input type="radio" name="youthAttendance" value="yes" id="youthYes" />
+                <span data-i18n="reg.youth.yes">Yes, I'm bringing young people</span>
+              </label>
+              <label class="form__toggle-opt">
+                <input type="radio" name="youthAttendance" value="no" id="youthNo" />
+                <span data-i18n="reg.youth.no">No, I'm not bringing any young people</span>
+              </label>
+            </div>
           </div>
 
-          <label class="addon-card" id="cleaningCard">
-            <div class="addon-card__inner">
-              <div class="addon-card__info">
-                <span class="addon-card__title" data-i18n="reg.cleaning.accept">I have read and accept the €5 cleaning fee</span>
-                <span class="addon-card__desc" data-i18n="reg.cleaning.acceptHint">You must accept to continue with your registration.</span>
-              </div>
-              <div class="addon-card__right">
-                <div class="addon-toggle" id="cleaningToggle" role="switch" aria-checked="false" tabindex="0" aria-label="Accept cleaning fee">
-                  <div class="addon-toggle__knob"></div>
-                </div>
+          <p class="funnel__note" data-i18n="reg.youth.desc">If yes, please tell us how many young people are in each age group.</p>
+          <div class="youth-groups" id="youthGroups" hidden>
+            <div class="youth-group-card">
+              <span class="youth-group-card__label" data-i18n="reg.youth.group1014">Ages 10–14</span>
+              <div class="youth-counter">
+                <button class="youth-counter__btn" id="dec1014" type="button" aria-label="Decrease ages 10-14">−</button>
+                <span class="youth-counter__val" id="val1014">0</span>
+                <button class="youth-counter__btn" id="inc1014" type="button" aria-label="Increase ages 10-14">+</button>
               </div>
             </div>
-          </label>
-          <span class="form__error" id="cleaningErr" role="alert"></span>
+            <div class="youth-group-card">
+              <span class="youth-group-card__label" data-i18n="reg.youth.group1417">Ages 14–17</span>
+              <div class="youth-counter">
+                <button class="youth-counter__btn" id="dec1417" type="button" aria-label="Decrease ages 14-17">−</button>
+                <span class="youth-counter__val" id="val1417">0</span>
+                <button class="youth-counter__btn" id="inc1417" type="button" aria-label="Increase ages 14-17">+</button>
+              </div>
+            </div>
+          </div>
+          <span class="form__error" id="youthErr" role="alert"></span>
         </div>
 
         <div class="funnel__actions">
@@ -314,16 +329,51 @@
         </div>
       </div>
 
-      <!-- ── Step 6: Checkout / Confirm ─────────────────── -->
-      <div class="funnel__panel" id="step6" aria-label="Step 6: Confirm" hidden>
+      <!-- ── Step 6: Cleaning Fee ────────────────────────── -->
+      <div class="funnel__panel" id="step6" aria-label="Step 6: Venue Cleaning Fee" hidden>
         <div class="funnel__header">
-          <span class="section__label">Step 5 of 5</span>
-          <h1 class="funnel__title" data-i18n="reg.step6.title">Confirm Registration</h1>
-          <p class="funnel__subtitle" data-i18n="reg.step6.subtitle">Review your details before paying.</p>
+          <span class="section__label">Step 5 of 6</span>
+          <h1 class="funnel__title" data-i18n="reg.step6.title">Venue Cleaning Fee</h1>
+          <p class="funnel__subtitle" data-i18n="reg.step6.subtitle">A small contribution to keep the venue in great shape.</p>
         </div>
 
         <div class="funnel__form">
-          <!-- Attendee summary -->
+          <div class="fee-explainer">
+            <div class="fee-explainer__amount">€5.25</div>
+            <p class="fee-explainer__desc" data-i18n="reg.cleaning.desc">All attendees contribute a one-time venue cleaning fee of €5.25. This helps cover post-event cleaning costs at Stadtteilkultur 2411.</p>
+          </div>
+
+          <label class="addon-card" id="cleaningCard">
+            <div class="addon-card__inner">
+              <div class="addon-card__info">
+                <span class="addon-card__title" data-i18n="reg.cleaning.accept">I have read and accept the €5.25 cleaning fee</span>
+                <span class="addon-card__desc" data-i18n="reg.cleaning.acceptHint">You must accept to continue with your registration.</span>
+              </div>
+              <div class="addon-card__right">
+                <div class="addon-toggle" id="cleaningToggle" role="switch" aria-checked="false" tabindex="0" aria-label="Accept cleaning fee">
+                  <div class="addon-toggle__knob"></div>
+                </div>
+              </div>
+            </div>
+          </label>
+          <span class="form__error" id="cleaningErr" role="alert"></span>
+        </div>
+
+        <div class="funnel__actions">
+          <button class="btn btn--outline btn--lg" id="step6Back" data-i18n="reg.back">← Back</button>
+          <button class="btn btn--yellow btn--lg" id="step6Next" data-i18n="reg.next">Continue →</button>
+        </div>
+      </div>
+
+      <!-- ── Step 7: Checkout / Confirm ─────────────────── -->
+      <div class="funnel__panel" id="step7" aria-label="Step 7: Confirm" hidden>
+        <div class="funnel__header">
+          <span class="section__label">Step 6 of 6</span>
+          <h1 class="funnel__title" data-i18n="reg.step7.title">Confirm Registration</h1>
+          <p class="funnel__subtitle" data-i18n="reg.step7.subtitle">Review your details before paying.</p>
+        </div>
+
+        <div class="funnel__form">
           <div class="summary-card">
             <div class="summary-card__row">
               <span class="summary-card__label" data-i18n="reg.summary.name">Name</span>
@@ -341,31 +391,30 @@
               <span data-i18n="reg.summary.roles">Role(s)</span>
               <span class="summary-card__value" id="summaryRoles">—</span>
             </div>
+            <div class="summary-card__row" id="summaryYouthRow">
+              <span data-i18n="reg.summary.youth">Youth Bootcamp</span>
+              <span class="summary-card__value" id="summaryYouth">—</span>
+            </div>
           </div>
 
-          <!-- Price breakdown -->
           <div class="price-summary">
             <h2 class="price-summary__title" data-i18n="reg.summary.priceTitle">Price Breakdown</h2>
             <div class="price-summary__row">
               <span data-i18n="reg.summary.cleaning">Cleaning fee</span>
               <span>€5.25</span>
             </div>
-            <!-- Workshop: non-member (+€10) -->
             <div class="price-summary__row" id="priceWorkshopRow" hidden>
               <span data-i18n="reg.summary.workshop">Workshop Package</span>
               <span>+€10</span>
             </div>
-            <!-- Workshop: member (struck-through €10) -->
             <div class="price-summary__row" id="priceWorkshopMemberRow" hidden>
               <span data-i18n="reg.summary.workshop">Workshop Package</span>
               <span class="price-strike">€10</span>
             </div>
-            <!-- Member discount -->
             <div class="price-summary__row price-summary__row--discount" id="priceDiscountRow" hidden>
               <span data-i18n="reg.summary.memberDiscount">Toastmasters member discount</span>
               <span>-€10</span>
             </div>
-            <!-- Donation -->
             <div class="price-summary__row price-summary__row--donation" id="priceDonationRow" hidden>
               <span data-i18n="reg.summary.donation">Donation</span>
               <span id="priceDonationAmount">€0</span>
@@ -392,13 +441,13 @@
         </div>
 
         <div class="funnel__actions">
-          <button class="btn btn--outline btn--lg" id="step6Back" data-i18n="reg.back">← Back</button>
-          <button class="btn btn--yellow btn--lg" id="step6Confirm" data-i18n="reg.confirm">Pay with Stripe</button>
+          <button class="btn btn--outline btn--lg" id="step7Back" data-i18n="reg.back">← Back</button>
+          <button class="btn btn--yellow btn--lg" id="step7Confirm" data-i18n="reg.confirm">Pay with Stripe</button>
         </div>
       </div>
 
-      <!-- ── Step 7: Confirmation ──────────────────────────── -->
-      <div class="funnel__panel" id="step7" aria-label="Registration confirmed" hidden>
+      <!-- ── Step 8: Confirmation ──────────────────────────── -->
+      <div class="funnel__panel" id="step8" aria-label="Registration confirmed" hidden>
         <div class="funnel__confirmation">
           <div class="confirm__icon" aria-hidden="true">
             <svg viewBox="0 0 48 48" fill="none">
