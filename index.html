@@ -27,7 +27,7 @@
 
   <!-- Fonts: self-hosted for GDPR compliance (no Google CDN) -->
 
-  <link rel="stylesheet" href="css/style.css?v=4" />
+  <link rel="stylesheet" href="css/style.css?v=7" />
 </head>
 <body>
 
@@ -56,6 +56,7 @@
     </div>
 
     <nav class="nav__mobile" id="navMobile" aria-hidden="true">
+      <a href="#workshops" class="nav__mobile-link" data-i18n="nav.workshops">Workshops</a>
       <a href="#about" class="nav__mobile-link" data-i18n="nav.about">About</a>
       <a href="#toastmasters" class="nav__mobile-link" data-i18n="nav.tm">Toastmasters</a>
       <a href="#venue" class="nav__mobile-link" data-i18n="nav.venue">Venue</a>
@@ -92,6 +93,90 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         View Programme
       </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       WORKSHOPS
+  ═══════════════════════════════════════════ -->
+  <section class="section section--light" id="workshops">
+    <div class="container">
+      <span class="section__label" data-i18n="workshops.label">Workshops</span>
+      <h2 class="section__title" data-i18n="workshops.title">Learn from the Best</h2>
+      <p class="workshops__intro" data-i18n="workshops.intro">Dive deeper with hands-on sessions led by experienced speakers and coaches. Choose the workshop that fits your goals.</p>
+      <div class="workshop-grid">
+
+        <!-- Workshop 1: Ineke Vermeulen -->
+        <div class="workshop-card">
+          <div class="workshop-card__photo-wrap">
+            <img src="images/workshop-ineke.jpg" alt="Ineke Vermeulen" class="workshop-card__photo" loading="lazy" />
+          </div>
+          <div class="workshop-card__body">
+            <h3 class="workshop-card__name">Ineke Vermeulen</h3>
+            <span class="workshop-card__lang">EN</span>
+            <p class="workshop-card__title" data-i18n="workshops.1.title">Present with Power</p>
+            <p class="workshop-card__desc" data-i18n="workshops.1.desc">From Death by PowerPoint to Seducing with Slides — Presentation tips for Toastmasters, business, and life.</p>
+            <details class="workshop-card__bio-toggle">
+              <summary data-i18n="workshops.1.bioToggle">About the facilitator</summary>
+              <p class="workshop-card__bio" data-i18n="workshops.1.bio">Ineke Vermeulen is a public speaking and TEDx coach, trainer, and Distinguished Toastmaster (DTM) with over 15 years of experience. She works with clients ranging from ambitious individuals to global organisations, helping them communicate with confidence, clarity, and impact.</p>
+            </details>
+          </div>
+        </div>
+
+        <!-- Workshop 2: Edgar Niklaus -->
+        <div class="workshop-card">
+          <div class="workshop-card__photo-wrap">
+            <img src="images/workshop-edgar.jpg" alt="Edgar Niklaus" class="workshop-card__photo" loading="lazy" />
+          </div>
+          <div class="workshop-card__body">
+            <h3 class="workshop-card__name">Edgar Niklaus</h3>
+            <span class="workshop-card__lang">DE</span>
+            <p class="workshop-card__title" data-i18n="workshops.2.title">Elevator Pitch</p>
+            <p class="workshop-card__desc" data-i18n="workshops.2.desc">Der Workshop erklärt Voraussetzungen und Funktionen des Elevator Pitchs und versetzt die Teilnehmer in die Lage ihren eigenen persönlichen Elevator Pitch zu erstellen und zu üben.</p>
+            <details class="workshop-card__bio-toggle">
+              <summary data-i18n="workshops.2.bioToggle">About the facilitator</summary>
+              <p class="workshop-card__bio" data-i18n="workshops.2.bio">Edgar Niklaus (Dipl.-Ing. und Betriebswirt) ist selbständiger Finanz- und Versicherungsmakler seit 1999. Bei Toastmasters seit November 2004, DTM seit 2015. Er hat unzählige Reden und viele Workshops gehalten und bringt 18 Jahre berufliche Führungserfahrung mit.</p>
+            </details>
+          </div>
+        </div>
+
+        <!-- Workshop 3: Darya Juric -->
+        <div class="workshop-card">
+          <div class="workshop-card__photo-wrap">
+            <img src="images/workshop-darya.jpg" alt="Darya Juric" class="workshop-card__photo workshop-card__photo--darya" loading="lazy" />
+          </div>
+          <div class="workshop-card__body">
+            <h3 class="workshop-card__name">Darya Juric</h3>
+            <span class="workshop-card__lang">EN</span>
+            <p class="workshop-card__title" data-i18n="workshops.3.title">Overcome the Spotlight Effect</p>
+            <p class="workshop-card__desc" data-i18n="workshops.3.desc">Turn public speaking from a fear into your advantage. This workshop will give you practical tools to reduce anxiety, embrace new opportunities, and speak with impact.</p>
+            <details class="workshop-card__bio-toggle">
+              <summary data-i18n="workshops.3.bioToggle">About the facilitator</summary>
+              <p class="workshop-card__bio" data-i18n="workshops.3.bio">Darya Juric is an IT professional passionate about communication. In 2022 she founded a corporate Toastmasters club, and later a series of webinars focused on developing the inner skills and mindset that lay the foundation for successful public speaking.</p>
+            </details>
+          </div>
+        </div>
+
+        <!-- Workshop 4: Oleg Güntner — Youth Bootcamp -->
+        <div class="workshop-card workshop-card--bootcamp">
+          <div class="workshop-card__photo-wrap">
+            <img src="images/workshop-oleg.jpg" alt="Oleg Güntner" class="workshop-card__photo" loading="lazy" />
+          </div>
+          <div class="workshop-card__body">
+            <h3 class="workshop-card__name">Oleg Güntner</h3>
+            <span class="workshop-card__lang workshop-card__lang--bootcamp" data-i18n="workshops.4.badge">Youth Bootcamp</span>
+            <p class="workshop-card__title" data-i18n="workshops.4.title">Youth Bootcamp</p>
+            <details class="workshop-card__bio-toggle">
+              <summary data-i18n="workshops.4.bioToggle">About the facilitator</summary>
+              <p class="workshop-card__bio" data-i18n="workshops.4.bio">Oleg Güntner has spent 25 years at BMW, currently as a manager responsible for prototype part quality in development. He is a certified trainer for "The 7 Habits of Highly Effective People" and a coach for leadership and personal development. A Toastmaster since 2012, he is currently President of Munich Media Speakers. He holds degrees in Industrial Engineering and is an NLP Master.</p>
+            </details>
+          </div>
+        </div>
+
+      </div>
+      <div class="workshops__cta-wrap">
+        <a href="agenda.html#workshops" class="btn btn--outline" data-i18n="workshops.cta">View Full Programme</a>
+      </div>
     </div>
   </section>
 
@@ -467,6 +552,6 @@
     });
     window.addEventListener('resize', positionPill);
   </script>
-  <script src="js/main.js?v=4"></script>
+  <script src="js/main.js?v=7"></script>
 </body>
 </html>

@@ -223,6 +223,37 @@
     }
     .track__detail { font-size: .72rem; color: #666; margin-top: .2rem; }
 
+    /* Workshop enrichment */
+    .track__workshop-header {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      margin-bottom: .3rem;
+    }
+    .track__workshop-photo {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .track__workshop-facilitator {
+      font-size: .75rem;
+      color: var(--track-color, #7c3aed);
+      font-weight: 600;
+      margin-top: .1rem;
+    }
+    .track__workshop-desc {
+      font-size: .7rem;
+      color: #555;
+      line-height: 1.4;
+      margin-top: .3rem;
+    }
+    @media (max-width: 640px) {
+      .track__workshop-photo { width: 36px; height: 36px; }
+      .track__workshop-desc  { font-size: .65rem; }
+    }
+
     .track--saal  { --track-color: #0078a0; --track-bg: #f0f9ff; }
     .track--raum1 { --track-color: #7c3aed; --track-bg: #f5f3ff; }
     .track--raum2 { --track-color: #c2410c; --track-bg: #fff7ed; }
@@ -369,7 +400,7 @@
     <div class="agenda-hero__meta">
       <span class="agenda-updated">
         <span class="agenda-updated__dot"></span>
-        <span data-i18n-en="Last updated: 3 April 2026, 22:32" data-i18n-de="Zuletzt aktualisiert: 3. April 2026, 22:32">Last updated: 3 April 2026, 22:32</span>
+        <span data-i18n-en="Last updated: 4 April 2026, 15:06" data-i18n-de="Zuletzt aktualisiert: 4. April 2026, 15:06">Last updated: 4 April 2026, 15:06</span>
         <!-- UPDATE DATE + TIME whenever the agenda changes -->
       </span>
       <div class="agenda-lang">
@@ -433,7 +464,7 @@
     </div>
 
     <!-- 10:15: DE International Speech + EN Workshop 60 min + Youth Bootcamp Workshop -->
-    <div class="slot slot--parallel">
+    <div class="slot slot--parallel" id="workshops">
       <div class="slot__time">
         <div class="slot__time-start">10:15</div>
         <div class="slot__time-end">11:15</div>
@@ -445,14 +476,27 @@
           <div class="track__title" data-i18n-en="🏆 DE International Speech Contest" data-i18n-de="🏆 DE Internationaler Redekreiswettbewerb">🏆 DE International Speech Contest</div>
           <div class="track__detail" data-i18n-en="German · 5–7 min speeches · Judged" data-i18n-de="Deutsch · 5–7 Min. Reden · Bewertet">German · 5–7 min speeches · Judged</div>
         </div>
-        <div class="track track--raum1">
+        <div class="track track--raum1 track--workshop-featured">
           <div class="track__room" data-i18n-en="Room 1" data-i18n-de="Raum 1">Room 1</div>
-          <div class="track__title" data-i18n-en="Workshop (EN)" data-i18n-de="Workshop (EN)">Workshop (EN)</div>
+          <div class="track__workshop-header">
+            <img src="images/workshop-ineke.jpg" alt="Ineke Vermeulen" class="track__workshop-photo" loading="lazy" />
+            <div>
+              <div class="track__title" data-i18n-en="Present with Power" data-i18n-de="Present with Power">Present with Power</div>
+              <div class="track__workshop-facilitator">Ineke Vermeulen</div>
+            </div>
+          </div>
           <div class="track__detail" data-i18n-en="English · 60 min · 10:15–11:15" data-i18n-de="Englisch · 60 Min. · 10:15–11:15">English · 60 min · 10:15–11:15</div>
+          <div class="track__workshop-desc" data-i18n-en="From Death by PowerPoint to Seducing with Slides — Presentation tips for Toastmasters, business, and life." data-i18n-de="Von Death by PowerPoint zu Seducing with Slides — Präsentationstipps für Toastmasters, Business und das Leben.">From Death by PowerPoint to Seducing with Slides — Presentation tips for Toastmasters, business, and life.</div>
         </div>
-        <div class="track track--raum2">
+        <div class="track track--raum2 track--workshop-featured">
           <div class="track__room" data-i18n-en="Room 2" data-i18n-de="Raum 2">Room 2</div>
-          <div class="track__title" data-i18n-en="Youth Bootcamp" data-i18n-de="Jugend-Bootcamp">Youth Bootcamp</div>
+          <div class="track__workshop-header">
+            <img src="images/workshop-oleg.jpg" alt="Oleg Güntner" class="track__workshop-photo" loading="lazy" />
+            <div>
+              <div class="track__title" data-i18n-en="Youth Bootcamp" data-i18n-de="Jugend-Bootcamp">Youth Bootcamp</div>
+              <div class="track__workshop-facilitator">Oleg Güntner</div>
+            </div>
+          </div>
           <div class="track__detail" data-i18n-en="Workshop session" data-i18n-de="Workshop-Einheit">Workshop session</div>
         </div>
       </div></div>
@@ -490,10 +534,17 @@
           <div class="track__title" data-i18n-en="🏆 EN Evaluation Contest" data-i18n-de="🏆 EN Bewertungswettbewerb">🏆 EN Evaluation Contest</div>
           <div class="track__detail" data-i18n-en="English · Test &amp; evaluation speeches · Judged" data-i18n-de="Englisch · Test- &amp; Bewertungsreden · Bewertet">English · Test &amp; evaluation speeches · Judged</div>
         </div>
-        <div class="track track--raum1" style="grid-column:2;grid-row:1/span 2">
+        <div class="track track--raum1 track--workshop-featured" style="grid-column:2;grid-row:1/span 2">
           <div class="track__room" data-i18n-en="Room 1" data-i18n-de="Raum 1">Room 1</div>
-          <div class="track__title" data-i18n-en="Workshop (DE)" data-i18n-de="Workshop (DE)">Workshop (DE)</div>
+          <div class="track__workshop-header">
+            <img src="images/workshop-edgar.jpg" alt="Edgar Niklaus" class="track__workshop-photo" loading="lazy" />
+            <div>
+              <div class="track__title" data-i18n-en="Elevator Pitch" data-i18n-de="Elevator Pitch">Elevator Pitch</div>
+              <div class="track__workshop-facilitator">Edgar Niklaus</div>
+            </div>
+          </div>
           <div class="track__detail" data-i18n-en="German · 90 min · 11:30–13:00" data-i18n-de="Deutsch · 90 Min. · 11:30–13:00">German · 90 min · 11:30–13:00</div>
+          <div class="track__workshop-desc" data-i18n-en="This workshop explains the prerequisites and functions of the elevator pitch and enables participants to create and practise their own personal elevator pitch." data-i18n-de="Der Workshop erklärt Voraussetzungen und Funktionen des Elevator Pitchs und versetzt die Teilnehmer in die Lage ihren eigenen persönlichen Elevator Pitch zu erstellen und zu üben.">Der Workshop erklärt Voraussetzungen und Funktionen des Elevator Pitchs und versetzt die Teilnehmer in die Lage ihren eigenen persönlichen Elevator Pitch zu erstellen und zu üben.</div>
         </div>
         <div class="track track--raum2" style="grid-column:3;grid-row:1/span 2">
           <div class="track__room" data-i18n-en="Room 2" data-i18n-de="Raum 2">Room 2</div>
@@ -541,10 +592,17 @@
           <div class="track__title" data-i18n-en="🏆 DE Evaluation Contest" data-i18n-de="🏆 DE Bewertungswettbewerb">🏆 DE Evaluation Contest</div>
           <div class="track__detail" data-i18n-en="German · Test &amp; evaluation speeches · Judged" data-i18n-de="Deutsch · Test- &amp; Bewertungsreden · Bewertet">German · Test &amp; evaluation speeches · Judged</div>
         </div>
-        <div class="track track--raum1" style="grid-column:2;grid-row:1/span 2">
+        <div class="track track--raum1 track--workshop-featured" style="grid-column:2;grid-row:1/span 2">
           <div class="track__room" data-i18n-en="Room 1" data-i18n-de="Raum 1">Room 1</div>
-          <div class="track__title" data-i18n-en="Workshop (EN)" data-i18n-de="Workshop (EN)">Workshop (EN)</div>
+          <div class="track__workshop-header">
+            <img src="images/workshop-darya.jpg" alt="Darya Juric" class="track__workshop-photo" loading="lazy" />
+            <div>
+              <div class="track__title" data-i18n-en="Overcome the Spotlight Effect" data-i18n-de="Overcome the Spotlight Effect">Overcome the Spotlight Effect</div>
+              <div class="track__workshop-facilitator">Darya Juric</div>
+            </div>
+          </div>
           <div class="track__detail" data-i18n-en="English · 90 min · 14:00–15:30" data-i18n-de="Englisch · 90 Min. · 14:00–15:30">English · 90 min · 14:00–15:30</div>
+          <div class="track__workshop-desc" data-i18n-en="Turn public speaking from a fear into your advantage. Practical tools to reduce anxiety, embrace new opportunities, and speak with impact." data-i18n-de="Verwandeln Sie Lampenfieber in Ihren Vorteil. Praktische Werkzeuge, um Nervosität abzubauen, neue Chancen zu ergreifen und mit Wirkung zu sprechen.">Turn public speaking from a fear into your advantage. Practical tools to reduce anxiety, embrace new opportunities, and speak with impact.</div>
         </div>
         <div class="track track--raum2" style="grid-column:3;grid-row:1/span 2">
           <div class="track__room" data-i18n-en="Room 2" data-i18n-de="Raum 2">Room 2</div>
