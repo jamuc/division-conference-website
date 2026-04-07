@@ -18,8 +18,8 @@ const i18n = {
     'nav.tickets':      'Tickets',
     'nav.share':        'Share',
 
-    'hero.eyebrow':     'Toastmasters District 95 · Division D',
-    'hero.title':       'Division D<br>Conference 2026',
+    'hero.eyebrow':     'Toastmasters Bayern · District 95 · Division D',
+    'hero.title':       'Division D Conference<br>2026',
     'hero.tagline':     'Growing Through Connection',
     'hero.values':      'Integrity | Respect | Service | Excellence',
     'hero.date':        '25 April 2026',
@@ -126,8 +126,8 @@ const i18n = {
     'nav.tickets':      'Tickets',
     'nav.share':        'Teilen',
 
-    'hero.eyebrow':     'Toastmasters Distrikt 95 · Division D',
-    'hero.title':       'Division D<br>Konferenz 2026',
+    'hero.eyebrow':     'Toastmasters Bayern · Distrikt 95 · Division D',
+    'hero.title':       'Division D Konferenz<br>2026',
     'hero.tagline':     'Growing Through Connection',
     'hero.values':      'Integrity | Respect | Service | Excellence',
     'hero.date':        '25. April 2026',
