@@ -79,7 +79,8 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 [hidden] { display: none !important; }
 
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; font-size: 112.5%; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (min-width: 641px) { html { font-size: 112.5%; } }
 
 body {
   font-family: var(--font-body);
@@ -351,7 +352,7 @@ body.lang-de .lang-toggle__de { color: var(--yellow); }
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: calc(var(--nav-h) + 3rem) clamp(1rem, 5vw, 2rem) 4rem;
+  padding: calc(var(--nav-h) + 3rem) clamp(1.25rem, 5vw, 2rem) 4rem;
   background: linear-gradient(135deg, var(--maroon) 0%, var(--navy-dk) 100%);
   overflow: hidden;
   text-align: center;
@@ -458,11 +459,14 @@ body.lang-de .lang-toggle__de { color: var(--yellow); }
 .hero__contact-link {
   display: inline-flex;
   align-items: center;
-  gap: .5rem;
+  gap: .4rem .5rem;
   color: rgba(255,255,255,.75);
-  font-size: 1.4rem;
+  font-size: clamp(0.8rem, 3vw, 1.4rem);
   text-decoration: none;
   transition: color .2s;
+  flex-wrap: wrap;
+  justify-content: center;
+  word-break: break-all;
 }
 .hero__contact-link:hover {
   color: var(--yellow);
@@ -800,6 +804,7 @@ pretix-widget + * + .tickets__coming-soon {
   max-width: 640px;
   margin-bottom: 2.5rem;
 }
+.workshops__intro--light { color: rgba(255,255,255,.8); }
 .workshop-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -813,6 +818,16 @@ pretix-widget + * + .tickets__coming-soon {
   .workshop-grid { grid-template-columns: 1fr; gap: 1.5rem; }
   .workshop-card__photo-wrap { width: 180px; height: 180px; }
 }
+.workshop-grid--centered {
+  justify-content: center;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 700px;
+  margin-inline: auto;
+}
+@media (max-width: 640px) {
+  .workshop-grid--centered { grid-template-columns: 1fr; max-width: none; }
+}
+
 .workshop-card {
   background: #fff;
   border-radius: 1rem;

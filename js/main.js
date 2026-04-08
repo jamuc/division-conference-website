@@ -116,6 +116,16 @@ const i18n = {
     'workshops.4.bio':   'Oleg Güntner has spent 25 years at BMW, currently as a manager responsible for prototype part quality in development. A certified trainer for "The 7 Habits of Highly Effective People" and a coach for leadership and personal development. A Toastmaster since 2012 and currently President of Munich Media Speakers. He holds degrees in Industrial Engineering and is an NLP Master.',
     'nav.workshops':     'Workshops',
 
+    'cc.label':         'Contest Chairs',
+    'cc.title':         'Meet the Contest Chairs',
+    'cc.intro':         'Our experienced contest chairs ensure every competition runs smoothly and every speaker gets their moment to shine.',
+    'cc.1.role':        'Contest Chair — EN International Speech Contest',
+    'cc.1.bioToggle':   'About the contest chair',
+    'cc.1.bio':         'Mikaela Gallon, half French and Maltese, is a Sr. IT Project Manager and the founder of Present.Global. Mikaela grew up in Argentina and South Africa and worked across Europe, the US and Japan. Married to a German and mom of two, she holds an Ivy League MBA and PMP, and is a triple Toastmasters District champion.',
+    'cc.2.role':        'Contest Chair — DE International Speech Contest',
+    'cc.2.bioToggle':   'About the contest chair',
+    'cc.2.bio':         'Christina, an industrial engineer with over 14 years in the automotive industry, once considered invisibility her superpower—until launching her own business as a health consultant revealed the need to be seen and heard. This turning point led her to Toastmasters in 2014. Since then, she has served multiple times as a District Officer and held various leadership roles across clubs. Through Toastmasters, she transformed her voice into a powerful business asset—making confident speaking and impactful presentations a cornerstone of her success.',
+
     'toast.copied':     'Link copied to clipboard!',
   },
 
@@ -225,6 +235,16 @@ const i18n = {
     'workshops.4.title': 'Jugend-Bootcamp',
     'workshops.4.bio':   'Oleg Güntner ist seit 25 Jahren bei BMW tätig, aktuell als Führungskraft mit Verantwortung für die Qualität der Prototypenteile in der Entwicklung. Trainer für „7 Wege zur Effektivität" und Coach für Führung und Persönlichkeitsentwicklung. Toastmaster seit 2012 und aktuell Präsident des Toastmaster-Clubs „Munich Media Speakers". Ausbildung: Wirtschaftsingenieur und NLP-Master.',
     'nav.workshops':     'Workshops',
+
+    'cc.label':         'Wettbewerbsleitung',
+    'cc.title':         'Unsere Wettbewerbsleiter',
+    'cc.intro':         'Unsere erfahrenen Wettbewerbsleiter sorgen dafür, dass jeder Wettbewerb reibungslos abläuft und jeder Redner seinen Moment bekommt.',
+    'cc.1.role':        'Wettbewerbsleiterin — EN Internationaler Redekreiswettbewerb',
+    'cc.1.bioToggle':   'Über die Wettbewerbsleiterin',
+    'cc.1.bio':         'Mikaela Gallon, halb Französin und Malteserin, ist Sr. IT-Projektmanagerin und Gründerin von Present.Global. Mikaela wuchs in Argentinien und Südafrika auf und arbeitete in ganz Europa, den USA und Japan. Verheiratet mit einem Deutschen und Mutter von zwei Kindern, hat sie einen Ivy-League-MBA und PMP und ist dreifache Toastmasters-Distrikt-Meisterin.',
+    'cc.2.role':        'Wettbewerbsleiterin — DE Internationaler Redekreiswettbewerb',
+    'cc.2.bioToggle':   'Über die Wettbewerbsleiterin',
+    'cc.2.bio':         'Christina, Wirtschaftsingenieurin mit über 14 Jahren Erfahrung in der Automobilindustrie, betrachtete Unsichtbarkeit einst als ihre Superkraft — bis die Gründung ihres eigenen Unternehmens als Gesundheitsberaterin ihr zeigte, dass sie gesehen und gehört werden muss. Dieser Wendepunkt führte sie 2014 zu Toastmasters. Seitdem war sie mehrfach District Officer und übernahm verschiedene Führungsrollen in Clubs. Durch Toastmasters verwandelte sie ihre Stimme in ein kraftvolles Geschäftsinstrument — selbstbewusstes Sprechen und wirkungsvolle Präsentationen wurden zum Grundpfeiler ihres Erfolgs.',
 
     'toast.copied':     'Link in die Zwischenablage kopiert!',
   },
