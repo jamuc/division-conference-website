@@ -1301,6 +1301,7 @@ pretix-widget + * + .tickets__coming-soon {
   height: 50px;
   width: auto;
   border-radius: 4px;
+  mix-blend-mode: lighten;
 }
 .bottom-bar__sponsor {
   gap: .6rem;
