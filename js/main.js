@@ -94,6 +94,10 @@ const i18n = {
 
     'contact.text':     'Questions? Get in touch:',
 
+    'bar.sponsor':      'Sponsored by',
+    'bar.upcoming':     'Up next',
+    'bar.d95conf':      'District 95 Conference · May 15–17 · Essen',
+
     'workshops.label':  'Workshops',
     'workshops.title':  'Learn from the Best',
     'workshops.intro':  'Dive deeper with hands-on sessions led by experienced speakers and coaches. Choose the workshop that fits your goals.',
@@ -214,6 +218,10 @@ const i18n = {
 
     'contact.text':     'Fragen? Schreib uns:',
 
+    'bar.sponsor':      'Gesponsert von',
+    'bar.upcoming':     'Als Nächstes',
+    'bar.d95conf':      'Distrikt 95 Konferenz · 15.–17. Mai · Essen',
+
     'workshops.label':  'Workshops',
     'workshops.title':  'Lernen von den Besten',
     'workshops.intro':  'Vertiefen Sie Ihr Wissen in praxisnahen Sessions mit erfahrenen Rednern und Coaches. Wählen Sie den Workshop, der zu Ihren Zielen passt.',
@@ -321,56 +329,6 @@ function showToast(msg) {
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2800);
 }
-
-/* ── Share helpers ────────────────────────────────────── */
-const PAGE_URL = 'https://toastmasters-bayern.com/';
-
-function shareMessage() {
-  return currentLang === 'de'
-    ? `Komm zur Division D Konferenz am 25. April 2026! Wo Geschichten sich begegnen ${PAGE_URL}`
-    : `Join me at the Division D Conference on 25 April 2026! Growing Through Connection ${PAGE_URL}`;
-}
-
-function doShare(platform) {
-  const msg = encodeURIComponent(shareMessage());
-  const url = encodeURIComponent(PAGE_URL);
-
-  const urls = {
-    whatsapp:  `https://wa.me/?text=${msg}`,
-    linkedin:  `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
-    facebook:  `https://www.facebook.com/sharer/sharer.php?u=${url}`,
-    instagram: null, // clipboard only
-  };
-
-  if (platform === 'instagram') {
-    navigator.clipboard.writeText(PAGE_URL).then(() => {
-      showToast(i18n[currentLang]['toast.copied']);
-    }).catch(() => {
-      showToast(PAGE_URL);
-    });
-    return;
-  }
-
-  if (!urls[platform]) return;
-  window.open(urls[platform], '_blank', 'noopener,noreferrer');
-}
-
-/* Wire up all share buttons (desktop + mobile bar) */
-const shareMap = [
-  ['shareWhatsapp',    'whatsapp'],
-  ['shareLinkedin',    'linkedin'],
-  ['shareFacebook',    'facebook'],
-  ['shareInstagram',   'instagram'],
-  ['shareBarWhatsapp', 'whatsapp'],
-  ['shareBarLinkedin', 'linkedin'],
-  ['shareBarFacebook', 'facebook'],
-  ['shareBarInstagram','instagram'],
-];
-
-shareMap.forEach(([id, platform]) => {
-  const el = document.getElementById(id);
-  if (el) el.addEventListener('click', () => doShare(platform));
-});
 
 /* ── Cookie consent banner ────────────────────────────── */
 const CONSENT_KEY = 'tm-consent';
