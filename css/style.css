@@ -79,12 +79,12 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 [hidden] { display: none !important; }
 
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; font-size: 112.5%; }
 
 body {
   font-family: var(--font-body);
   font-size: 1rem;
-  line-height: 1.65;
+  line-height: 1.7;
   color: var(--text);
   background: var(--white);
   overflow-x: hidden;
@@ -450,6 +450,28 @@ body.lang-de .lang-toggle__de { color: var(--yellow); }
   font-weight: 400;
 }
 .hero__meta-sep { opacity: .4; }
+
+.hero__contact {
+  margin-top: 1.5rem;
+  margin-bottom: .5rem;
+}
+.hero__contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  color: rgba(255,255,255,.75);
+  font-size: 1.4rem;
+  text-decoration: none;
+  transition: color .2s;
+}
+.hero__contact-link:hover {
+  color: var(--yellow);
+}
+.hero__contact-link .icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
 
 .hero__cta {
   font-size: clamp(.875rem, 2.5vw, 1rem);
@@ -1190,18 +1212,6 @@ pretix-widget + * + .tickets__coming-soon {
   height: 28px;
   width: auto;
   opacity: .7;
-}
-.footer__contact {
-  margin-top: .5rem;
-  font-size: .85rem;
-  color: rgba(255,255,255,.7);
-}
-.footer__contact a {
-  color: var(--yellow);
-  text-decoration: none;
-}
-.footer__contact a:hover {
-  text-decoration: underline;
 }
 .footer__copy {
   font-size: .75rem;
