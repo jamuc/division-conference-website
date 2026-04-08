@@ -1191,6 +1191,18 @@ pretix-widget + * + .tickets__coming-soon {
   width: auto;
   opacity: .7;
 }
+.footer__contact {
+  margin-top: .5rem;
+  font-size: .85rem;
+  color: rgba(255,255,255,.7);
+}
+.footer__contact a {
+  color: var(--yellow);
+  text-decoration: none;
+}
+.footer__contact a:hover {
+  text-decoration: underline;
+}
 .footer__copy {
   font-size: .75rem;
   color: rgba(255,255,255,.4);

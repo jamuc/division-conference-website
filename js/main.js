@@ -90,6 +90,7 @@ const i18n = {
     'footer.ti':        'Toastmasters International',
     'footer.facebook':  'Facebook',
     'footer.privacy':   'Impressum',
+    'footer.contact':   'Questions? Email us: tm.bayern.div.d@gmail.com',
     'footer.copy':      '© 2026 Toastmasters District 95, Division D',
 
     'workshops.label':  'Workshops',
@@ -198,6 +199,7 @@ const i18n = {
     'footer.ti':        'Toastmasters International',
     'footer.facebook':  'Facebook',
     'footer.privacy':   'Impressum',
+    'footer.contact':   'Fragen? Schreib uns: tm.bayern.div.d@gmail.com',
     'footer.copy':      '© 2026 Toastmasters Distrikt 95, Division D',
 
     'workshops.label':  'Workshops',
