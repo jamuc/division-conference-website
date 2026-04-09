@@ -355,6 +355,13 @@
         grid-template-columns: 1fr;
         margin-left: 0;
       }
+
+      /* Nav: hide logo, shrink back button */
+      .nav__brand { display: none; }
+      .nav__right [href="/"] {
+        font-size: .65rem !important;
+        padding: .25rem .55rem !important;
+      }
     }
 
     /* ── Print ───────────────────────────────────────── */
@@ -450,7 +457,7 @@
     <div class="agenda-hero__meta">
       <span class="agenda-updated">
         <span class="agenda-updated__dot"></span>
-        <span data-i18n-en="Last updated: 9 April 2026, 20:59" data-i18n-de="Zuletzt aktualisiert: 9. April 2026, 20:59">Last updated: 9 April 2026, 20:59</span>
+        <span data-i18n-en="Last updated: 9 April 2026, 21:02" data-i18n-de="Zuletzt aktualisiert: 9. April 2026, 21:02">Last updated: 9 April 2026, 21:02</span>
         <!-- UPDATE DATE + TIME whenever the agenda changes -->
       </span>
       <div class="agenda-lang">
