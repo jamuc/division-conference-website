@@ -315,6 +315,46 @@
     }
     .agenda-footer a { color: var(--navy); }
 
+    /* ── Mobile ──────────────────────────────────────── */
+    @media (max-width: 640px) {
+      /* Stack time + content vertically */
+      .slot {
+        grid-template-columns: 1fr;
+        gap: .15rem;
+      }
+      .slot__time {
+        text-align: left;
+        padding-top: 0;
+        display: flex;
+        gap: .5rem;
+        align-items: baseline;
+      }
+      .slot__content::before { display: none; }
+      .slot__card { margin-left: 0; }
+
+      .slot-group {
+        grid-template-columns: 1fr;
+        gap: .15rem;
+      }
+      .slot-group__times {
+        flex-direction: row;
+        gap: 1rem;
+      }
+      .slot-group__body {
+        grid-template-columns: 1fr;
+        margin-left: 0;
+      }
+      .slot-group__body > .track {
+        grid-column: auto !important;
+        grid-row: auto !important;
+      }
+
+      .parallel-tracks {
+        grid-template-columns: 1fr;
+        margin-left: 0;
+      }
+    }
+
     /* ── Print ───────────────────────────────────────── */
     @media print {
       @page { margin: 1cm 1.4cm; }
@@ -408,7 +448,7 @@
     <div class="agenda-hero__meta">
       <span class="agenda-updated">
         <span class="agenda-updated__dot"></span>
-        <span data-i18n-en="Last updated: 9 April 2026, 20:45" data-i18n-de="Zuletzt aktualisiert: 9. April 2026, 20:45">Last updated: 9 April 2026, 20:45</span>
+        <span data-i18n-en="Last updated: 9 April 2026, 20:52" data-i18n-de="Zuletzt aktualisiert: 9. April 2026, 20:52">Last updated: 9 April 2026, 20:52</span>
         <!-- UPDATE DATE + TIME whenever the agenda changes -->
       </span>
       <div class="agenda-lang">
