@@ -1301,7 +1301,11 @@ pretix-widget + * + .tickets__coming-soon {
   height: 50px;
   width: auto;
   border-radius: 4px;
-  mix-blend-mode: lighten;
+}
+.bottom-bar__sponsors {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
 }
 .bottom-bar__sponsor {
   gap: .6rem;
@@ -1328,6 +1332,7 @@ pretix-widget + * + .tickets__coming-soon {
     align-items: center;
     text-align: center;
   }
+  .bottom-bar__sponsors { justify-content: center; }
   .bottom-bar__sponsor { justify-content: center; }
   .bottom-bar__conf-text { font-size: .7rem; }
   .bottom-bar__label { display: none; }
