@@ -470,7 +470,7 @@
     <div class="agenda-hero__meta">
       <span class="agenda-updated">
         <span class="agenda-updated__dot"></span>
-        <span data-i18n-en="Last updated: 9 April 2026, 21:37" data-i18n-de="Zuletzt aktualisiert: 9. April 2026, 21:37">Last updated: 9 April 2026, 21:37</span>
+        <span data-i18n-en="Last updated: 9 April 2026, 22:47" data-i18n-de="Zuletzt aktualisiert: 9. April 2026, 22:47">Last updated: 9 April 2026, 22:47</span>
         <!-- UPDATE DATE + TIME whenever the agenda changes -->
       </span>
       <div class="agenda-lang">
@@ -833,6 +833,24 @@
     const saved = localStorage.getItem('tm-lang') || 'en';
     if (saved === 'de') setLang('de');
   </script>
+
+  <!-- ═══════════════════════════════════════════
+       STICKY BOTTOM BAR — Sponsor + Conference
+  ═══════════════════════════════════════════ -->
+  <div class="bottom-bar" id="bottomBar">
+    <div class="bottom-bar__sponsors">
+      <a href="https://inekevermeulen.com/" target="_blank" rel="noopener" class="bottom-bar__item bottom-bar__sponsor">
+        <img src="images/sponsor-ineke.png" alt="Ineke Vermeulen" class="bottom-bar__logo" />
+      </a>
+      <span class="bottom-bar__item bottom-bar__sponsor">
+        <img src="images/sponsor-36collective.svg" alt="36 Collective" class="bottom-bar__logo" />
+      </span>
+    </div>
+    <a href="https://www.district95-conference.com/" target="_blank" rel="noopener" class="bottom-bar__item bottom-bar__conference">
+      <span class="bottom-bar__label" data-i18n-en="Up next" data-i18n-de="Als Nächstes">Up next</span>
+      <span class="bottom-bar__conf-text" data-i18n-en="District 95 Conference · May 15–17 · Essen" data-i18n-de="Distrikt 95 Konferenz · 15.–17. Mai · Essen">District 95 Conference · May 15–17 · Essen</span>
+    </a>
+  </div>
 
   <!-- Floating volunteer pill -->
   <a href="index.html#contribute" class="join-pill"
