@@ -85,6 +85,8 @@ const i18n = {
     'reg.role.contestant':    'Contestant',
     'reg.role.general':       'General Support',
     'reg.role.judge':         'Judge',
+    'reg.role.judgeEn':       'Judge - EN',
+    'reg.role.judgeDe':       'Judge - DE',
     'reg.role.technical':     'Technical Support',
     'reg.role.registration':  'Registration Support',
     'reg.role.photo':         'Event Photographer',
@@ -243,6 +245,8 @@ const i18n = {
     'reg.role.contestant':    'Teilnehmer/in',
     'reg.role.general':       'Allgemeine Unterstützung',
     'reg.role.judge':         'Richter/in',
+    'reg.role.judgeEn':       'Wettbewerbsrichter/in - EN',
+    'reg.role.judgeDe':       'Wettbewerbsrichter/in - DE',
     'reg.role.technical':     'Technischer Support',
     'reg.role.registration':  'Anmeldungsunterstützung',
     'reg.role.photo':         'Fotograf/in (Veranstaltungsdokumentation)',
@@ -377,7 +381,8 @@ const state = {
   lunchHummus:      0,
   lunchSweet:       0,
   roles:            [],
-  judgeElig:        [false, false],
+  judgeEnElig:      [false, false],
+  judgeDeElig:      [false, false],
   ref:              '',
   paidViaStripe:    false,
 };
@@ -618,8 +623,15 @@ function validateStep2() {
     errEl.textContent = t('reg.err.roles');
     return false;
   }
-  if (state.roles.includes('judge')) {
-    const eligOk = state.judgeElig.every(Boolean);
+  if (state.roles.includes('judgeEn')) {
+    const eligOk = state.judgeEnElig.every(Boolean);
+    if (!eligOk) {
+      errEl.textContent = t('reg.err.judgeElig');
+      return false;
+    }
+  }
+  if (state.roles.includes('judgeDe')) {
+    const eligOk = state.judgeDeElig.every(Boolean);
     if (!eligOk) {
       errEl.textContent = t('reg.err.judgeElig');
       return false;
@@ -820,22 +832,27 @@ document.querySelectorAll('.role-checkbox').forEach(cb => {
   });
 });
 
-const judgeCheckbox   = document.getElementById('judgeCheckbox');
-const judgeEligSection = document.getElementById('judgeEligSection');
+// Judge EN + Judge DE: each has its own eligibility sub-section
+[
+  { cbId: 'judgeEnCheckbox', sectionId: 'judgeEnEligSection', stateKey: 'judgeEnElig', eligIds: ['judgeEnElig1', 'judgeEnElig2'] },
+  { cbId: 'judgeDeCheckbox', sectionId: 'judgeDeEligSection', stateKey: 'judgeDeElig', eligIds: ['judgeDeElig1', 'judgeDeElig2'] },
+].forEach(({ cbId, sectionId, stateKey, eligIds }) => {
+  const cb      = document.getElementById(cbId);
+  const section = document.getElementById(sectionId);
 
-judgeCheckbox.addEventListener('change', () => {
-  judgeEligSection.hidden = !judgeCheckbox.checked;
-  if (!judgeCheckbox.checked) {
-    // reset eligibility state when judge is unchecked
-    state.judgeElig = [false, false];
-    document.getElementById('judgeElig1').checked = false;
-    document.getElementById('judgeElig2').checked = false;
-  }
-});
+  cb.addEventListener('change', () => {
+    section.hidden = !cb.checked;
+    if (!cb.checked) {
+      // reset eligibility state when judge is unchecked
+      state[stateKey] = [false, false];
+      eligIds.forEach(id => { document.getElementById(id).checked = false; });
+    }
+  });
 
-['judgeElig1', 'judgeElig2'].forEach((id, i) => {
-  document.getElementById(id).addEventListener('change', e => {
-    state.judgeElig[i] = e.target.checked;
+  eligIds.forEach((id, i) => {
+    document.getElementById(id).addEventListener('change', e => {
+      state[stateKey][i] = e.target.checked;
+    });
   });
 });
 
@@ -1045,7 +1062,8 @@ document.getElementById('step6Next').addEventListener('click', () => goToStep(7)
 const ROLE_KEYS = {
   contestant:   'reg.role.contestant',
   general:      'reg.role.general',
-  judge:        'reg.role.judge',
+  judgeEn:      'reg.role.judgeEn',
+  judgeDe:      'reg.role.judgeDe',
   technical:    'reg.role.technical',
   registration: 'reg.role.registration',
   photo:        'reg.role.photo',
