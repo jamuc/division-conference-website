@@ -379,10 +379,10 @@
 
     /* ── Print ───────────────────────────────────────── */
     @media print {
-      @page { margin: 1cm 1.4cm; }
+      @page { size: A4 portrait; margin: 1cm 1.4cm; }
 
       .nav, .agenda-hero__meta, .agenda-legend, .bottom-bar, .join-pill { display: none !important; }
-      body { padding-bottom: 0 !important; }
+      body { padding-bottom: 0 !important; zoom: 0.9; }
 
       .agenda-hero {
         background: #fff !important;
@@ -471,7 +471,7 @@
     <div class="agenda-hero__meta">
       <span class="agenda-updated">
         <span class="agenda-updated__dot"></span>
-        <span data-i18n-en="Last updated: 11 April 2026, 20:42" data-i18n-de="Zuletzt aktualisiert: 11. April 2026, 20:42">Last updated: 11 April 2026, 20:42</span>
+        <span data-i18n-en="Last updated: 11 April 2026, 21:24" data-i18n-de="Zuletzt aktualisiert: 11. April 2026, 21:24">Last updated: 11 April 2026, 21:24</span>
         <!-- UPDATE DATE + TIME whenever the agenda changes -->
       </span>
       <div class="agenda-lang">
