@@ -1292,10 +1292,10 @@ pretix-widget + * + .tickets__coming-soon {
 .bottom-bar__item:hover { color: var(--yellow); }
 .bottom-bar__label--sponsor { display: inline-block; }
 .bottom-bar__label {
-  font-size: .5rem;
+  font-size: .55rem;
   text-transform: uppercase;
   letter-spacing: .08em;
-  opacity: .4;
+  color: rgba(255,255,255,.6);
 }
 .bottom-bar__logo {
   height: 50px;
