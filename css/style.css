@@ -1290,7 +1290,7 @@ pretix-widget + * + .tickets__coming-soon {
   transition: color .2s;
 }
 .bottom-bar__item:hover { color: var(--yellow); }
-.bottom-bar__label--sponsor { display: none; }
+.bottom-bar__label--sponsor { display: inline-block; }
 .bottom-bar__label {
   font-size: .5rem;
   text-transform: uppercase;
