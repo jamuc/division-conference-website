@@ -898,10 +898,11 @@ pretix-widget + * + .tickets__coming-soon {
 }
 .workshop-card__name {
   font-family: var(--font-head);
-  font-size: 1.1rem;
+  font-size: .95rem;
   font-weight: 700;
   margin-bottom: .2rem;
   color: var(--maroon);
+  white-space: nowrap;
 }
 .workshop-card__title {
   font-family: var(--font-head);
