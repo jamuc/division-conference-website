@@ -878,8 +878,15 @@ pretix-widget + * + .tickets__coming-soon {
   flex-direction: column;
   text-align: center;
 }
+.workshop-card__lang-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  margin: 0 auto .4rem;
+}
 .workshop-card__lang {
-  display: inline-block;
+  display: block;
   font-size: .65rem;
   font-weight: 700;
   letter-spacing: .08em;
@@ -890,6 +897,13 @@ pretix-widget + * + .tickets__coming-soon {
   padding: .15rem .45rem;
   margin: 0 auto .4rem;
   width: fit-content;
+}
+.workshop-card__lang-row .workshop-card__lang {
+  margin: 0;
+}
+.workshop-card__lang-flag {
+  font-size: 1.4rem;
+  line-height: 1;
 }
 .workshop-card__lang--bootcamp {
   background: var(--maroon);
