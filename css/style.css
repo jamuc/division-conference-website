@@ -283,6 +283,12 @@ ul { list-style: none; }
   transition: color var(--transition);
 }
 .lang-toggle:hover { color: var(--white); }
+.lang-toggle__en,
+.lang-toggle__de {
+  display: inline-flex;
+  align-items: center;
+  gap: .2rem;
+}
 .lang-toggle__sep { opacity: .4; }
 .lang-toggle--footer { color: var(--gray); }
 .lang-toggle--footer:hover { color: var(--white); }
