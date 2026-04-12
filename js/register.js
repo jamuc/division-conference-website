@@ -514,6 +514,17 @@ function handlePaymentReturn() {
     Object.assign(state, JSON.parse(saved));
     sessionStorage.removeItem('divD_reg');
     state.paidViaStripe = true;
+
+    // Confirm payment → update sheet row from PENDING to PAID
+    fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        action:    'confirmPayment',
+        bookingRef: state.ref,
+        sessionId:  params.get('session_id'),
+      }),
+    }).catch(err => console.warn('Payment confirmation POST failed:', err));
+
     goToStep(9);
     return true;
   }

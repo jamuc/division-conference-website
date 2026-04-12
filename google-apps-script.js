@@ -6,11 +6,13 @@
 // Project Settings (⚙) → Script Properties → STRIPE_SECRET_KEY = sk_live_...
 // ─────────────────────────────────────────────────────────────────────────
 //
-// ── STRIPE WEBHOOK SETUP ─────────────────────────────────────────────────
-// Stripe Dashboard → Developers → Webhooks → Add endpoint
-//   URL:    <this Apps Script web app URL>
-//   Events: checkout.session.completed
-// Registrations are written to the sheet only after payment is confirmed.
+// ── HOW IT WORKS ────────────────────────────────────────────────────────
+// 1. Form POST → handleRegistration(): creates Stripe session, writes
+//    the registration row immediately with status "PENDING".
+// 2. After payment, the browser redirects back with ?success=1.
+//    The frontend POSTs { action: "confirmPayment" } → updates the row
+//    from "PENDING" to "PAID".
+// No Stripe webhook required.
 // ─────────────────────────────────────────────────────────────────────────
 
 const STRIPE_SECRET_KEY = PropertiesService.getScriptProperties().getProperty('STRIPE_SECRET_KEY');
@@ -55,9 +57,9 @@ function setupSheet() {
 function doPost(e) {
   const body = JSON.parse(e.postData.contents);
 
-  // Stripe webhooks carry a `type` field (e.g. "checkout.session.completed")
-  if (body.type && body.data && body.data.object) {
-    return handleStripeWebhook(body);
+  // Payment confirmation from frontend after Stripe redirect
+  if (body.action === 'confirmPayment') {
+    return handlePaymentConfirmation(body);
   }
 
   // Otherwise it's a registration form submission
@@ -158,30 +160,33 @@ function handleRegistration(data) {
   const session = JSON.parse(resp.getContentText());
 
   if (session.url) {
-    // Park registration data in Script Properties until payment is confirmed.
-    // Key: PENDING_<bookingRef>  — cleaned up after the webhook writes the row.
-    PropertiesService.getScriptProperties().setProperty(
-      'PENDING_' + data.bookingRef,
-      JSON.stringify({
-        bookingRef:  data.bookingRef  || '',
-        firstName:   data.firstName   || '',
-        lastName:    data.lastName    || '',
-        email:       data.email       || '',
-        club:        data.club        || '',
-        member:      data.member      || false,
-        roles:       data.roles       || '',
-        workshop:    data.workshop    || false,
-        youth1014:   data.youth1014   || 0,
-        youth1417:   data.youth1417   || 0,
-        lunchSpring: lunchSpring,
-        lunchHummus: lunchHummus,
-        lunchSweet:  lunchSweet,
-        donation:    donation,
-        total:       data.total       || 0,
-        lang:        data.lang        || 'en',
-        sessionId:   session.id,
-      })
-    );
+    // Write registration to Google Sheet immediately with status "PENDING".
+    // Status is updated to "PAID" when the frontend confirms after Stripe redirect.
+    const ss    = SpreadsheetApp.openById('1KePmBJx2AWMrycSn1nWtWwnOtMX6wkse-jGVvMFVNHs');
+    let sheet   = ss.getSheetByName(SHEET_NAME);
+    if (!sheet) { setupSheet(); sheet = ss.getSheetByName(SHEET_NAME); }
+
+    sheet.appendRow([
+      new Date().toISOString(),
+      data.bookingRef  || '',
+      data.firstName   || '',
+      data.lastName    || '',
+      data.email       || '',
+      data.club        || '',
+      data.member      ? 'Yes' : 'No',
+      data.roles       || '',
+      data.workshop    ? 'Yes' : 'No',
+      data.youth1014   || 0,
+      data.youth1417   || 0,
+      lunchSpring,
+      lunchHummus,
+      lunchSweet,
+      donation,
+      data.total       || 0,
+      data.lang        || 'en',
+      'PENDING',
+      session.id,
+    ]);
   }
 
   return ContentService
@@ -193,64 +198,44 @@ function handleRegistration(data) {
     .setMimeType(ContentService.MimeType.JSON);
 }
 
-// ── Step 2: Stripe webhook — write to sheet only after payment confirmed ──
-function handleStripeWebhook(event) {
-  // Only act on successful payments
-  if (event.type !== 'checkout.session.completed') {
+// ── Step 2: frontend confirms payment after Stripe redirect ──────────────
+function handlePaymentConfirmation(data) {
+  const bookingRef = data.bookingRef;
+  const sessionId  = data.sessionId;
+
+  if (!bookingRef) {
     return ContentService
-      .createTextOutput(JSON.stringify({ received: true }))
+      .createTextOutput(JSON.stringify({ ok: false, error: 'missing bookingRef' }))
       .setMimeType(ContentService.MimeType.JSON);
   }
 
-  const session    = event.data.object;
-  const bookingRef = session.client_reference_id;
-
-  // Retrieve parked registration data
-  const props      = PropertiesService.getScriptProperties();
-  const pendingJson = props.getProperty('PENDING_' + bookingRef);
-
-  if (!pendingJson) {
-    Logger.log('Webhook received for unknown bookingRef: ' + bookingRef);
-    return ContentService
-      .createTextOutput(JSON.stringify({ received: true, warning: 'no pending data found' }))
-      .setMimeType(ContentService.MimeType.JSON);
-  }
-
-  const reg = JSON.parse(pendingJson);
-
-  // ── Write confirmed registration to sheet ─────────────────────────────
   const ss    = SpreadsheetApp.openById('1KePmBJx2AWMrycSn1nWtWwnOtMX6wkse-jGVvMFVNHs');
-  let sheet   = ss.getSheetByName(SHEET_NAME);
-  if (!sheet) setupSheet();
-  sheet = ss.getSheetByName(SHEET_NAME);
+  const sheet = ss.getSheetByName(SHEET_NAME);
+  if (!sheet) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ ok: false, error: 'sheet not found' }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
 
-  sheet.appendRow([
-    new Date().toISOString(),
-    reg.bookingRef,
-    reg.firstName,
-    reg.lastName,
-    reg.email,
-    reg.club,
-    reg.member    ? 'Yes' : 'No',
-    reg.roles,
-    reg.workshop  ? 'Yes' : 'No',
-    reg.youth1014,
-    reg.youth1417,
-    reg.lunchSpring,
-    reg.lunchHummus,
-    reg.lunchSweet,
-    reg.donation,
-    reg.total,
-    reg.lang,
-    'PAID',
-    session.id,   // Stripe Session ID
-  ]);
+  // Find the row by bookingRef (column B = index 2)
+  const dataRange = sheet.getDataRange();
+  const values    = dataRange.getValues();
 
-  // Clean up parked data
-  props.deleteProperty('PENDING_' + bookingRef);
+  for (let i = 1; i < values.length; i++) {
+    if (values[i][1] === bookingRef) {
+      // Column R (18) = Payment Status, Column S (19) = Stripe Session ID
+      sheet.getRange(i + 1, 18).setValue('PAID');
+      if (sessionId) {
+        sheet.getRange(i + 1, 19).setValue(sessionId);
+      }
+      return ContentService
+        .createTextOutput(JSON.stringify({ ok: true }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+  }
 
   return ContentService
-    .createTextOutput(JSON.stringify({ received: true }))
+    .createTextOutput(JSON.stringify({ ok: false, error: 'booking not found' }))
     .setMimeType(ContentService.MimeType.JSON);
 }
 
