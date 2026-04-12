@@ -905,6 +905,17 @@ pretix-widget + * + .tickets__coming-soon {
   font-size: 1.4rem;
   line-height: 1;
 }
+.lang-flag-img {
+  width: 16px;
+  height: 12px;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+.lang-flag-img--card {
+  width: 20px;
+  height: 15px;
+  vertical-align: middle;
+}
 .workshop-card__lang--bootcamp {
   background: var(--maroon);
   font-size: .65rem;
