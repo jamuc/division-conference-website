@@ -2417,22 +2417,26 @@ body { padding-bottom: 70px; }
 /* ══════════════════════════════════════════════════════
    FEATURED VIDEO
 ══════════════════════════════════════════════════════ */
-.video-feature {
-  display: flex;
-  align-items: center;
-  gap: clamp(1.5rem, 4vw, 3rem);
-  max-width: 800px;
+#videos { text-align: center; }
+
+.video-feature__subtitle {
+  color: rgba(255,255,255,.7);
+  font-size: 0.95rem;
+  max-width: 480px;
   margin-inline: auto;
+  margin-bottom: 2rem;
+  line-height: 1.7;
 }
 
-.video-feature__embed-wrap {
-  flex: 0 0 auto;
-  width: 240px;
+.video-feature__frame {
+  width: 280px;
   aspect-ratio: 9 / 16;
+  margin-inline: auto;
   border-radius: var(--radius-lg);
   overflow: hidden;
   background: #000;
   box-shadow: 0 8px 32px rgba(0,0,0,.35);
+  border: 3px solid rgba(255,255,255,.15);
 }
 
 .video-feature__iframe {
@@ -2442,42 +2446,12 @@ body { padding-bottom: 70px; }
   display: block;
 }
 
-.video-feature__body {
-  flex: 1;
-  text-align: left;
-}
-
-.video-feature__title {
-  font-family: var(--font-head);
-  font-size: clamp(1.3rem, 3vw, 1.8rem);
-  font-weight: 800;
-  color: var(--white);
-  line-height: 1.2;
-  margin-bottom: 0.75rem;
-}
-
-.video-feature__desc {
-  color: rgba(255,255,255,.75);
-  font-size: 0.95rem;
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
-}
-
-.video-feature__actions {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+.video-feature__cta {
+  margin-top: 1.5rem;
 }
 
 @media (max-width: 640px) {
-  .video-feature {
-    flex-direction: column;
-    text-align: center;
-  }
-  .video-feature__embed-wrap { width: 200px; }
-  .video-feature__body { text-align: center; }
-  .video-feature__actions { justify-content: center; }
-  .shorts-modal__inner { width: 90vw; }
+  .video-feature__frame { width: 220px; }
 }
 
 /* ── Payment error banner (shown on return from cancelled Stripe session) ── */
