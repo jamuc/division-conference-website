@@ -130,6 +130,10 @@ const i18n = {
     'cc.2.bioToggle':   'About the contest chair',
     'cc.2.bio':         'Christina, an industrial engineer with over 14 years in the automotive industry, once considered invisibility her superpower—until launching her own business as a health consultant revealed the need to be seen and heard. This turning point led her to Toastmasters in 2014. Since then, she has served multiple times as a District Officer and held various leadership roles across clubs. Through Toastmasters, she transformed her voice into a powerful business asset—making confident speaking and impactful presentations a cornerstone of her success.',
 
+    'videos.label':     'Follow Us',
+    'videos.title':     'Watch Our Latest Shorts',
+    'videos.cta':       'See All on YouTube',
+
     'toast.copied':     'Link copied to clipboard!',
   },
 
@@ -253,6 +257,10 @@ const i18n = {
     'cc.2.role':        'Wettbewerbsleiterin — Deutscher Redewettbewerb',
     'cc.2.bioToggle':   'Über die Wettbewerbsleiterin',
     'cc.2.bio':         'Christina, Wirtschaftsingenieurin mit über 14 Jahren Erfahrung in der Automobilindustrie, betrachtete Unsichtbarkeit einst als ihre Superkraft — bis die Gründung ihres eigenen Unternehmens als Gesundheitsberaterin ihr zeigte, dass sie gesehen und gehört werden muss. Dieser Wendepunkt führte sie 2014 zu Toastmasters. Seitdem war sie mehrfach District Officer und übernahm verschiedene Führungsrollen in Clubs. Durch Toastmasters verwandelte sie ihre Stimme in ein kraftvolles Geschäftsinstrument — selbstbewusstes Sprechen und wirkungsvolle Präsentationen wurden zum Grundpfeiler ihres Erfolgs.',
+
+    'videos.label':     'Folgen Sie uns',
+    'videos.title':     'Unsere neuesten Shorts',
+    'videos.cta':       'Alle auf YouTube ansehen',
 
     'toast.copied':     'Link in die Zwischenablage kopiert!',
   },
@@ -397,4 +405,87 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxKreCl6hQoqlbO
   } catch (_) {
     // Silently fail — counter is non-essential
   }
+}());
+
+/* ── YouTube Shorts carousel ─────────────────────────── */
+(async function initShortsCarousel() {
+  const track = document.getElementById('shortsTrack');
+  if (!track) return;
+
+  let videos = [];
+  try {
+    const res = await fetch('videos.json');
+    videos = await res.json();
+  } catch (_) { return; }
+
+  if (!videos.length) {
+    document.getElementById('videos')?.setAttribute('hidden', '');
+    return;
+  }
+
+  const playSvg = `<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="24" fill="rgba(255,255,255,.85)"/><polygon points="19,14 19,34 36,24" fill="#004165"/></svg>`;
+
+  videos.forEach(v => {
+    const thumb = `https://i.ytimg.com/vi/${v.id}/oar2.jpg`;
+    const card = document.createElement('button');
+    card.className = 'shorts-carousel__item';
+    card.setAttribute('aria-label', v.title_en);
+    card.dataset.videoId = v.id;
+    card.innerHTML = `
+      <img class="shorts-carousel__thumb" src="${thumb}" alt="" loading="lazy" />
+      <span class="shorts-carousel__play">${playSvg}</span>`;
+    track.appendChild(card);
+  });
+
+  // Arrow visibility
+  const leftBtn  = document.getElementById('shortsLeft');
+  const rightBtn = document.getElementById('shortsRight');
+
+  function updateArrows() {
+    if (!leftBtn || !rightBtn) return;
+    const showArrows = track.scrollWidth > track.clientWidth;
+    leftBtn.hidden  = !showArrows || track.scrollLeft < 10;
+    rightBtn.hidden = !showArrows || track.scrollLeft + track.clientWidth >= track.scrollWidth - 10;
+  }
+
+  track.addEventListener('scroll', updateArrows, { passive: true });
+  window.addEventListener('resize', updateArrows);
+  updateArrows();
+
+  leftBtn?.addEventListener('click', () => { track.scrollBy({ left: -200, behavior: 'smooth' }); });
+  rightBtn?.addEventListener('click', () => { track.scrollBy({ left: 200, behavior: 'smooth' }); });
+
+  // Modal
+  let modal = document.createElement('div');
+  modal.className = 'shorts-modal';
+  modal.innerHTML = `
+    <div class="shorts-modal__inner">
+      <button class="shorts-modal__close" aria-label="Close">&times;</button>
+      <iframe class="shorts-modal__iframe" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>`;
+  document.body.appendChild(modal);
+
+  const iframe   = modal.querySelector('.shorts-modal__iframe');
+  const closeBtn = modal.querySelector('.shorts-modal__close');
+
+  function openModal(videoId) {
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}`;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    iframe.src = '';
+    document.body.style.overflow = '';
+  }
+
+  track.addEventListener('click', e => {
+    const item = e.target.closest('.shorts-carousel__item');
+    if (item) openModal(item.dataset.videoId);
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
 }());
