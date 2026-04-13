@@ -425,6 +425,8 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxKreCl6hQoqlbO
 
   const playSvg = `<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="24" fill="rgba(255,255,255,.85)"/><polygon points="19,14 19,34 36,24" fill="#004165"/></svg>`;
 
+  if (videos.length > 1) track.classList.add('shorts-carousel__track--multi');
+
   videos.forEach(v => {
     const thumb = `https://i.ytimg.com/vi/${v.id}/oar2.jpg`;
     const card = document.createElement('button');

@@ -2433,11 +2433,17 @@ body { padding-bottom: 70px; }
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   padding: 0.5rem 0;
+  justify-content: center;
 }
 .shorts-carousel__track::-webkit-scrollbar { display: none; }
 
+/* When multiple items, left-align for scroll */
+.shorts-carousel__track--multi {
+  justify-content: flex-start;
+}
+
 .shorts-carousel__item {
-  flex: 0 0 180px;
+  flex: 0 0 220px;
   scroll-snap-align: start;
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -2554,7 +2560,7 @@ body { padding-bottom: 70px; }
 }
 
 @media (max-width: 640px) {
-  .shorts-carousel__item { flex: 0 0 150px; }
+  .shorts-carousel__item { flex: 0 0 180px; }
   .shorts-modal__inner { width: 90vw; }
 }
 
