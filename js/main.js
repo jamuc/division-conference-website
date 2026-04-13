@@ -131,8 +131,9 @@ const i18n = {
     'cc.2.bio':         'Christina, an industrial engineer with over 14 years in the automotive industry, once considered invisibility her superpower—until launching her own business as a health consultant revealed the need to be seen and heard. This turning point led her to Toastmasters in 2014. Since then, she has served multiple times as a District Officer and held various leadership roles across clubs. Through Toastmasters, she transformed her voice into a powerful business asset—making confident speaking and impactful presentations a cornerstone of her success.',
 
     'videos.label':     'Follow Us',
-    'videos.title':     'Watch Our Latest Shorts',
-    'videos.cta':       'See All on YouTube',
+    'videos.feature.title': 'See What\'s Coming',
+    'videos.feature.desc':  'Get a sneak peek at the Division D Conference 2026. Watch our short promo and see why you don\'t want to miss it.',
+    'videos.cta':       'Follow on YouTube',
 
     'toast.copied':     'Link copied to clipboard!',
   },
@@ -259,8 +260,9 @@ const i18n = {
     'cc.2.bio':         'Christina, Wirtschaftsingenieurin mit über 14 Jahren Erfahrung in der Automobilindustrie, betrachtete Unsichtbarkeit einst als ihre Superkraft — bis die Gründung ihres eigenen Unternehmens als Gesundheitsberaterin ihr zeigte, dass sie gesehen und gehört werden muss. Dieser Wendepunkt führte sie 2014 zu Toastmasters. Seitdem war sie mehrfach District Officer und übernahm verschiedene Führungsrollen in Clubs. Durch Toastmasters verwandelte sie ihre Stimme in ein kraftvolles Geschäftsinstrument — selbstbewusstes Sprechen und wirkungsvolle Präsentationen wurden zum Grundpfeiler ihres Erfolgs.',
 
     'videos.label':     'Folgen Sie uns',
-    'videos.title':     'Unsere neuesten Shorts',
-    'videos.cta':       'Alle auf YouTube ansehen',
+    'videos.feature.title': 'Sehen Sie, was kommt',
+    'videos.feature.desc':  'Werfen Sie einen Blick auf die Division D Konferenz 2026. Schauen Sie unser kurzes Promo-Video und erfahren Sie, warum Sie dabei sein sollten.',
+    'videos.cta':       'Auf YouTube folgen',
 
     'toast.copied':     'Link in die Zwischenablage kopiert!',
   },
@@ -407,58 +409,10 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxKreCl6hQoqlbO
   }
 }());
 
-/* ── YouTube Shorts carousel ─────────────────────────── */
-(async function initShortsCarousel() {
-  const track = document.getElementById('shortsTrack');
-  if (!track) return;
-
-  let videos = [];
-  try {
-    const res = await fetch('videos.json');
-    videos = await res.json();
-  } catch (_) { return; }
-
-  if (!videos.length) {
-    document.getElementById('videos')?.setAttribute('hidden', '');
-    return;
-  }
-
-  const playSvg = `<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="24" fill="rgba(255,255,255,.85)"/><polygon points="19,14 19,34 36,24" fill="#004165"/></svg>`;
-
-  if (videos.length > 1) track.classList.add('shorts-carousel__track--multi');
-
-  videos.forEach(v => {
-    const thumb = `https://i.ytimg.com/vi/${v.id}/oar2.jpg`;
-    const card = document.createElement('button');
-    card.className = 'shorts-carousel__item';
-    card.setAttribute('aria-label', v.title_en);
-    card.dataset.videoId = v.id;
-    card.innerHTML = `
-      <img class="shorts-carousel__thumb" src="${thumb}" alt="" loading="lazy" />
-      <span class="shorts-carousel__play">${playSvg}</span>`;
-    track.appendChild(card);
-  });
-
-  // Arrow visibility
-  const leftBtn  = document.getElementById('shortsLeft');
-  const rightBtn = document.getElementById('shortsRight');
-
-  function updateArrows() {
-    if (!leftBtn || !rightBtn) return;
-    const showArrows = track.scrollWidth > track.clientWidth;
-    leftBtn.hidden  = !showArrows || track.scrollLeft < 10;
-    rightBtn.hidden = !showArrows || track.scrollLeft + track.clientWidth >= track.scrollWidth - 10;
-  }
-
-  track.addEventListener('scroll', updateArrows, { passive: true });
-  window.addEventListener('resize', updateArrows);
-  updateArrows();
-
-  leftBtn?.addEventListener('click', () => { track.scrollBy({ left: -200, behavior: 'smooth' }); });
-  rightBtn?.addEventListener('click', () => { track.scrollBy({ left: 200, behavior: 'smooth' }); });
-
+/* ── Video modal + featured video ─────────────────────── */
+(function initVideoFeature() {
   // Modal
-  let modal = document.createElement('div');
+  const modal = document.createElement('div');
   modal.className = 'shorts-modal';
   modal.innerHTML = `
     <div class="shorts-modal__inner">
@@ -482,12 +436,13 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxKreCl6hQoqlbO
     document.body.style.overflow = '';
   }
 
-  track.addEventListener('click', e => {
-    const item = e.target.closest('.shorts-carousel__item');
-    if (item) openModal(item.dataset.videoId);
-  });
-
   closeBtn.addEventListener('click', closeModal);
   modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+
+  // Featured video card
+  const thumbBtn = document.querySelector('.video-feature__thumb-wrap');
+  if (thumbBtn) {
+    thumbBtn.addEventListener('click', () => openModal(thumbBtn.dataset.videoId));
+  }
 }());

@@ -263,25 +263,28 @@
   </section>
 
   <!-- ═══════════════════════════════════════════
-       YOUTUBE SHORTS CAROUSEL
+       FEATURED VIDEO
   ═══════════════════════════════════════════ -->
   <section class="section section--dark" id="videos">
     <div class="container">
-      <span class="section__label section__label--light" data-i18n="videos.label">Follow Us</span>
-      <h2 class="section__title section__title--light" data-i18n="videos.title">Watch Our Latest Shorts</h2>
-      <div class="shorts-carousel" id="shortsCarousel">
-        <button class="shorts-carousel__arrow shorts-carousel__arrow--left" id="shortsLeft" aria-label="Previous video" hidden>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      <div class="video-feature" id="videoFeature">
+        <button class="video-feature__thumb-wrap" aria-label="Play video" data-video-id="j0WjRlSFcfc">
+          <img class="video-feature__thumb" src="https://i.ytimg.com/vi/j0WjRlSFcfc/oar2.jpg" alt="Conference promo" loading="lazy" />
+          <span class="video-feature__play">
+            <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="24" fill="rgba(255,255,255,.9)"/><polygon points="19,14 19,34 36,24" fill="#004165"/></svg>
+          </span>
         </button>
-        <div class="shorts-carousel__track" id="shortsTrack"></div>
-        <button class="shorts-carousel__arrow shorts-carousel__arrow--right" id="shortsRight" aria-label="Next video" hidden>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
-      </div>
-      <div class="shorts-carousel__cta-wrap">
-        <a href="https://www.youtube.com/@SpeakBetterDailyTMshorts/shorts" target="_blank" rel="noopener noreferrer" class="btn btn--yellow btn--sm" data-i18n="videos.cta">
-          See All on YouTube
-        </a>
+        <div class="video-feature__body">
+          <span class="section__label section__label--light" data-i18n="videos.label">Follow Us</span>
+          <h2 class="video-feature__title" data-i18n="videos.feature.title">See What's Coming</h2>
+          <p class="video-feature__desc" data-i18n="videos.feature.desc">Get a sneak peek at the Division D Conference 2026. Watch our short promo and see why you don't want to miss it.</p>
+          <div class="video-feature__actions">
+            <a href="https://www.youtube.com/@SpeakBetterDailyTMshorts/shorts" target="_blank" rel="noopener noreferrer" class="btn btn--yellow btn--sm">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31.9 31.9 0 000 12a31.9 31.9 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31.9 31.9 0 0024 12a31.9 31.9 0 00-.5-5.8zM9.6 15.6V8.4L15.8 12z"/></svg>
+              <span data-i18n="videos.cta">Follow on YouTube</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
