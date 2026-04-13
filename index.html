@@ -268,12 +268,16 @@
   <section class="section section--dark" id="videos">
     <div class="container">
       <div class="video-feature" id="videoFeature">
-        <button class="video-feature__thumb-wrap" aria-label="Play video" data-video-id="j0WjRlSFcfc">
-          <img class="video-feature__thumb" src="https://i.ytimg.com/vi/j0WjRlSFcfc/oar2.jpg" alt="Conference promo" loading="lazy" />
-          <span class="video-feature__play">
-            <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="24" fill="rgba(255,255,255,.9)"/><polygon points="19,14 19,34 36,24" fill="#004165"/></svg>
-          </span>
-        </button>
+        <div class="video-feature__embed-wrap">
+          <iframe
+            class="video-feature__iframe"
+            src="https://www.youtube.com/embed/j0WjRlSFcfc?loop=1&playlist=j0WjRlSFcfc"
+            title="Division D Conference promo"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
         <div class="video-feature__body">
           <span class="section__label section__label--light" data-i18n="videos.label">Follow Us</span>
           <h2 class="video-feature__title" data-i18n="videos.feature.title">See What's Coming</h2>
