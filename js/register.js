@@ -46,10 +46,10 @@ const i18n = {
     'reg.youth.summary1417':  'Ages 14–17',
 
     'reg.step4.title':        'Workshop Pass',
-    'reg.step4.subtitle':     'Would you like to join a workshop session?',
+    'reg.step4.subtitle':     'Would you like to join our workshop sessions?',
 
     'reg.workshop.title':     'Workshop Pass',
-    'reg.workshop.desc':      'Join an interactive workshop session to sharpen your skills and connect with fellow Toastmasters. Limited spaces available.',
+    'reg.workshop.desc':      'Get access to all three interactive workshop sessions to sharpen your skills and connect with fellow Toastmasters. Attend any or all of them. Limited spaces available.',
     'reg.workshop.memberFree':'Free for Toastmasters members',
     'reg.workshop.free':      'FREE',
 
@@ -206,10 +206,10 @@ const i18n = {
     'reg.youth.summary1417':  '14–17 Jahre',
 
     'reg.step4.title':        'Workshop-Pass',
-    'reg.step4.subtitle':     'Möchtest du an einem Workshop teilnehmen?',
+    'reg.step4.subtitle':     'Möchtest du an unseren Workshops teilnehmen?',
 
     'reg.workshop.title':     'Workshop-Pass',
-    'reg.workshop.desc':      'Nimm an einem interaktiven Workshop teil, um deine Fähigkeiten zu schärfen und dich mit anderen Toastmasters zu vernetzen. Begrenzte Plätze verfügbar.',
+    'reg.workshop.desc':      'Erhalte Zugang zu allen drei interaktiven Workshops, um deine Fähigkeiten zu schärfen und dich mit anderen Toastmasters zu vernetzen. Nimm an einem oder allen teil. Begrenzte Plätze verfügbar.',
     'reg.workshop.memberFree':'Kostenlos für Toastmasters-Mitglieder',
     'reg.workshop.free':      'GRATIS',
 
