@@ -927,6 +927,27 @@ pretix-widget + * + .tickets__coming-soon {
   font-size: .65rem;
   letter-spacing: .06em;
 }
+.workshop-card__ages-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .35rem;
+  flex-wrap: wrap;
+  margin: 0 auto .5rem;
+}
+.workshop-card__age-pill {
+  display: inline-block;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  color: var(--maroon);
+  background: rgba(128, 0, 32, .08);
+  border: 1px solid var(--maroon);
+  border-radius: 999px;
+  padding: .12rem .45rem;
+  white-space: nowrap;
+}
 .workshop-card__name {
   font-family: var(--font-head);
   font-size: .95rem;

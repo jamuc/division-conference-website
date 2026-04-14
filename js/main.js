@@ -117,6 +117,9 @@ const i18n = {
     'workshops.4.badge': 'Youth Bootcamp',
     'workshops.4.bioToggle': 'About the facilitator',
     'workshops.4.title': 'Youth Bootcamp',
+    'workshops.4.ages1': 'Ages 10–14',
+    'workshops.4.ages2': 'Ages 14–17',
+    'workshops.4.desc':  'A hands-on speaking workshop for young people ages 10–17, run in English and German and split into two age groups so every participant learns alongside peers at a similar level.',
     'workshops.4.bio':   'Oleg Güntner has spent 25 years at BMW, currently as a manager responsible for prototype part quality in development. A certified trainer for "The 7 Habits of Highly Effective People" and a coach for leadership and personal development. A Toastmaster since 2012 and currently President of Munich Media Speakers. He holds degrees in Industrial Engineering and is an NLP Master.',
     'nav.workshops':     'Workshops',
 
@@ -246,6 +249,9 @@ const i18n = {
     'workshops.4.badge': 'Jugend-Bootcamp',
     'workshops.4.bioToggle': 'Über den Referenten',
     'workshops.4.title': 'Jugend-Bootcamp',
+    'workshops.4.ages1': 'Alter 10–14',
+    'workshops.4.ages2': 'Alter 14–17',
+    'workshops.4.desc':  'Ein praxisorientierter Rede-Workshop für junge Menschen von 10 bis 17 Jahren, in Deutsch und Englisch und in zwei Altersgruppen aufgeteilt, damit alle Teilnehmenden mit Gleichaltrigen auf ähnlichem Niveau lernen.',
     'workshops.4.bio':   'Oleg Güntner ist seit 25 Jahren bei BMW tätig, aktuell als Führungskraft mit Verantwortung für die Qualität der Prototypenteile in der Entwicklung. Trainer für „7 Wege zur Effektivität" und Coach für Führung und Persönlichkeitsentwicklung. Toastmaster seit 2012 und aktuell Präsident des Toastmaster-Clubs „Munich Media Speakers". Ausbildung: Wirtschaftsingenieur und NLP-Master.',
     'nav.workshops':     'Workshops',
 
