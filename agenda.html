@@ -875,7 +875,7 @@
        STICKY BOTTOM BAR — Sponsor + Conference
   ═══════════════════════════════════════════ -->
   <div class="bottom-bar" id="bottomBar">
-    <div class="bottom-bar__sponsors">
+    <div class="bottom-bar__sponsors bottom-bar__slide is-active" data-slide="0">
       <span class="bottom-bar__label bottom-bar__label--sponsor" data-i18n-en="Sponsored by" data-i18n-de="Gesponsert von">Sponsored by</span>
       <a href="https://inekevermeulen.com/" target="_blank" rel="noopener" class="bottom-bar__item bottom-bar__sponsor">
         <img src="images/sponsor-ineke.png" alt="Ineke Vermeulen" class="bottom-bar__logo" />
@@ -884,10 +884,15 @@
         <img src="images/sponsor-36collective.jpeg" alt="36 Collective" class="bottom-bar__logo" />
       </span>
     </div>
-    <a href="https://www.district95-conference.com/" target="_blank" rel="noopener" class="bottom-bar__item bottom-bar__conference">
-      <span class="bottom-bar__label" data-i18n-en="Up next" data-i18n-de="Als Nächstes">Up next</span>
+    <a href="https://www.district95-conference.com/" target="_blank" rel="noopener" class="bottom-bar__item bottom-bar__conference bottom-bar__slide" data-slide="1">
+      <span class="bottom-bar__label bottom-bar__label--desktop" data-i18n-en="Up next" data-i18n-de="Als Nächstes">Up next</span>
+      <span class="bottom-bar__label bottom-bar__label--mobile" data-i18n-en="Upcoming District Conference" data-i18n-de="Nächste Distriktkonferenz">Upcoming District Conference</span>
       <span class="bottom-bar__conf-text" data-i18n-en="District 95 Conference · May 15–17 · Essen" data-i18n-de="Distrikt 95 Konferenz · 15.–17. Mai · Essen">District 95 Conference · May 15–17 · Essen</span>
     </a>
+    <div class="bottom-bar__dots" role="tablist" aria-label="Bottom bar carousel">
+      <button type="button" class="bottom-bar__dot is-active" data-dot="0" aria-label="Show sponsors"></button>
+      <button type="button" class="bottom-bar__dot" data-dot="1" aria-label="Show upcoming district conference"></button>
+    </div>
   </div>
 
   <!-- Floating volunteer pill -->
@@ -916,5 +921,6 @@
     window.addEventListener('resize', positionPill);
   </script>
 
+  <script src="js/bottom-bar.js?v=1"></script>
 </body>
 </html>
