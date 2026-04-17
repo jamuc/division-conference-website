@@ -12,7 +12,7 @@
   if (slides.length < 2) return;
 
   const mq = window.matchMedia('(max-width: 640px)');
-  const INTERVAL = 5000;
+  const INTERVAL = 6000;
   const SWIPE_THRESHOLD = 40;
 
   let idx = 0;
