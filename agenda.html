@@ -262,6 +262,26 @@
     }
     .track__age-chip + .track__age-chip { margin-left: .35rem; }
 
+    .track__lang-row {
+      display: inline-flex;
+      align-items: center;
+      gap: .25rem;
+      margin: 0;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      color: var(--track-color, #555);
+      line-height: 1;
+    }
+    .track__lang-row img {
+      height: 11px;
+      width: auto;
+      display: block;
+      border-radius: 1px;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.08);
+    }
+    .track__lang-row .track__lang-sep { opacity: .4; margin: 0 .1rem; }
+
     /* Workshop enrichment */
     .track__workshop-header {
       display: flex;
@@ -283,7 +303,8 @@
       font-size: .75rem;
       color: var(--track-color, #7c3aed);
       font-weight: 600;
-      margin-top: .1rem;
+      margin-top: 1px;
+      line-height: 1.15;
     }
     .track__workshop-desc {
       font-size: .7rem;
@@ -575,6 +596,7 @@
             <div>
               <div class="track__title" data-i18n-en="🏆 Deutscher Redewettbewerb" data-i18n-de="🏆 Deutscher Redewettbewerb">🏆 Deutscher Redewettbewerb</div>
               <div class="track__workshop-facilitator">Christina Bolte</div>
+              <div class="track__lang-row"><img src="https://flagcdn.com/16x12/de.png" alt="Deutsch"></div>
             </div>
           </div>
           <div class="track__detail" data-i18n-en="German · 5–7 min speeches" data-i18n-de="Deutsch · 5–7 Min. Reden">German · 5–7 min speeches</div>
@@ -586,6 +608,7 @@
             <div>
               <div class="track__title" data-i18n-en="Present with Power" data-i18n-de="Present with Power">Present with Power</div>
               <div class="track__workshop-facilitator">Ineke Vermeulen, DTM</div>
+              <div class="track__lang-row"><img src="https://flagcdn.com/16x12/gb.png" alt="English"></div>
             </div>
           </div>
           <div class="track__detail" data-i18n-en="English · 60 min · 10:15–11:15" data-i18n-de="Englisch · 60 Min. · 10:15–11:15">English · 60 min · 10:15–11:15</div>
@@ -598,6 +621,7 @@
             <div>
               <div class="track__title" data-i18n-en="Youth Bootcamp" data-i18n-de="Jugend-Bootcamp">Youth Bootcamp</div>
               <div class="track__workshop-facilitator">Oleg Güntner</div>
+              <div class="track__lang-row"><img src="https://flagcdn.com/16x12/gb.png" alt="English"><img src="https://flagcdn.com/16x12/de.png" alt="Deutsch"></div>
             </div>
           </div>
           <div class="track__detail" data-i18n-en="English / German · Workshop session" data-i18n-de="Englisch / Deutsch · Workshop-Einheit">English / German · Workshop session</div>
@@ -641,6 +665,7 @@
             <div>
               <div class="track__title" data-i18n-en="🏆 Evaluation Contest" data-i18n-de="🏆 Bewertungswettbewerb">🏆 Evaluation Contest</div>
               <div class="track__workshop-facilitator">Mel Kelly</div>
+              <div class="track__lang-row"><img src="https://flagcdn.com/16x12/gb.png" alt="English"></div>
             </div>
           </div>
           <div class="track__detail" data-i18n-en="English · Test &amp; evaluation speeches" data-i18n-de="Englisch · Test- &amp; Bewertungsreden">English · Test &amp; evaluation speeches</div>
@@ -652,6 +677,7 @@
             <div>
               <div class="track__title" data-i18n-en="Elevator Pitch" data-i18n-de="Elevator Pitch">Elevator Pitch</div>
               <div class="track__workshop-facilitator">Edgar Niklaus, DTM</div>
+              <div class="track__lang-row"><img src="https://flagcdn.com/16x12/de.png" alt="Deutsch"></div>
             </div>
           </div>
           <div class="track__detail" data-i18n-en="German · 90 min · 11:30–13:00" data-i18n-de="Deutsch · 90 Min. · 11:30–13:00">German · 90 min · 11:30–13:00</div>
@@ -664,6 +690,7 @@
             <div>
               <div class="track__title" data-i18n-en="Youth Bootcamp" data-i18n-de="Jugend-Bootcamp">Youth Bootcamp</div>
               <div class="track__workshop-facilitator">Oleg Güntner</div>
+              <div class="track__lang-row"><img src="https://flagcdn.com/16x12/gb.png" alt="English"><img src="https://flagcdn.com/16x12/de.png" alt="Deutsch"></div>
             </div>
           </div>
           <div class="track__detail" data-i18n-en="English / German · Workshop session · 90 min · 11:30–13:00" data-i18n-de="Englisch / Deutsch · Workshop-Einheit · 90 Min. · 11:30–13:00">English / German · Workshop session · 90 min · 11:30–13:00</div>
@@ -677,6 +704,7 @@
             <div>
               <div class="track__title" data-i18n-en="🏆 Table Topics Contest" data-i18n-de="🏆 Stegreifredewettbewerb">🏆 Table Topics Contest</div>
               <div class="track__workshop-facilitator">Mel Kelly</div>
+              <div class="track__lang-row"><img src="https://flagcdn.com/16x12/gb.png" alt="English"></div>
             </div>
           </div>
           <div class="track__detail" data-i18n-en="English · Impromptu speeches · 1–2 min" data-i18n-de="Englisch · Stegreifrede · 1–2 Min.">English · Impromptu speeches · 1–2 min</div>
@@ -719,6 +747,7 @@
             <div>
               <div class="track__title" data-i18n-en="🏆 Deutscher Bewertungswettbewerb" data-i18n-de="🏆 Deutscher Bewertungswettbewerb">🏆 Deutscher Bewertungswettbewerb</div>
               <div class="track__workshop-facilitator">Tobias Schlosser</div>
+              <div class="track__lang-row"><img src="https://flagcdn.com/16x12/de.png" alt="Deutsch"></div>
             </div>
           </div>
           <div class="track__detail" data-i18n-en="German · Test &amp; evaluation speeches" data-i18n-de="Deutsch · Test- &amp; Bewertungsreden">German · Test &amp; evaluation speeches</div>
@@ -730,6 +759,7 @@
             <div>
               <div class="track__title" data-i18n-en="Overcome the Spotlight Effect" data-i18n-de="Overcome the Spotlight Effect">Overcome the Spotlight Effect</div>
               <div class="track__workshop-facilitator">Darya Juric</div>
+              <div class="track__lang-row"><img src="https://flagcdn.com/16x12/gb.png" alt="English"></div>
             </div>
           </div>
           <div class="track__detail" data-i18n-en="English · 90 min · 14:00–15:30" data-i18n-de="Englisch · 90 Min. · 14:00–15:30">English · 90 min · 14:00–15:30</div>
@@ -742,6 +772,7 @@
             <div>
               <div class="track__title" data-i18n-en="🏆 Youth Bootcamp Table Topics" data-i18n-de="🏆 Jugend-Bootcamp Stegreifrede">🏆 Youth Bootcamp Table Topics</div>
               <div class="track__workshop-facilitator">Oleg Güntner</div>
+              <div class="track__lang-row"><img src="https://flagcdn.com/16x12/gb.png" alt="English"><img src="https://flagcdn.com/16x12/de.png" alt="Deutsch"></div>
             </div>
           </div>
           <div class="track__detail" data-i18n-en="English / German · Competition · 90 min · 14:00–15:30" data-i18n-de="Englisch / Deutsch · Wettbewerb · 90 Min. · 14:00–15:30">English / German · Competition · 90 min · 14:00–15:30</div>
@@ -755,6 +786,7 @@
             <div>
               <div class="track__title" data-i18n-en="🏆 Deutscher Table Topics-Wettbewerb" data-i18n-de="🏆 Deutscher Table Topics-Wettbewerb">🏆 Deutscher Table Topics-Wettbewerb</div>
               <div class="track__workshop-facilitator">Tobias Schlosser</div>
+              <div class="track__lang-row"><img src="https://flagcdn.com/16x12/de.png" alt="Deutsch"></div>
             </div>
           </div>
           <div class="track__detail" data-i18n-en="German · Impromptu speeches · 1–2 min" data-i18n-de="Deutsch · Stegreifrede · 1–2 Min.">German · Impromptu speeches · 1–2 min</div>
@@ -789,6 +821,7 @@
             <div>
               <div class="track__title" data-i18n-en="🏆 International Speech Contest" data-i18n-de="🏆 Internationaler Redewettbewerb">🏆 International Speech Contest</div>
               <div class="track__workshop-facilitator">Mikaela Gallon, DTM</div>
+              <div class="track__lang-row"><img src="https://flagcdn.com/16x12/gb.png" alt="English"></div>
             </div>
           </div>
           <div class="track__detail" data-i18n-en="English · 5–7 min speeches · All attendees in the Hall." data-i18n-de="Englisch · 5–7 Min. Reden · Alle Teilnehmer im Saal.">English · 5–7 min speeches · All attendees in the Hall.</div>
