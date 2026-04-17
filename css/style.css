@@ -1376,9 +1376,8 @@ pretix-widget + * + .tickets__coming-soon {
 
 /* Carousel controls — hidden on desktop, shown on mobile */
 .bottom-bar__label--mobile { display: none; }
-.bottom-bar__dots { display: none; }
 
-/* Mobile: carousel (ticker) with dots */
+/* Mobile: carousel (ticker) */
 @media (max-width: 640px) {
   .bottom-bar {
     flex-direction: row;
@@ -1386,8 +1385,8 @@ pretix-widget + * + .tickets__coming-soon {
     align-items: center;
     gap: 0;
     padding: .5rem 1rem;
-    padding-bottom: max(1rem, calc(env(safe-area-inset-bottom) + .9rem));
-    min-height: 64px;
+    padding-bottom: max(.6rem, env(safe-area-inset-bottom));
+    min-height: 56px;
     overflow: hidden;
   }
   .bottom-bar__slide {
@@ -1405,13 +1404,14 @@ pretix-widget + * + .tickets__coming-soon {
     padding: 0 1rem;
     opacity: 0;
     visibility: hidden;
-    transition: opacity .35s ease;
+    transition: opacity 2.5s ease-in-out, visibility 0s linear 2.5s;
     pointer-events: none;
   }
   .bottom-bar__slide.is-active {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+    transition: opacity 2.5s ease-in-out, visibility 0s linear 0s;
   }
   .bottom-bar__conference.bottom-bar__slide {
     flex-direction: column;
@@ -1425,35 +1425,6 @@ pretix-widget + * + .tickets__coming-soon {
   .bottom-bar__label { display: inline-block; }
   .bottom-bar__label--desktop { display: none; }
   .bottom-bar__label--mobile { display: inline-block; }
-  .bottom-bar__dots {
-    position: absolute;
-    bottom: calc(env(safe-area-inset-bottom) + .25rem);
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: .4rem;
-    padding: 0;
-    margin: 0;
-    z-index: 2;
-  }
-  .bottom-bar__dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    border: none;
-    padding: 0;
-    background: rgba(255, 255, 255, .3);
-    cursor: pointer;
-    transition: background .2s, transform .2s;
-  }
-  .bottom-bar__dot.is-active {
-    background: rgba(255, 255, 255, .9);
-    transform: scale(1.2);
-  }
-  .bottom-bar__dot:focus-visible {
-    outline: 2px solid var(--yellow);
-    outline-offset: 2px;
-  }
 }
 
 /* Pad page bottom so content isn't hidden behind bar */

@@ -1,8 +1,7 @@
 /* ═══════════════════════════════════════════════════════
    Sticky bottom bar — mobile news-ticker carousel
    · Rotates between sponsors and upcoming conference
-   · Auto-advance with pause on interaction
-   · Dot indicators (tap to jump)
+   · Auto-advance with pause on swipe
    · Swipe left/right on touch devices
 ═══════════════════════════════════════════════════════ */
 (function initBottomBarTicker() {
@@ -10,8 +9,7 @@
   if (!bar) return;
 
   const slides = Array.from(bar.querySelectorAll('.bottom-bar__slide'));
-  const dots   = Array.from(bar.querySelectorAll('.bottom-bar__dot'));
-  if (slides.length < 2 || dots.length !== slides.length) return;
+  if (slides.length < 2) return;
 
   const mq = window.matchMedia('(max-width: 640px)');
   const INTERVAL = 5000;
@@ -24,11 +22,6 @@
   function show(i) {
     idx = (i + slides.length) % slides.length;
     slides.forEach((s, k) => s.classList.toggle('is-active', k === idx));
-    dots.forEach((d, k) => {
-      const active = k === idx;
-      d.classList.toggle('is-active', active);
-      d.setAttribute('aria-selected', active ? 'true' : 'false');
-    });
   }
 
   function next() { show(idx + 1); }
@@ -42,16 +35,6 @@
   function stop() {
     if (timer) { clearInterval(timer); timer = null; }
   }
-
-  // Dot navigation — also pauses auto-rotation permanently
-  dots.forEach((d, k) => {
-    d.addEventListener('click', (e) => {
-      e.preventDefault();
-      userInteracted = true;
-      stop();
-      show(k);
-    });
-  });
 
   // Swipe handling on the bar itself
   let startX = null, startY = null;
