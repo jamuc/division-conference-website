@@ -96,6 +96,7 @@ const i18n = {
 
     'bar.sponsor':      'Sponsored by',
     'bar.upcoming':     'Up next',
+    'bar.upcomingConf': 'Upcoming District Conference',
     'bar.d95conf':      'District 95 Conference · May 15–17 · Essen',
 
     'workshops.label':  'Workshops',
@@ -228,6 +229,7 @@ const i18n = {
 
     'bar.sponsor':      'Gesponsert von',
     'bar.upcoming':     'Als Nächstes',
+    'bar.upcomingConf': 'Nächste Distriktkonferenz',
     'bar.d95conf':      'Distrikt 95 Konferenz · 15.–17. Mai · Essen',
 
     'workshops.label':  'Workshops',
