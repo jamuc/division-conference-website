@@ -117,8 +117,8 @@ const i18n = {
     'workshops.3.bio':   'Darya Juric is an IT professional passionate about communication. In 2022 she founded a corporate Toastmasters club, and later a series of webinars focused on developing the inner skills and mindset that lay the foundation for successful public speaking.',
     'workshops.4.badge': 'Youth Bootcamp',
     'workshops.4.bioToggle': 'About the facilitator',
-    'workshops.4.title': 'Communicate Effectively &amp; Speak with Confidence',
-    'workshops.4.desc':  '<strong>Communicate by type — reach everyone:</strong> Every person communicates differently. In this workshop you\'ll learn to recognise different personality types and adapt your communication accordingly — whether in conversation, presentations, or job interviews.<br><br><strong>Express yourself clearly — even on the spot:</strong> Learn simple techniques to respond spontaneously to questions and arguments. With clear structures, you\'ll practise expressing yourself confidently and making persuasive points.',
+    'workshops.4.title': 'Communicate by type — reach everyone',
+    'workshops.4.desc':  'Every person communicates differently. In this workshop you\'ll learn to recognise different personality types and adapt your communication accordingly — whether in conversation, presentations, or job interviews.',
     'workshops.4.bio':   'Oleg Güntner has spent 25 years at BMW, currently as a manager responsible for prototype part quality in development. A certified trainer for "The 7 Habits of Highly Effective People" and a coach for leadership and personal development. A Toastmaster since 2012 and currently President of Munich Media Speakers. He holds degrees in Industrial Engineering and is an NLP Master.',
     'nav.workshops':     'Workshops',
 
@@ -254,8 +254,8 @@ const i18n = {
     'workshops.3.bio':   'Darya Juric ist IT-Fachfrau mit Leidenschaft für Kommunikation. 2022 gründete sie einen Corporate-Toastmasters-Club und später eine Webinar-Reihe zur Entwicklung der inneren Fähigkeiten und Denkweisen, die die Grundlage für erfolgreiches öffentliches Sprechen bilden.',
     'workshops.4.badge': 'Jugend-Bootcamp',
     'workshops.4.bioToggle': 'Über den Referenten',
-    'workshops.4.title': 'Typgerecht kommunizieren &amp; souverän sprechen',
-    'workshops.4.desc':  '<strong>Kommuniziere typgerecht – erreiche jeden:</strong> Jeder Mensch kommuniziert anders. In diesem Workshop lernst du verschiedene Persönlichkeitstypen zu erkennen und deine Kommunikation gezielt anzupassen – ob im Gespräch, Vortrag oder Bewerbung.<br><br><strong>Souverän sprechen – klar positionieren:</strong> Lerne einfache Techniken, um spontan auf Fragen und Thesen zu reagieren. Mit klaren Strukturen übst du, dich sicher auszudrücken und überzeugend zu argumentieren.',
+    'workshops.4.title': 'Kommuniziere typgerecht – erreiche jeden',
+    'workshops.4.desc':  'Jeder Mensch kommuniziert anders. In diesem Workshop lernst du verschiedene Persönlichkeitstypen zu erkennen und deine Kommunikation gezielt anzupassen – ob im Gespräch, Vortrag oder Bewerbung.',
     'workshops.4.bio':   'Oleg Güntner ist seit 25 Jahren bei BMW tätig, aktuell als Führungskraft mit Verantwortung für die Qualität der Prototypenteile in der Entwicklung. Trainer für „7 Wege zur Effektivität" und Coach für Führung und Persönlichkeitsentwicklung. Toastmaster seit 2012 und aktuell Präsident des Toastmaster-Clubs „Munich Media Speakers". Ausbildung: Wirtschaftsingenieur und NLP-Master.',
     'nav.workshops':     'Workshops',
 
