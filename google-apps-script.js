@@ -28,7 +28,7 @@ const PRICE_LUNCH    = 1500;  // €15.00 per package
 const HEADERS = [
   'Timestamp', 'Booking Ref', 'First Name', 'Last Name', 'Email',
   'Club', 'Member', 'Roles', 'Workshop',
-  'Youth (10–14)', 'Youth (14–17)',
+  'Youth (11–14)', 'Youth (15–18)',
   'Lunch – Spring Quinoa Bowl', 'Lunch – Hummus Beef Kofta', 'Lunch – Quinoa Sweet Potato',
   'Donation (€)', 'Total (€)',
   'Language', 'Payment Status', 'Stripe Session ID',
