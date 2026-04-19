@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Placeholder silhouette">
+  <rect width="48" height="48" fill="#e5e7eb"/>
+  <circle cx="24" cy="19" r="8" fill="#9ca3af"/>
+  <path d="M8 48 C 8 34, 15 29, 24 29 C 33 29, 40 34, 40 48 Z" fill="#9ca3af"/>
+</svg>
