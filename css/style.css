@@ -297,6 +297,10 @@ ul { list-style: none; }
 body.lang-en .lang-toggle__en,
 body.lang-de .lang-toggle__de { color: var(--yellow); }
 
+/* Language-gated elements */
+body.lang-en .lang-only-de,
+body.lang-de .lang-only-en { display: none !important; }
+
 /* Burger */
 .nav__burger {
   display: flex;
