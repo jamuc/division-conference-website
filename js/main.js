@@ -118,7 +118,9 @@ const i18n = {
     'workshops.4.badge': 'Youth Bootcamp',
     'workshops.4.bioToggle': 'About the facilitator',
     'workshops.4.title': 'Communicate by type — reach everyone',
-    'workshops.4.desc':  'Every person communicates differently. In this workshop you\'ll learn to recognise different personality types and adapt your communication accordingly — whether in conversation, presentations, or job interviews.',
+    'workshops.4.ages1': 'Ages 11–14',
+    'workshops.4.ages2': 'Ages 15–18',
+    'workshops.4.desc':  'Speak with confidence. Grow beyond yourself.',
     'workshops.4.bio':   'Oleg Güntner has spent 25 years at BMW, currently as a manager responsible for prototype part quality in development. A certified trainer for "The 7 Habits of Highly Effective People" and a coach for leadership and personal development. A Toastmaster since 2012 and currently President of Munich Media Speakers. He holds degrees in Industrial Engineering and is an NLP Master.',
     'nav.workshops':     'Workshops',
 
@@ -255,7 +257,9 @@ const i18n = {
     'workshops.4.badge': 'Jugend-Bootcamp',
     'workshops.4.bioToggle': 'Über den Referenten',
     'workshops.4.title': 'Kommuniziere typgerecht – erreiche jeden',
-    'workshops.4.desc':  'Jeder Mensch kommuniziert anders. In diesem Workshop lernst du verschiedene Persönlichkeitstypen zu erkennen und deine Kommunikation gezielt anzupassen – ob im Gespräch, Vortrag oder Bewerbung.',
+    'workshops.4.ages1': 'Alter 11–14',
+    'workshops.4.ages2': 'Alter 15–18',
+    'workshops.4.desc':  'Sprich mit Selbstvertrauen. Wachse über dich hinaus.',
     'workshops.4.bio':   'Oleg Güntner ist seit 25 Jahren bei BMW tätig, aktuell als Führungskraft mit Verantwortung für die Qualität der Prototypenteile in der Entwicklung. Trainer für „7 Wege zur Effektivität" und Coach für Führung und Persönlichkeitsentwicklung. Toastmaster seit 2012 und aktuell Präsident des Toastmaster-Clubs „Munich Media Speakers". Ausbildung: Wirtschaftsingenieur und NLP-Master.',
     'nav.workshops':     'Workshops',
 
