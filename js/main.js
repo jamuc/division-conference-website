@@ -124,6 +124,16 @@ const i18n = {
     'workshops.4.bio':   'Oleg Güntner has spent 25 years at BMW, currently as a manager responsible for prototype part quality in development. A certified trainer for "The 7 Habits of Highly Effective People" and a coach for leadership and personal development. A Toastmaster since 2012 and currently President of Munich Media Speakers. He holds degrees in Industrial Engineering and is an NLP Master.',
     'nav.workshops':     'Workshops',
 
+    'bootcamp.label':   'Youth Boot Camp',
+    'bootcamp.title':   'Meet the Moderators',
+    'bootcamp.intro':   'A hands-on speaking workshop for young people ages 11–18, run in English and German and split into two age groups so every participant learns alongside peers at a similar level.',
+    'bootcamp.igor.title':     'Speak Confidently – Position Yourself Clearly',
+    'bootcamp.igor.ages1':     'Ages 11–14',
+    'bootcamp.igor.ages2':     'Ages 15–18',
+    'bootcamp.igor.desc':      'Learn simple techniques to respond spontaneously to questions and statements. With clear structures you\'ll practise expressing yourself with confidence and arguing persuasively.',
+    'bootcamp.igor.bioToggle': 'About the facilitator',
+    'bootcamp.igor.bio':       'Igor Petrov has 20+ years of experience in media technology, spanning engineering and sales, with a focus on software for live news production. Trained as an audio engineer, he combines technical expertise with creativity. In Munich, he leads a Russian-speaking community and organises regular events. He is also a musician, sports enthusiast, and father of two, and a certified NLP Practitioner.',
+
     'cc.label':         'Contest Chairs',
     'cc.title':         'Meet the Contest Chairs',
     'cc.intro':         'Our experienced contest chairs ensure every competition runs smoothly and every speaker gets their moment to shine.',
@@ -262,6 +272,16 @@ const i18n = {
     'workshops.4.desc':  'Sprich mit Selbstvertrauen. Wachse über dich hinaus.',
     'workshops.4.bio':   'Oleg Güntner ist seit 25 Jahren bei BMW tätig, aktuell als Führungskraft mit Verantwortung für die Qualität der Prototypenteile in der Entwicklung. Trainer für „7 Wege zur Effektivität" und Coach für Führung und Persönlichkeitsentwicklung. Toastmaster seit 2012 und aktuell Präsident des Toastmaster-Clubs „Munich Media Speakers". Ausbildung: Wirtschaftsingenieur und NLP-Master.',
     'nav.workshops':     'Workshops',
+
+    'bootcamp.label':   'Jugend-Bootcamp',
+    'bootcamp.title':   'Unsere Moderatoren',
+    'bootcamp.intro':   'Ein praxisorientierter Rede-Workshop für junge Menschen von 11 bis 18 Jahren, in Deutsch und Englisch und in zwei Altersgruppen aufgeteilt, damit alle Teilnehmenden mit Gleichaltrigen auf ähnlichem Niveau lernen.',
+    'bootcamp.igor.title':     'Souverän sprechen – klar positionieren',
+    'bootcamp.igor.ages1':     'Alter 11–14',
+    'bootcamp.igor.ages2':     'Alter 15–18',
+    'bootcamp.igor.desc':      'Lerne einfache Techniken, um spontan auf Fragen und Thesen zu reagieren. Mit klaren Strukturen übst du, dich sicher auszudrücken und überzeugend zu argumentieren.',
+    'bootcamp.igor.bioToggle': 'Über den Referenten',
+    'bootcamp.igor.bio':       'Igor Petrov bringt über 20 Jahre Erfahrung in der Medientechnik mit — von Engineering bis Vertrieb, mit Schwerpunkt auf Software für die Live-Nachrichtenproduktion. Als ausgebildeter Tontechniker verbindet er technisches Know-how mit Kreativität. In München leitet er eine russischsprachige Community und organisiert regelmäßig Veranstaltungen. Er ist außerdem Musiker, Sportler und Vater von zwei Kindern sowie zertifizierter NLP-Practitioner.',
 
     'cc.label':         'Wettbewerbsleitung',
     'cc.title':         'Unsere Wettbewerbsleiter',
