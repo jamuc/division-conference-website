@@ -55,7 +55,7 @@ const i18n = {
 
     'reg.step5.title':        'Lunch Package',
     'reg.step5.subtitle':     'Order lunch and fuel up for a full day of speeches and workshops.',
-    'reg.lunch.desc':              "Each lunch package is €15. Order as many as you need — including for any young guests you're bringing along.",
+    'reg.lunch.desc':              "Each lunch package is €15. Pre-orders close on 22 April — order as many as you need, including for any young guests you're bringing along.",
     'reg.lunch.spring.name':       'Spring Quinoa Bowl with Green Asparagus',
     'reg.lunch.spring.desc':       'Quinoa · Green Asparagus · Sweet Potato · Mushrooms · Radishes · Mango Chili Dressing',
     'reg.lunch.hummus.name':       'Hummus Bowl with Beef Kofta',
@@ -215,7 +215,7 @@ const i18n = {
 
     'reg.step5.title':        'Mittagspaket',
     'reg.step5.subtitle':     'Bestelle dein Mittagessen und tanke Energie für einen vollen Tag.',
-    'reg.lunch.desc':              'Jedes Mittagspaket kostet €15. Bestelle so viele wie du benötigst — auch für mitgebrachte Kinder.',
+    'reg.lunch.desc':              'Jedes Mittagspaket kostet €15. Vorbestellungen sind bis zum 22. April möglich — bestelle so viele wie du benötigst, auch für mitgebrachte Kinder.',
     'reg.lunch.spring.name':       'Frühlings-Quinoa-Bowl mit grünem Spargel',
     'reg.lunch.spring.desc':       'Quinoa · Grüner Spargel · Süßkartoffelwürfel · Gedünstete Pilze · Radieschen · Mango-Chili-Dressing',
     'reg.lunch.hummus.name':       'Hummus-Bowl mit Rinderköfte',
