@@ -204,6 +204,13 @@
       line-height: 1.2;
     }
     .slot__desc  { font-size: .78rem; color: #555; margin-top: .2rem; }
+    .slot__presenters {
+      display: flex;
+      gap: .4rem;
+      flex-wrap: wrap;
+      margin-top: .5rem;
+      margin-bottom: .25rem;
+    }
 
     /* Plenary */
     .slot--all .slot__card { background: #fefce8; }
@@ -526,7 +533,7 @@
     <div class="agenda-hero__meta">
       <span class="agenda-updated">
         <span class="agenda-updated__dot"></span>
-        <span data-i18n-en="Last updated: 19 April 2026, 19:33" data-i18n-de="Zuletzt aktualisiert: 19. April 2026, 19:33">Last updated: 19 April 2026, 19:33</span>
+        <span data-i18n-en="Last updated: 19 April 2026, 19:35" data-i18n-de="Zuletzt aktualisiert: 19. April 2026, 19:35">Last updated: 19 April 2026, 19:35</span>
         <!-- UPDATE DATE + TIME whenever the agenda changes -->
       </span>
       <div class="agenda-lang">
@@ -901,7 +908,14 @@
       </div>
       <div class="slot__content"><div class="slot__card">
         <div class="slot__title" data-i18n-en="🏅 Award Ceremony &amp; Closing" data-i18n-de="🏅 Siegerehrung &amp; Abschluss">🏅 Award Ceremony &amp; Closing</div>
-        <div class="slot__desc" data-i18n-en="Winners announced for all six contests. Closing remarks by the Division Director. All attendees in the Hall." data-i18n-de="Gewinner aller sechs Wettbewerbe werden bekannt gegeben. Abschlussworte der Divisionsleiterin. Alle Teilnehmer im Saal.">Winners announced for all six contests. Closing remarks by the Division Director. All attendees in the Hall.</div>
+        <div class="slot__presenters">
+          <img src="images/cc-kelly.jpg" alt="Kelly Chiali Hsu" class="track__workshop-photo" loading="lazy" title="Kelly Chiali Hsu · Division Director" />
+          <img src="images/cc-mikaela.jpg" alt="Mikaela Gallon" class="track__workshop-photo" loading="lazy" title="Mikaela Gallon · Contest Chair" />
+          <img src="images/cc-mel.jpg" alt="Mel Kelly" class="track__workshop-photo" loading="lazy" title="Mel Kelly · Contest Chair" />
+          <img src="images/cc-christina.jpg" alt="Christina Bolte" class="track__workshop-photo" loading="lazy" title="Christina Bolte · Wettbewerbsleiterin" />
+          <img src="images/cc-tobias.jpg" alt="Tobias Schlosser" class="track__workshop-photo" loading="lazy" title="Tobias Schlosser · Wettbewerbsleiter" />
+        </div>
+        <div class="slot__desc" data-i18n-en="The contest chairs announce the winners of all six contests, followed by closing remarks from the Division Director. All attendees in the Hall." data-i18n-de="Die Wettbewerbsleitungen geben die Gewinner aller sechs Wettbewerbe bekannt, gefolgt von den Abschlussworten der Divisionsleiterin. Alle Teilnehmer im Saal.">The contest chairs announce the winners of all six contests, followed by closing remarks from the Division Director. All attendees in the Hall.</div>
       </div></div>
     </div>
 
