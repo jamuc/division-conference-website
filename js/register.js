@@ -414,7 +414,6 @@ function buildProgressBar() {
         { panel: 2, key: 'reg.step2.nav' },
         { panel: 3, key: 'reg.step3.nav' },
         { panel: 4, key: 'reg.step4.nav' },
-        { panel: 5, key: 'reg.step5.nav' },
         { panel: 6, key: 'reg.step6.nav' },
         { panel: 7, key: 'reg.step7.nav' },
         { panel: 8, key: 'reg.step8.nav' },
@@ -423,7 +422,6 @@ function buildProgressBar() {
         { panel: 1, key: 'reg.step1.nav' },
         { panel: 3, key: 'reg.step3.nav' },
         { panel: 4, key: 'reg.step4.nav' },
-        { panel: 5, key: 'reg.step5.nav' },
         { panel: 6, key: 'reg.step6.nav' },
         { panel: 7, key: 'reg.step7.nav' },
         { panel: 8, key: 'reg.step8.nav' },
@@ -449,7 +447,7 @@ function buildProgressBar() {
 
 /* ── Step eyebrow ─────────────────────────────────────── */
 function updateStepEyebrow(n) {
-  const order = state.isMember ? [1, 2, 3, 4, 5, 6, 7, 8] : [1, 3, 4, 5, 6, 7, 8];
+  const order = state.isMember ? [1, 2, 3, 4, 6, 7, 8] : [1, 3, 4, 6, 7, 8];
   const idx = order.indexOf(n);
   if (idx === -1) return;
   const panel = document.getElementById('step' + n);
@@ -555,7 +553,7 @@ function goToStep(n) {
   panel.hidden = false;
   panel.classList.add('active');
 
-  const order = state.isMember ? [1, 2, 3, 4, 5, 6, 7, 8] : [1, 3, 4, 5, 6, 7, 8];
+  const order = state.isMember ? [1, 2, 3, 4, 6, 7, 8] : [1, 3, 4, 6, 7, 8];
   const currentIdx = order.indexOf(n);
   document.querySelectorAll('.funnel__prog-step').forEach(dot => {
     const p = parseInt(dot.dataset.panel);
@@ -570,7 +568,6 @@ function goToStep(n) {
 
   if (n === 3) renderYouthStep();
   if (n === 4) updateWorkshopPricing();
-  if (n === 5) renderLunchStep();
   if (n === 6) updateDonationStep();
   if (n === 7) renderCleaningState();
   if (n === 8) populateSummary();
@@ -995,43 +992,7 @@ workshopCard.addEventListener('click', e => {
 });
 
 document.getElementById('step4Back').addEventListener('click', () => goToStep(3));
-document.getElementById('step4Next').addEventListener('click', () => goToStep(5));
-
-/* ── Step 5 wiring: Lunch Package ────────────────────── */
-const lunchCountEls = {
-  spring: document.getElementById('valLunchSpring'),
-  hummus: document.getElementById('valLunchHummus'),
-  sweet:  document.getElementById('valLunchSweet'),
-};
-
-function renderLunchStep() {
-  lunchCountEls.spring.textContent = String(state.lunchSpring);
-  lunchCountEls.hummus.textContent = String(state.lunchHummus);
-  lunchCountEls.sweet.textContent  = String(state.lunchSweet);
-  document.getElementById('decLunchSpring').disabled = state.lunchSpring === 0;
-  document.getElementById('decLunchHummus').disabled = state.lunchHummus === 0;
-  document.getElementById('decLunchSweet').disabled  = state.lunchSweet  === 0;
-  document.getElementById('lunchCardSpring').classList.toggle('lunch-card--active', state.lunchSpring > 0);
-  document.getElementById('lunchCardHummus').classList.toggle('lunch-card--active', state.lunchHummus > 0);
-  document.getElementById('lunchCardSweet').classList.toggle('lunch-card--active',  state.lunchSweet  > 0);
-}
-
-function adjustLunchCount(type, delta) {
-  if (type === 'spring')      state.lunchSpring = Math.max(0, state.lunchSpring + delta);
-  else if (type === 'hummus') state.lunchHummus = Math.max(0, state.lunchHummus + delta);
-  else                        state.lunchSweet  = Math.max(0, state.lunchSweet  + delta);
-  renderLunchStep();
-}
-
-document.getElementById('decLunchSpring').addEventListener('click', () => adjustLunchCount('spring', -1));
-document.getElementById('incLunchSpring').addEventListener('click', () => adjustLunchCount('spring',  1));
-document.getElementById('decLunchHummus').addEventListener('click', () => adjustLunchCount('hummus', -1));
-document.getElementById('incLunchHummus').addEventListener('click', () => adjustLunchCount('hummus',  1));
-document.getElementById('decLunchSweet').addEventListener('click',  () => adjustLunchCount('sweet',  -1));
-document.getElementById('incLunchSweet').addEventListener('click',  () => adjustLunchCount('sweet',   1));
-
-document.getElementById('step5Back').addEventListener('click', () => goToStep(4));
-document.getElementById('step5Next').addEventListener('click', () => goToStep(6));
+document.getElementById('step4Next').addEventListener('click', () => goToStep(6));
 
 /* ── Step 6: Donation ─────────────────────────────────── */
 const donationInput = document.getElementById('donationAmount');
@@ -1066,7 +1027,7 @@ donationInput.addEventListener('input', () => {
   });
 });
 
-document.getElementById('step6Back').addEventListener('click', () => goToStep(5));
+document.getElementById('step6Back').addEventListener('click', () => goToStep(4));
 document.getElementById('step6Next').addEventListener('click', () => goToStep(7));
 
 /* ── Step 6: Summary ─────────────────────────────────── */
