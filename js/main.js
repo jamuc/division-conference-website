@@ -126,6 +126,7 @@ const i18n = {
 
     'bootcamp.label':   'Youth Boot Camp',
     'bootcamp.title':   'Meet the Moderators',
+    'bootcamp.pill':    'Youth Boot Camp',
     'bootcamp.intro':   'A hands-on speaking workshop for young people ages 11–18, run in English and German and split into two age groups so every participant learns alongside peers at a similar level.',
     'bootcamp.igor.title':     'Speak Confidently – Position Yourself Clearly',
     'bootcamp.igor.ages1':     'Ages 11–14',
@@ -275,6 +276,7 @@ const i18n = {
 
     'bootcamp.label':   'Jugend-Bootcamp',
     'bootcamp.title':   'Unsere Moderatoren',
+    'bootcamp.pill':    'Jugend-Bootcamp',
     'bootcamp.intro':   'Ein praxisorientierter Rede-Workshop für junge Menschen von 11 bis 18 Jahren, in Deutsch und Englisch und in zwei Altersgruppen aufgeteilt, damit alle Teilnehmenden mit Gleichaltrigen auf ähnlichem Niveau lernen.',
     'bootcamp.igor.title':     'Souverän sprechen – klar positionieren',
     'bootcamp.igor.ages1':     'Alter 11–14',
