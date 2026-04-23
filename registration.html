@@ -43,6 +43,11 @@
   <main class="funnel" id="funnel">
     <div class="container container--narrow">
 
+      <!-- Registration deadline countdown -->
+      <div class="funnel__countdown">
+        <div class="countdown-strip countdown-strip--light" data-countdown aria-live="polite"></div>
+      </div>
+
       <!-- Progress indicator (built dynamically by JS) -->
       <div class="funnel__progress" id="funnelProgress" aria-label="Registration progress"></div>
 
@@ -545,5 +550,6 @@
 
   <script src="js/register.js?v=18"></script>
   <script src="js/bottom-bar.js?v=4"></script>
+  <script src="js/countdown.js?v=1"></script>
 </body>
 </html>
