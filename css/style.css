@@ -520,6 +520,67 @@ body.lang-de .lang-only-en { display: none !important; }
 }
 .hero__agenda-link:hover { opacity: 1; text-decoration: underline; }
 
+/* Walk-in pill in nav (replaces the old Register CTA) */
+.nav__walkin-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: .8rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: .02em;
+  padding: .35rem .7rem;
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  white-space: nowrap;
+}
+@media (max-width: 600px) {
+  .nav__walkin-pill { font-size: .72rem; padding: .3rem .55rem; }
+}
+
+/* Walk-in info card in the hero (replaces the old Register button) */
+.hero__walkin {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: .75rem;
+  max-width: 520px;
+  margin: 1.75rem auto .25rem;
+  padding: 1rem 1.25rem;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(242,223,116,.45);
+  border-left: 4px solid var(--yellow);
+  border-radius: 10px;
+  text-align: left;
+  color: #fff;
+  backdrop-filter: blur(4px);
+}
+.hero__walkin-icon {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+.hero__walkin-text {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+  font-size: .88rem;
+  line-height: 1.4;
+}
+.hero__walkin-title {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--yellow);
+  letter-spacing: .02em;
+}
+.hero__walkin-body { color: rgba(255,255,255,.92); }
+.hero__walkin-note {
+  font-size: .78rem;
+  color: rgba(255,255,255,.7);
+  font-style: italic;
+}
+
 
 /* ══════════════════════════════════════════════════════
    SECTIONS — shared

@@ -12,6 +12,10 @@ const i18n = {
   en: {
     'nav.brand':        'Division D · District 95',
     'nav.cta':          'Register Now!',
+    'nav.walkin':       '🎟️ Walk-in · €10',
+    'walkin.title':     'Walk-ins Welcome',
+    'walkin.body':      'Online registration is now closed. Just show up on the day — €10 admission at the door (cash).',
+    'walkin.note':      'Bring friends, colleagues, kids — everyone is welcome.',
     'nav.about':        'About',
     'nav.tm':           'Toastmasters',
     'nav.venue':        'Venue',
@@ -162,6 +166,10 @@ const i18n = {
   de: {
     'nav.brand':        'Division D · Distrikt 95',
     'nav.cta':          'Jetzt registrieren!',
+    'nav.walkin':       '🎟️ Vor Ort · 10 €',
+    'walkin.title':     'Walk-ins willkommen',
+    'walkin.body':      'Die Online-Anmeldung ist geschlossen. Komm einfach am Konferenztag vorbei — 10 € Eintritt vor Ort (Barzahlung).',
+    'walkin.note':      'Bring Freunde, Kolleg:innen und Kinder mit — alle sind willkommen.',
     'nav.about':        'Über uns',
     'nav.tm':           'Toastmasters',
     'nav.venue':        'Veranstaltungsort',
