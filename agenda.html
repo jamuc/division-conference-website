@@ -501,6 +501,248 @@
     }
 
     .print-head { display: none; }
+
+    /* ═══════════════════════════════════════════════
+       WALL POSTER PRINT MODE (body.poster-mode)
+       Single-page time × room grid for hanging on a wall.
+       ═══════════════════════════════════════════════ */
+    .poster-headers { display: none; }
+
+    @media print {
+      body.poster-mode .nav,
+      body.poster-mode .bottom-bar,
+      body.poster-mode .join-pill,
+      body.poster-mode .agenda-footer,
+      body.poster-mode .agenda-hero__meta,
+      body.poster-mode .agenda-legend,
+      body.poster-mode .agenda-note,
+      body.poster-mode .print-head,
+      body.poster-mode .countdown-strip,
+      body.poster-mode .track__workshop-photo,
+      body.poster-mode .track__workshop-desc,
+      body.poster-mode .slot__desc,
+      body.poster-mode .slot__presenters,
+      body.poster-mode .track__detail:not(:first-of-type) {
+        display: none !important;
+      }
+
+      /* Language flags: show inline with title in poster mode */
+      body.poster-mode .track__lang-row {
+        display: inline-flex;
+        vertical-align: middle;
+        margin-left: .3rem;
+        gap: .15rem;
+      }
+      body.poster-mode .track__lang-row img {
+        height: 9px;
+      }
+
+      body.poster-mode {
+        padding: 1cm 1.2cm !important;
+        margin: 0 !important;
+        zoom: 0.81;
+      }
+
+      /* Compact hero */
+      body.poster-mode .agenda-hero {
+        background: #fff !important;
+        color: #000 !important;
+        padding: 0 0 .4rem;
+        border-bottom: 2px solid var(--navy-dk);
+        margin-bottom: .5rem;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      body.poster-mode .agenda-hero__eyebrow {
+        color: var(--maroon) !important;
+        font-size: .7rem;
+        margin-bottom: .15rem;
+      }
+      body.poster-mode .agenda-hero__title {
+        color: #000 !important;
+        font-size: 1.8rem;
+        margin-bottom: .2rem;
+      }
+      body.poster-mode .agenda-hero__sub {
+        color: #222 !important;
+        font-size: .85rem;
+        margin-bottom: 0;
+      }
+
+      body.poster-mode .agenda-body {
+        padding: 0;
+        margin: 0;
+        max-width: none;
+      }
+      body.poster-mode .day-header { display: none; }
+
+      /* Column headers (only poster mode) */
+      body.poster-mode .poster-headers {
+        display: grid;
+        grid-template-columns: 55px 1fr 1fr 1fr;
+        gap: .3rem;
+        margin-bottom: .25rem;
+        padding-bottom: .2rem;
+        border-bottom: 1.5px solid #333;
+      }
+      body.poster-mode .poster-headers > div {
+        font-family: var(--font-head);
+        font-weight: 800;
+        font-size: .7rem;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        color: var(--navy-dk);
+        text-align: center;
+        padding: .2rem .3rem;
+        border-radius: 3px;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      body.poster-mode .poster-headers > div:nth-child(2) { background: #e0f2fe; color: #0078a0; }
+      body.poster-mode .poster-headers > div:nth-child(3) { background: #ede9fe; color: #7c3aed; }
+      body.poster-mode .poster-headers > div:nth-child(4) { background: #ffedd5; color: #c2410c; }
+
+      /* ---- Slot grid: 4 columns [time | Hall | R1 | R2] ---- */
+      body.poster-mode .slot {
+        display: grid;
+        grid-template-columns: 55px 1fr 1fr 1fr;
+        gap: .15rem .3rem;
+        margin-bottom: .2rem;
+        page-break-inside: avoid;
+      }
+      body.poster-mode .slot__time {
+        grid-column: 1;
+        padding-top: .25rem;
+        text-align: right;
+        display: block;
+      }
+      body.poster-mode .slot__time-start { font-size: .85rem; }
+      body.poster-mode .slot__time-end   { font-size: .58rem; }
+      body.poster-mode .slot__time-dur   { display: none; }
+
+      /* Plenary (all) and break slots span cols 2-4 */
+      body.poster-mode .slot--all .slot__content,
+      body.poster-mode .slot--break .slot__content {
+        grid-column: 2 / 5;
+      }
+      body.poster-mode .slot--break {
+        margin-bottom: .1rem;
+      }
+      body.poster-mode .slot--break .slot__time {
+        padding-top: 0;
+      }
+      body.poster-mode .slot--break .slot__time-start { font-size: .7rem; }
+      body.poster-mode .slot--break .slot__time-end   { font-size: .5rem; }
+      body.poster-mode .slot--break .slot__card {
+        margin-left: 0;
+        padding: .1rem .5rem;
+        background: #f3f4f6 !important;
+      }
+      body.poster-mode .slot--break .slot__title {
+        font-size: .62rem;
+        font-weight: 600;
+        color: #6b7280;
+        line-height: 1.1;
+      }
+      body.poster-mode .slot--all .slot__card {
+        margin-left: 0;
+        padding: .3rem .55rem;
+        background: #fefce8 !important;
+        border-left: 3px solid var(--yellow);
+      }
+      body.poster-mode .slot--all .slot__title {
+        font-size: .88rem;
+      }
+      body.poster-mode .slot--all .track__workshop-header {
+        margin-bottom: 0;
+      }
+      body.poster-mode .slot--all .track__workshop-facilitator {
+        font-size: .65rem;
+        color: #555;
+      }
+      body.poster-mode .slot__content::before { display: none; }
+
+      /* Parallel slots: tracks distribute across cols 2-4 */
+      body.poster-mode .slot--parallel .slot__content { display: contents; }
+      body.poster-mode .slot--parallel .parallel-tracks {
+        display: contents;
+      }
+      body.poster-mode .slot--parallel .track { margin-left: 0; }
+      body.poster-mode .slot--parallel .track--saal  { grid-column: 2; }
+      body.poster-mode .slot--parallel .track--raum1 { grid-column: 3; }
+      body.poster-mode .slot--parallel .track--raum2 { grid-column: 4; }
+      /* Single-track parallel (International Speech) spans all 3 room cols */
+      body.poster-mode .slot--parallel .parallel-tracks > .track:only-child {
+        grid-column: 2 / 5 !important;
+      }
+
+      /* Slot-group: 2-row grid inside the 4-col parent */
+      body.poster-mode .slot-group {
+        display: grid;
+        grid-template-columns: 55px 1fr 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: .15rem .3rem;
+        margin-bottom: .2rem;
+        page-break-inside: avoid;
+      }
+      body.poster-mode .slot-group__times { display: contents; }
+      body.poster-mode .slot-group__times > .slot__time:nth-child(1) {
+        grid-column: 1; grid-row: 1;
+      }
+      body.poster-mode .slot-group__times > .slot__time:nth-child(2) {
+        grid-column: 1; grid-row: 2;
+      }
+      body.poster-mode .slot-group__body { display: contents; }
+      body.poster-mode .slot-group__body > :nth-child(1) {
+        grid-column: 2 !important; grid-row: 1 !important; margin-left: 0;
+      }
+      body.poster-mode .slot-group__body > :nth-child(2) {
+        grid-column: 3 !important; grid-row: 1 / span 2 !important; margin-left: 0;
+      }
+      body.poster-mode .slot-group__body > :nth-child(3) {
+        grid-column: 4 !important; grid-row: 1 / span 2 !important; margin-left: 0;
+      }
+      body.poster-mode .slot-group__body > :nth-child(4) {
+        grid-column: 2 !important; grid-row: 2 !important; margin-left: 0;
+      }
+
+      /* Track cards: compact, dense */
+      body.poster-mode .track {
+        padding: .3rem .45rem;
+        border-left-width: 3px;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      body.poster-mode .track__room {
+        font-size: .52rem;
+        margin-bottom: .15rem;
+      }
+      body.poster-mode .track__title {
+        font-size: .72rem;
+        line-height: 1.15;
+      }
+      body.poster-mode .track__workshop-header {
+        display: block;
+        margin-bottom: .15rem;
+      }
+      body.poster-mode .track__workshop-facilitator {
+        font-size: .62rem;
+        font-weight: 600;
+        margin-top: .1rem;
+      }
+      body.poster-mode .track__detail {
+        font-size: .58rem;
+        margin-top: .1rem;
+      }
+      body.poster-mode .track__age-chip {
+        font-size: .5rem;
+        padding: 0 .25rem;
+      }
+      body.poster-mode .track__bootcamp-chip {
+        font-size: .5rem;
+        padding: .05rem .3rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -534,14 +776,14 @@
     <div class="agenda-hero__meta">
       <span class="agenda-updated">
         <span class="agenda-updated__dot"></span>
-        <span data-i18n-en="Last updated: 23 April 2026, 11:30" data-i18n-de="Zuletzt aktualisiert: 23. April 2026, 11:30">Last updated: 23 April 2026, 11:30</span>
+        <span data-i18n-en="Last updated: 24 April 2026, 07:10" data-i18n-de="Zuletzt aktualisiert: 24. April 2026, 07:10">Last updated: 24 April 2026, 07:10</span>
         <!-- UPDATE DATE + TIME whenever the agenda changes -->
       </span>
       <div class="agenda-lang">
         <button class="agenda-lang__btn active" id="langEn" onclick="setLang('en')">EN <img src="https://flagcdn.com/16x12/gb.png" alt="" class="lang-flag-img"></button>
         <button class="agenda-lang__btn" id="langDe" onclick="setLang('de')">DE <img src="https://flagcdn.com/16x12/de.png" alt="" class="lang-flag-img"></button>
       </div>
-      <button class="agenda-print-btn" onclick="window.print()">
+      <button class="agenda-print-btn" onclick="printPoster()">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
         <span data-i18n-en="Save / Print PDF" data-i18n-de="Speichern / Als PDF drucken">Save / Print PDF</span>
       </button>
@@ -559,6 +801,14 @@
 
   <!-- ── Schedule ──────────────────────────────────── -->
   <main class="agenda-body">
+
+    <!-- Poster-mode only: column headers -->
+    <div class="poster-headers" aria-hidden="true">
+      <div></div>
+      <div data-i18n-en="Hall · Contests" data-i18n-de="Saal · Wettbewerbe">Hall · Contests</div>
+      <div data-i18n-en="Room 1 · Workshops" data-i18n-de="Raum 1 · Workshops">Room 1 · Workshops</div>
+      <div data-i18n-en="Room 2 · Youth Bootcamp" data-i18n-de="Raum 2 · Jugend-Bootcamp">Room 2 · Youth Bootcamp</div>
+    </div>
 
     <div class="day-header" data-i18n-en="Saturday, 25 April 2026" data-i18n-de="Samstag, 25. April 2026">Saturday, 25 April 2026</div>
 
@@ -963,6 +1213,24 @@
     // restore saved language (shared key with main site)
     const saved = localStorage.getItem('tm-lang') || 'en';
     if (saved === 'de') setLang('de');
+
+    // Wall-poster print: A3 portrait, grid layout
+    function printPoster() {
+      document.body.classList.add('poster-mode');
+      const pageStyle = document.createElement('style');
+      pageStyle.id = 'poster-page';
+      pageStyle.textContent = '@page { size: A4 portrait; margin: 0; }';
+      document.head.appendChild(pageStyle);
+
+      const cleanup = () => {
+        document.body.classList.remove('poster-mode');
+        document.getElementById('poster-page')?.remove();
+        window.removeEventListener('afterprint', cleanup);
+      };
+      window.addEventListener('afterprint', cleanup);
+
+      window.print();
+    }
   </script>
 
   <!-- ═══════════════════════════════════════════
