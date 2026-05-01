@@ -135,11 +135,6 @@ const i18n = {
     'cc.4.bioToggle':   'About the contest chair',
     'cc.4.bio':         'Tobias Schlosser is a dedicated Toastmaster known for his analytical mindset and his willingness to dive into complexity where others might hesitate. He has a natural ability to unpack challenging ideas and turn them into meaningful insights that support real growth. An experienced competitor and leader, Tobias brings precision, fairness, and thoughtful depth to every contest. His calm presence and structured approach ensure a well-run experience — where every speaker is seen, challenged, and encouraged to improve.',
 
-    'videos.label':     'Follow Us',
-    'videos.feature.title': 'A taste of what we built',
-    'videos.feature.desc':  'Our short promo from the run-up to 25 April. More recap content lands on our YouTube channel and Facebook page.',
-    'videos.cta':       'Follow on YouTube',
-
     'toast.copied':     'Link copied to clipboard!',
   },
 
@@ -268,11 +263,6 @@ const i18n = {
     'cc.4.role':        'Wettbewerbsleiter — Deutscher Bewertungs- & Table Topics-Wettbewerb',
     'cc.4.bioToggle':   'Über den Wettbewerbsleiter',
     'cc.4.bio':         'Tobias Schlosser ist ein engagierter Toastmaster, bekannt für seinen analytischen Verstand und seine Bereitschaft, sich in Komplexität zu vertiefen, wo andere zögern würden. Er hat die natürliche Fähigkeit, anspruchsvolle Ideen zu entschlüsseln und in wertvolle Erkenntnisse zu verwandeln, die echtes Wachstum fördern. Als erfahrener Wettbewerber und Leader bringt Tobias Präzision, Fairness und durchdachte Tiefe in jeden Wettbewerb. Seine ruhige Präsenz und strukturierte Herangehensweise sorgen für einen reibungslosen Ablauf — bei dem jeder Redner gesehen, gefordert und ermutigt wird, sich zu verbessern.',
-
-    'videos.label':     'Folgen Sie uns',
-    'videos.feature.title': 'Ein Vorgeschmack auf das, was wir gebaut haben',
-    'videos.feature.desc':  'Unser kurzes Promo-Video aus der Vorbereitung zum 25. April. Mehr Recap-Inhalte folgen auf unserem YouTube-Kanal und auf Facebook.',
-    'videos.cta':       'Auf YouTube folgen',
 
     'toast.copied':     'Link in die Zwischenablage kopiert!',
   },
