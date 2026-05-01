@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /registration.html
 Disallow: /impressum.html
 
 Sitemap: https://toastmasters-bayern.com/sitemap.xml

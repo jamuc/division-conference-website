@@ -11,35 +11,23 @@
 const i18n = {
   en: {
     'nav.brand':        'Division D · District 95',
-    'nav.cta':          'Register Now!',
-    'nav.walkin':       '🎟️ Walk-in · €10',
-    'walkin.title':     'Walk-ins Welcome',
-    'walkin.body':      'Online registration is now closed. Just show up on the day — €10 admission at the door (cash).',
-    'walkin.note':      'Bring friends, colleagues, kids — everyone is welcome.',
     'nav.about':        'About',
     'nav.tm':           'Toastmasters',
     'nav.venue':        'Venue',
-    'nav.tickets':      'Tickets',
-    'nav.share':        'Share',
+    'nav.champions':    'Champions',
+    'nav.d95':          'District 95 · 15 May ↗',
+    'nav.d95mobile':    'District 95 ↗',
 
-    'hero.eyebrow':     'Toastmasters Bayern · District 95 · Division D',
-    'hero.title':       'Division D Conference<br>2026',
-    'hero.tagline':     'Growing Through Connection',
-    'hero.values':      'Integrity | Respect | Service | Excellence',
-    'hero.date':        '25 April 2026',
-    'hero.location':    'Munich, Germany',
-    'hero.cta':         'Register Now!',
-    'hero.registerNote': '',
-    'hero.visitorCount':   '{n} people have visited this page',
-    'hero.agenda':         'View Programme',
-    'nav.agenda':        'Programme',
-    'join.pill':         '🙋 Join Our Team',
+    'hero.eyebrow':     'Division D Conference 2026 · Champions',
+    'hero.title':       'Five Voices,<br>Going to District',
+    'hero.lead':        'On 25 April in Munich, our community crowned its champions. They now compete on 15 May at the District 95 Conference in Essen — representing 30+ Toastmasters clubs across Bavaria.',
+    'hero.cta':         'Cheer them on at District 95 — 15 May, Essen →',
+    'champ.double':     '2× Champion',
 
     'about.label':      'The Event',
-    'about.title':      'A day where voices come alive',
-    'about.body1':      'The Division D Conference is the highlight of the Toastmasters year for clubs across Bavaria. It brings together members from every corner of the division for a day of inspiring speeches, fierce competitions, and genuine human connection.',
-    'about.body2':      'Whether you\'re a seasoned speaker competing for glory or a first-timer curious about what Toastmasters is all about — this is your day. Expect world-class speeches, laughter, learning, and a community that will stay with you long after the applause fades.',
-    'about.link':       'Meet the District 95 Team →',
+    'about.title':      'A day where voices came alive',
+    'about.body1':      'On 25 April 2026, the Division D Conference brought Toastmasters from every corner of Bavaria together for a day of inspiring speeches, fierce competitions, and genuine human connection.',
+    'about.body2':      'Seasoned speakers competed for glory; first-timers got their first taste of Toastmasters. World-class speeches, laughter, learning, and a community that will stay with us long after the applause has faded.',
 
     'facts.dateLabel':      'Date',
     'facts.dateValue':      '25 April 2026',
@@ -63,22 +51,13 @@ const i18n = {
     'venue.directions': 'Get Directions ↗',
     'venue.calendar':   '+ Add to Calendar',
 
-    'tickets.label':    'Register',
-    'tickets.title':    'Pre-Signup',
-    'tickets.soon':     'Registration opens on 1 April 2026.',
-
-    'contribute.label': 'Get Involved',
-    'contribute.title': 'Want to Help Make It Happen?',
-    'contribute.body':  'Behind every great conference is a great team. We\'re looking for enthusiastic volunteers to help bring this event to life. Join one of our organising teams on WhatsApp and make your mark.',
-    'contribute.join':  'Join group →',
-
     'fb.label':         'Community',
     'fb.title':         'Find us on Facebook',
     'fb.body':          'Follow our page for the latest news, updates, and announcements from Toastmasters Bayern.',
     'fb.follow':        'Follow on Facebook',
     'fb.message':       'Message us on Messenger',
 
-    'consent.text':     'This site stores your language preference locally. If you register, payment is processed securely by Stripe — see our privacy notice for details. No tracking cookies.',
+    'consent.text':     'This site stores only your language preference in your browser — no tracking cookies, no third-party data.',
     'consent.link':     'More info',
     'consent.accept':   'Got it',
 
@@ -93,20 +72,21 @@ const i18n = {
     'footer.d95':       'District 95',
     'footer.ti':        'Toastmasters International',
     'footer.facebook':  'Facebook',
+    'footer.programme': 'Programme (archive)',
     'footer.privacy':   'Impressum',
     'footer.copy':      '© 2026 Toastmasters District 95, Division D',
 
     'contact.text':     'Questions? Get in touch:',
 
-    'bar.sponsor':      'Sponsored by',
-    'bar.upcoming':     'Up next',
-    'bar.upcomingConf': 'Upcoming District Conference',
-    'bar.d95conf':      'District 95 Conference · May 15–17 · Essen',
+    'bar.thanks':       'With thanks to',
+    'bar.cheer':        'Cheer them on at',
+    'bar.cheerMobile':  'Our champions go to',
+    'bar.d95conf':      'District 95 Conference · 15–17 May · Essen ↗',
 
-    'workshops.label':  'Workshops',
-    'workshops.title':  'Learn from the Best',
-    'workshops.intro':  'Dive deeper with hands-on sessions led by experienced speakers and coaches. Choose the workshop that fits your goals.',
-    'workshops.cta':    'View Full Programme',
+    'workshops.label':  'Thank you',
+    'workshops.title':  'Our Workshop Facilitators',
+    'workshops.intro':  'These five speakers and coaches led our hands-on sessions on 25 April — including our Youth Boot Camp for ages 11–18. Thank you for sharing your craft with the room.',
+    'workshops.cta':    'See the Programme (archive)',
     'workshops.1.bioToggle': 'About the facilitator',
     'workshops.1.title': 'Present with Power',
     'workshops.1.desc':  'From Death by PowerPoint to Seducing with Slides — Presentation tips for Toastmasters, business, and life.',
@@ -140,8 +120,8 @@ const i18n = {
     'bootcamp.igor.bio':       'Igor Petrov has 20+ years of experience in media technology, spanning engineering and sales, with a focus on software for live news production. Trained as an audio engineer, he combines technical expertise with creativity. In Munich, he leads a Russian-speaking community and organises regular events. He is also a musician, sports enthusiast, and father of two, and a certified NLP Practitioner.',
 
     'cc.label':         'Contest Chairs',
-    'cc.title':         'Meet the Contest Chairs',
-    'cc.intro':         'Our experienced contest chairs ensure every competition runs smoothly and every speaker gets their moment to shine.',
+    'cc.title':         'Behind every fair contest',
+    'cc.intro':         'Thank you to our four contest chairs, who ran every competition on 25 April with precision, fairness, and care — making sure each speaker got their moment to shine.',
     'cc.1.role':        'Contest Chair — International Speech',
     'cc.1.bioToggle':   'About the contest chair',
     'cc.1.bio':         'Mikaela Gallon is a Sr. IT Project Manager and PMP®, and the founder of Present.Global — where communication meets coaching, mindfulness, and presence. Half French and Maltese, raised between Argentina and South Africa, she has worked across Europe, New York, and Tokyo. Fluent in French, English, Spanish, and German, she knows firsthand that real communication goes far beyond language. A TEDx speaker, 2x TEDx coach, 3x Toastmasters District Champion, and Ivy League MBA, she has spent a lifetime crossing borders and building bridges — connecting people, connecting dots, and bringing a fuller, more human voice to the way we communicate.',
@@ -156,8 +136,8 @@ const i18n = {
     'cc.4.bio':         'Tobias Schlosser is a dedicated Toastmaster known for his analytical mindset and his willingness to dive into complexity where others might hesitate. He has a natural ability to unpack challenging ideas and turn them into meaningful insights that support real growth. An experienced competitor and leader, Tobias brings precision, fairness, and thoughtful depth to every contest. His calm presence and structured approach ensure a well-run experience — where every speaker is seen, challenged, and encouraged to improve.',
 
     'videos.label':     'Follow Us',
-    'videos.feature.title': 'See What\'s Coming',
-    'videos.feature.desc':  'Get a sneak peek at the Division D Conference 2026. Watch our short promo and see why you don\'t want to miss it.',
+    'videos.feature.title': 'A taste of what we built',
+    'videos.feature.desc':  'Our short promo from the run-up to 25 April. More recap content lands on our YouTube channel and Facebook page.',
     'videos.cta':       'Follow on YouTube',
 
     'toast.copied':     'Link copied to clipboard!',
@@ -165,35 +145,23 @@ const i18n = {
 
   de: {
     'nav.brand':        'Division D · Distrikt 95',
-    'nav.cta':          'Jetzt registrieren!',
-    'nav.walkin':       '🎟️ Vor Ort · 10 €',
-    'walkin.title':     'Walk-ins willkommen',
-    'walkin.body':      'Die Online-Anmeldung ist geschlossen. Komm einfach am Konferenztag vorbei — 10 € Eintritt vor Ort (Barzahlung).',
-    'walkin.note':      'Bring Freunde, Kolleg:innen und Kinder mit — alle sind willkommen.',
     'nav.about':        'Über uns',
     'nav.tm':           'Toastmasters',
     'nav.venue':        'Veranstaltungsort',
-    'nav.tickets':      'Tickets',
-    'nav.share':        'Teilen',
+    'nav.champions':    'Sieger',
+    'nav.d95':          'Distrikt 95 · 15. Mai ↗',
+    'nav.d95mobile':    'Distrikt 95 ↗',
 
-    'hero.eyebrow':     'Toastmasters Bayern · Distrikt 95 · Division D',
-    'hero.title':       'Division D Konferenz<br>2026',
-    'hero.tagline':     'Growing Through Connection',
-    'hero.values':      'Integrity | Respect | Service | Excellence',
-    'hero.date':        '25. April 2026',
-    'hero.location':    'München, Deutschland',
-    'hero.cta':         'Jetzt registrieren!',
-    'hero.registerNote': '',
-    'hero.visitorCount':   '{n} Personen haben diese Seite besucht',
-    'hero.agenda':         'Programm anzeigen',
-    'nav.agenda':        'Programm',
-    'join.pill':         '🙋 Mitmachen',
+    'hero.eyebrow':     'Division D Konferenz 2026 · Sieger',
+    'hero.title':       'Fünf Stimmen,<br>auf zum Distrikt',
+    'hero.lead':        'Am 25. April hat unsere Community in München ihre Sieger gekürt. Am 15. Mai treten sie auf der Distrikt-95-Konferenz in Essen an — und vertreten über 30 Toastmasters-Clubs aus ganz Bayern.',
+    'hero.cta':         'Drück ihnen die Daumen — 15. Mai, Essen →',
+    'champ.double':     '2× Sieger',
 
     'about.label':      'Die Veranstaltung',
-    'about.title':      'Ein Tag, an dem Stimmen lebendig werden',
-    'about.body1':      'Die Division D Konferenz ist der Höhepunkt des Toastmasters-Jahres für Clubs in ganz Bayern. Sie bringt Mitglieder aus allen Teilen der Division für einen Tag voller inspirierender Reden, spannender Wettbewerbe und echter menschlicher Verbindung zusammen.',
-    'about.body2':      'Ob du ein erfahrener Redner bist, der um Ruhm kämpft, oder ein Erstbesucher, der neugierig auf Toastmasters ist – das ist dein Tag. Erwarte erstklassige Reden, Lachen, Lernen und eine Gemeinschaft, die noch lange nach dem Applaus bei dir bleibt.',
-    'about.link':       'Das Distrikt-95-Team kennenlernen →',
+    'about.title':      'Ein Tag, an dem Stimmen lebendig wurden',
+    'about.body1':      'Am 25. April 2026 brachte die Division D Konferenz Toastmasters aus ganz Bayern für einen Tag voller inspirierender Reden, spannender Wettbewerbe und echter menschlicher Verbindung zusammen.',
+    'about.body2':      'Erfahrene Redner kämpften um Ruhm; Erstbesucher bekamen ihren ersten Eindruck von Toastmasters. Erstklassige Reden, Lachen, Lernen und eine Gemeinschaft, die noch lange nach dem Applaus bei uns bleibt.',
 
     'facts.dateLabel':      'Datum',
     'facts.dateValue':      '25. April 2026',
@@ -217,22 +185,13 @@ const i18n = {
     'venue.directions': 'Route berechnen ↗',
     'venue.calendar':   '+ Zum Kalender hinzufügen',
 
-    'tickets.label':    'Registrieren',
-    'tickets.title':    'Voranmeldung',
-    'tickets.soon':     'Registrierung öffnet am 1. April 2026.',
-
-    'contribute.label': 'Mitmachen',
-    'contribute.title': 'Willst du mithelfen?',
-    'contribute.body':  'Hinter jeder großartigen Konferenz steckt ein großartiges Team. Wir suchen engagierte Freiwillige, die helfen, dieses Event zum Leben zu erwecken. Tritt einem unserer Organisationsteams auf WhatsApp bei.',
-    'contribute.join':  'Gruppe beitreten →',
-
     'fb.label':         'Community',
     'fb.title':         'Auf Facebook folgen',
     'fb.body':          'Folge unserer Seite für die neuesten Nachrichten und Ankündigungen von Toastmasters Bayern.',
     'fb.follow':        'Auf Facebook folgen',
     'fb.message':       'Schreib uns auf Messenger',
 
-    'consent.text':     'Diese Website speichert Ihre Sprachpräferenz lokal. Bei der Anmeldung wird die Zahlung sicher über Stripe abgewickelt — Details in unserem Datenschutzhinweis. Keine Tracking-Cookies.',
+    'consent.text':     'Diese Website speichert ausschließlich deine Sprachpräferenz in deinem Browser — keine Tracking-Cookies, keine Drittanbieter-Daten.',
     'consent.link':     'Mehr Infos',
     'consent.accept':   'Alles klar',
 
@@ -247,20 +206,21 @@ const i18n = {
     'footer.d95':       'Distrikt 95',
     'footer.ti':        'Toastmasters International',
     'footer.facebook':  'Facebook',
+    'footer.programme': 'Programm (Archiv)',
     'footer.privacy':   'Impressum',
     'footer.copy':      '© 2026 Toastmasters Distrikt 95, Division D',
 
     'contact.text':     'Fragen? Schreib uns:',
 
-    'bar.sponsor':      'Gesponsert von',
-    'bar.upcoming':     'Als Nächstes',
-    'bar.upcomingConf': 'Nächste Distriktkonferenz',
-    'bar.d95conf':      'Distrikt 95 Konferenz · 15.–17. Mai · Essen',
+    'bar.thanks':       'Mit Dank an',
+    'bar.cheer':        'Drück ihnen die Daumen —',
+    'bar.cheerMobile':  'Unsere Sieger gehen zur',
+    'bar.d95conf':      'Distrikt 95 Konferenz · 15.–17. Mai · Essen ↗',
 
-    'workshops.label':  'Workshops',
-    'workshops.title':  'Lernen von den Besten',
-    'workshops.intro':  'Vertiefen Sie Ihr Wissen in praxisnahen Sessions mit erfahrenen Rednern und Coaches. Wählen Sie den Workshop, der zu Ihren Zielen passt.',
-    'workshops.cta':    'Ganzes Programm ansehen',
+    'workshops.label':  'Danke',
+    'workshops.title':  'Unsere Workshop-Referent:innen',
+    'workshops.intro':  'Diese fünf Redner und Coaches haben am 25. April unsere praxisnahen Sessions geleitet — einschließlich des Jugend-Bootcamps für 11- bis 18-Jährige. Danke, dass ihr euer Können mit dem Raum geteilt habt.',
+    'workshops.cta':    'Programm ansehen (Archiv)',
     'workshops.1.bioToggle': 'Über die Referentin',
     'workshops.1.title': 'Present with Power',
     'workshops.1.desc':  'Von Death by PowerPoint zu Seducing with Slides — Präsentationstipps für Toastmasters, Business und das Leben.',
@@ -294,8 +254,8 @@ const i18n = {
     'bootcamp.igor.bio':       'Igor Petrov bringt über 20 Jahre Erfahrung in der Medientechnik mit — von Engineering bis Vertrieb, mit Schwerpunkt auf Software für die Live-Nachrichtenproduktion. Als ausgebildeter Tontechniker verbindet er technisches Know-how mit Kreativität. In München leitet er eine russischsprachige Community und organisiert regelmäßig Veranstaltungen. Er ist außerdem Musiker, Sportler und Vater von zwei Kindern sowie zertifizierter NLP-Practitioner.',
 
     'cc.label':         'Wettbewerbsleitung',
-    'cc.title':         'Unsere Wettbewerbsleiter',
-    'cc.intro':         'Unsere erfahrenen Wettbewerbsleiter sorgen dafür, dass jeder Wettbewerb reibungslos abläuft und jeder Redner seinen Moment bekommt.',
+    'cc.title':         'Hinter jedem fairen Wettbewerb',
+    'cc.intro':         'Danke an unsere vier Wettbewerbsleiter, die am 25. April jeden Wettbewerb mit Präzision, Fairness und Sorgfalt geleitet haben — damit jede Rednerin und jeder Redner ihren Moment bekam.',
     'cc.1.role':        'Contest Chair — International Speech',
     'cc.1.bioToggle':   'Über die Wettbewerbsleiterin',
     'cc.1.bio':         'Mikaela Gallon ist Sr. IT-Projektmanagerin und PMP® sowie Gründerin von Present.Global — wo Kommunikation auf Coaching, Achtsamkeit und Präsenz trifft. Halb Französin und Malteserin, aufgewachsen zwischen Argentinien und Südafrika, hat sie in ganz Europa, New York und Tokio gearbeitet. Sie spricht fließend Französisch, Englisch, Spanisch und Deutsch und weiß aus erster Hand, dass echte Kommunikation weit über Sprache hinausgeht. Als TEDx-Rednerin, 2-fache TEDx-Coach, 3-fache Toastmasters-Distrikt-Meisterin und Ivy-League-MBA hat sie ihr Leben damit verbracht, Grenzen zu überschreiten und Brücken zu bauen — Menschen zu verbinden, Zusammenhänge zu erkennen und eine vollere, menschlichere Stimme in die Art und Weise zu bringen, wie wir kommunizieren.',
@@ -310,8 +270,8 @@ const i18n = {
     'cc.4.bio':         'Tobias Schlosser ist ein engagierter Toastmaster, bekannt für seinen analytischen Verstand und seine Bereitschaft, sich in Komplexität zu vertiefen, wo andere zögern würden. Er hat die natürliche Fähigkeit, anspruchsvolle Ideen zu entschlüsseln und in wertvolle Erkenntnisse zu verwandeln, die echtes Wachstum fördern. Als erfahrener Wettbewerber und Leader bringt Tobias Präzision, Fairness und durchdachte Tiefe in jeden Wettbewerb. Seine ruhige Präsenz und strukturierte Herangehensweise sorgen für einen reibungslosen Ablauf — bei dem jeder Redner gesehen, gefordert und ermutigt wird, sich zu verbessern.',
 
     'videos.label':     'Folgen Sie uns',
-    'videos.feature.title': 'Sehen Sie, was kommt',
-    'videos.feature.desc':  'Werfen Sie einen Blick auf die Division D Konferenz 2026. Schauen Sie unser kurzes Promo-Video und erfahren Sie, warum Sie dabei sein sollten.',
+    'videos.feature.title': 'Ein Vorgeschmack auf das, was wir gebaut haben',
+    'videos.feature.desc':  'Unser kurzes Promo-Video aus der Vorbereitung zum 25. April. Mehr Recap-Inhalte folgen auf unserem YouTube-Kanal und auf Facebook.',
     'videos.cta':       'Auf YouTube folgen',
 
     'toast.copied':     'Link in die Zwischenablage kopiert!',
@@ -403,59 +363,4 @@ document.getElementById('consentAccept')?.addEventListener('click', () => {
   cookieBanner?.setAttribute('hidden', '');
 });
 
-/* ── Venue: Add to Calendar (placeholder) ─────────────── */
-/* ── Volunteer Rail ───────────────────────────────────── */
-(function () {
-  const rail = document.getElementById('volRail');
-  if (!rail) return;
-  const contribute = document.getElementById('contribute');
-  rail.addEventListener('click', e => {
-    e.preventDefault();
-    contribute?.scrollIntoView({ behavior: 'smooth' });
-  });
-}());
-
-/* ── Venue: Add to Calendar (placeholder) ─────────────── */
-document.querySelector('.venue__cal')?.addEventListener('click', () => {
-  // Google Calendar deep link — update when venue is confirmed
-  const start  = '20260425T090000';
-  const end    = '20260425T180000';
-  const title  = encodeURIComponent('Division D Conference 2026');
-  const detail = encodeURIComponent('Growing Through Connection — toastmasters-bayern.com');
-  const gcal   = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${detail}`;
-  window.open(gcal, '_blank', 'noopener,noreferrer');
-});
-
-/* ── Visitor counter ──────────────────────────────────── */
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxKreCl6hQoqlbO3JcsIU8kZ_8SVmQ05ha49KU_WUuheuvNQB1OaPgBjZxTESzkfcZ6aQ/exec';
-
-(async function trackVisit() {
-  const el = document.getElementById('visitorCount');
-  if (!el) return;
-
-  function showCount(n) {
-    const lang = localStorage.getItem('tm-lang') || 'en';
-    const tpl  = (i18n[lang] || i18n.en)['hero.visitorCount'] || '{n} people have visited this page';
-    el.textContent = tpl.replace('{n}', Number(n).toLocaleString());
-  }
-
-  // Always show cached count immediately (no flicker on reload)
-  const cached = localStorage.getItem('divD_visitorCount');
-  if (cached) showCount(cached);
-
-  // Only increment once per browser session
-  if (sessionStorage.getItem('divD_visited')) return;
-  sessionStorage.setItem('divD_visited', '1');
-
-  try {
-    const res  = await fetch(APPS_SCRIPT_URL);
-    const data = await res.json();
-    if (data.count) {
-      localStorage.setItem('divD_visitorCount', data.count);
-      showCount(data.count);
-    }
-  } catch (_) {
-    // Silently fail — counter is non-essential
-  }
-}());
 
