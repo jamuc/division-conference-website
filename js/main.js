@@ -22,7 +22,7 @@ const i18n = {
     'hero.title':       'Five Voices,<br>Going to District',
     'hero.lead':        'On 25 April in Munich, our community crowned its champions. They now compete on 15 May at the District 95 Conference in Essen — representing 30+ Toastmasters clubs across Bavaria.',
     'hero.cta':         'Cheer them on at District 95 — 15 May, Essen →',
-    'champ.double':     '2× Champion',
+    'hero.visitorCount':   '{n} people have visited this page',
 
     'about.label':      'The Event',
     'about.title':      'A day where voices came alive',
@@ -151,7 +151,7 @@ const i18n = {
     'hero.title':       'Fünf Stimmen,<br>auf zum Distrikt',
     'hero.lead':        'Am 25. April hat unsere Community in München ihre Sieger gekürt. Am 15. Mai treten sie auf der Distrikt-95-Konferenz in Essen an — und vertreten über 30 Toastmasters-Clubs aus ganz Bayern.',
     'hero.cta':         'Drück ihnen die Daumen — 15. Mai, Essen →',
-    'champ.double':     '2× Sieger',
+    'hero.visitorCount':   '{n} Personen haben diese Seite besucht',
 
     'about.label':      'Die Veranstaltung',
     'about.title':      'Ein Tag, an dem Stimmen lebendig wurden',
@@ -352,5 +352,38 @@ document.getElementById('consentAccept')?.addEventListener('click', () => {
   localStorage.setItem(CONSENT_KEY, 'acknowledged');
   cookieBanner?.setAttribute('hidden', '');
 });
+
+/* ── Visitor counter ──────────────────────────────────── */
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxKreCl6hQoqlbO3JcsIU8kZ_8SVmQ05ha49KU_WUuheuvNQB1OaPgBjZxTESzkfcZ6aQ/exec';
+
+(async function trackVisit() {
+  const el = document.getElementById('visitorCount');
+  if (!el) return;
+
+  function showCount(n) {
+    const lang = localStorage.getItem('tm-lang') || 'en';
+    const tpl  = (i18n[lang] || i18n.en)['hero.visitorCount'] || '{n} people have visited this page';
+    el.textContent = tpl.replace('{n}', Number(n).toLocaleString());
+  }
+
+  // Always show cached count immediately (no flicker on reload)
+  const cached = localStorage.getItem('divD_visitorCount');
+  if (cached) showCount(cached);
+
+  // Only increment once per browser session
+  if (sessionStorage.getItem('divD_visited')) return;
+  sessionStorage.setItem('divD_visited', '1');
+
+  try {
+    const res  = await fetch(APPS_SCRIPT_URL);
+    const data = await res.json();
+    if (data.count) {
+      localStorage.setItem('divD_visitorCount', data.count);
+      showCount(data.count);
+    }
+  } catch (_) {
+    // Silently fail — counter is non-essential
+  }
+}());
 
 

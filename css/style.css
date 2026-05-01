@@ -2796,21 +2796,6 @@ body { padding-bottom: 70px; }
   height: auto;
   display: block;
 }
-.champion-card__double {
-  position: absolute;
-  top: .55rem;
-  right: .55rem;
-  background: var(--yellow);
-  color: var(--navy-dk);
-  font-family: var(--font-head);
-  font-weight: 800;
-  font-size: .7rem;
-  letter-spacing: .04em;
-  padding: .25rem .55rem;
-  border-radius: 999px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.3);
-  z-index: 2;
-}
 
 @media (max-width: 900px) {
   .champions { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
@@ -2823,7 +2808,6 @@ body { padding-bottom: 70px; }
 @media (max-width: 520px) {
   .champions { grid-template-columns: 1fr; max-width: 380px; gap: .75rem; }
   .champion-card:nth-child(5) { max-width: none; margin-inline: 0; }
-  .champion-card__double { font-size: .62rem; padding: .2rem .45rem; }
 }
 
 /* Bottom bar — D95 promoted as primary on desktop */
