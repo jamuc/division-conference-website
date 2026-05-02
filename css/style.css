@@ -505,6 +505,31 @@ body.lang-de .lang-only-en { display: none !important; }
   letter-spacing: .02em;
   min-height: 1.25em;
 }
+/* Pill variant — used as social-proof badge above the champions grid */
+.hero__visitor-count--pill {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  margin: -1rem auto 1.75rem;
+  padding: .4rem .9rem;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(242,223,116,.35);
+  border-radius: 999px;
+  font-family: var(--font-head);
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--yellow);
+  opacity: 1;
+  letter-spacing: .02em;
+  min-height: 0;
+  backdrop-filter: blur(4px);
+}
+.hero__visitor-count--pill:empty { display: none; }
+.hero__visitor-count--pill::before {
+  content: "👀";
+  font-size: 1rem;
+  line-height: 1;
+}
 .hero__agenda-link {
   display: inline-flex;
   align-items: center;
