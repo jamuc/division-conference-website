@@ -15,13 +15,12 @@ const i18n = {
     'nav.tm':           'Toastmasters',
     'nav.venue':        'Venue',
     'nav.champions':    'Champions',
-    'nav.d95':          'District 95 · 15 May ↗',
+    'nav.d95':          'District 95 ↗',
     'nav.d95mobile':    'District 95 ↗',
 
     'hero.eyebrow':     'Division D Conference 2026 · Champions',
-    'hero.title':       'Five Voices,<br>Going to District',
-    'hero.lead':        'On 25 April in Munich, our community crowned its champions. They now compete on 15 May at the District 95 Conference in Essen — representing 30+ Toastmasters clubs across Bavaria.',
-    'hero.cta':         'Cheer them on at District 95 — 15 May, Essen →',
+    'hero.title':       'Five Voices,<br>Went to District',
+    'hero.lead':        'On 25 April in Munich, our community crowned its champions. They competed on the 15th of May at the District 95 Conference in Essen — representing 30+ Toastmasters clubs across Bavaria.',
     'hero.visitorCount':   '{n} people have visited this page',
 
     'about.label':      'The Event',
@@ -79,8 +78,8 @@ const i18n = {
     'contact.text':     'Questions? Get in touch:',
 
     'bar.thanks':       'With thanks to',
-    'bar.cheer':        'Cheer them on at',
-    'bar.cheerMobile':  'Our champions go to',
+    'bar.cheer':        'Our champions competed at',
+    'bar.cheerMobile':  'Champions competed at',
     'bar.d95conf':      'District 95 Conference · 15–17 May · Essen ↗',
 
     'workshops.label':  'Thank you',
@@ -144,13 +143,12 @@ const i18n = {
     'nav.tm':           'Toastmasters',
     'nav.venue':        'Veranstaltungsort',
     'nav.champions':    'Sieger',
-    'nav.d95':          'Distrikt 95 · 15. Mai ↗',
+    'nav.d95':          'Distrikt 95 ↗',
     'nav.d95mobile':    'Distrikt 95 ↗',
 
     'hero.eyebrow':     'Division D Konferenz 2026 · Sieger',
     'hero.title':       'Fünf Stimmen,<br>auf zum Distrikt',
-    'hero.lead':        'Am 25. April hat unsere Community in München ihre Sieger gekürt. Am 15. Mai treten sie auf der Distrikt-95-Konferenz in Essen an — und vertreten über 30 Toastmasters-Clubs aus ganz Bayern.',
-    'hero.cta':         'Drück ihnen die Daumen — 15. Mai, Essen →',
+    'hero.lead':        'Am 25. April hat unsere Community in München ihre Sieger gekürt. Am 15. Mai traten sie auf der Distrikt-95-Konferenz in Essen an — und vertraten über 30 Toastmasters-Clubs aus ganz Bayern.',
     'hero.visitorCount':   '{n} Personen haben diese Seite besucht',
 
     'about.label':      'Die Veranstaltung',
@@ -208,8 +206,8 @@ const i18n = {
     'contact.text':     'Fragen? Schreib uns:',
 
     'bar.thanks':       'Mit Dank an',
-    'bar.cheer':        'Drück ihnen die Daumen —',
-    'bar.cheerMobile':  'Unsere Sieger gehen zur',
+    'bar.cheer':        'Unsere Sieger vertraten uns bei der',
+    'bar.cheerMobile':  'Unsere Sieger waren bei der',
     'bar.d95conf':      'Distrikt 95 Konferenz · 15.–17. Mai · Essen ↗',
 
     'workshops.label':  'Danke',

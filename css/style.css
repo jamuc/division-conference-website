@@ -2802,7 +2802,7 @@ body { padding-bottom: 70px; }
   position: relative;
   display: block;
   border-radius: 14px;
-  overflow: hidden;
+  overflow: visible; /* allow the medal seal to overhang the corner */
   background: rgba(255,255,255,.04);
   border: 1px solid rgba(255,255,255,.08);
   box-shadow: 0 8px 24px rgba(0,0,0,.35);
@@ -2820,6 +2820,70 @@ body { padding-bottom: 70px; }
   width: 100%;
   height: auto;
   display: block;
+  border-radius: inherit; /* clip the corners now that the card no longer hides overflow */
+}
+
+/* ── District-result medal seal ──────────────────────────────────
+   Hangs off the top-left corner onto the dark page background, so it
+   never collides with the banner, logo, results list or stamp baked
+   into the card image. */
+.champion-medal {
+  position: absolute;
+  top: -14px;
+  left: -14px;
+  z-index: 3;
+  width: clamp(46px, 13%, 64px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-weight: 800;
+  line-height: 1;
+  box-shadow: 0 4px 12px rgba(0,0,0,.45);
+  transition: transform .25s ease;
+}
+/* Ribbon tails tucked behind the disc */
+.champion-medal::before,
+.champion-medal::after {
+  content: "";
+  position: absolute;
+  top: 62%;
+  width: 30%;
+  height: 60%;
+  background: inherit;
+  z-index: -1;
+  border-radius: 2px;
+}
+.champion-medal::before { left: 18%; transform: rotate(12deg); }
+.champion-medal::after  { right: 18%; transform: rotate(-12deg); }
+.champion-medal__num {
+  font-size: clamp(1.1rem, 3.5vw, 1.6rem);
+  /* engraved look */
+  text-shadow: 0 1px 1px rgba(255,255,255,.45), 0 -1px 1px rgba(0,0,0,.35);
+}
+.champion-card:hover .champion-medal { transform: scale(1.06); }
+
+/* Silver — 2nd place */
+.champion-card--silver .champion-medal {
+  background: radial-gradient(circle at 35% 30%, #ffffff, #d8dde3 45%, #9aa1aa 100%);
+  border: 2px solid rgba(255,255,255,.85);
+}
+.champion-card--silver .champion-medal__num { color: #4a5159; }
+
+/* Gold — 1st place / District champion */
+.champion-card--gold .champion-medal {
+  background: radial-gradient(circle at 35% 30%, #fff6c2, #ffd84d 45%, #d99b1c 100%);
+  border: 2px solid rgba(255,247,200,.9);
+}
+.champion-card--gold .champion-medal__num { color: #7a4d05; }
+
+/* Let the champion's card stand out from the runners-up */
+.champion-card--gold {
+  border-color: rgba(255,216,77,.55);
+  box-shadow: 0 8px 24px rgba(0,0,0,.35), 0 0 0 2px rgba(255,216,77,.45);
+}
+.champion-card--gold:hover {
+  box-shadow: 0 14px 34px rgba(0,0,0,.5), 0 0 0 2px var(--yellow);
 }
 
 @media (max-width: 900px) {
