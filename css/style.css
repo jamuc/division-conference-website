@@ -937,6 +937,13 @@ pretix-widget + * + .tickets__coming-soon {
   .workshop-grid--five > .workshop-card:nth-child(4),
   .workshop-grid--five > .workshop-card:nth-child(5) { grid-column: auto; }
 }
+
+/* Four facilitators: a 3-up row with the 4th card centred under the
+   middle column (Edgar) on full desktop. Inherits the responsive
+   2-col / 1-col fallbacks from .workshop-grid below 1024px. */
+@media (min-width: 1025px) {
+  .workshop-grid--four > .workshop-card:nth-child(4) { grid-column: 2; }
+}
 @media (max-width: 640px) {
   .workshop-grid--five { grid-template-columns: 1fr; }
 }
