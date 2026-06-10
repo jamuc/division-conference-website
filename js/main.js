@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════
-   Division D Conference 2026 — main.js
+   District 95 Division D — main.js
    · Language toggle (EN / DE)
    · Sticky nav
    · Hamburger menu
@@ -10,22 +10,20 @@
 /* ── Translations ─────────────────────────────────────── */
 const i18n = {
   en: {
-    'nav.brand':        'Division D · District 95',
+    'nav.brand':        'District 95 · Division D',
     'nav.about':        'About',
     'nav.tm':           'Toastmasters',
     'nav.venue':        'Venue',
     'nav.champions':    'Champions',
-    'nav.d95':          'District 95 ↗',
-    'nav.d95mobile':    'District 95 ↗',
 
-    'hero.eyebrow':     'Division D Conference 2026 · Champions',
+    'hero.eyebrow':     'District 95 Division D · Champions',
     'hero.title':       'Five Voices,<br>Went to District',
     'hero.lead':        'On 25 April in Munich, our community crowned its champions. They competed on the 15th of May at the District 95 Conference in Essen — representing 30+ Toastmasters clubs across Bavaria.',
     'hero.visitorCount':   '{n} people have visited this page',
 
     'about.label':      'The Event',
     'about.title':      'A day where voices came alive',
-    'about.body1':      'On 25 April 2026, the Division D Conference brought Toastmasters from every corner of Bavaria together for a day of inspiring speeches, fierce competitions, and genuine human connection.',
+    'about.body1':      'On 25 April 2026, District 95 Division D brought Toastmasters from every corner of Bavaria together for a day of inspiring speeches, fierce competitions, and genuine human connection.',
     'about.body2':      'Seasoned speakers competed for glory; first-timers got their first taste of Toastmasters. World-class speeches, laughter, learning, and a community that will stay with us long after the applause has faded.',
 
     'facts.dateLabel':      'Date',
@@ -78,9 +76,6 @@ const i18n = {
     'contact.text':     'Questions? Get in touch:',
 
     'bar.thanks':       'With thanks to',
-    'bar.cheer':        'Our champions competed at',
-    'bar.cheerMobile':  'Champions competed at',
-    'bar.d95conf':      'District 95 Conference · 15–17 May · Essen ↗',
 
     'workshops.label':  'Thank you',
     'workshops.title':  'Our Workshop Facilitators',
@@ -132,22 +127,20 @@ const i18n = {
   },
 
   de: {
-    'nav.brand':        'Division D · Distrikt 95',
+    'nav.brand':        'Distrikt 95 · Division D',
     'nav.about':        'Über uns',
     'nav.tm':           'Toastmasters',
     'nav.venue':        'Veranstaltungsort',
     'nav.champions':    'Sieger',
-    'nav.d95':          'Distrikt 95 ↗',
-    'nav.d95mobile':    'Distrikt 95 ↗',
 
-    'hero.eyebrow':     'Division D Konferenz 2026 · Sieger',
+    'hero.eyebrow':     'District 95 Division D · Sieger',
     'hero.title':       'Fünf Stimmen,<br>auf zum Distrikt',
     'hero.lead':        'Am 25. April hat unsere Community in München ihre Sieger gekürt. Am 15. Mai traten sie auf der Distrikt-95-Konferenz in Essen an — und vertraten über 30 Toastmasters-Clubs aus ganz Bayern.',
     'hero.visitorCount':   '{n} Personen haben diese Seite besucht',
 
     'about.label':      'Die Veranstaltung',
     'about.title':      'Ein Tag, an dem Stimmen lebendig wurden',
-    'about.body1':      'Am 25. April 2026 brachte die Division D Konferenz Toastmasters aus ganz Bayern für einen Tag voller inspirierender Reden, spannender Wettbewerbe und echter menschlicher Verbindung zusammen.',
+    'about.body1':      'Am 25. April 2026 brachte District 95 Division D Toastmasters aus ganz Bayern für einen Tag voller inspirierender Reden, spannender Wettbewerbe und echter menschlicher Verbindung zusammen.',
     'about.body2':      'Erfahrene Redner kämpften um Ruhm; Erstbesucher bekamen ihren ersten Eindruck von Toastmasters. Erstklassige Reden, Lachen, Lernen und eine Gemeinschaft, die noch lange nach dem Applaus bei uns bleibt.',
 
     'facts.dateLabel':      'Datum',
@@ -200,9 +193,6 @@ const i18n = {
     'contact.text':     'Fragen? Schreib uns:',
 
     'bar.thanks':       'Mit Dank an',
-    'bar.cheer':        'Unsere Sieger vertraten uns bei der',
-    'bar.cheerMobile':  'Unsere Sieger waren bei der',
-    'bar.d95conf':      'Distrikt 95 Konferenz · 15.–17. Mai · Essen ↗',
 
     'workshops.label':  'Danke',
     'workshops.title':  'Unsere Workshop-Referent:innen',

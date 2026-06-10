@@ -1,9 +1,11 @@
-# Division D Conference Website — Agent Handoff
+# District 95 Division D Website — Agent Handoff
 
 ## What this is
-Static website for the **Division D (District 95) Toastmasters** conference on **25 April 2026** at Stadtteilkultur 2411, Munich. Hosted on GitHub Pages at `toastmasters-bayern.com`. Bilingual EN/DE.
+Static website for **District 95 Division D Toastmasters**. Hosted on GitHub Pages at `toastmasters-bayern.com`. Bilingual EN/DE.
 
-**Tagline:** "Where Stories Connect" / "Wo Geschichten sich begegnen"
+> **Note:** The site is being repurposed from a one-off conference site (Division D Conference, 25 April 2026) into a standing Division D site. Conference-specific metadata/labels and the Essen send-off bar have been removed; the champions, agenda programme, and registration funnel still contain April-event body content pending later steps.
+
+**Motto:** "Dream small, just do it."
 
 ---
 
