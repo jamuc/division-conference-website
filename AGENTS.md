@@ -120,12 +120,17 @@ Shown in the hero section of `index.html`. Fetches from Apps Script on first vis
 - Entire sticky bottom bar removed (Essen send-off + sponsors) from index.html and agenda.html; `js/bottom-bar.js` deleted.
 
 **Done (step 2 — split contest content off the main page):**
-- The main page now shows only: hero (champions) + "What is Toastmasters?" + "Facebook".
+- The main page now shows only: hero (**"Das Fenster"** news section) + "What is Toastmasters?" + "Facebook".
 - The four contest-day sections — **About the Event, Workshops, Contest Chairs, Venue** — were moved verbatim to **`contest.html`** (archive, `robots noindex`) so nothing is lost; we may reuse them later. Linked from the main page's burger menu ("Contest 2026") and footer.
-- `contest.html` reuses the same chrome + `js/main.js` i18n; new nav keys added: `nav.contest`, `nav.chairs`, `nav.home`. The hero champions content + `hero.lead` are unchanged (still carry April-event wording).
+- `contest.html` reuses the same chrome + `js/main.js` i18n; new nav keys added: `nav.contest`, `nav.chairs`, `nav.home`.
 
-**Still pending (carries April-event wording — later steps):**
-- `index.html`: the Champions section + `hero.lead`, and the champion-card links/alt-text → `district95-conference.com`.
+**Done (step 3 — hero repurposed as "Das Fenster · Division News"):**
+- The hero is now the division's news section. `hero.eyebrow` = **"Das Fenster · Division News"** (same in EN + DE). The mobile nav link to `#hero` (`nav.champions` key) uses the short label "Das Fenster".
+- Current featured item reframes the five winners as **division champions** (each won their category at the District 95 Division D contest — International Speech / Evaluation / Table Topics, EN + DE), replacing the old "Five Voices, Went to District" copy. `hero.title` / `hero.lead` + the five champion-card `alt` texts rewritten; medal seals already removed in step earlier.
+- Future: this is set up as a single featured news item — a real news feed (multiple items) is not built yet.
+
+**Still pending (carries April-event/district wording — later steps):**
+- `index.html`: the champion-card **links** still point to `district95-conference.com`, and the winner **images** themselves have "Division D Contestants Advancing to District / District 95 Conference 15 May 2026 · Essen" baked into the pixels — would need re-rendering to fully match the division-champion framing.
 - `contest.html`: all of it is April-event content by design (it's the archive) — revisit if/when reused.
 - `agenda.html`: the programme body still reads "Conference Programme" / "Division D Conference 2026" (~lines 752, 772, 1197).
 - Registration funnel (`registration.html` / `js/register.js`) and the Apps Script `SHEET_NAME = 'Division D Conference Registration'` (left untouched — bound to live Google Sheet data).
