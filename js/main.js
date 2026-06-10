@@ -15,6 +15,9 @@ const i18n = {
     'nav.tm':           'Toastmasters',
     'nav.venue':        'Venue',
     'nav.champions':    'Champions',
+    'nav.chairs':       'Contest Chairs',
+    'nav.contest':      'Contest 2026',
+    'nav.home':         '← Home',
 
     'hero.eyebrow':     'District 95 Division D · Champions',
     'hero.title':       'Five Voices,<br>Went to District',
@@ -218,6 +221,9 @@ const i18n = {
     'workshops.4.desc':  'Sprich mit Selbstvertrauen. Wachse über dich hinaus.',
     'workshops.4.bio':   'Oleg Güntner ist seit 25 Jahren bei BMW tätig, aktuell als Führungskraft mit Verantwortung für die Qualität der Prototypenteile in der Entwicklung. Trainer für „7 Wege zur Effektivität" und Coach für Führung und Persönlichkeitsentwicklung. Toastmaster seit 2012 und aktuell Präsident des Toastmaster-Clubs „Munich Media Speakers". Ausbildung: Wirtschaftsingenieur und NLP-Master.',
     'nav.workshops':     'Workshops',
+    'nav.chairs':        'Wettbewerbsleitung',
+    'nav.contest':       'Wettbewerb 2026',
+    'nav.home':          '← Startseite',
 
     'bootcamp.label':   'Jugend-Bootcamp',
     'bootcamp.title':   'Unsere Moderatoren',

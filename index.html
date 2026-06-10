@@ -36,7 +36,7 @@
 
   <!-- Fonts: self-hosted for GDPR compliance (no Google CDN) -->
 
-  <link rel="stylesheet" href="css/style.css?v=10" />
+  <link rel="stylesheet" href="css/style.css?v=11" />
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -116,10 +116,8 @@
 
     <nav class="nav__mobile" id="navMobile" aria-hidden="true">
       <a href="#hero" class="nav__mobile-link" data-i18n="nav.champions">Champions</a>
-      <a href="#workshops" class="nav__mobile-link" data-i18n="nav.workshops">Workshops</a>
-      <a href="#about" class="nav__mobile-link" data-i18n="nav.about">About</a>
       <a href="#toastmasters" class="nav__mobile-link" data-i18n="nav.tm">Toastmasters</a>
-      <a href="#venue" class="nav__mobile-link" data-i18n="nav.venue">Venue</a>
+      <a href="contest.html" class="nav__mobile-link" data-i18n="nav.contest">Contest 2026</a>
     </nav>
   </header>
 
@@ -168,246 +166,12 @@
   </section>
 
   <!-- ═══════════════════════════════════════════
-       WORKSHOPS
-  ═══════════════════════════════════════════ -->
-  <section class="section section--light" id="workshops">
-    <div class="container">
-      <span class="section__label" data-i18n="workshops.label">Thank you</span>
-      <h2 class="section__title" data-i18n="workshops.title">Our Workshop Facilitators</h2>
-      <p class="workshops__intro" data-i18n="workshops.intro">These five speakers and coaches led our hands-on sessions on 25 April — including our Youth Boot Camp for ages 11–18. Thank you for sharing your craft with the room.</p>
-      <div class="workshop-grid workshop-grid--four">
-
-        <!-- Workshop 1: Ineke Vermeulen -->
-        <div class="workshop-card">
-          <div class="workshop-card__photo-wrap">
-            <img src="images/workshop-ineke.jpg" alt="Ineke Vermeulen" class="workshop-card__photo" loading="lazy" />
-          </div>
-          <div class="workshop-card__body">
-            <h3 class="workshop-card__name">Ineke Vermeulen, DTM</h3>
-            <div class="workshop-card__lang-row">
-              <span class="workshop-card__lang">EN</span>
-              <span class="workshop-card__lang-flag"><img src="https://flagcdn.com/20x15/gb.png" alt="EN" class="lang-flag-img--card"></span>
-            </div>
-            <p class="workshop-card__title" data-i18n="workshops.1.title">Present with Power</p>
-            <p class="workshop-card__desc" data-i18n="workshops.1.desc">From Death by PowerPoint to Seducing with Slides — Presentation tips for Toastmasters, business, and life.</p>
-            <details class="workshop-card__bio-toggle">
-              <summary data-i18n="workshops.1.bioToggle">About the facilitator</summary>
-              <p class="workshop-card__bio" data-i18n="workshops.1.bio">Ineke Vermeulen is a public speaking and TEDx coach, trainer, and Distinguished Toastmaster (DTM) with over 15 years of experience. She works with clients ranging from ambitious individuals to global organisations, helping them communicate with confidence, clarity, and impact.</p>
-            </details>
-          </div>
-        </div>
-
-        <!-- Workshop 2: Edgar Niklaus -->
-        <div class="workshop-card">
-          <div class="workshop-card__photo-wrap">
-            <img src="images/workshop-edgar.jpg" alt="Edgar Niklaus" class="workshop-card__photo" loading="lazy" />
-          </div>
-          <div class="workshop-card__body">
-            <h3 class="workshop-card__name">Edgar Niklaus, DTM</h3>
-            <div class="workshop-card__lang-row">
-              <span class="workshop-card__lang">DE</span>
-              <span class="workshop-card__lang-flag"><img src="https://flagcdn.com/20x15/de.png" alt="DE" class="lang-flag-img--card"></span>
-            </div>
-            <p class="workshop-card__title" data-i18n="workshops.2.title">Elevator Pitch</p>
-            <p class="workshop-card__desc" data-i18n="workshops.2.desc">Der Workshop erklärt Voraussetzungen und Funktionen des Elevator Pitchs und versetzt die Teilnehmer in die Lage ihren eigenen persönlichen Elevator Pitch zu erstellen und zu üben.</p>
-            <details class="workshop-card__bio-toggle">
-              <summary data-i18n="workshops.2.bioToggle">About the facilitator</summary>
-              <p class="workshop-card__bio" data-i18n="workshops.2.bio">Edgar Niklaus (Dipl.-Ing. und Betriebswirt) ist selbständiger Finanz- und Versicherungsmakler seit 1999. Bei Toastmasters seit November 2004, DTM seit 2015. Er hat unzählige Reden und viele Workshops gehalten und bringt 18 Jahre berufliche Führungserfahrung mit.</p>
-            </details>
-          </div>
-        </div>
-
-        <!-- Workshop 3: Darya Juric -->
-        <div class="workshop-card">
-          <div class="workshop-card__photo-wrap">
-            <img src="images/workshop-darya.jpg" alt="Darya Juric" class="workshop-card__photo workshop-card__photo--darya" loading="lazy" />
-          </div>
-          <div class="workshop-card__body">
-            <h3 class="workshop-card__name">Darya Juric</h3>
-            <div class="workshop-card__lang-row">
-              <span class="workshop-card__lang">EN</span>
-              <span class="workshop-card__lang-flag"><img src="https://flagcdn.com/20x15/gb.png" alt="EN" class="lang-flag-img--card"></span>
-            </div>
-            <p class="workshop-card__title" data-i18n="workshops.3.title">Overcome the Spotlight Effect</p>
-            <p class="workshop-card__desc" data-i18n="workshops.3.desc">Turn public speaking from a fear into your advantage. This workshop will give you practical tools to reduce anxiety, embrace new opportunities, and speak with impact.</p>
-            <details class="workshop-card__bio-toggle">
-              <summary data-i18n="workshops.3.bioToggle">About the facilitator</summary>
-              <p class="workshop-card__bio" data-i18n="workshops.3.bio">Darya Juric is an IT professional passionate about communication. In 2022 she founded a corporate Toastmasters club, and later a series of webinars focused on developing the inner skills and mindset that lay the foundation for successful public speaking.</p>
-            </details>
-          </div>
-        </div>
-
-        <!-- Workshop 4: Oleg Güntner (Youth Boot Camp) -->
-        <div class="workshop-card workshop-card--bootcamp">
-          <div class="workshop-card__photo-wrap">
-            <img src="images/workshop-oleg.jpg" alt="Oleg Güntner" class="workshop-card__photo" loading="lazy" />
-          </div>
-          <div class="workshop-card__body">
-            <h3 class="workshop-card__name">Oleg Güntner</h3>
-            <div class="workshop-card__lang-row">
-              <span class="workshop-card__lang">DE</span>
-              <span class="workshop-card__lang-flag"><img src="https://flagcdn.com/20x15/de.png" alt="DE" class="lang-flag-img--card"></span>
-              <span class="workshop-card__lang">EN</span>
-              <span class="workshop-card__lang-flag"><img src="https://flagcdn.com/20x15/gb.png" alt="EN" class="lang-flag-img--card"></span>
-            </div>
-            <p class="workshop-card__title" data-i18n="workshops.4.title">Communicate by type — reach everyone</p>
-            <div class="workshop-card__ages-row" aria-label="Age groups">
-              <span class="workshop-card__age-pill" data-i18n="workshops.4.ages1">Ages 11–14</span>
-              <span class="workshop-card__age-pill" data-i18n="workshops.4.ages2">Ages 15–18</span>
-            </div>
-            <span class="workshop-card__bootcamp-pill" data-i18n="bootcamp.pill">Youth Boot Camp</span>
-            <p class="workshop-card__desc" data-i18n="workshops.4.desc">Speak with confidence. Grow beyond yourself.</p>
-            <details class="workshop-card__bio-toggle">
-              <summary data-i18n="workshops.4.bioToggle">About the facilitator</summary>
-              <p class="workshop-card__bio" data-i18n="workshops.4.bio">Oleg Güntner has spent 25 years at BMW, currently as a manager responsible for prototype part quality in development. He is a certified trainer for "The 7 Habits of Highly Effective People" and a coach for leadership and personal development. A Toastmaster since 2012, he is currently President of Munich Media Speakers. He holds degrees in Industrial Engineering and is an NLP Master.</p>
-            </details>
-          </div>
-        </div>
-
-      </div>
-      <div class="workshops__cta-wrap">
-        <a href="agenda.html#workshops" class="btn btn--outline" data-i18n="workshops.cta">See the Programme (archive)</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════
-       CONTEST CHAIRS
-  ═══════════════════════════════════════════ -->
-  <section class="section section--maroon" id="contest-chairs">
-    <div class="container">
-      <span class="section__label section__label--light" data-i18n="cc.label">Contest Chairs</span>
-      <h2 class="section__title section__title--light" data-i18n="cc.title">Behind every fair contest</h2>
-      <p class="workshops__intro workshops__intro--light" data-i18n="cc.intro">Thank you to our four contest chairs, who ran every competition on 25 April with precision, fairness, and care — making sure each speaker got their moment to shine.</p>
-      <div class="workshop-grid workshop-grid--centered">
-
-        <!-- Contest Chair 1: Mel Kelly -->
-        <div class="workshop-card">
-          <div class="workshop-card__photo-wrap">
-            <img src="images/cc-mel.jpg" alt="Mel Kelly" class="workshop-card__photo" loading="lazy" />
-          </div>
-          <div class="workshop-card__body">
-            <h3 class="workshop-card__name">Mel Kelly</h3>
-            <p class="workshop-card__title" data-i18n="cc.3.role">Contest Chair — Evaluation &amp; Table Topics</p>
-            <details class="workshop-card__bio-toggle">
-              <summary data-i18n="cc.3.bioToggle">About the contest chair</summary>
-              <p class="workshop-card__bio" data-i18n="cc.3.bio">Mel Kelly is a dynamic speaker and comedian known for his sharp wit and engaging stage presence. A Toastmasters champion, he has impressed audiences across Europe with his ability to blend humor and powerful storytelling. Over the years, Mel has earned multiple awards at Toastmasters district conferences in both English and German, including 1st place finishes in Evaluation and Table Topics, as well as top placements in Humorous and International Speech contests. With experience both on stage and in competition, he brings energy, professionalism, and a touch of fun to every event — ensuring a smooth contest where every speaker gets their moment to shine.</p>
-            </details>
-          </div>
-        </div>
-
-        <!-- Contest Chair 2: Mikaela Gallon -->
-        <div class="workshop-card">
-          <div class="workshop-card__photo-wrap">
-            <img src="images/cc-mikaela.jpg" alt="Mikaela Gallon" class="workshop-card__photo" loading="lazy" />
-          </div>
-          <div class="workshop-card__body">
-            <h3 class="workshop-card__name">Mikaela Gallon, DTM</h3>
-            <p class="workshop-card__title" data-i18n="cc.1.role">Contest Chair — International Speech</p>
-            <details class="workshop-card__bio-toggle">
-              <summary data-i18n="cc.1.bioToggle">About the contest chair</summary>
-              <p class="workshop-card__bio" data-i18n="cc.1.bio">Mikaela Gallon is a Sr. IT Project Manager and PMP®, and the founder of Present.Global — where communication meets coaching, mindfulness, and presence. Half French and Maltese, raised between Argentina and South Africa, she has worked across Europe, New York, and Tokyo. Fluent in French, English, Spanish, and German, she knows firsthand that real communication goes far beyond language. A TEDx speaker, 2x TEDx coach, 3x Toastmasters District Champion, and Ivy League MBA, she has spent a lifetime crossing borders and building bridges — connecting people, connecting dots, and bringing a fuller, more human voice to the way we communicate.</p>
-            </details>
-          </div>
-        </div>
-
-        <!-- Contest Chair 3: Tobias Schlosser -->
-        <div class="workshop-card">
-          <div class="workshop-card__photo-wrap">
-            <img src="images/cc-tobias.jpg" alt="Tobias Schlosser" class="workshop-card__photo" loading="lazy" />
-          </div>
-          <div class="workshop-card__body">
-            <h3 class="workshop-card__name">Tobias Schlosser</h3>
-            <p class="workshop-card__title" data-i18n="cc.4.role">Wettbewerbsleiter — Deutscher Bewertungs- &amp; Table Topics-Wettbewerb</p>
-            <details class="workshop-card__bio-toggle">
-              <summary data-i18n="cc.4.bioToggle">About the contest chair</summary>
-              <p class="workshop-card__bio" data-i18n="cc.4.bio">Tobias Schlosser is a dedicated Toastmaster known for his analytical mindset and his willingness to dive into complexity where others might hesitate. He has a natural ability to unpack challenging ideas and turn them into meaningful insights that support real growth. An experienced competitor and leader, Tobias brings precision, fairness, and thoughtful depth to every contest. His calm presence and structured approach ensure a well-run experience — where every speaker is seen, challenged, and encouraged to improve.</p>
-            </details>
-          </div>
-        </div>
-
-        <!-- Contest Chair 4: Christina Bolte -->
-        <div class="workshop-card">
-          <div class="workshop-card__photo-wrap">
-            <img src="images/cc-christina.jpg" alt="Christina Bolte" class="workshop-card__photo" loading="lazy" />
-          </div>
-          <div class="workshop-card__body">
-            <h3 class="workshop-card__name">Christina Bolte</h3>
-            <p class="workshop-card__title" data-i18n="cc.2.role">Wettbewerbsleiterin — Deutscher Redewettbewerb</p>
-            <details class="workshop-card__bio-toggle">
-              <summary data-i18n="cc.2.bioToggle">About the contest chair</summary>
-              <p class="workshop-card__bio" data-i18n="cc.2.bio">Christina, an industrial engineer with over 14 years in the automotive industry, once considered invisibility her superpower—until launching her own business as a health consultant revealed the need to be seen and heard. This turning point led her to Toastmasters in 2014. Since then, she has served multiple times as a District Officer and held various leadership roles across clubs. Through Toastmasters, she transformed her voice into a powerful business asset—making confident speaking and impactful presentations a cornerstone of her success.</p>
-            </details>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════
-       ABOUT THE EVENT
-  ═══════════════════════════════════════════ -->
-  <section class="section section--light" id="about">
-    <div class="container">
-      <div class="about__grid">
-        <div class="about__text">
-          <span class="section__label" data-i18n="about.label">The Event</span>
-          <h2 class="section__title" data-i18n="about.title">A day where voices came alive</h2>
-          <p data-i18n="about.body1">On 25 April 2026, District 95 Division D brought Toastmasters from every corner of Bavaria together for a day of inspiring speeches, fierce competitions, and genuine human connection.</p>
-          <p data-i18n="about.body2">Seasoned speakers competed for glory; first-timers got their first taste of Toastmasters. World-class speeches, laughter, learning, and a community that will stay with us long after the applause has faded.</p>
-
-        </div>
-        <div class="about__facts">
-          <div class="fact-card">
-            <div class="fact-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 2v2M18 2v2M3 9h18M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </div>
-            <div>
-              <div class="fact-card__label" data-i18n="facts.dateLabel">Date</div>
-              <div class="fact-card__value" data-i18n="facts.dateValue">25 April 2026</div>
-            </div>
-          </div>
-          <div class="fact-card">
-            <div class="fact-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <div>
-              <div class="fact-card__label" data-i18n="facts.locationLabel">Location</div>
-              <div class="fact-card__value" data-i18n="facts.locationValue">Munich · Stadtteilkultur 2411</div>
-            </div>
-          </div>
-          <div class="fact-card">
-            <div class="fact-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <div>
-              <div class="fact-card__label" data-i18n="facts.districtLabel">District</div>
-              <div class="fact-card__value" data-i18n="facts.districtValue">District 95 · Division D</div>
-            </div>
-          </div>
-          <div class="fact-card">
-            <div class="fact-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <div>
-              <div class="fact-card__label" data-i18n="facts.formatLabel">Format</div>
-              <div class="fact-card__value" data-i18n="facts.formatValue">Speeches · Contests · Networking</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-<!-- ═══════════════════════════════════════════
        WHAT IS TOASTMASTERS?
   ═══════════════════════════════════════════ -->
-  <section class="section section--dark" id="toastmasters">
+  <section class="section section--cream" id="toastmasters">
     <div class="container">
-      <span class="section__label section__label--light" data-i18n="tm.label">New here?</span>
-      <h2 class="section__title section__title--light" data-i18n="tm.title">What is Toastmasters?</h2>
+      <span class="section__label" data-i18n="tm.label">New here?</span>
+      <h2 class="section__title" data-i18n="tm.title">What is Toastmasters?</h2>
       <p class="tm__body" data-i18n="tm.body">Toastmasters International is a world-leading communication and leadership organisation with over 300,000 members in 145 countries. Members grow their confidence, sharpen their public speaking skills, and discover their voice — in a supportive, non-judgmental community of people just like them.</p>
       <div class="tm__links">
         <a href="https://toastmasters-95.org" target="_blank" rel="noopener" class="tm__link-card">
@@ -445,35 +209,6 @@
   </section>
 
   <!-- ═══════════════════════════════════════════
-       VENUE
-  ═══════════════════════════════════════════ -->
-  <section class="section section--light" id="venue">
-    <div class="container">
-      <span class="section__label" data-i18n="venue.label">Getting There</span>
-      <h2 class="section__title" data-i18n="venue.title">Venue</h2>
-      <div class="venue__card">
-        <a href="https://maps.google.com/?q=Stadtteilkultur+2411,+Blodigstra%C3%9Fe+4,+80933+M%C3%BCnchen" target="_blank" rel="noopener" class="venue__map-placeholder" aria-label="Open in Google Maps">
-          <iframe
-            src="https://maps.google.com/maps?q=Blodigstra%C3%9Fe+4,+80933+M%C3%BCnchen&output=embed&z=15"
-            width="100%" height="100%" style="border:0;pointer-events:none;" loading="lazy"
-            title="Venue map" aria-hidden="true"></iframe>
-          <span class="venue__map-overlay" data-i18n="venue.mapCta">Open in Google Maps ↗</span>
-        </a>
-        <div class="venue__info">
-          <div class="venue__location">
-            <svg class="icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2C7.24 2 5 4.24 5 7c0 4 5 11 5 11s5-7 5-11c0-2.76-2.24-5-5-5zm0 7a2 2 0 110-4 2 2 0 010 4z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>Stadtteilkultur 2411</span>
-          </div>
-          <p class="venue__address">Blodigstraße 4, 80933 München</p>
-          <p class="venue__transport" data-i18n="venue.transport">U-Bahn: Hasenbergl (U2)</p>
-          <a href="https://maps.google.com/?q=Stadtteilkultur+2411,+Blodigstra%C3%9Fe+4,+80933+M%C3%BCnchen" target="_blank" rel="noopener" class="btn btn--outline btn--sm venue__directions" data-i18n="venue.directions">Get Directions ↗</a>
-          <button class="btn btn--outline btn--sm venue__cal" data-i18n="venue.calendar">+ Add to Calendar</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════
        FOOTER
   ═══════════════════════════════════════════ -->
   <footer class="footer">
@@ -483,6 +218,7 @@
         <a href="https://toastmasters-95.org" target="_blank" rel="noopener" data-i18n="footer.d95">District 95</a>
         <a href="https://www.toastmasters.org" target="_blank" rel="noopener" data-i18n="footer.ti">Toastmasters International</a>
         <a href="https://www.facebook.com/ToastmastersBayern/" target="_blank" rel="noopener" data-i18n="footer.facebook">Facebook</a>
+        <a href="contest.html" data-i18n="nav.contest">Contest 2026</a>
         <a href="agenda.html" data-i18n="footer.programme">Programme (archive)</a>
         <a href="/impressum.html" data-i18n="footer.privacy">Impressum</a>
       </div>

@@ -614,6 +614,7 @@ body.lang-de .lang-only-en { display: none !important; }
   padding-block: clamp(3.5rem, 8vw, 6rem);
 }
 .section--light   { background: var(--white); }
+.section--cream   { background: var(--gray-lt); }
 .section--dark    { background: var(--navy); }
 .section--maroon  { background: var(--maroon); }
 .section--tickets {
@@ -719,6 +720,18 @@ body.lang-de .lang-only-en { display: none !important; }
 .tm__link-card:hover {
   background: rgba(255,255,255,.14);
   border-color: rgba(255,255,255,.3);
+}
+
+/* Toastmasters section on an off-white background — dark-on-light text */
+.section--cream .tm__body { color: var(--text-muted); }
+.section--cream .tm__link-card {
+  background: var(--white);
+  border-color: rgba(0,0,0,.12);
+  color: var(--navy);
+}
+.section--cream .tm__link-card:hover {
+  background: var(--white);
+  border-color: var(--navy);
 }
 
 /* ══════════════════════════════════════════════════════

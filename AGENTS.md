@@ -15,7 +15,8 @@ Static website for **District 95 Division D Toastmasters**. Hosted on GitHub Pag
 Pure HTML5 + CSS + Vanilla JS. No build step, no framework. GitHub Pages deployment.
 
 ```
-index.html              ← main landing page
+index.html              ← main landing page: hero (champions) + What is Toastmasters? + Facebook
+contest.html            ← archive of the 25 Apr contest day (noindex) — see below
 agenda.html             ← day programme (still conference-worded — pending)
 registration.html       ← multi-step registration funnel
 css/style.css           ← (.bottom-bar* rules now unused — bottom bar removed)
@@ -34,6 +35,7 @@ CNAME                   ← toastmasters-bayern.com
 - Maroon: `#772432`
 - Dark Blue (Navy): `#004165`
 - Gray: `#A9B2B1`
+- Off-white: `#f4f5f5` (`--gray-lt`) — used by `.section--cream` (e.g. the "What is Toastmasters?" section, to break it off from the navy "Facebook" section)
 - Yellow (CTA): `#F2DF74`
 - Fonts: Montserrat (headings), Inter (body) — self-hosted in `/fonts/`
 
@@ -117,8 +119,14 @@ Shown in the hero section of `index.html`. Fetches from Apps Script on first vis
 - Nav brand reversed to "District 95 · Division D"; the "District 95 ↗" pill removed (desktop + mobile menu).
 - Entire sticky bottom bar removed (Essen send-off + sponsors) from index.html and agenda.html; `js/bottom-bar.js` deleted.
 
+**Done (step 2 — split contest content off the main page):**
+- The main page now shows only: hero (champions) + "What is Toastmasters?" + "Facebook".
+- The four contest-day sections — **About the Event, Workshops, Contest Chairs, Venue** — were moved verbatim to **`contest.html`** (archive, `robots noindex`) so nothing is lost; we may reuse them later. Linked from the main page's burger menu ("Contest 2026") and footer.
+- `contest.html` reuses the same chrome + `js/main.js` i18n; new nav keys added: `nav.contest`, `nav.chairs`, `nav.home`. The hero champions content + `hero.lead` are unchanged (still carry April-event wording).
+
 **Still pending (carries April-event wording — later steps):**
 - `index.html`: the Champions section + `hero.lead`, and the champion-card links/alt-text → `district95-conference.com`.
+- `contest.html`: all of it is April-event content by design (it's the archive) — revisit if/when reused.
 - `agenda.html`: the programme body still reads "Conference Programme" / "Division D Conference 2026" (~lines 752, 772, 1197).
 - Registration funnel (`registration.html` / `js/register.js`) and the Apps Script `SHEET_NAME = 'Division D Conference Registration'` (left untouched — bound to live Google Sheet data).
 - `impressum.html`: the "Veranstaltung" / "Konferenzanmeldungen" clauses.
