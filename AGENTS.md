@@ -3,9 +3,11 @@
 ## What this is
 Static website for **District 95 Division D Toastmasters**. Hosted on GitHub Pages at `toastmasters-bayern.com`. Bilingual EN/DE.
 
-> **Note:** The site is being repurposed from a one-off conference site (Division D Conference, 25 April 2026) into a standing Division D site. Conference-specific metadata/labels and the Essen send-off bar have been removed; the champions, agenda programme, and registration funnel still contain April-event body content pending later steps.
+> **Repurpose in progress:** The site is moving from a one-off conference site (Division D Conference, 25 April 2026) to a standing District 95 Division D site. See "Current state" below for exactly what's done vs. pending.
 
 **Motto:** "Dream small, just do it."
+
+**Identity label:** "District 95 · Division D" (district first). Domain stays `toastmasters-bayern.com`.
 
 ---
 
@@ -14,15 +16,17 @@ Pure HTML5 + CSS + Vanilla JS. No build step, no framework. GitHub Pages deploym
 
 ```
 index.html              ← main landing page
-agenda.html             ← conference agenda
+agenda.html             ← day programme (still conference-worded — pending)
 registration.html       ← multi-step registration funnel
-css/style.css
+css/style.css           ← (.bottom-bar* rules now unused — bottom bar removed)
 js/main.js              ← lang toggle, share buttons, sticky nav, visitor counter
 js/register.js          ← registration funnel logic, Stripe, PDF
 google-apps-script.js   ← backend (deployed as Google Apps Script)
 impressum.html
+images/og-image.png     ← social share card, 1200×630 (see "Social share card")
 CNAME                   ← toastmasters-bayern.com
 ```
+(The old `js/bottom-bar.js` was deleted — the sticky bottom bar is gone.)
 
 ---
 
@@ -102,15 +106,29 @@ Shown in the hero section of `index.html`. Fetches from Apps Script on first vis
 
 ---
 
-## Current state (as of April 3, 2026)
-- **Pre-Signup mode**: index.html and agenda.html show "Pre-Signup" button linking to Google Form `https://forms.gle/zk1Nz7jc395sWGPu6` with note "Registration opens 4 April 2026"
-- **Registration funnel**: fully built with Stripe live payments working
-- **Stripe**: live mode, card only, receipts via Stripe (email send pending full account verification)
-- **Contest roles step**: just implemented — members see 6-step funnel with roles + judge eligibility
+## Social share card (`images/og-image.png`)
+- 1200×630 flat PNG — **no source template in the repo**. Shows "District 95 Division D" + the motto on a maroon→navy gradient with the Toastmasters globe.
+- To regenerate: `pip3 install Pillow fonttools brotli`, convert the self-hosted WOFF2 fonts in `/fonts/` to TTF with fontTools (`montserrat-latin.woff2` is a variable font, wght 100–900 — instantiate with `varLib.instancer`), compose with Pillow. (No ImageMagick / headless Chrome available locally.)
+- After changing the image, **bump the `?v=N` query** on the og:image / twitter:image / JSON-LD image URLs in `index.html` and `agenda.html` so WhatsApp/Facebook refetch instead of serving a cached copy. Currently `?v=3`.
 
-## Known issues / pending
-- Stripe automatic receipt emails not firing (account verification may be incomplete — manual send works)
-- Registration opens 4 April 2026 — at that point switch Pre-Signup buttons back to "Register Now!" linking to `registration.html`
+## Current state (repurpose, as of 10 June 2026)
+**Done (step 1 — identity & previews):**
+- Link-preview/meta tags (title, description, OG, Twitter, JSON-LD), visible identity labels, and the new social card all say **"District 95 Division D"** + motto. No more "Division D Conference 2026".
+- Nav brand reversed to "District 95 · Division D"; the "District 95 ↗" pill removed (desktop + mobile menu).
+- Entire sticky bottom bar removed (Essen send-off + sponsors) from index.html and agenda.html; `js/bottom-bar.js` deleted.
+
+**Still pending (carries April-event wording — later steps):**
+- `index.html`: the Champions section + `hero.lead`, and the champion-card links/alt-text → `district95-conference.com`.
+- `agenda.html`: the programme body still reads "Conference Programme" / "Division D Conference 2026" (~lines 752, 772, 1197).
+- Registration funnel (`registration.html` / `js/register.js`) and the Apps Script `SHEET_NAME = 'Division D Conference Registration'` (left untouched — bound to live Google Sheet data).
+- `impressum.html`: the "Veranstaltung" / "Konferenzanmeldungen" clauses.
+
+## Known issues / pending (registration)
+- Stripe automatic receipt emails not firing (account verification may be incomplete — manual send works).
+- Registration funnel was built for the April conference; revisit whether it's still needed for the standing Division D site.
+
+## Dead code left behind (harmless)
+- `.bottom-bar*` rules in `css/style.css` and the `bar.thanks` i18n key in `js/main.js` are unused since the bottom bar was removed.
 
 ---
 
