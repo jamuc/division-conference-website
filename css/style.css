@@ -2826,15 +2826,6 @@ body { padding-bottom: 70px; }
   background: rgba(255,255,255,.04);
   border: 1px solid rgba(255,255,255,.08);
   box-shadow: 0 8px 24px rgba(0,0,0,.35);
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-.champion-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 34px rgba(0,0,0,.45), 0 0 0 2px var(--yellow);
-}
-.champion-card:focus-visible {
-  outline: 3px solid var(--yellow);
-  outline-offset: 3px;
 }
 .champion-card__img {
   width: 100%;

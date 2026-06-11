@@ -130,7 +130,7 @@ Shown in the hero section of `index.html`. Fetches from Apps Script on first vis
 - Future: this is set up as a single featured news item — a real news feed (multiple items) is not built yet.
 
 **Still pending (carries April-event/district wording — later steps):**
-- `index.html`: the champion-card **links** still point to `district95-conference.com`, and the winner **images** themselves have "Division D Contestants Advancing to District / District 95 Conference 15 May 2026 · Essen" baked into the pixels — would need re-rendering to fully match the division-champion framing.
+- `index.html`: the winner **images** themselves have "Division D Contestants Advancing to District / District 95 Conference 15 May 2026 · Essen" and "district95-conference.com" baked into the pixels — would need re-rendering to fully match the division-champion framing. (The champion cards are no longer links — converted `<a>`→`<div>`, hover affordance removed.)
 - `contest.html`: all of it is April-event content by design (it's the archive) — revisit if/when reused.
 - `agenda.html`: the programme body still reads "Conference Programme" / "Division D Conference 2026" (~lines 752, 772, 1197).
 - Registration funnel (`registration.html` / `js/register.js`) and the Apps Script `SHEET_NAME = 'Division D Conference Registration'` (left untouched — bound to live Google Sheet data).
