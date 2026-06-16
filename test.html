@@ -174,6 +174,148 @@
       font-size: .9rem;
     }
 
+    /* ── Clickable card ───────────────────────── */
+    .event-card--clickable {
+      cursor: pointer;
+    }
+    .event-card__arrow {
+      grid-column: 2;
+      justify-self: end;
+      align-self: end;
+      width: 20px;
+      height: 20px;
+      color: var(--gray);
+      opacity: 0;
+      transition: opacity var(--transition), transform var(--transition);
+      flex-shrink: 0;
+    }
+    .event-card--clickable:hover .event-card__arrow {
+      opacity: 1;
+      transform: translateX(3px);
+    }
+    @media (max-width: 500px) {
+      .event-card__arrow { grid-column: 1; justify-self: end; margin-top: -.25rem; }
+    }
+
+    /* ── Modal / overlay ──────────────────────── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0, 25, 40, .75);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s ease;
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      max-width: 600px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+      box-shadow: 0 12px 48px rgba(0,0,0,.25);
+      transform: translateY(12px);
+      transition: transform .25s ease;
+    }
+    .modal-overlay.open .modal {
+      transform: translateY(0);
+    }
+
+    .modal__close {
+      position: absolute;
+      top: .85rem;
+      right: .85rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      transition: background var(--transition), color var(--transition);
+      line-height: 1;
+    }
+    .modal__close:hover {
+      background: var(--gray-lt);
+      color: var(--text);
+    }
+
+    .modal__date {
+      display: inline-block;
+      font-family: var(--font-head);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--maroon);
+      margin-bottom: .5rem;
+    }
+
+    .modal__title {
+      font-family: var(--font-head);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      padding-right: 1.5rem; /* room for close button */
+    }
+
+    .modal__desc {
+      font-size: .95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal__links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+    }
+    .modal__link {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-family: var(--font-head);
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--navy);
+      background: var(--gray-lt);
+      padding: .55rem 1.1rem;
+      border-radius: 50px;
+      transition: background var(--transition), color var(--transition);
+      text-decoration: none;
+    }
+    .modal__link:hover {
+      background: var(--navy);
+      color: var(--white);
+    }
+    .modal__link svg {
+      width: .9em;
+      height: .9em;
+      flex-shrink: 0;
+    }
+
+    /* Prevent body scroll when modal is open */
+    body.modal-open {
+      overflow: hidden;
+    }
+
     /* Responsive */
     @media (max-width: 500px) {
       .event-card {
@@ -254,6 +396,17 @@
     </div>
 
     <div id="eventsError" class="events-error" hidden></div>
+
+    <!-- ── Event detail modal ── -->
+    <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+      <div class="modal" id="eventModal" role="dialog" aria-modal="true" aria-label="Event details">
+        <button class="modal__close" id="modalClose" aria-label="Close">&times;</button>
+        <div class="modal__date" id="modalDate"></div>
+        <h2 class="modal__title" id="modalTitle"></h2>
+        <p class="modal__desc" id="modalDesc"></p>
+        <div class="modal__links" id="modalLinks"></div>
+      </div>
+    </div>
   </main>
 
 
@@ -411,7 +564,7 @@
       }
 
       /* ── Render an event card ── */
-      function renderCard(evt) {
+      function renderCard(evt, index) {
         var dateObj = parseDate(evt.date);
         var dateHtml = '';
         if (dateObj) {
@@ -426,14 +579,21 @@
 
         var title = escapeHtml(evt.title || 'Untitled event');
         var desc = escapeHtml(evt.description || '');
+        var hasMore = !!(evt.description || evt.link1 || evt.link2);
+
+        var cls = 'event-card' + (hasMore ? ' event-card--clickable' : '');
+        var arrow = hasMore
+          ? '<svg class="event-card__arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+          : '';
 
         return (
-          '<article class="event-card">' +
+          '<article class="' + cls + '" data-event-index="' + index + '">' +
             dateHtml +
             '<div class="event-card__body">' +
               '<h2 class="event-card__title">' + title + '</h2>' +
               (desc ? '<p class="event-card__desc">' + desc + '</p>' : '') +
             '</div>' +
+            arrow +
           '</article>'
         );
       }
@@ -443,6 +603,73 @@
       function escapeHtml(str) {
         return String(str).replace(/[&<>"']/g, function (m) { return ESC_MAP[m]; });
       }
+
+      /* ── Modal ── */
+      var overlay = document.getElementById('modalOverlay');
+      var modalDateEl = document.getElementById('modalDate');
+      var modalTitleEl = document.getElementById('modalTitle');
+      var modalDescEl = document.getElementById('modalDesc');
+      var modalLinksEl = document.getElementById('modalLinks');
+
+      function openModal(evt) {
+        // Date
+        var dateObj = parseDate(evt.date);
+        modalDateEl.textContent = dateObj ? dateObj.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : '';
+
+        // Title
+        modalTitleEl.textContent = evt.title || 'Untitled event';
+
+        // Description
+        modalDescEl.textContent = evt.description || '';
+        modalDescEl.hidden = !evt.description;
+
+        // Links
+        modalLinksEl.innerHTML = '';
+        var links = [evt.link1, evt.link2].filter(Boolean);
+        if (links.length) {
+          for (var l = 0; l < links.length; l++) {
+            var a = document.createElement('a');
+            a.className = 'modal__link';
+            a.href = links[l];
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.innerHTML = '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' + escapeHtml(truncateUrl(links[l]));
+            modalLinksEl.appendChild(a);
+          }
+        }
+        modalLinksEl.hidden = !links.length;
+
+        // Show
+        overlay.classList.add('open');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+      }
+
+      function closeModal() {
+        overlay.classList.remove('open');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('modal-open');
+      }
+
+      function truncateUrl(url) {
+        try {
+          var u = new URL(url);
+          var display = u.hostname.replace(/^www\./, '') + u.pathname;
+          if (display.length > 40) display = display.slice(0, 38) + '…';
+          return display;
+        } catch (_) {
+          return url.length > 40 ? url.slice(0, 38) + '…' : url;
+        }
+      }
+
+      // Close on X, overlay click, Escape
+      document.getElementById('modalClose').addEventListener('click', closeModal);
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeModal();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+      });
 
       /* ── Show error ── */
       function showError(msg) {
@@ -481,14 +708,21 @@
             throw new Error('CSV is missing a "date" column. Found: ' + header.join(', '));
           }
 
+          // Helper: get column value by name
+          function col(name) {
+            return cols[name] != null ? (row[cols[name]] || '') : '';
+          }
+
           // Parse rows into event objects
           var events = [];
           for (var i = 1; i < rows.length; i++) {
             var row = rows[i];
             events.push({
-              date: (cols.date != null && row[cols.date]) || '',
-              title: (cols.title != null && row[cols.title]) || '',
-              description: (cols.description != null && row[cols.description]) || ''
+              date: col('date'),
+              title: col('title'),
+              description: col('description'),
+              link1: col('link_1'),
+              link2: col('link_2')
             });
           }
 
@@ -502,14 +736,27 @@
             return 0;
           });
 
+          // Store events globally for modal lookup
+          window._eventsData = events;
+
           // Render cards
           var html = '';
           for (var e = 0; e < events.length; e++) {
-            html += renderCard(events[e]);
+            html += renderCard(events[e], e);
           }
 
           loading.hidden = true;
           grid.insertAdjacentHTML('beforeend', html);
+
+          // Click delegation — open modal on card click
+          grid.addEventListener('click', function (e) {
+            var card = e.target.closest('.event-card--clickable');
+            if (!card) return;
+            var idx = parseInt(card.getAttribute('data-event-index'), 10);
+            if (!isNaN(idx) && window._eventsData[idx]) {
+              openModal(window._eventsData[idx]);
+            }
+          });
         })
         .catch(function (err) {
           console.error('Events fetch error:', err);
